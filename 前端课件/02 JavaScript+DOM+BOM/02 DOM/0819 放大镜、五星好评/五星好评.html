@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="author" content="金西振" />
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    .box {
+      display: flex;
+      position: relative;
+    }
+
+    .star {
+      display: flex;
+    }
+
+    .star a {
+      width: 19px;
+      height: 19px;
+      background-image: url(./star.png);
+    }
+
+    .star a.on {
+      background-position-y: -27px;
+    }
+
+    .tips {
+      width: 200px;
+      position: absolute;
+      top: 20px;
+      left: 0;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <span>五星好评</span>
+    <div class="star">
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+      <a href="javascript:;"></a>
+    </div>
+    <div class="result"></div>
+    <div class="tips"></div>
+  </div>
+  <script>
+    var stars = document.querySelectorAll('.star a');
+    var tips = document.querySelector('.tips');
+    var result = document.querySelector('.result');
+
+    // 控制点亮的星星个数
+    // n: 被点亮的星星的个数
+    function showStar (n) {
+      for (var i = 0; i < stars.length; i++) {
+        // i = 0 1 2 3 4
+        // n = 3  i=0 1 2
+        // n = 5  i=0 1 2 3 4
+        // if (i < n) {
+        // 	// 	stars[i].classList.add('on');\
+        // 	stars[i].className = 'on';
+        // 	console.log('add i=', i);
+        // } else {
+        // 	// 	stars[i].classList.remove('on');
+        // 	stars[i].className = '';
+        // 	console.log('remove i=', i);
+        // }
+        stars[i].className = i < n ? 'on' : '';
+      }
+    }
+
+    var score = 0; //记录分数
+    var msg = ['很不满意|差得太离谱，与卖家描述的严重不符，非常不满', '不满意|部分有破损，与卖家描述的不符，不满意', '一般|质量一般，没有卖家描述的那么好', '满意|质量不错，与卖家描述的基本一致，还是挺满意的', '非常满意|质量非常好，与卖家描述的完全一致，非常满意'];
+
+    // console.log(data.split('|'));
+
+    for (var i = 0; i < stars.length; i++) {
+      stars[i].index = i;
+      stars[i].onmouseover = function () {
+        console.log('移入：', this.index + 1, this.offsetLeft);
+        var data = msg[this.index];
+        var arr = data.split('|');
+        // console.log(arr);
+        showStar(this.index + 1);
+        tips.style.left = this.offsetLeft + 'px';
+        tips.style.display = 'block';
+        tips.innerHTML = this.index + 1 + '分 ' + arr[0] + '<br>' + arr[1];
+      };
+      stars[i].onclick = function () {
+        console.log('点击：', this.index + 1);
+        // 点击的时候记录分数
+        score = this.index + 1;
+        tips.style.display = 'none';
+        var data = msg[this.index];
+        var arr = data.split('|');
+        result.innerHTML = this.index + 1 + '分 ' + arr[0] + '---- ' + arr[1];
+      };
+      stars[i].onmouseout = function () {
+        console.log('移出：', score);
+        showStar(score); 
+        tips.style.display = 'none';
+      };
+    }
+  </script>
+</body>
+
+</html>

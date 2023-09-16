@@ -1,0 +1,230 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <audio autoplay> 为自动播放,无显示详情信息-->
+    <!-- <audio controls> 设置或返回音频/视频是否显示控件（比如播放/暂停等） -->
+    <audio controls>
+        <source
+            src="https://ln-sycdn.kuwo.cn/473c9b06584e5f634f8d3fceff593a9f/639ecbcf/resource/n1/15/98/3949516821.mp3"
+            type="audio/mp3" />
+    </audio>
+
+    <button class="startBtn" onclick="start()">开始播放</button>
+    <button onclick="pause()">暂停播放</button>
+    <button onclick="restart()">重新播放</button>
+    <button onclick="xunhuan()">循环播放</button>
+    <button onclick="san()">三倍速播放</button>
+
+    <script>
+        let aut = document.querySelector("audio")
+        //默认倍数值
+        // aut.defaultPlaybackRate = 1;
+        //开始播放
+        function start() {
+            aut.play();
+        }
+        //暂停播放
+        function pause() {
+            aut.pause();
+        }
+        //重新播放
+        function restart() {
+            //设置指定时间再继续播放(单位:S秒)
+            aut.currentTime = 0;
+            aut.play()
+        }
+        //循环播放
+        function xunhuan() {
+            aut.setAttribute("loop", "");
+        }
+        //音乐播放的每帧都触发的事件(播放位置改变时触发)
+        aut.addEventListener("timeupdate", function (e) {
+            // console.log(e);
+        })
+
+        //倍速播放
+        function san() {
+            console.log(1);
+            //三倍速播放
+            aut.PlaybackRate = 3;
+            console.log(aut.PlaybackRate);
+            aut.play();
+        }
+    </script>
+</body>
+
+</html>
+```
+#### 下面这个是带进度条的音视频(本人仅是为了参考进度条制作,怕以后忘了)
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视频</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.css">
+
+    <!-- <script src="./jquery-3.5.1.js"></script> -->
+    <script>
+        // jQuery实现
+        // $(function(){
+        //     var video = $("video")[0];
+        //     $("button").click(function(){
+        //         if($(this).text()==="播放"){
+        //             video.play();
+        //         }
+
+        //         if($(this).text()==="暂停"){
+        //              video.pause();
+        //         }
+
+        //         if($(this).text()==="前进"){
+        //             video.currentTime += 5;
+        //         }
+
+        //         if($(this).text()==="后退"){
+        //             video.currentTime -= 5;
+        //         }
+        //     })
+        // })
+
+        // 原生js实现
+        window.onload = function () {
+            // 视频
+            var video = document.getElementsByTagName("video")[0];
+            var progressTimer = document.querySelector('.progress_timer');
+            var durationTimer = document.querySelector('.duration_timer');
+            var progress = document.querySelector('.progress');
+            //   console.log(video);
+            let { totalT, presentT } = { totalT: 0, presentT: 0 }
+            //获取视频总时间
+            video.addEventListener('canplay', function () {
+                totalT = this.duration;
+                var videoDuration = formatTime(totalT);
+                durationTimer.innerHTML = videoDuration;
+            })
+            //获取视频当前播放的时间
+            audio.addEventListener('timeupdate', function () {
+                presentT = this.currentTime;
+                var videoCurrent = formatTime(presentT);
+                progressTimer.innerHTML = videoCurrent;
+                // 进度条(当前时间/总时间*100)最后这个px可以换成定位left的值
+                var percent = presentT / totalT * 100;
+                progress.style.width = percent + '%';
+            })
+            //日期转换,将当前时间转换为00:00:00
+            function formatTime(t) {
+                var h = parseInt(t / 3600);
+                h = h < 10 ? '0' + h : h;
+                var m = parseInt(t % 3600 / 60);
+                m = m < 10 ? '0' + m : m;
+                var s = parseInt(t % 60);
+                s = s < 10 ? '0' + s : s;
+                return h + ':' + m + ':' + s;
+            }
+
+			//将 00:00:00 格式时间转化为 秒数(在当前项目中没用上,拓展增加)
+			//time 00:32:23
+			//输出 1000秒
+			function makeDurationToSeconds(time){
+			var str = time;
+			var arr = str.split(':');
+			var hs = parseInt(arr[0]*3600);
+			var ms = parseInt(arr[1]*60);
+			var ss = parseInt(arr[2]);
+			var seconds = hs + ms + ss;
+			return seconds;
+			}
+
+            // console.log(video.currentTime);
+            // 播放
+            document.getElementById("one").onclick = function () {
+                video.play();
+            }
+            // 暂停
+            document.getElementById("two").onclick = function () {
+                video.pause();
+            }
+            // 快进
+            document.getElementById("three").onclick = function () {
+                video.currentTime += 1 / 25;
+                console.log(video.currentTime);
+            }
+            // 后退
+            document.getElementById("four").onclick = function () {
+                video.currentTime -= 1 / 25;
+            }
+
+            // 音频
+            var audio = document.getElementsByTagName("audio")[0];
+            console.log(audio);
+            //   播放
+            document.getElementById("five").onclick = function () {
+                audio.play();
+            }
+            // 暂停
+            document.getElementById("six").onclick = function () {
+                audio.pause();
+            }
+            // 快进
+            document.getElementById("seven").onclick = function () {
+                audio.currentTime += 5;
+            }
+            // 后退
+            document.getElementById("eight").onclick = function () {
+                audio.currentTime -= 5;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="content">
+            <div class="player">
+                <video src="./mv/1.mp4"></video>
+                <div class="control">
+                    <div>
+                        <span class="progress"></span>
+                    </div>
+                    <div class="timer">
+                        <span class="progress_timer">00:00:00</span>/
+                        <span class="duration_timer">00:00:00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button id="one">播放</button>
+        <button id="two">暂停</button>
+        <button id="three">快进</button>
+        <button id="four">后退</button>
+    </div>
+
+
+
+    <audio controls>
+        <source
+            src="https://ln-sycdn.kuwo.cn/473c9b06584e5f634f8d3fceff593a9f/639ecbcf/resource/n1/15/98/3949516821.mp3"
+            type="audio/mp3" />
+    </audio>
+    <br>
+    <button id="five">播放</button>
+    <button id="six">暂停</button>
+    <button id="seven">快进</button>
+    <button id="eight">后退</button>
+</body>
+
+</html>
+```

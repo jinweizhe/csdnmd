@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    hr {
+      width: 200px;
+    }
+
+    .box {
+      width: 200px;
+      height: 180px;
+      background-color: lightblue;
+      margin: auto;
+
+
+      /* border: 1px solid red; */
+      border-right: 10px solid red;
+      border-left: 10px solid red;
+
+      /* border-width: 5px 10px;
+      border-style: solid dashed;
+      border-color: red orange yellow green; */
+
+      /* border-top-width: 5px; */
+
+      margin: 10px;
+      padding: 20px;
+
+      /* margin-top: 20px; */
+
+      /* box-sizing 定义如何计算元素的总宽度，有两个值
+        content-box 是默认值，可以理解为把元素设置为标准盒模型
+        border-box 理解为把元素设置为怪异盒模型
+      */
+      box-sizing: border-box;
+
+      outline: 5px solid orange; 
+      outline-offset: 10px;
+    }
+
+    .list{
+      width: 900px;
+      height: 300px;
+      background-color: lightblue;
+    }
+    .list>.item{
+      width: calc(100% / 3);
+      height: 210px;
+      background-color: orange;
+      float: left;
+      box-sizing: border-box;
+
+      /* padding: 10px 20px 30px 20px; */
+      padding: 0 20px 20px 20px;
+    }
+    .list>.item:nth-child(2){
+      background-color: rgb(144, 113, 113);
+    }
+
+    .list .lt{
+      height: 50px;
+      background-color: red;
+      /* margin-bottom: 10px; */
+      margin: 10px 0;
+    }
+
+
+    .list1{
+      width: 900px;
+      height: 200px;
+      background-color: lightblue;
+    }
+    .list1>.item{
+      width: calc(100% / 3);
+      height: 180px;
+      background-color: lightcoral;
+      float: left;
+    }
+    .list1>.item>.content{
+      /* auto自适应，有流的特性，会根据父元素的宽度进行自适应，我们在写代码的时候尽量不要去破坏这种自适应的特性，使用默认值auto */
+      /* width: auto; */
+      /* width: 100%; */
+      /* height: 100%; */
+      border: 10px solid black;
+    }
+    .list1>.item:nth-child(2)>.content{
+      border-color: blue;
+    }
+    .list1>.item:nth-child(2){
+      background-color: rgb(144, 113, 113);
+      
+    }
+    input:focus{
+      outline: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+      盒模型：包含外边距、边框、内边距、内容
+      标准盒模型: width设置的是内容区域的宽度，增加内边距和边框对内容的大小没有影响，但是会改变元素的总宽度；元素的总宽度 = width + padding + border
+
+      怪异盒模型：width设置的是元素的总宽度；元素的总宽度 = width
+  -->
+  <hr>
+
+  <input type="text">
+
+  <div class="box">
+    盒模型
+  </div>
+
+  <div class="list">
+    <div class="item">
+      <div class="lt">1</div>
+      <div class="lt">2</div>
+      <div class="lt">3</div>
+    </div>
+    <div class="item">item2</div>
+    <div class="item">item3</div>
+  </div>
+  <div class="list1">
+    <div class="item"><div class="content">item1</div></div>
+    <div class="item"><div class="content">item2</div></div>
+    <div class="item"><div class="content">item3</div></div>
+  </div>
+
+  <script>
+
+  </script>
+</body>
+
+</html>

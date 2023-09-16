@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.box {
+				margin: 10px 0 0 10px;
+				width: 200px;
+				height: 200px;
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="btn1">变宽</button>
+		<button class="btn2">变高</button>
+		<button class="btn3">变色</button>
+		<button class="btn4">隐藏</button>
+		<button class="btn5">重置</button>
+		<div class="box"></div>
+		<script>
+			var box = document.querySelector('.box');
+			var btns = document.querySelectorAll('button');
+			var values = ['300px', '300px', 'red', 'none', ''];
+      var attrs = ['width', 'height', 'background-color', 'display', 'cssText'];
+
+			for (var i = 0; i < btns.length; i++) {
+				var btn = btns[i];
+        btn.index = i;
+				btn.onclick = function (ev) {
+          console.log(this);
+          // box.style[attrs[ev.target.index]] = values[ev.target.index];
+          box.style[attrs[this.index]] = values[this.index];
+				};
+			}
+		</script>
+	</body>
+</html>

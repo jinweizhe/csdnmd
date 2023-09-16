@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<p id="p"></p>
+		<script>
+			// 定时器 setTimeout 和 setInterval
+
+			// 1、setTimeout 延迟执行，延迟多长时间执行一次函数，函数只会执行一次，时间的单位是毫秒，不用添加单位
+			// setTimeout(函数, 时间)
+
+			function fn1() {
+				console.log('函数 fn1');
+			}
+			// fn1();
+			// 延迟1秒钟执行fn1
+			var id1 = setTimeout(fn1, 1000);
+
+			// 也可以把函数直接写在 setTimeout 内部
+			var id2 = setTimeout(function () {
+				console.log('延迟执行了');
+			}, 1000);
+
+			console.log(id1, id2);
+			clearTimeout(id1);
+			clearTimeout(id2);
+
+			// 2、setInterval 间隔执行，每隔多长时间执行一次函数，函数可以执行无数次，时间的单位是毫秒，不用添加单位
+			// setInterval(函数, 时间);
+			function fn2() {
+				console.log('函数 fn2');
+				var now = new Date();
+				p.innerHTML = now;
+			}
+			// fn2();
+			// setInterval(fn2, 1000);
+
+			// 也可以把函数直接写在 setInterval 内部
+			// setInterval(function() {
+			//   console.log('每隔1秒钟执行一次');
+			// }, 1000);
+
+			// 3、清除定时器
+			// setTimeout和setInterval都会返回一个整数，表示定时器的编号，使用 clearTimeout 和 clearInterval 可以清除定时器
+			// clearTimeout(定时器的编号)
+			// clearInterval(定时器的编号)
+
+			// 在函数中让index每隔1秒钟增加1，并把值打印出来，当打印到6的时候，停止打印
+			var index = 0;
+			var id3 = setInterval(function () {
+				index++;
+				console.log('index = ' + index);
+				if (index >= 6) {
+					clearInterval(id3);
+				}
+			}, 1000);
+
+			// 让fn函数执行结束后1秒钟，再次执行
+			// 使用间隔1秒，函数的运行时间无法确定
+			function fn() {
+				// for(var i = 0; i < 1000; i++){
+				//   console.log('');
+				// }
+				console.log('fn---------------1');
+			}
+			setInterval(fn, 1000);
+
+			setTimeout(fn3, 1000);
+			function fn3() {
+				// for(var i = 0; i < 1000; i++){
+				//   console.log('');
+				// }
+				console.log('fn3---------------2');
+				// 让函数执行结束后，等待1秒钟，再次执行函数
+				setTimeout(fn3, 1000);
+			}
+		</script>
+	</body>
+</html>

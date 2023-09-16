@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 一、扩展运算符 ...  
+    let arr = [2, 3, 4, 5, 6];
+    // 把数组转为参数列表的形式
+    console.log(...arr);
+    console.log(2, 3, 4, 5, 6);
+    // 应用：
+    // 1、合并多个数组
+    // console.log([...[11, 22], ...arr]);
+
+    let nums = [10, 20, 30, 40];
+    arr.push(...nums)
+
+    // push和 unshift都可以添加多个参数
+    // arr.push(100, 200);
+    // arr.unshift(11, 22)
+    console.log(arr);
+    // 2、给函数传参
+    console.log(Math.max(2, 3, 4, 5, 6));
+    console.log(Math.max(...arr));
+
+    // 二、find()，findIndex()，findLast()，findLastIndex()
+    // find()方法，用于找出第一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员顺序依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+    // let res = [1, 4, -5, 10].find((n) => {
+    //   // console.log('n =',n);
+    //   // return n < 0;
+    // });
+    // let res = [1, 4, -5, 10].find(n => n < 0);
+
+
+    // findIndex()方法的用法与find()方法非常类似，返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+    // let res = [1, 4, -5, -10].findIndex(n => n < 0);
+
+
+    // findLast()方法，用于找出数组最后一个符合条件的数组成员。它的参数是一个回调函数，所有数组成员逆序依次执行该回调函数，直到找出第一个返回值为true的成员，然后返回该成员。如果没有符合条件的成员，则返回undefined。
+    // let res = [1, -4, -5, 10].findLast((n) => {
+    //   console.log('n =',n);
+    //   return n < 0;
+    // });
+
+
+    // findLastIndex()方法的用法与findLast()方法非常类似，返回第最后一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回-1。
+    let res = [1, -4, -5, 10].findLastIndex(n => n < 0);
+
+
+    // 三、at()
+    // ES2022 为数组实例增加了at()方法，接受一个整数作为参数，返回对应位置的成员，并支持负索引。这个方法不仅可用于数组，也可用于字符串和类型数组（TypedArray）。
+    const arr1 = [5, 12, 8, 130, 44];
+    arr1.at(2) // 8
+    arr1.at(-2) // 130
+
+  </script>
+</body>
+
+</html>

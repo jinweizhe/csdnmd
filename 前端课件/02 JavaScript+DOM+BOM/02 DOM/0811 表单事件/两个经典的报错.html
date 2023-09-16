@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    
+    <div>div</div>
+
+    <script>
+      // var div = document.querySelector('.div');
+      // var div = document.querySelectorAll('.div')[0];
+
+      // console.log(div);
+      // div.classList.add('active');
+      // div.style.color = 'red';
+
+      console.log(document.body.children);
+      console.log(document.body.children[6]);
+
+      document.body.children[6].style.color = 'green';
+
+      // 为什么不能从null或者undefined上读取属性？因为他们自己就是自己，他们也是JS中一种数据类型，没有任何属性，只有对象上才有属性，才能打点调用：对象.属性
+      // 如果一个变量的值是null或者undefiend，用该变量调用任何属性，都会报下面的错误
+
+      // 不能读取null的属性：
+      // TypeError: Cannot read properties of null (reading 'xxx')
+
+      // 不能读取undefined的属性
+      // TypeError: Cannot read properties of undefined (reading 'xxx')
+
+      // 报错原因：变量的值是null或者undefiend，然后读取属性的时候找不到，浏览器抛出错误
+      // 解决报错：在报错的前一行使用log语句打印改变量的值，一般结果是null或者undefined，找该变量为什么是null或者undefined
+      // 变量：报错属性之前的变量，比如报错是 Cannot read properties of null (reading 'style')，变量就是 .style 之前的对象
+
+
+
+      // throw new TypeError("不能读取null的属性 (读取 'style')");
+    
+    </script>
+  </body>
+</html>

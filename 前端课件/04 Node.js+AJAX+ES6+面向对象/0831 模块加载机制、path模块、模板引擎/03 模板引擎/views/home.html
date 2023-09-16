@@ -1,0 +1,22 @@
+
+{{include './header.html'}}
+
+<p> <%= title %> {{title}} </p>
+<p>{{fn(6,1,2,3)}}</p>
+<p>{{ 6 | fn 100 200}}</p>
+<ul>
+  <% for(var i=0; i<data.length; i++){ %>
+    <% var user = data[i]; %>
+    <li>
+      <%= i %> - <%= user.name %>
+      <% if(user.age>20){ %>
+        <strong><%=  user.age %></strong>
+      <% }else{ %>
+        <%=  user.age %>
+      <%}%>
+    </li>
+  <% } %>
+</ul>
+
+
+{{include './footer.html'}}

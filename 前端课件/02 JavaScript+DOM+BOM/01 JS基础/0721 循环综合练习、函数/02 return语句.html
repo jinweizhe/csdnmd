@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// return：用来给函数添加返回值
+
+			// 1、调用函数，默认会返回undefined，相当于在函数中添加了 return undefined; 或者 return; 想要返回其他的结果，需要使用return语句
+			// 2、return只能用在函数内，不能用在其他地方--- 如果没有创建函数，就不能使用return
+			// 3、在return之后的代码是无效代码，程序不会执行
+
+			// return的作用，放在函数内
+			// 1、给函数添加返回值并结束函数
+			// 2、用来结束函数
+
+
+      // 默认值是undefined的情况
+      // 1、声明变量未赋值，默认值是undefined
+      // 2、声明函数添加形参，形参的默认值是undefined：意思当调用函数的时候没有传递实参，形参的值就是undefined
+      // 3、函数默认的返回值是undefined
+
+			function add(a, b) {
+        console.log('a = ', a, 'b = ', b);
+				var c = a + b;
+				console.log('return之前的代码：c = ' + c);
+
+				// return undefined;
+        // return;
+        return c; // 正确写法
+        // 返回值和return之间不能换行，下面的写法相当于是两行代码，先执行return结束函数，后面a+b;再也不会执行
+        // return 
+        // a + b;
+
+				console.log('return之后的代码');
+			}
+
+			var res = add(2);
+			console.log('res = ', res);
+
+			// 阶乘运算
+			function jiecheng(n) {
+				// 判断如果n的值小于0，不能做阶乘运算，提前结束函数
+				if (n < 0) {
+					return; // 直接结束函数，函数被提前结束了，之后的代码不再执行
+				}
+				var sum = 1;
+				for (var i = 1; i <= n; i++) {
+					console.log('i = ', i);
+					sum *= i;
+				}
+				return sum;// 当运算结束，把阶乘的结果返回出去
+			}
+			var res = jiecheng(3);
+			console.log('res = ', res);
+
+      // 计算1-100的和，遇到66的时候停止计算
+      var sum = 0;
+      for(var i = 1; i <= 100; i++){
+        if (i == 66) {
+          break;
+        }
+        sum += i;
+      }
+      console.log('sum = ', sum);
+
+      function sumFn(n){
+        var s = 0;
+        for(var i = 1; i <= n; i++){
+          if (i == 66) {
+            // break;
+            return s; // 如果在函数中嵌套了for语句，此时，可以使用break结束for语句，如果此时有结束函数的需求，可以使用return替代break直接结束整个函数，函数结束，for也会结束
+          }
+          s += i;
+        }
+        return s;
+      }
+      var res = sumFn(100);
+      console.log('res = ', res);
+
+
+		</script>
+	</body>
+</html>

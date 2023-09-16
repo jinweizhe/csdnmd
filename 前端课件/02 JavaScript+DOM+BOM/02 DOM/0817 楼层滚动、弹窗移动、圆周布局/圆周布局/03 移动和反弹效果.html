@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    #box {
+      width: 1000px;
+      height: 800px;
+      background-color: lightblue;
+      margin: 10px auto;
+      position: relative;
+    }
+
+    .ball {
+      width: 100px;
+      height: 100px;
+      background-color: red;
+      position: absolute;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box">
+    <div class="ball"></div>
+  </div>
+
+<script>
+  var box = document.getElementById("box");
+  var ball = document.querySelector('.ball');
+
+  // 小球的坐标：left和top值
+  var x = 0;
+  var y = 0;
+  // 小球移动的速度
+  var xSpeed = 3;
+  var ySpeed = 3;
+  // 小球活动范围
+  var maxWidth = box.offsetWidth;
+  var maxHeight = box.offsetHeight;
+
+  // var maxWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth ;
+  // var maxHeight = window.innerWidth || document.documentElement.clientHeight || document.body.clientHeight;
+
+  // 小球在x y方向移动的最大距离，也就是小球的left 和 top值
+  // x方向最大移动距离
+  var maxOffsetX = maxWidth - ball.offsetWidth;
+  // x方向最小移动距离
+  var minOffsetX = 0;
+  // y方向最大移动距离
+  var maxOffsetY = maxHeight - ball.offsetHeight;
+  // y方向最小移动距离
+  var minOffsetY = 0;
+
+  function move() {
+    x += xSpeed;
+    y += ySpeed;
+
+    // x最大值的判断
+    if (x >= maxOffsetX) {
+      console.log('x方向到最大值该反弹了');
+      x = maxOffsetX;
+      xSpeed = -xSpeed;
+    }
+    // y最大值的判断
+    if (y >= maxOffsetY) {
+      console.log('y方向到最大值该反弹了');
+      y = maxOffsetY;
+      ySpeed = -ySpeed;
+    }
+    // x最小值的判断
+    if (x <= minOffsetX) {
+      console.log('x方向到最小值该反弹了');
+      x = minOffsetX;
+      xSpeed = -xSpeed;
+    }
+    // y最小值的判断
+    if (y <= minOffsetY) {
+      console.log('y方向到最小值该反弹了');
+      y = minOffsetY;
+      ySpeed = -ySpeed;
+    }
+
+    ball.style.left = x + 'px';
+    ball.style.top = y + 'px';
+    requestAnimationFrame(move);
+  }
+  move();
+
+
+
+</script>
+</body>
+
+</html>

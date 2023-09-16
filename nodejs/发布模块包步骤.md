@@ -1,0 +1,158 @@
+# 规范的包结构
+
+一个规范的包，它的组成结构，必须符合以下 3 点要求：
+
+- 包必须以单独的目录而存在
+
+- 包的顶级目录下要必须包含 package.json 这个包管理配置文件
+
+- package.json 中必须包含 name，version，main 这三个属性，分别代表包的名字、版本号、包的入口。	
+
+# 发布模块包
+
+## 项目初始化
+
+新建项目目录my-app，在目录中创建入口文件index.js，并初始化package.json文件
+
+```json
+{
+  "name": "li-time",
+  "version": "1.0.1",
+  "description": "获取各种时间",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+```
+
+## 创建功能模块
+
+在目录中创建lib文件夹，并新建time.js模块，并导出模块
+
+```js
+function time() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth() + 1;
+	var day = now.getDate();
+	var hour = now.getHours();
+	var minute = now.getMinutes();
+	var second = now.getSeconds();
+
+	month = month < 10 ? '0' + month : month;
+	day = day < 10 ? '0' + day : day;
+	hour = hour < 10 ? '0' + hour : hour;
+	minute = minute < 10 ? '0' + minute : minute;
+	second = second < 10 ? '0' + second : second;
+
+	return {
+		date: now,
+		year: year,
+		month: year + '-' + month,
+		day: year + '-' + month + '-' + day,
+		minute: year + '-' + month + '-' + day + ' ' + hour + ':' + minute,
+		second: year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second,
+	};
+}
+// 存储各种时间，方便以后扩展
+module.exports = time;
+```
+
+在入口文件导入time模块
+
+```js
+module.exports = require('./lib/time');
+```
+
+## 编写包的说明文档
+
+包根目录中的 README.md 文件，是包的使用说明文档。通过它，我们可以事先把包的使用说明，以 markdown 的格式写出来，方便用户参考。
+
+README 文件中具体写什么内容，没有强制性的要求；只要能够清晰地把包的作用、用法、注意事项等描述清楚即可。
+
+比如：
+
+- 安装方式
+- 导入方式
+- 使用方式
+- 开源协议等
+
+````markdown
+# li-time
+
+[li-time](https://www.npmjs.com/package/li-time)用来获取年、月、日、时、分、秒的时间。
+
+# 安装
+
+```
+npm i li-time
+```
+
+# 例子
+
+```js
+const now = require('li-time');
+
+now().date 
+// 当前时间
+
+now().year
+// 年份
+
+now().month
+// 年月
+
+now().day
+// 年月日
+
+now().minute
+// 年月日时分
+
+now().second
+// 年月日时分秒
+```
+````
+
+## 发布包
+
+### 注册 npm 账号
+
+① 访问 https://www.npmjs.com/ 网站，点击 sign up 按钮，进入注册用户界面
+
+② 填写账号相关的信息：Username、Email address、Password
+
+③ 点击 Create an Account 按钮，注册账号
+
+④ 登录邮箱，点击验证链接，进行账号的验证
+
+### 登录 npm 账号
+
+npm 账号注册完成后，可以在终端中执行 npm login 命令，依次输入用户名、密码、邮箱后，即可登录成功。
+
+注意：在运行 npm login 命令之前，必须先把下包的服务器地址切换为 npm 的官方服务器：https://registry.npmjs.org/。否则会导致发布包失败！
+
+```bash
+C:\Users\Jinxizhen\Desktop\li-time>npm login
+npm notice Log in on https://registry.npmjs.org/
+Username:
+```
+
+### 把包发布到 npm 上
+
+将终端切换到包的根目录之后，运行 npm publish 命令，即可将包发布到 npm 上（注意：包名不能雷同）。
+
+#### 删除已发布的包
+
+运行 `npm unpublish 包名 --force` 命令，即可从 npm 删除已发布的包。
+
+注意：
+
+① npm unpublish 命令只能删除 72 小时以内发布的包
+
+② npm unpublish 删除的包，在 24 小时内不允许重复发布
+
+③ 发布包的时候要慎重，尽量不要往 npm 上发布没有意义的包！

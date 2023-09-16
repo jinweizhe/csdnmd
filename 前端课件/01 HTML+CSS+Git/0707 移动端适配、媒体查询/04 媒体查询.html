@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css" media="screen and (min-width: 700px)" />
+    <style>
+
+      /* @import url(./css/index.css); 不会推荐使用，因为@import会等待页面标签加载后再去加载css，如果css加载时间过长，就会出现页面没有样式，页面显得很乱，用户体验不好 */
+
+    /* 
+      媒体查询：根据不同的媒体类型：屏幕宽度的不同、屏幕的朝向（竖屏还是横屏）不同、物理像素比的不同应用不同的CSS样式
+      @media 媒体类型 逻辑操作符 (媒体特性) {
+        CSS选择器 {
+          CSS样式
+        }
+      } 
+
+      1、媒体类型：all 是所有的设备、screen 表示电脑屏幕、平板屏幕、手机屏幕
+      2、逻辑操作符
+        and 表示并且，多个媒体查询条件组合在一起，所有的条件都成立的时候，最终的媒体查询语句才能成立
+        not 否定
+        only 忽略
+        ,  表示或者，多个媒体查询条件组合在一起，只要有一个成立，最终媒体查询语句就成立
+      3、媒体特性：
+        width；设备的宽度，可以用于PC端或者移动端
+          在表示宽度范围的时候使用 min-width、max-width、
+          min-width：表示最小宽度是多少，比如：min-width: 800px; 意思当宽度大于等于800px的时候成立 
+          max-width：表示最大宽度是多少，比如：max-width: 1000px; 意思是宽度小于等于1000px的时候成立
+        orientation：屏幕朝向，一般是指手机竖屏还是横屏：portrait 竖屏；landscape 横屏
+        device-pixel-ratio：表示物理像素比 -webkit-min-device-pixel-ratio: 2 意思是物理像素比大于等于2
+    */
+
+    *{
+      padding: 0;
+      margin: 0;
+    }
+    .box{
+      margin: 0 auto;
+      height: 100px;
+      background-color: red;
+    }
+    @media screen and (-webkit-min-device-pixel-ratio: 2) {
+      .box{
+        font-size: 20px;
+        background-image: url(./images/qun@2x.png);
+      }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio: 3) {
+      .box{
+        font-size: 30px;
+        background-image: url(./images/qun@3x.png);
+      }
+    }
+    @media screen and (orientation: portrait) {
+      .box::after{
+        content: "---竖屏";
+      }
+    }
+    @media screen and (orientation: landscape) {
+      .box::after{
+        content: "---横屏";
+      }
+    }
+
+    /* 1200 900 700 */
+    @media screen and (min-width: 700px) and (max-width: 900px){
+      .box{
+        width: 750px;
+        background-color: orange;
+      }
+    }
+    @media screen and (min-width: 900px) and (max-width: 1200px){
+    /* @media screen and (min-width: 900px){ */
+      .box{
+        width: 970px;
+        background-color: green;
+      }
+    }
+    @media screen and (min-width: 1200px) {
+      .box{
+        width: 1170px;
+        background-color: blue;
+      }
+    }
+    
+    
+    </style>
+  </head>
+  <body>
+    <div class="box">box</div>
+    
+  </body>
+</html>

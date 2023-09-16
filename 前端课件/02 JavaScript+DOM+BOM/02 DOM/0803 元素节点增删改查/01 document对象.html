@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title>DOM学习</title>
+		<style></style>
+	</head>
+	<body>
+    <div></div>
+    <input type="text" name="" id="">
+		<script>
+			// DOM 文档对象模型，DOM是提供了一种规范（符合W3C的标准），约定如何在JS中操作页面：比如增加标签、修改页面CSS样式等操作
+			// ECMAScript 是JavaScript的规范（符合ECMA的标准），约定了在JS中我们可以使用哪些属性和方法
+
+			// 操作DOM实际上使用的是 document 对象，当浏览器加载HTML文件的时候，会自动生成 document 对象，可以直接使用
+			// document是文档的根节点
+			// html是页面的根标签
+
+			console.dir(document);
+
+			// 获取页面的根标签 html
+			console.dir(document.documentElement);
+
+			// 获取页面的body标签
+			console.dir(document.body);
+
+      // 获取页面的head标签
+      console.dir(document.head);
+
+      // 获取页面的标题
+      console.dir(document.title);
+      // 设置页面的标题
+      document.title = 'docuemnt 学习';
+
+
+      document.body.innerHTML = 'hello world';
+		</script>
+	</body>
+</html>

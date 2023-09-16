@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.list {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+				display: flex;
+			}
+			.list li {
+				margin: 10px;
+				width: 60px;
+				line-height: 30px;
+				height: 30px;
+				text-align: center;
+				background-color: lightblue;
+				cursor: pointer;
+			}
+		</style>
+	</head>
+	<body>
+		<ul class="list">
+			<li data-index="0">选项1</li>
+			<li data-index="1">选项2</li>
+			<li data-index="2">选项3</li>
+			<li data-index="3">选项4</li>
+			<li data-index="4">选项5</li>
+			<li data-index="5">选项6</li>
+		</ul>
+		<script>
+			var lis = document.querySelectorAll('li');
+
+			for (var i = 0; i < lis.length; i++) {
+				var li = lis[i];
+				li.index = i;
+				console.dir(li);
+				// 当点击按钮的时候，for语句已经执行完毕，for语句中的i是一个全局变量，当for语句执行完毕的时候，i已经变成了6，所以在事件中打印i的值为6
+				li.onclick = function (ev) {
+					// console.log('点击： i=',i);
+					// console.log(ev.target);// ev.target在事件中是指被点击的元素对象
+					// console.log(ev.target.dataset.index);
+					// console.log(ev.target.index);
+					console.dir(this.index);
+				};
+
+				// console.log('i=',i);
+			}
+
+			console.log('外部 i=', i);
+
+			// var li = document.querySelector('li');
+			// li.index = 100;
+			// console.log(li.index);
+		</script>
+	</body>
+</html>

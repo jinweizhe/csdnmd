@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<!-- 
+      为了方便从页面向JS中传递数据，使用自定义属性data-*=""
+      *可以使用一个单词，也可以使用多个单词，每个单词首字母小写，多个单词之间使用连字符-连接
+    -->
+		<div class="box" data-index="1" data-first-index="2" data-last-index-number="3"></div>
+		<script>
+      var box = document.querySelector('.box');
+
+      // 获取data-自定义属性的值，在JS中把data-转化为 dataset，这是一个对象，在对象中有后面添加的属性，后面的属性：
+      // 如果是一个单词，直接打点调用，比如data-index，转化为 dataset.index；
+      // 如果是多个单词，把单词之间的连字符去掉，从第二个单词开始，首字母大写，比如 data-last-index-number，转化为 dataset.lastIndexNumber
+      console.log(box.dataset.index);
+      console.log(box.dataset.firstIndex);
+      console.log(box.dataset.lastIndexNumber);
+
+      // 设置data-属性的值
+      box.dataset.index = 6;
+
+      // 获取data-属性的值也可以使用attribute，属性名写在字符串中，可以不用变换，直接使用 data-index
+      console.log(box.getAttribute('data-index'));
+      console.log(box.getAttribute('data-first-index'));
+
+      // 设置属性值
+      box.setAttribute('data-index', 100);
+
+
+
+
+    </script>
+	</body>
+</html>

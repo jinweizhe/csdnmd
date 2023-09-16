@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style type="text/css">
+			* {
+				box-sizing: border-box;
+			}
+
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.box {
+				width: 300px;
+				margin: 0 auto;
+			}
+
+			.item-list {
+				display: flex;
+				position: relative;
+			}
+
+			.item-list > li {
+				width: 60px;
+				height: 30px;
+				border: 1px solid #ccc;
+				margin-right: 10px;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+			}
+
+			.item-list .info {
+				position: absolute;
+				left: 0;
+				top: 29px;
+				width: 200px;
+				height: 30px;
+				font-size: 12px;
+				border: 1px solid #ccc;
+				background-color: lightblue;
+				display: none;
+			}
+
+			.item-list > li:hover,
+			.item-list > li.active {
+				border-color: red;
+			}
+
+			p {
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<ul class="item-list">
+				<li>选项1</li>
+				<li>选项2</li>
+				<li>选项3</li>
+				<!-- <div class="info">打白条，来分期</div> -->
+			</ul>
+			<p>打白条</p>
+		</div>
+
+		<script type="text/javascript">
+			$('li').click(function () {
+				
+				// 点击有红色边框显示打白条，没有红色边框隐藏打白条
+				console.log($(this).hasClass('active'));
+				if ($(this).hasClass('active')) {
+          // 原来有active，点击去掉active，隐藏p
+					$(this).removeClass('active').siblings().removeClass('active');
+          $('p').hide();
+
+				} else {
+          // 原来没有active，点击加上active，显示p
+					$(this).addClass('active').siblings().removeClass('active');
+          $('p').show();
+
+				}
+			});
+
+
+			// $('li').click(function () {
+			//   $(this).toggleClass('active').siblings().removeClass('active');
+			//   // 点击有红色边框显示打白条，没有红色边框隐藏打白条
+			//   console.log($(this).hasClass('active'));
+			//   if ($(this).hasClass('active')) {
+			//     $('p').show();
+			//   } else {
+			//     $('p').hide();
+			//   }
+			// })
+		</script>
+	</body>
+</html>

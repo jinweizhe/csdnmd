@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      .box {
+        width: 100px;
+        height: 200px;
+        background-color: red;
+      }
+      .x1{
+        background-color: orange;
+      }
+      .box::before{
+        content: "----"
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box" id="box">box</div>
+    <script>
+      // var box = document.querySelector('.box');
+      var box = document.getElementById('box');
+
+      // 修改样式使用标签的style属性，相当于给标签添加了内联样式 style=""，内联样式的优先级高于<style>设置的样式和外部css文件中的样式
+      // 1、使用attribute直接修改style，比较麻烦
+      // box.setAttribute('style', 'color: blue; text-align: center; font-size: 30px;');
+
+      // 2、使用style属性：style 是标签的标准属性，可以直接使用元素对象打点调用
+      box.style.color = 'blue';   
+      // 多个单词的属性，比如 text-align 把连字符-去掉，从第二个单词开始，首字母大写
+      box.style.textAlign = 'center';
+      box.style.fontSize = '30px';
+      // 一个属性值有多个部分，写法不变，直接放在字符串中
+      box.style.border = '10px solid black';
+
+      box.style.width = '300px'; 
+      box.style['height'] = '300px';
+
+      // 3、使用cssText
+      // cssText 获取通过JS设置的样式
+      console.log(box.style.cssText);
+      // 把cssText的值设置为空字符串，可以把在JS中设置的样式清除
+      // box.style.cssText = '';
+
+      // box.style.cssText = 'color: blue; text-align: center; font-size: 30px;';
+
+      // 4、通过添加类名，在<style>标签中 或者 外部css文件中 使用类名设置样式
+      box.classList.add('x1');
+    </script>
+  </body>
+</html>

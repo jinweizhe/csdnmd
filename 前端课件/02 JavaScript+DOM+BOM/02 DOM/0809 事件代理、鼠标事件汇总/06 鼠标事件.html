@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 200px;
+				height: 150px;
+				background-color: red;
+				/* transform: translateY(200px); */
+				position: absolute;
+				top: 100px;
+				left: 80px;
+			}
+      .box .header{
+        height: 30px;
+        background-color: #ccc;
+        cursor: move;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+      <div class="header"></div>
+			<!-- <span style="background-color:blue">span</span> -->
+		</div>
+		<script>
+			var div = document.querySelector('div');
+
+			// 一、点击类的事件：
+			// 1、鼠标单击事件：触发顺序是，mousedown首先触发，mouseup接着触发，click最后触发。
+			div.onclick = function (ev) {
+				// console.log('单击鼠标');
+				// 在鼠标事件中，ev是鼠标事件对象
+				// console.log(ev);
+				// console.log(ev.target); // 触发事件的目标元素
+				// 检测点击鼠标的时候 alt、ctrl、shift、meta这四个按键是否被按下，如果被按下，返回值是true，否则是false
+				// console.log(ev.altKey);
+				// console.log(ev.ctrlKey);
+				// console.log(ev.shiftKey);
+				// console.log(ev.metaKey);
+				// 获取鼠标的相对位置
+				// 鼠标相对于点击元素的坐标：原点在被点击元素的左上角
+				// console.log(ev.offsetX, ev.offsetY);
+				// 鼠标相对于浏览器可视页面的坐标：原点在浏览器可视页面的左上角
+				// console.log(ev.clientX, ev.clientY);
+				// 鼠标相对于整个页面的坐标：原点在页面的左上角
+				// console.log(ev.pageX, ev.pageY);
+			};
+
+			// 2、双击鼠标事件：双击时，dblclick事件则会在mousedown、mouseup、click之后触发。
+			div.ondblclick = function () {
+				// console.log('双击鼠标');
+			};
+
+			// 3、按下鼠标事件
+			div.onmousedown = function () {
+				// console.log('按下鼠标');
+			};
+
+			// 4、松开鼠标事件
+			div.onmouseup = function () {
+				// console.log('松开鼠标');
+			};
+
+			// 二、移动类的事件
+			// 1、鼠标移入和移出
+			// 1.1 enter和leave不支持冒泡
+			div.onmouseenter = function () {
+				console.log('移入 enter');
+			};
+			div.onmouseleave = function () {
+				console.log('移出 leave');
+			};
+			// 1.2 over和out支持冒泡
+			div.onmouseover = function () {
+				// console.log('移入 over');
+			};
+			div.onmouseout = function () {
+				// console.log('移出 out');
+			};
+
+			// 2、当鼠标在标签上移动的时候触发的事件
+			// div.onmousemove = function (ev) {
+			//   console.log('鼠标移动');
+			//   div.style.left = ev.clientX - 100 + 'px';
+			//   div.style.top = ev.clientY - 75 + 'px';
+			// }
+
+			div.onmousedown = function (ev) {
+				document.onmousemove = function (ev) {
+					console.log(ev.clientX, ev.clientY);
+					div.style.left = ev.clientX - 30 + 'px';
+					div.style.top = ev.clientY - 15 + 'px';
+				};
+			};
+      div.onmouseup = function (ev) {
+        document.onmousemove = null;
+      }
+		</script>
+	</body>
+</html>

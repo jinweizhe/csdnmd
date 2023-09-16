@@ -1,0 +1,39 @@
+
+{{include './header.html'}}
+
+<%
+  function ageFormat(v){
+    return v+'岁了';
+  }
+%>
+
+<p> {{title}} </p>
+<p>{{fn(6,1,2,3)}}</p>
+<p>{{ 6 | fn 100 200}}</p>
+<ul>
+  {{each data }}
+  <li>
+    {{$index}}-{{$value.name}} - 
+
+    <hr>
+
+    {{set age = $value.age}}
+    {{if age>20}}
+      <strong>{{age | fn}} </strong>
+    {{else}}
+      {{fn(age)}} 
+    {{/if}}
+
+    <hr>
+    {{if $value.age>20}}
+      <strong>{{ageFormat($value.age)}} </strong>
+    {{else}}
+      {{$value.age}} 
+    {{/if}}
+    <hr>
+  </li>
+  {{/each}}
+</ul>
+
+
+{{include './footer.html'}}

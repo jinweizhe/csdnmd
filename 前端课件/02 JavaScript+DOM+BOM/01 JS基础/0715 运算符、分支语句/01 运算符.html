@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 一、算术运算符：+ - * / %
+    //#region 
+    // 1、加法运算：求两个数的和
+    var num1 = 3;
+    var num2 = 6;
+    var sum = num1 + num2; // 9
+    sum = sum + 6;
+    console.log('sum = ', sum);
+
+    // 2、减法运算：计算两个数相减的值
+    console.log(num1 - num2);
+    console.log(num1 - true);
+    console.log(num1 - '5');
+
+    // 3、乘法运算：计算两个数的乘积
+    console.log(num1 * num2);
+
+    // 4、除法运算：计算两个数的商
+    console.log(num1 / num2); // 0.5
+    console.log(2 / 3);
+    console.log(0 / 0); // NaN
+
+    // 5、求余运算: % ,计算两个数字商的余数
+    console.log(4 % 2); // 0
+    console.log(4 % 3); // 1
+    console.log(11 % 3); // 2
+
+    // 任何正整数对n求余，取值范围n-1
+    // var index = 0;
+    // document.onclick = function () {
+    //   index = index + 1;
+    //   index = index % 2;
+    //   console.log('index =', index);
+    // }
+
+
+
+    // 6、取整运算：计算两个数字商的整数
+    console.log(Math.floor(11 / 3));
+
+
+    // Math.floor向下取整，得到一个小于等于该数字的最大整数
+    console.log(Math.floor(6));   // 6
+    console.log(Math.floor(6.9)); // 6
+    console.log(Math.floor(6.1)); // 6
+    console.log(Math.floor(-6));  // -6
+    console.log(Math.floor(-6.9));// -7
+    console.log(Math.floor(-6.1));// -7
+
+    //#endregion
+
+    // Math.random() 得到[0,1)之间的随机数，包含0，不包含1
+    console.log(Math.random());
+    // 1、求0-9之间的随机整数
+    // 2、求0-100之间的随机整数
+    // 3、求16-90之间的随机整数
+
+    // 任何数字与NaN做运算，结果都是NaN
+    // console.log(sum + NaN);
+
+
+    // 二、自增和自减运算符：用在变量的前面或者后面
+    //#region 
+    // 1、自增 ++
+    var count = 6;
+    // ++在前先加1再使用；++在后先使用后加1 
+    // count++; // 等价于count = count + 1;
+    // ++count; // 等价于count = count + 1;
+    // var res = count++ + 2; // 运算的时候先使用count的值6，计算6+2结果为8，最终count的值会加1
+    // var res = ++count + 2; // 运算的时候先让count加1得到的值是7，计算7+2结果为9，最终count的值为7
+    var res = count++ + ++count + 2;
+    console.log('count=', count);
+    // console.log('res=', res);
+
+    // 2、自减 -- 
+    var num = 6;
+    // --在前先减1再使用；--在后先使用后减1 
+    num--;
+    console.log('num=', num);
+    //#endregion
+
+    // 三、关系运算符：关系运算符最终运算的结果是一个布尔值
+    //#region 
+    // - 比较运算符：小于（<）、大于（>）、小于等于（<=）、大于等于（>=）
+    // - 相等运算符：等于（==）、不等于（!=）、全等（===）、不全等（!==）
+    // 1、比较运算符一般比较的都是数字，其中有一个不是数字，比较的时候先转为数字在进行比较
+    console.log('1' > 2);
+    console.log(6 > 2);
+    // 2、相等运算符任何类型的数据都可以
+    // 两个等号：比较的是值，如果值一样，返回true（和数字比较的时候会转为数字在比较）
+    console.log('1' == 1);// true
+    console.log(true == 1);// true
+    console.log('2' != 3);// true
+    console.log('2' == '3');
+    console.log('你好' == '哈哈');
+    console.log('a' == 'b');
+
+    var username = '张三';
+    console.log(username == '张三');
+    // 三个等号：比价值和数据类型，值和数据类型都一样才返回true（不会做数据类型的转换）
+    console.log('1' === 1);
+
+    console.log('5' !== 5);
+    console.log('5' !== 6);
+    console.log('--------------------');
+    console.log('5' != 5);
+    console.log('5' != 6);
+
+    // 当次数n不超过6的时候成立 n<=6
+    // n至少达到12次才能成立 n>=12
+
+    //#endregion
+
+    // 四、逻辑运算符: 最终运算结果是一个布尔值
+    //#region 
+    // 逻辑运算符逻辑非!、逻辑与 && 和逻辑或 || 
+    // 1、逻辑与：两个操作数的结果都是true，最终结果为true；有一个为false，最终结果为false；
+    // 一假即假
+    console.log(true && true);// true
+    console.log(true && false);// false
+    var num = 6;
+
+    console.log(num > 2 && num < 8);// true
+    console.log(num > 2 && num < 5);// false
+
+    // 2、逻辑或：两个操作数的结果一个是true，最终结果为true；两个都是false，最终结果为false；
+    // 一真即真
+    console.log(true || true);// true
+    console.log(true || false);// true
+    var num = 6;
+
+    console.log(num > 2 || num < 8);// true
+    console.log(num > 2 || num < 5);// true
+
+    // 3、逻辑非：取反：如果操作数不是布尔值，先转为布尔值，在进行取反
+    console.log(!true);
+    console.log(!0);
+    console.log(!'');
+    console.log(!undefined);
+    console.log(!null);
+    console.log(!NaN);
+    console.log(!'张三');
+
+
+    // var username = '';
+    // if (!username) {
+    //   console.log('用户名不能为空');
+    // }
+
+    // console.clear();
+
+    // 短路运算：短路与和短路或
+    // 短路与（逻辑与） &&：当第一个操作数的结果为false的时候，就不再计算第二操作数的值
+    var count = 6;
+    var res = count > 8 && ++count > 7;
+    console.log('res = ', res, 'count = ', count); // res =  false count =  6
+
+    // var num = 0;
+    // num && console.log('num = ',num);
+
+    // 短路或（逻辑或） ||：当第一个操作数的结果为true的时候，就不再计算第二操作数的值
+    var count = 6;
+    var res = count > 2 || ++count > 7;
+    console.log('res = ', res, 'count = ', count); // res =  true count =  6
+
+
+    // 如果第一个操作数求值为 false，则返回第二个操作数。第二个操作数可以是任意类型，比如：数字、布尔、字符串、对象等
+    var page = 0;
+    page = page || 1;
+    //#endregion
+
+    
+    // 五、赋值运算符 =  += -= *= /= %=  
+    var num = 6;
+    num += 2; // 等价于 num = num + 2;
+    num++; // 等价于 num = num + 1;  num += 1;
+
+
+
+
+    
+
+
+    // console.clear();// 清空控制台数据
+
+
+
+  </script>
+</body>
+
+</html>

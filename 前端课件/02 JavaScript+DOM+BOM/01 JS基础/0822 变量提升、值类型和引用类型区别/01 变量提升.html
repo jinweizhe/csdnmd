@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			//#region
+			// 1、声明变量未赋值，变量的默认值是undefiend
+			// var a;
+			// console.log(a);
+
+			// 2、在全局作用域声明的变量和函数会自动成为window对象的属性和方法
+			// var a = 100;
+			// console.log(a);
+			// console.log(window.a);
+
+			// function fn(){
+			//   var a = 200;
+			//   console.log(a);
+			//   console.log(window.a);
+			// }
+			// window.fn();
+
+			// var a = 100;
+			// var a; // 重复声明变量但是未赋值，这句话没有意义
+			// console.log(a);
+
+			//#endregion
+
+			// 变量提升：将变量的声明(var a;)提升到当前作用域的顶部，并给变量赋值undefined(a = undefined)
+			// 注意：在变量声明提升的时候，变量的赋值语句并没有被提升。
+
+			// 在全局作用域的提升：变量的声明提升到全局作用域的顶部
+			// console.log(a); // undefined
+			// var a = 2;
+			// 上面的代码等价于
+			// var a = undefined;
+			// console.log(a);
+			// a = 2;
+
+			// 在函数作用域（局部作用域）：变量的声明提升到函数的顶部
+			// function fn(){
+			//   console.log(a);
+			//   var a = 2;
+			//   console.log(a);
+			// }
+			// fn();
+			// 上面的代码等价于
+			// function fn(){
+			//   var a = undefined;
+			//   console.log(a);
+			//   a = 2;
+			//   console.log(a);
+			// }
+			// fn();
+
+			var a = 1;
+			function fn() {
+				console.log(a);
+				var a = 2;
+				console.log(a);
+			}
+			fn();
+			console.log(a);
+			// ----------------------------------------------------------------
+
+			// var a = 1;
+			// function fn(){
+			//   var a = undefined;
+			//   console.log(a);
+			//   a = 2;
+			//   console.log(a);
+			// }
+			// fn();
+			// console.log(a);
+
+			// console.log(a);
+			// var a = 1;
+			// console.log(a);
+			// function a() {}
+			// console.log(a);
+		</script>
+	</body>
+</html>

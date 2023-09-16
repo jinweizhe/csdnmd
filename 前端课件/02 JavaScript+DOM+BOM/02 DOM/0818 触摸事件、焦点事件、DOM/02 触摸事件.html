@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+			}
+			#box {
+				width: 300px;
+				height: 300px;
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+
+    <input type="range">
+		<script>
+			// 在移动端，绝大部分DOM都可以使用，但是 move事件无法使用
+			// box.onclick = function (e) {
+			// 	console.log(' click');
+			// };
+			// box.onmousemove = function (e) {
+			// 	console.log(' move');
+			// };
+
+			// 触摸开始的时候触发
+			box.ontouchstart = function (ev) {
+				console.log('触摸开始', ev);
+				// 在触摸事件中获取触摸的坐标，需要先获取触摸对象，因为在移动端可以支持多点触控，触摸对象存储在一个数组中使用 ev.touches 获取
+				var touch = ev.touches[0];
+        // 从touch对象中获取触摸点的位置：pageX/clientX 
+				console.log(touch);
+			};
+			// 触摸移动的时候触发
+			box.ontouchmove = function () {
+				console.log('触摸移动');
+			};
+			// 触摸结束的时候触发
+			box.ontouchend = function () {
+				console.log('触摸结束');
+			};
+		</script>
+	</body>
+</html>

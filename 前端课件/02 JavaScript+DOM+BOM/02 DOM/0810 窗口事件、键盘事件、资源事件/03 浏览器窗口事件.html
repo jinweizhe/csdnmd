@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			div {
+				width: 150px;
+				height: 1500px;
+				background-color: lightblue;
+				/* overflow: scroll; */
+				overflow-y: scroll;
+
+        /* 能否自动调整元素的大小 */
+				/* resize: both; */
+				/* resize: vertical; */
+        resize: horizontal;
+			}
+		</style>
+	</head>
+	<body>
+		<div>当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件 当页面或者标签的内容发生滚动的时候触发的事件</div>
+		<script>
+			var div = document.querySelector('div');
+
+			// window 浏览器窗口对象
+			// console.log(window);
+
+			// 1、scroll
+			// 当页面或者标签的内容发生滚动的时候触发的事件
+			// 可以使用某个元素对象或者window绑定scroll事件
+			window.onscroll = function (ev) {
+				// console.log('页面正在滚动', ev);
+				// scrollTop 获取页面垂直方向滚动的距离
+				console.log(document.documentElement.scrollTop);
+			};
+			div.onscroll = function (ev) {
+				// scrollTop 获取标签在垂直方向的滚动距离
+				// console.log('div 滚动',div.scrollTop);
+			};
+
+			// 2、resize
+			// 浏览器或者标签的尺寸发生变化的时候触发的事件
+			window.onresize = function () {
+				console.log('页面的尺寸正在变化');
+			};
+
+			div.onresize = function () {
+				console.log('div 的尺寸正在变化');
+			};
+		</script>
+	</body>
+</html>

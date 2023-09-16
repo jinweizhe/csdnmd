@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 一、算术运算符：+ - * / %
+
+    //#region 
+    // 1、加法运算：求两个数的和
+    var num1 = 3;
+    var num2 = 6;
+    var sum = num1 + num2; // 9
+    sum = sum + 6;
+    console.log('sum = ', sum);
+
+    // 2、减法运算：计算两个数相减的值
+    console.log(num1 - num2);
+    console.log(num1 - true);
+    console.log(num1 - '5');
+
+    // 3、乘法运算：计算两个数的乘积
+    console.log(num1 * num2);
+
+    // 4、除法运算：计算两个数的商
+    console.log(num1 / num2); // 0.5
+    console.log(2 / 3);
+    console.log(0 / 0); // NaN
+
+    // 5、求余运算: % ,计算两个数字商的余数
+    console.log(4 % 2); // 0
+    console.log(4 % 3); // 1
+    console.log(11 % 3); // 2
+
+    // 任何正整数对n求余，取值范围n-1
+    // var index = 0;
+    // document.onclick = function () {
+    //   index = index + 1;
+    //   index = index % 2;
+    //   console.log('index =', index);
+    // }
+
+
+
+    // 6、取整运算：计算两个数字商的整数
+    console.log(Math.floor(11 / 3));
+
+
+    // Math.floor向下取整，得到一个小于等于该数字的最大整数
+    console.log(Math.floor(6));   // 6
+    console.log(Math.floor(6.9)); // 6
+    console.log(Math.floor(6.1)); // 6
+    console.log(Math.floor(-6));  // -6
+    console.log(Math.floor(-6.9));// -7
+    console.log(Math.floor(-6.1));// -7
+
+    //#endregion
+
+    // Math.random() 得到[0,1)之间的随机数，包含0，不包含1
+    console.log(Math.random());
+    // 1、求0-9之间的随机整数
+    // 2、求0-100之间的随机整数
+    // 3、求16-90之间的随机整数
+
+    // 任何数字与NaN做运算，结果都是NaN
+    // console.log(sum + NaN);
+
+    console.clear();// 清空控制台数据
+
+    // 二、自增和自减运算符：用在变量的前面或者后面
+    // 1、自增 ++
+    var count = 6;
+    // ++在前先加1再使用；++在后先使用后加1 
+    // count++; // 等价于count = count + 1;
+    // ++count; // 等价于count = count + 1;
+    // var res = count++ + 2; // 运算的时候先使用count的值6，计算6+2结果为8，最终count的值会加1
+    // var res = ++count + 2; // 运算的时候先让count加1得到的值是7，计算7+2结果为9，最终count的值为7
+    var res = count++ + ++count  + 2;
+    console.log('count=', count);
+    // console.log('res=', res);
+
+    // 2、自减 -- 
+    var num = 6;
+    // --在前先减1再使用；--在后先使用后减1 
+    num--;
+    console.log('num=', num);
+
+
+
+  </script>
+</body>
+
+</html>

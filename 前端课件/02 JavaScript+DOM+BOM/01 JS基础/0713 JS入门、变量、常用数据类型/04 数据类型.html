@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 常用的三种基本数据类型：数字 number；字符串 string；布尔值 boolean；
+
+    // 1、数字 number：可以表示整数和小数
+    var age = 18;// 整数
+    var weight = 62.6;//小数
+    var num = -6; // 负值
+
+    // 0.1+0.2不等于0.3
+    var a = 0.1, b = 0.2;
+    var c = a + b;
+    console.log('a=', a, 'b=', b, 'c=', c);
+
+    // 2、字符串 string：字符串的内容放在单引号 或者 双引号中，推荐使用单引号
+    var name = '张三';
+    var name = "李四";
+
+    // 双引号可以嵌套单引号，单引号也能嵌套双引号
+    var str = '卞敬杰是"好人"';
+    var str = "卞敬杰是'好人'";
+    // 转义字符 \'
+    var str = '卞敬杰是\'好人\'';
+    console.log(str);
+
+    // 3、布尔 boolean：布尔值只有两个 true 和 false；true表示真，false表示假
+    // 布尔值用来表示只有两种取值情况
+    var isSingleDog = true;
+    var open = true;
+    var show = false;
+
+
+
+    // typeof 变量名; 用来获取变量的类型
+    console.log(typeof age);
+    console.log(typeof name);
+    console.log(typeof open);
+
+
+
+    var chinese = prompt('请输语文成绩');
+    var math = prompt('请输数学成绩');
+    console.log(chinese + math);
+
+  </script>
+</body>
+
+</html>

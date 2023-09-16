@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="max">
+        <div class="w">
+            <h2 class="p1">为服务器环境提供最优配置的解决方案</h2>
+            <h3 class = 'p2'>支持Web端管理，一键创建网站、FTP、数据库、SSL；安全管理，计划任务，文件管理，PHP多版本共存及切换；自带LNMP与LAMP</h3>
+            <div class="heng"></div>
+            <ul class="list">
+                <li class = 'show'>
+                    <span>01</span>
+                    <h2>咨询</h2>
+                    <dl class="content">
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>02</span>
+                    <h2>对接</h2>
+                    <dl class="content">
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>03</span>
+                    <h2>部署</h2>
+                    <dl class="content">
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                    </dl>
+                </li>
+                <li>
+                    <span>04</span>
+                    <h2>培训支持</h2>
+                    <dl class="content">
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                        <dt>环境</dt>
+                        <dd> 跟据用户业务需求,推荐最佳，最优最安全的服务器版本</dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var btns = document.querySelectorAll('.list li');
+        var sps = document.querySelectorAll('.list span');
+        var h22 = document.querySelectorAll('.list h2');
+        for(var i = 0; i < btns.length; i++){
+            btns[i].index = i;
+            btns[i].onmouseover = function(){
+                for(var i = 0; i < btns.length; i++){
+                    btns[i].classList.remove('show');
+                    sps[i].style.backgroundColor = '#cccccc';
+                    h22[i].style.backgroundColor = '#cccccc';
+                    h22[this.index].style.color = '#333';
+                }
+               this.classList.add('show');
+               sps[this.index].style.backgroundColor = '#0aa8f0'; 
+               h22[this.index].style.backgroundColor = '#0aa8f0';
+               h22[this.index].style.color = '#fff';
+            }
+           
+        }
+    </script>
+</body>
+</html>

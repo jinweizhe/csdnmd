@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <title>Document</title>
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    /* 移动端：vw和vh
+      vw：把视口的宽度分成100个单位的vw，1vw相当于1%视口的宽
+      vh：把视口的高度分成100个单位的vh，1vh相当于1%视口的高
+    */
+    header{
+      /* width: 50vw; */
+      height: 11.733333vw;
+      line-height: 11.733333vw;
+      text-align: center;
+      background-color: lightblue;
+      font-size: 3.73333vw;
+
+      /* 禁止用户选中文字内容 */
+      /* user-select: none; */
+    }
+    main{
+      padding: 1.333333vw;
+    }
+    main .list{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      font-size: 3.2vw;
+    }
+    main .list .item{
+      /* 
+      vw 可以作用于width属性，也可以作用于height属性，vw和父级就没有关系，相对的是屏幕的宽度 
+      使用vw可以做出宽高始终保持一致的效果
+      */
+      /* width: calc(50vw - 15px);
+      height: calc(50vw - 15px); */
+      /* width: 172.5px;
+      height: 97px; */
+      width: 46vw;
+      height: 25.866667vw;
+      padding: 1.333333vw;
+    }
+    main .list .item div{
+      width: 100%;
+      height: 100%;
+      background-color: lightcoral;
+    }
+    a{
+      -webkit-tap-highlight-color:rgba(0,0,0,0);
+    }
+  </style>
+</head>
+<body>
+  <header>天气预报</header>
+  <main>
+    <ul class="list">
+      <li class="item"><div>item1</div></li>
+      <li class="item"><div>item2</div></li>
+      <li class="item"><div>item3</div></li>
+      <li class="item"><div>item4</div></li>
+      <li class="item"><div>item5</div></li>
+      <li class="item"><div>item6</div></li>
+    </ul>
+  </main>
+
+  <a href="#">item1</a>
+  <pre>
+    var a = 2;
+    var b = 3;
+    var c = a + b;
+  </pre>
+</body>
+</html>

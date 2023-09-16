@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <!-- <news>
+      <title>重大新闻</title>
+      <time>08.29</time>
+      <content>xxx</content>
+    </news> -->
+		<script>
+			/*
+      
+      一、什么是JSON
+        JSON是一种数据的格式，常用于http请求的数据交换（后端给前端返回数据一般就是json格式），早期的数据交换还用过xml，但是由于xml数据量比较大，解析比较复杂，后来都使用json格式的数据
+        JSON的优势：
+        - JSON比XML更小、更快、更容易解析，是一种轻量级的文本数据交换格式，
+        - JSON 使用 Javascript语法来描述数据对象，在语法上与创建 JavaScript 对象的代码相同。
+        每个 JSON 对象就是一个值，可能是一个数组或对象，也可能是一个原始类型的值。总之，只能是一个值，不能是两个或更多的值。
+      
+      二、JSON数据值的特点
+        1、对于复杂数据类型：只能包含数组[] 和 对象{}
+        2、对于简单数据类型：只能包含数字、字符串、布尔、null
+        3、键值和字符串只能放在双引号中 {"name": "张三"}
+
+      三、JSON的使用
+        JSON类型的数据，一般不需要我们主动生成json数据，主要是从后端返回的数据为json类型，如果返回的数据是字符串类型，但是这种字符串是符合json格式的字符串，称作json字符串，需要把字符串转为数组或者对象类型
+
+      四、JSON字符串和对象之间的转换
+        JSON.stringify() 作用：把字符串、数字、布尔、null、数组、对象类型的值转为字符串类型，这种字符串符合JSON格式，被叫做JSON字符串
+        JSON.parse() 作用：把符合JSON格式的字符串转为对应的值，一般常用的是转数组和对象类型
+
+        JSON.stringify() 的弊端：如果处理包含函数、日期对象、正则对象、undefined类型的值：
+        1、函数和undefined会丢失
+        2、日期对象会转为字符串
+        3、正则对象转为空对象
+        
+      */
+
+			// 如果使用 JSON.stringify() 处理包含函数、日期对象、正则对象、undefined对象的值，一般是深复制的时候使用
+			var data = {
+				name: '张三',
+				say: function () {},
+				date: new Date(),
+				reg: /aa/,
+				u: undefined,
+			};
+			console.log(data);
+			var str = JSON.stringify(data);
+			console.log(str);
+			console.log(JSON.parse(str));
+
+			// JSON字符串：格式上符合JSON数据的特点，但是值是一个字符串，使用这种数据，需要把JSON字符串转为对象类型
+			var str = '[ { "name":"张三","age":"22"},{ "name":"李四","age":"22"} ]';
+
+			// 1、把JSON字符串转为对象 JSON.parse()
+			// console.log(JSON.parse(str));
+
+			// 把不符合JSON格式的字符串转为对象：SyntaxError: Unexpected token 'x', xxx is not valid JSON
+			// console.log(JSON.parse("['1','2']"));
+
+			// JSON对象：类似于JS对象，如果是数组使用索引值取值，如果是对象使用打点调用法取值
+			var data = [
+				{ name: '张三', age: 22, single: true },
+				{ name: '李四', age: 20, single: false },
+				{ name: '王五', age: 21, single: true },
+			];
+			var data = [
+				{ name: '张三', age: 22, single: true },
+				{ name: '李四', age: 20, single: false },
+				{ name: '王五', age: 21, single: true },
+			];
+			console.log(data);
+
+			// 2、把对象转为JSON字符串：
+			// 对象可以是JS对象，也可以是JSON对象
+			// 可以把数字、布尔、字符串、null、[]、{}转为对应的JSON字符串类型，和普通的数据类型转换转为字符串类型不一样
+			// console.log(JSON.stringify(data));
+			// [{"name":"张三","age":22,"single":true},{"name":"李四","age":20,"single":false},{"name":"王五","age":21,"single":true}]
+			// var str = JSON.stringify(data);
+			// console.log(JSON.parse(str));
+
+			// var a = 200;
+			// var a = true;
+			// console.log(JSON.stringify(a), JSON.parse(JSON.stringify(a)));
+			// console.log(String(a));
+
+			// JSON数据的处理
+			// 打印张三的年龄
+			// var zs = data[0];
+			// console.log(zs);
+			// console.log(zs.age);
+
+			// 如果signle的值为true打印出：今年xx已经xx岁了，还是个单身狗
+			// 如果signle的值为false打印出：今年xx是xx岁了，还找了一个漂亮的女朋友
+			// for (var i = 0; i < data.length; i++) {
+			// 	var user = data[i];
+			// 	// console.log(user);
+			// 	if (user.single) {
+			// 		// user.single == true
+			// 		console.log(`今年${user.name}已经${user.age}岁了，还是个单身狗`);
+			// 	} else {
+			// 		console.log(`今年${user.name}是${user.age}岁了，还找了一个漂亮的女朋友`);
+			// 	}
+			// }
+
+			var data = {
+				error: 0,
+				msg: 'success',
+				data: [
+					{ name: '张三', age: 22, single: true },
+					{ name: '李四', age: 20, single: false },
+					{ name: '王五', age: 21, single: true },
+				],
+			};
+			// console.log(data);
+			var res = data.data;
+			// console.log(res);
+			// 打印张三的年龄
+
+			// 如果signle的值为true打印出：今年xx已经xx岁了，还是个单身狗
+			// 如果signle的值为false打印出：今年xx是xx岁了，找了一个漂亮的女朋友
+			// for (var i = 0; i < res.length; i++) {
+			// 	var user = res[i];
+			// 	// console.log(user);
+			// 	if (user.single) {
+			// 		//user.single == true
+			// 		console.log(`今年${user.name}已经${user.age}岁了，还是个单身狗`);
+			// 	} else {
+			// 		console.log(`今年${user.name}是${user.age}岁了，还找了一个漂亮的女朋友`);
+			// 	}
+			// }
+
+			var data = {
+				error: 0,
+				msg: 'success',
+				data: [
+					{ name: '张三', age: 22, single: true },
+					{ name: '李四', age: 20, single: false },
+					{ name: '王五', age: 21, single: true },
+				],
+			};
+			// console.log(data);
+		</script>
+	</body>
+</html>

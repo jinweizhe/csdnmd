@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>在线电子书</title>
+	</head>
+	<body style="text-align: center; margin-top: 50px">
+		<button onclick="pre(event)" id="prevbtn">前一页</button>
+		<img src="img/01.jpg" />
+		<button onclick="next(event)" id="nextbtn">后一页</button>
+		<p></p>
+	</body>
+	<script>
+		//总页数
+		var pages = 4;
+		var img = document.querySelector('img');
+		var p = document.querySelector('p');
+
+		//定义一个变量，记录当前显示的页数
+		var currentPage = 1;
+		history.pushState(currentPage, '');
+
+		// 更新页码及按钮状态
+		// prevbtn.disabled = true;
+		// prevbtn.style.cursor = 'not-allowed'
+		updatedPage();
+		function updatedPage() {
+			p.innerHTML = currentPage + '/' + pages;
+			img.src = 'img/0' + currentPage + '.jpg';
+
+			//如果当前已经是第一页，那么就不能再后退了
+			if (currentPage == 1) {
+				console.log('已经是第一页了');
+				prevbtn.disabled = true;
+				prevbtn.style.cursor = 'not-allowed';
+			} else {
+				prevbtn.disabled = false;
+				prevbtn.style.cursor = 'auto';
+			}
+			// 判断是否存在下一页;
+			if (currentPage >= pages) {
+				console.log('已经是最后一页了');
+				nextbtn.disabled = true;
+				nextbtn.style.cursor = 'not-allowed';
+			} else {
+				nextbtn.disabled = false;
+				nextbtn.style.cursor = 'auto';
+			}
+			console.log(currentPage);
+		}
+
+		// 前一页
+		function pre() {
+			history.back();
+		}
+
+		// 下一页
+		function next() {
+			currentPage++;
+			//如果存在下一页，把当前的状态存入历史记录并修改图片
+			history.pushState(currentPage, '');
+			updatedPage();
+		}
+
+		window.onpopstate = function (ev) {
+      console.log(ev.state);
+			if (!ev.state) {
+				currentPage = 1;
+			} else {
+				currentPage = ev.state;
+			}
+			//我们在手动插入的历史记录中，状态保存的是页数，所以后退时就能通过后退到的历史记录的状态来确定该显示第几页。
+			// img.src = "img/0"+currentPage+".jpg";
+			updatedPage();
+		};
+	</script>
+</html>

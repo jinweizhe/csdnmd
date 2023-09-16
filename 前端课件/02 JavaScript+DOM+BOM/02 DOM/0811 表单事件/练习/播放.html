@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			#char {
+				display: inline-block;
+
+				width: 100px;
+				height: 100px;
+				background-color: lightblue;
+				font-size: 80px;
+				text-align: center;
+				line-height: 100px;
+				border-radius: 50%;
+				border: 1px solid #f00;
+			}
+			.rotate1 {
+				animation: rotate1 10s linear infinite;
+			}
+			.rotate2 {
+				animation: rotate2 10s linear infinite;
+			}
+			.paused {
+				animation-play-state: paused;
+			}
+			@keyframes rotate1 {
+				to {
+					transform: rotate(0);
+				}
+				from {
+					transform: rotate(-360deg);
+				}
+			}
+			@keyframes rotate2 {
+				to {
+					transform: rotate(0);
+				}
+				from {
+					transform: rotate(-360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button class="prev-btn">上一曲</button>
+		<button class="play-btn">播放</button>
+		<button class="next-btn">下一曲</button>
+		<br />
+		<h1 id="char" class="rotate1 paused"></h1>
+		<script>
+			var charBox = document.querySelector('#char');
+			var nextBtn = document.querySelector('.next-btn');
+			var prevBtn = document.querySelector('.prev-btn');
+			var playBtn = document.querySelector('.play-btn');
+
+			var arr = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+			var index = 0; //默认播放索引为0的歌曲
+
+			loadAudio();
+			function loadAudio() {
+				console.log('index=', index);
+				var ch = arr[index];
+				charBox.innerHTML = ch;
+			}
+
+			// 控制下一曲：让index自增，index有个最大值：length-1
+			function next() {
+				index++;
+				// 当index的值超过最大索引值，让index从0开始
+				if (index >= arr.length) {
+					// index == 5
+					index = 0;
+				}
+				loadAudio();
+			}
+			// 控制上一曲：让index自减，index有个最小值：0
+			function prev() {
+				index--;
+				// 当index的值小于0的时候，让index从最大索引值开始
+				if (index == -1) {
+					index = arr.length - 1;
+				}
+				loadAudio();
+			}
+
+			var playing = false; // 记录是否正在播放
+			playBtn.onclick = function () {
+				if (playing) {
+					// 正在播放，改为暂停，按钮名字改为播放
+					charBox.classList.add('paused');
+					playBtn.innerHTML = '播放';
+				} else {
+					// 正在暂停，改为播放，按钮名字改为暂停
+					charBox.classList.remove('paused');
+					playBtn.innerHTML = '暂停';
+				}
+				playing = !playing;
+			};
+
+			nextBtn.onclick = function () {
+				next();
+				resetAnimation();
+			};
+			prevBtn.onclick = function () {
+				prev();
+				resetAnimation();
+			};
+
+			function resetAnimation() {
+				// 只要重置动画，就立即开始播放
+				charBox.classList.remove('paused');
+				playBtn.innerHTML = '暂停';
+				playing = true;
+				charBox.classList.toggle('rotate1');
+				charBox.classList.toggle('rotate2');
+			}
+		</script>
+	</body>
+</html>

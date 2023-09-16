@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="author" content="Jxz">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <button onclick="postXHR()">postXHR</button>
+
+  <script>
+    // 2、POST请求
+    function postXHR () {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.dir(xhr);
+          // 响应报文：响应行、响应头、响应体
+          // 响应行
+          // 响应头
+          // 空行
+          // 响应体
+
+          console.log('响应行：http协议、状态码、状态码英文名称')
+          // 根据状态码判断请求是否成功 200：成功，404：未找到页面
+          console.log('状态码：' + xhr.status)
+          console.log('状态描述：' + xhr.statusText);
+
+          console.log('响应头：服务器环境的描述')
+          // 获取指定的响应头信息
+          console.log('Date：' + xhr.getResponseHeader('Date'))
+          // 获取所有的响应头
+          console.log(xhr.getAllResponseHeaders())
+
+          console.log('响应体：服务器返回给客户端的数据')
+          console.log('响应信息：' + xhr.response);
+          console.log('字符串形式的响应数据：' + xhr.responseText);
+          console.log('响应类型：' + xhr.responseType);
+
+          var data = JSON.parse(xhr.responseText);
+          console.log(data);
+        }
+      }
+
+      // 请求报文：请求行、请求头和请求体
+      // 请求行
+      // 请求头
+      // 空行
+      // 请求体
+
+      // 请求行：包含请求方法、url、http协议
+      xhr.open('POST', 'http://127.0.0.1:3000/api/post');
+
+      // 请求头：客户端环境的描述、对请求参数的秒数
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+      // 空行：
+      // 不需控制
+
+      // 请求体：客户端发送给服务器的数据（post请求）
+      xhr.send('username=张三&age=22');
+    }
+  </script>
+</body>
+
+</html>

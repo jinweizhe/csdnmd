@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>标题1</h1>
+  <!-- 在HTML中JS书写位置可以分为三种：行内、内嵌和外部。 -->
+  <!-- 1、行内，在标签上添加特定的属性，然后在引号中书写JS代码 -->
+  <button onclick="alert('Hello World!')">Hello World!</button>
+
+  <!-- 2、使用script标签，在script标签的内部写JS代码 -->
+  <script>
+    alert('Hello World! ----');
+  </script>
+  <h2>标题2</h2>
+
+  <!-- 3、给script标签添加一个 src 属性，可以引入一个外部的js文件，属性值就是要引入的文件的路径，就像img标签的src属性一样，也可以给script标签的src属性添加网络路径。 -->
+  <!-- 注意：引用外部 JS文件的 script 标签中间不可以写JS代码。 -->
+  <script src="index.js"></script>
+  <script src="index2.js"></script>
+
+  <noscript>
+    浏览器不支持JS的时候显示
+  </noscript>
+  <!-- 
+
+    程序在页面中的执行顺序是从上而下执行的，但是浏览器会优先执行html标签和文字信息，将图片、视频和外部引用的资源放在后面执行。
+
+    - JS执行过程中，浏览器会停止HTML和CSS的渲染工作，直到JS代码执行完毕，再继续执行HTML和CSS的解析。
+    - 一个页面中可以引入多个JS文件，这些JS文件在执行时，会按照顺序拼接在一起，运行在同一个环境内。
+
+  -->
+
+
+  <script>
+    // 注释：
+    // 1、单行注释：//
+    // 2、多行注释：/*   */
+    /* 
+    
+    var a = 2;
+    
+    */
+
+    var a = 2;
+    var A = 3;
+
+    var $_a1 = 2;
+  </script>
+</body>
+
+</html>

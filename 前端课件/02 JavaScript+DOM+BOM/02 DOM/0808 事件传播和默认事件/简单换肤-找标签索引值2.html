@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.box {
+				width: 100%;
+				height: 60px;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				background-color: lightblue;
+			}
+			.box .item {
+				width: 40px;
+				height: 40px;
+				margin: 0 10px;
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+			<div class="item"></div>
+		</div>
+		<script>
+			var colors = ['red', 'green', 'yellow', 'blue', 'purple'];
+			var items = document.querySelectorAll('.box .item');
+
+      // 在事件中找标签的索引值：
+      // 1、在标签上直接添加onclick属性，可以给函数直接传递0 1 2... 或者在标签添加data-index属性，赋值0 1 2 ...
+      // 2、推荐用法：在JS中先找到元素的集合，通过for语句给每一个元素对象添加事件，在添加事件之前用index记录每一个元素的索引值，然后在事件中可以使用this.index或者ev.target.index找到标签的索引值
+
+			for (var i = 0; i < items.length; i++) {
+				var item = items[i];
+				item.style.background = colors[i];
+				// 给item对象添加一个index属性，index属性保存了一个值，每个item对象的index属性值是不一样，我让index的值从0开始，正好找到每一个item的索引值
+				item.index = i;
+				console.dir(item);
+				item.onclick = function (ev) {
+					// console.dir(ev.target);
+					// console.dir(this);
+					console.log(this.index);
+					document.body.style.background = colors[this.index];
+				};
+
+				// item.addEventListener('click', function (ev) {
+				// 	console.log('addEventListener',ev.target);
+				// });
+			}
+		</script>
+	</body>
+</html>

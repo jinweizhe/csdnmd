@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    /* 
+        浮动：让元素按照指定的方向进行运动，遇到父元素的边沿或者同级的浮动元素时停下
+        浮动的方向：left 、 right
+        特点：
+          1、浮动的元素脱离了文档流，不脱离文本流
+          2、浮动让元素在块级元素同一行显示，行内元素支持设置宽高
+
+        浮动的弊端：如果父元素没有设置高度，会导致父元素塌陷，变现为高度为0
+      
+        解决浮动的弊端，就是清除浮动，清除浮动的常用方式
+        1、给父元素设置固定的高
+        2、给父元素设置 overflow: hidden;
+        3、在最后一个浮动元素的后面添加一个空的div(准确来说应该是一个空的块级元素，没有高度，在页面上不显示)设置类名clear，然后在clear类名中添加clear:both;
+        4、使用伪元素after，设置清除浮动的类名clearfix
+      */
+    .box {
+      width: 300px;
+      background-color: lightblue;
+      /* height: 80px; */
+      /* overflow: hidden; */
+    }
+    .box .item{
+      width: 100px;
+      height: 80px;
+      background-color: red;
+      float: left;
+    }
+    .box .item:nth-child(2n){
+      background-color: blue;
+    }
+    .clear {
+      clear: both;
+    }
+
+    /* clearfix 清浮动的专用类名
+    原理：把伪元素after当设置为块级元素，内容为空，高度设置为0，代替了第三种方式空的div
+    */
+    .clearfix::after{
+      content: '';
+      display: block;
+      clear: both;
+      visibility: hidden;
+      height: 0;
+      line-height: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box clearfix">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+    <div class="item">4</div>
+    <div class="item">5</div>
+    <div class="item">6</div>
+    <div class="item">7</div>
+    <!-- <div class="clear"></div> -->
+  </div>
+  <div>1-----------------------------------------------------------</div>
+</body>
+
+</html>

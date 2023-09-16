@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        border: 1px solid black;
+        text-align: center;
+      }
+      td{
+        width: 40px;
+        height: 40px;
+        border: 1px solid black;
+      }
+    </style>
+	</head>
+	<body>
+		<!-- <table>
+      (tr>td*8)*6
+    </table> -->
+    <!-- <select name="" id="">
+      <option></option>
+      <option></option>
+      <option></option>
+      <option></option>
+    </select> -->
+		<header>1</header>
+		<div class="box">
+			<p>box</p>
+		</div>
+
+		<script>
+			var box = document.querySelector('.box');
+
+			// 创建 美化 添加
+			var table = document.createElement('table');
+			box.appendChild(table);
+			// table.style.border = '1px solid black';
+
+			for (var i = 0; i < 6; i++) {
+				var tr = document.createElement('tr');
+				table.appendChild(tr);
+				for (var j = 0; j < 6; j++) {
+					var td = document.createElement('td');
+					tr.appendChild(td);
+
+					// td.innerHTML = i + 1 + '行' + (j + 1) + '列';
+					td.innerHTML = i + j ;
+				}
+			}
+
+      var select = document.createElement('select');
+      document.body.appendChild(select);
+
+      var arr = ['html5','css','js','nodejs'];
+      for(var i = 0; i < arr.length; i++){
+        var option = document.createElement('option');
+        select.appendChild(option);
+        option.innerHTML = arr[i];
+      }
+
+
+		</script>
+	</body>
+</html>

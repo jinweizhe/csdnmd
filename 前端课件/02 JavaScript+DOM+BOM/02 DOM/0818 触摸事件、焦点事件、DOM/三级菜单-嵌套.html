@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			a {
+				text-decoration: none;
+				font-size: inherit;
+				color: inherit;
+			}
+
+			.w {
+				width: 1170px;
+				margin: 0 auto;
+				min-width: 1000px;
+			}
+
+			.header {
+				height: 130px;
+				background-color: lightblue;
+			}
+
+			/* ===========================================================头部导航 */
+			.main-nav {
+				width: 100%;
+				background-color: lightgray;
+				height: 43px;
+				color: #666;
+				font-size: 16px;
+				z-index: 999;
+			}
+
+			.main-nav > div {
+				height: 100%;
+			}
+
+			.main-nav .nav-list {
+				display: flex;
+				height: 100%;
+			}
+
+			.main-nav .nav-list > li > a {
+				display: block;
+				height: 100%;
+				line-height: 43px;
+				padding: 0 20px;
+			}
+
+			.main-nav .nav-list > li:not(:first-of-type):hover {
+				color: #f10180;
+			}
+
+			.main-nav .nav-list > li.active {
+				color: #f10180;
+				font-weight: 700;
+			}
+
+			/* 一级菜单 */
+			.main-nav .menu-level1 {
+				width: 156px;
+				text-align: center;
+				background-color: #f10180;
+				color: #fff;
+				z-index: 10;
+			}
+
+			/* 二级菜单 */
+			.menu-level2 {
+        /* width: 1170px; */
+				position: relative;
+				height: 473px;
+				background-color: #f10180;
+				transition: all 0.2s linear;
+				/* height: 0px; */
+				/* overflow: hidden; */
+				display: none;
+			}
+
+			.menu-level1:hover .menu-level2 {
+				/* height: 473px; */
+				display: block; 
+			}
+			
+
+			.menu-level2 > li {
+				/* display: none; */
+        /* background-color: #f10180;  */
+				width: 156px;
+				height: 43px;
+				cursor: pointer;
+				text-align: center;
+				font-size: 14px;
+				line-height: 43px;
+			}
+
+			.menu-level2 > li:hover {
+				background-color: #fff;
+				color: #f10180;
+			}
+
+			/* 三级菜单------------- */
+			.menu-level2 .menu-level3 {
+				display: none;
+				width: 1014px;
+				height: 473px;
+				position: absolute;
+				left: 100%;
+				top: 0;
+				color: #262626;
+				padding: 0px 36px;
+				background-color: lightcoral;
+			}
+
+			.menu-level2 > li:hover .menu-level3 {
+				display: block; 
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- ======================================页面头部 -->
+		<header>
+			<div class="w header"></div>
+		</header>
+		<!-- ======================================导航 -->
+		<nav class="main-nav">
+			<div class="w">
+				<ul class="nav-list">
+					<li class="menu-level1">
+						<a href="javascript:;">商品分类</a>
+						<ul class="menu-level2">
+							<li>
+								<span>女装/男装/内衣</span>
+								<div class="menu-level3">1</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">2</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">3</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">4</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">5</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">6</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">7</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">8</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">9</div>
+							</li>
+							<li>
+								<span>女鞋/男鞋/箱包</span>
+								<div class="menu-level3">10</div>
+							</li>
+						</ul>
+					</li>
+					<li class="active"><a href="javascript:;">首页</a></li>
+					<li><a href="javascript:;">唯品国际</a></li>
+					<li><a href="javascript:;">母婴</a></li>
+					<li><a href="javascript:;">家居家电</a></li>
+					<li><a href="javascript:;">男士</a></li>
+					<li><a href="javascript:;">美妆</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="w" style="height: 1000px; background-color: lightblue"></div>
+	</body>
+</html>

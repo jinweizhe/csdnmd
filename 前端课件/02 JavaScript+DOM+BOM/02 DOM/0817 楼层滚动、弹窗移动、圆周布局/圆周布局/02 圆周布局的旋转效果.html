@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+    .box {
+      width: 600px;
+      height: 600px;
+      background-color: lightblue;
+      position: absolute;
+      top: 200px;
+      left: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+
+  </div>
+
+  <script type="text/javascript">
+
+    var box = document.querySelector('.box');
+
+    // 设置一些布局圆周通用的变量
+    // 小圆的半径
+    var r = 100;
+    // 定义小圆的个数
+    var count = 6;
+    // 每个小圆间隔的度数，相当于60度
+    var angle = 2 * Math.PI / count;
+    // 大圆周的半径
+    var R = box.offsetWidth / 2;
+    // 大圆周圆心距离定位父元素左边和顶部的距离，也就是圆周相对于定位父元素的圆心坐标
+    // var offsetX = 0;
+    // var offsetY = 0;
+    var offsetX = box.offsetHeight / 2;
+    var offsetY = box.offsetWidth / 2;
+
+    // 存放每一个小球
+    var balls = [];
+    // 6个圆
+    for (var i = 0; i < count; i++) {
+      var ball = document.createElement('div');
+      box.appendChild(ball);
+      balls.push(ball);
+      ball.style.width = r + 'px';
+      ball.style.height = r / 2 + 'px';
+      // h:hue 色调。取值0-360，0(或360)表示红色，120表示绿色，240表示蓝色
+      // S：Saturation(饱和度)。取值为：0.0% - 100.0%
+      // L：Lightness(亮度)。取值为：0.0% - 100.0%
+      ball.style.backgroundColor = 'hsl(' + 60 * i + ',100%,50%)';
+      ball.style.borderRadius = '50%';
+      ball.style.position = 'absolute';
+
+      // 根据正选余弦计算每一个ball圆心的坐标
+      var x = offsetY + R * Math.sin(angle * i) - ball.offsetWidth / 2;
+      var y = offsetX + R * Math.cos(angle * i) - ball.offsetHeight / 2;
+      // console.log('x='+x.toFixed(2)+',y='+y.toFixed(2)+',angle='+angle * i);
+      ball.style.top = x + 'px';
+      ball.style.left = y + 'px';
+
+      ball.style.transform = 'rotate(' + (angle * i * 180 / Math.PI) + 'deg)'
+    }
+
+    // 添加旋转效果
+    var step = 0;
+    requestAnimationFrame(rotateBalls);
+    function rotateBalls() {
+      // 每次次增加的弧度
+      step += 0.02;
+      for (var i = 0; i < balls.length; i++) {
+        balls[i].style.top = offsetY + R * Math.sin(step + angle * i) - ball.offsetWidth / 2 + 'px';
+        balls[i].style.left = offsetX + R * Math.cos(step + angle * i) - ball.offsetHeight / 2 + 'px';
+        balls[i].style.transform = 'rotate(' + (step + i * angle) * 180 / Math.PI + 'deg)'
+      }
+      requestAnimationFrame(rotateBalls);
+    }
+
+  </script>
+</body>
+
+</html>

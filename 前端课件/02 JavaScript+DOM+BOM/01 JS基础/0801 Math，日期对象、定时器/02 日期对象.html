@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// Date 日期对象，获取从1970年1月1日0时0分0秒到当前的时间
+
+			// 1、获取时间
+      // 不传递任何参数获取的是当前时间
+			var now = new Date();
+			console.log(now, typeof now);
+
+			// 根据传递参数获取指定的时间
+			console.log(new Date(1659337527581));
+      // 时间写在字符串中，按照实际时间写
+			console.log(new Date('2000 6 12 15:06:32'));
+      // 作为参数，月份从0开始，0表示1月，1表示2月
+			console.log(new Date(2000, 6, 12, 15, 06, 32));
+
+      console.clear();
+
+      // 2、获取毫秒数
+			// 获取当前时间的毫秒数
+			console.log(Date.now()); // 1659337527581
+      // 获取指定时间的毫秒数
+      console.log(Date.parse('2022 6 12 15:06:32'));
+
+
+      var now = new Date();
+      var target = new Date('2022 6 12 15:06:32')
+      console.log(now);
+      // 根据语言获取本地时间
+      // console.log(now.toLocaleString('zh-CN'));
+      // console.log(now.toLocaleString('en-US'));
+      // getTime 根据时间对象获取指定时间的毫秒数
+      console.log(now.getTime());
+      console.log(target.getTime());
+
+      // 3、获取年月日时分秒
+      console.log(now.getFullYear());// 获取完整的年份
+      console.log(now.getMonth()+1);// 获取月份：月份从0开始，0表示1月，1表示2月
+      console.log(now.getDate());// 获取某月的第几天
+
+      console.log(now.getHours()); // 获取小时数
+      console.log(now.getMinutes());// 获取分钟数
+      console.log(now.getSeconds());// 获取秒数
+
+      console.log(now.getDay()); // 获取星期几：0表示星期天，1-6分别表示星期一到星期六
+
+      // 4、使用set*设置时间
+
+
+
+
+
+
+
+		</script>
+	</body>
+</html>

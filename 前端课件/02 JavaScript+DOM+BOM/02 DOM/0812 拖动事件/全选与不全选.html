@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<title>全选/反选</title>
+		<style type="text/css">
+			body {
+				font-size: 14px;
+			}
+
+			.box {
+				width: 120px;
+				border: 1px solid black;
+				border-radius: 5px;
+				margin: 0 auto;
+				padding: 10px;
+				background-color: #fafafa;
+			}
+
+			.check-all {
+				border-bottom: 1px solid black;
+				padding-bottom: 10px;
+			}
+
+			.inverse {
+				text-decoration: none;
+				padding-left: 5px;
+			}
+
+			.inverse:hover {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="check-all">
+				<input type="checkbox" id="all" /><label for="all">全选</label>
+				<a class="inverse" href="javascript:;">反选</a>
+			</div>
+			<div class="items">
+				<p>
+					<label><input type="checkbox" />选项1</label>
+				</p>
+				<p>
+					<label><input type="checkbox" />选项2</label>
+				</p>
+				<p>
+					<label><input type="checkbox" />选项3</label>
+				</p>
+				<p>
+					<label><input type="checkbox" />选项4</label>
+				</p>
+				<p>
+					<label><input type="checkbox" />选项5</label>
+				</p>
+				<p>
+					<label><input type="checkbox" />选项6</label>
+				</p>
+			</div>
+		</div>
+		<script type="text/javascript">
+			var inputs = document.querySelectorAll('.items input');
+			// 用checked属性控制复选框是否被选中，当被选中的时候checked属性的值为true，不被选中的时候checked属性的值为false
+			// inputs[0].checked = true;
+			// console.log(inputs[0].checked);
+
+			var inverseBtn = document.querySelector('.inverse');
+			var checkAllBtn = document.querySelector('.check-all input');
+
+			// 反选：让所有的选项选中的变为不选中，不选中的变为选中，取反
+			inverseBtn.onclick = function () {
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked = !inputs[i].checked;
+				}
+        updateCheckedAll();
+			};
+
+			// 点击全选或者全不选按钮：控制是否全选
+			// 复选框中，选中或者不选中状态发生变化的时候，会触发change事件
+			checkAllBtn.onchange = function () {
+				for (var i = 0; i < inputs.length; i++) {
+					inputs[i].checked = checkAllBtn.checked;
+
+					// 单击全选复选框按钮，当全选复选框按钮被选中（checkAllBtn.checked的值为true）的时候，让所有的选项都变为选中状态（inputs[i].checked = true）
+					// inputs[i].checked = true;// 把true替换为checkAllBtn.checked
+
+					// 单击全选复选框按钮，当全选复选框按钮不被选中（checkAllBtn.checked的值为false）的时候，让所有的选项都变为不选中状态（inputs[i].checked = false）
+					// inputs[i].checked = false;// 把false替换为checkAllBtn.checked
+				}
+        updateCheckedAll();
+			};
+
+			// 点击选项自己：自己选中不需要做任何操作，最后判断全选按钮是否选中
+			for (var i = 0; i < inputs.length; i++) {
+				inputs[i].onchange = function () {
+					updateCheckedAll();
+				};
+			}
+
+			// 检测全选按钮是否需要被选中
+			function updateCheckedAll() {
+				// var isCheckedAll = true; // 假设所有的都被选中
+				// for(var i = 0; i < inputs.length; i++){
+				//   console.log(inputs[i].checked);
+				//   if (inputs[i].checked == false) {
+				//     isCheckedAll = false;
+				//     break;
+				//   }
+				// }
+
+        // every 让数组中每一个元素执行一次遍历函数，让数组中的元素在函数中执行某种判断，在函数中返回一个布尔值
+        // 如果数组中的每一个元素都符合条件，最终every返回true，只要有一个不符合添加，立即返回false并终止遍历
+				var isCheckedAll = Array.from(inputs).every(function (item) {
+					return item.checked == true;
+				});
+
+        console.log('isCheckedAll=',isCheckedAll);
+				checkAllBtn.checked = isCheckedAll;
+        checkAllBtn.nextElementSibling.innerHTML = isCheckedAll ? '全不选' :'全选';
+			}
+
+			// function a() {
+			// 	for (var i = 0; i < inputs.length; i++) {
+			// 		if (inputs[i].checked) {
+			// 			// 原来被选中，inputs[i].checked的值是true，现在要改为false，就是对自己取反
+			// 			inputs[i].checked = false;
+			// 			// inputs[i].checked = !inputs[i].checked;
+			// 		} else {
+			// 			// 原来不被选中，inputs[i].checked的值为false，现在要改为true，就是对自己取反
+			// 			inputs[i].checked = true;
+			// 			// inputs[i].checked = !inputs[i].checked;
+			// 		}
+			// 	}
+			// }
+
+		</script>
+	</body>
+</html>

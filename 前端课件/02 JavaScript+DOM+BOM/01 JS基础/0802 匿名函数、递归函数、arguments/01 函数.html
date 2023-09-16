@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 简单数据类型：number、boolean、string、null、undefined
+			// 复杂数据类型：统称为对象类型，细分为：Object、Array、Function、Date等
+
+			// 函数也是属于复杂数据类型，本质上也是属于对象
+			// function f1(){
+			//   console.log('----------------');
+			// }
+			// f1是一个函数，表示的值也是也函数，可以把f1赋值给其他的变量，把f1当做普通的变量来使用：给变量赋值、作为其他函数的参数
+			// console.log(f1);
+			// 获取函数的名字
+			// console.log(f1.name);
+			// var ff = function (){}
+			// console.log(ff.name);
+
+			// 把函数作为变量赋值给另外一个变量
+			var f2 = f1;
+			// f1();
+			// f2();
+
+			// function f1(a) {
+			// 	console.log('f1 a = ',a);
+			// }
+			// f1(100);
+
+			var f1 = function (a) {
+				console.log('f1 a = ', a);
+			};
+
+			// 函数的参数可以是任意类型的值
+			function f3(fn) {
+				console.log('fn = ', fn.name);
+				// fn本质上就是f1函数，调用fn就相当于调用了f1
+				var res = fn(100);
+				console.log('res = ', res);
+				// fn(200);
+			}
+			// 给f3传递的函数可以被称作回调函数
+
+			// 调用f3函数的时候，传递了实参f1（f1是一个函数），会把f1函数赋值给fn，fn的值也是一个函数
+			// f3(f1);
+
+			// f3(function (a) {
+			// 	console.log('a ===', a);
+			// 	return a ** 2;
+			// });
+
+        // console.log(f3.toString());
+
+
+			function f4(a) {}
+			// 当调用f4函数的时候，传递了实参6，会把6赋值给形参a，相当于声明变量a，并赋值6：var a = 6;
+			f4(6);
+			// 当调用f4函数的时候，没有传递实参，没有值传递给形参，相当于声明了变量a，但是没有赋值：var a;
+			f4();
+
+			// var arr = [2, 4, 6, 8];
+			// function forEach(fn) {
+			// 	// fn(arr[0], 0);
+			// 	// fn(arr[1], 1);
+			// 	// fn(arr[2], 2);
+			// 	// fn(arr[3], 3);
+			// 	for (var i = 0; i < arr.length; i++) {
+			// 		fn(arr[i], i);
+			// 	}
+			// }
+
+			// forEach(function (item, index) {
+			// 	console.log('item =', item, 'index = ', index);
+			// });
+
+			// arr.forEach(function (item, index) {
+			// 	console.log('=====  item =', item, 'index = ', index);
+			// });
+
+			// function f3(fn) {
+			// 	var res = fn(100);
+			// 	console.log('res = ', res);
+			// 	return res;
+			// }
+			// // 给f3传递的函数可以被称作回调函数
+
+			// var data = f3(function (a) {
+			// 	console.log('a ===', a);
+			// 	return a ** 2;
+			// });
+			// console.log('data = ', data);
+
+			// 封装一个some函数
+			// var arr = [6, 3, 5, 2];
+			// function some(fn) {
+			// 	for (var i = 0; i < arr.length; i++) {
+			// 		var res = fn(arr[i], i);
+			// 		console.log('res = ', res, 'i=', i);
+			// 		if (res == true) {
+			// 			return true;
+			// 		}
+			// 	}
+			// 	return false;
+			// }
+
+			// var data = some(function (item, index) {
+			// 	return item % 2 == 0;
+			// });
+			// console.log(data);
+
+
+      // 封装一个filter函数
+      var arr = [6, 3, 5, 2];
+      function filter(fn){
+        var result = [];
+        for(var i = 0; i < arr.length; i++) {
+          var res = fn(arr[i], i);
+          if (res) {
+            result.push(arr[i]);
+          }
+        }
+        return result;
+      }
+
+      var data = filter(function (item, index){
+        return item > 3;
+      });
+      console.log(data);
+
+		</script>
+	</body>
+</html>

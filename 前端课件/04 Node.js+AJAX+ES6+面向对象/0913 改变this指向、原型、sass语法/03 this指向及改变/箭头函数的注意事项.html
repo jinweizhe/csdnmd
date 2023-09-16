@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    #box {
+      width: 200px;
+      height: 200px;
+      background-color: orange;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="box"></div>
+  <script>
+
+    // 一、构造函数
+    // 构造函数创建方式和普通函数一致，一般构造函数的函数名首字母大写，比如：Array()  Object()  Date() 都是构造函数 
+    // 构造函数和普通函数的区别：
+    // 1、构造函数需要使用 new 初始化
+    // 2、构造函数中使用 this 
+
+    // 在构造函数中，this指向创建的对象
+    function People (name, age) {
+      console.log(name, age, this);
+      this.name = name;
+      this.age = age;
+    }
+    let zs = new People('张三', 18);
+    console.log('zs=', zs);
+
+
+
+
+    // 二、this的指向
+    // this指向的特点：this指向不是固定，谁调用函数，this指向谁
+    // 1、在全局作用域声明的函数中，this指向window
+    // 2、在事件函数中，this指向绑定事件的元素
+    // 3、在对象的函数中，this指向该对象
+    // 4、在构造函数中，this指向创建的对象
+    // 其余的情况：在定时器中、请求动画帧的回调函数中this都是指向window
+
+    // function fn () {
+    //   console.log(this);
+    // }
+    // fn();
+    // box.onclick = fn;
+    // let o = { fn, v: 10 };
+    // o.fn();
+    // setTimeout(fn, 1000);
+
+
+    // 三、箭头函数的注意事项
+    // （1）箭头函数没有自己的this对象，箭头函数中的this指向上层作用域的this
+    // （2）不可以当作构造函数，也就是说，不可以对箭头函数使用new命令，否则会抛出一个错误。
+    // （3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+
+    // 什么情况下不能使用箭头函数：
+    // 1、构造函数不能使用箭头函数
+
+    // 不建议使用使用箭头函数的情况：
+    // 1、对象的函数中不要使用箭头函数
+    // 2、使用DOM元素绑定的事件函数不要使用箭头函数
+
+
+    box.onclick = function () {
+      console.log('---')
+      setTimeout(() => {
+        console.log(this);
+      }, 1000);
+    }
+    console.log('+++');
+
+    let o = {
+      v: 10,
+      m () {
+        console.log(this);
+      },
+      n: () => {
+        console.log(this);
+      }
+    };
+    o.m();
+    o.n();
+
+    // console.log(this);
+
+    // box.onclick = () => {
+    //   console.log(this);
+    // }
+
+
+  </script>
+</body>
+
+</html>

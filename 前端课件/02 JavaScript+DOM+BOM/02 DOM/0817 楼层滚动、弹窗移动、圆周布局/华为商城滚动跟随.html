@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    .container {
+      width: 800px;
+      margin: 0 auto;
+    }
+
+    .header {
+      height: 1000px;
+      background-color: lightblue;
+    }
+
+    main .item:nth-child(2n) {
+      height: 1000px;
+      background-color: lightgray;
+    }
+
+    main .item:nth-child(2n+1) {
+      height: 1000px;
+      background-color: lightskyblue;
+    }
+
+    .nav-right {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      width: 80px;
+      text-align: right;
+      font-size: 12px;
+      position: fixed;
+      top: calc(50% - 90px);
+      right: -80px;
+      transition: all 0.3s linear;
+    }
+
+    .nav-right li {
+      padding: 10px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-right li::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 10px;
+      width: 2px;
+      height: 0px;
+      background-color: red;
+      transition: all 0.3s linear;
+    }
+
+    .nav-right li.active::before {
+      height: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container header">
+      头部
+    </div>
+  </header>
+  <main>
+    <div class="container item">
+      <h2>手机</h2>
+    </div>
+    <div class="container item">
+      <h2>笔记本电脑</h2>
+    </div>
+    <div class="container item">
+      <h2>精品平板</h2>
+    </div>
+    <div class="container item">
+      <h2>智能穿戴</h2>
+    </div>
+    <div class="container item">
+      <h2>智能家居</h2>
+    </div>
+  </main>
+  <ul class="nav-right">
+    <li class="active">手机</li>
+    <li>笔记本电脑</li>
+    <li>精品平板</li>
+    <li>智能穿戴</li>
+    <li>智能家居</li>
+  </ul>
+  <script>
+
+    var mainItems = document.querySelectorAll('.item');
+    var navRight = document.querySelector('.nav-right');
+    var rightItems = document.querySelectorAll('.nav-right li');
+
+    // 点击右侧导航选项让页面跟随
+    for (var i = 0; i < rightItems.length; i++) {
+      rightItems[i].index = i;
+      rightItems[i].onclick = function () {
+        var that = this;
+        // 获取这个.item标签相对于网页顶部的距离,也就是,当标题滚动到窗口顶部时,网页的滚动距离, (网页将要滚动的目标位置) 减100为了预留顶部导航和搜索栏的空间
+        var targetTop = mainItems[this.index].offsetTop - 100;
+        // 获取当前网页的滚动距离
+        var currentTop = document.scrollingElement.scrollTop
+        var offsetTop = currentTop - targetTop;//// 计算网页的滚动总距离
+        var speed = offsetTop / 20;//计算20帧实现,每一帧的滚动距离
+        console.log(speed, currentTop, targetTop);
+        if (speed == 0) return;
+        update();
+        function update() {
+          currentTop -= speed;
+          document.documentElement.scrollTop = currentTop;
+          if ((offsetTop > 0 && currentTop > targetTop) || (offsetTop < 0 && currentTop < targetTop)) {
+            requestAnimationFrame(update);
+          } else {
+            document.scrollingElement.scrollTop = targetTop;
+          }
+        }
+      }
+    }
+
+    // 滑动页面让右侧导航选项跟随
+    var clientHeight = document.documentElement.clientHeight;
+    window.onscroll = function () {
+      var index = 0;
+      var scrollTop = document.scrollingElement.scrollTop;
+      // console.log(scrollTop);
+      // 设置nav-right的出现和隐藏
+      if (scrollTop + clientHeight / 2 >= mainItems[0].offsetTop) {
+        navRight.style.right = 0;
+      } else {
+        navRight.style.right = '-80px';
+      }
+
+      // 找出需要显示的索引值
+      for (var i = 0; i < mainItems.length; i++) {
+        rightItems[i].className = ''
+        if (scrollTop + clientHeight / 2 > mainItems[i].offsetTop) {
+          index = i;
+        }
+      }
+      // console.log('index:'+index);
+      rightItems[index].className = 'active';
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+		<script>
+			// 浅拷贝：只复制指向某个对象的指针(引用地址/内存地址)，而不复制对象本身，新旧对象还是共享同一块内存。改变新对象会影响原对象。
+
+			// 深拷贝：会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。 不论嵌套多少层引用类型，新旧对象都不会影响。
+
+			// 值类型只存在浅复制
+			// 深复制只存在复杂数据类型，一般是对对象{}和数组[]进行深浅复制
+
+			// 一、哪些操作是浅复制
+			// var arr1 = [1,2,3];
+			// var arr2 = arr1;
+			// arr2[1] = 100;
+			// console.log(arr1, arr2);
+
+			// var o1 = {};
+			// var o2 = o1;
+			// o2.v1 = 100;
+			// console.log(o1, o2);
+
+			// 二、哪些操作是深复制
+
+			// 对象的深复制
+			var o1 = {
+				v1: 100,
+				o: {
+					v2: 200,
+				},
+			};
+			// 一层对象的深复制，如果对象有多层，无法对内层的对象深复制
+			// var o2 = { ...o1 };
+			var o2 = Object.assign({}, o1);
+			o2.v1 = 1000;
+			o2.o.v2 = 2000;
+			// console.log(o1, o2);
+
+			// 合并对象
+			// var o1 = { v1: 100, v2: 20 };
+			// var o2 = { v2: 2, v3: 300 };
+			// 使用扩展运算符可以可以合并多个对象，后面的对象会把重名的属性覆盖掉
+			// var o3 = { ...o1, ...o2, ...{v4:400} };
+			// Object.assign(目标对象, 对象1, 对象2, ...) 把多个对象合并到目标对象中
+			// var o3 = Object.assign({}, o1, o2);
+			// console.log(o3);
+
+			// 数组的深复制
+			var a1 = [1, 2, 3, [4, 5]];
+			// 实现数组方法的一层深复制
+			// var a2 = [...a1];
+			var a2 = a1.concat();
+			// var a2 = a1.slice(0);
+			// var a2 = Array.from(a1);
+			a2.push(100);
+			a2[3][0] = 400;
+			// console.log(a1, a2);
+
+			var zs = {
+				name: '张三',
+				age: 18,
+				dx: {
+					name: '花花',
+					age: 17,
+					gm: {},
+				},
+			};
+      // console.log(JSON.stringify(zs));// 把一个对象转为字符串，是符合JSON格式的字符串
+      // JSON.parse() 把一个符合JSON格式的字符串转为对象
+      // var lisi = JSON.parse(JSON.stringify(zs));
+      // lodash中的深复制方法cloneDeep
+      var lisi = _.cloneDeep(zs);
+      lisi.dx.name = 'xxx';
+      console.log(zs,lisi);
+
+
+      // console.log(_.random(10,20));
+
+
+			// var lisi = {};
+			// for (var key in zs) {
+
+			// 	if (typeof zs[key] == 'object') {
+			// 		var obj = zs[key];
+			//     lisi[key] = {}
+			//     console.log(obj);
+			// 		for(var k1 in obj){
+			//       if (typeof obj[k1] == 'object') {
+
+			//       } else {
+			//         lisi[key][k1] = obj[k1];
+			//       }
+			//     }
+
+			// 	} else {
+			// 		lisi[key] = zs[key];
+			// 	}
+			// }
+			// lisi.dx.name = 'xxx'
+			// console.log(zs, lisi);
+
+			// function deepClone(obj) {
+			// 	var objClone = Array.isArray(obj) ? [] : {};
+			// 	if (obj && typeof obj === 'object') {
+			// 		for (key in obj) {
+			// 			// if (obj.hasOwnProperty(key)) {
+			// 				// 判断obj子元素是否为对象
+			// 				if (obj[key] && typeof obj[key] === 'object') {
+			// 					// 如果obj子元素是对象，递归复制
+			// 					objClone[key] = deepClone(obj[key]);
+			// 				} else {
+			// 					//如果obj子元素不是对象，简单复制
+			// 					objClone[key] = obj[key];
+			// 				}
+			// 			// }
+			// 		}
+			// 	}
+			// 	return objClone;
+			// }
+
+      
+		</script>
+	</body>
+</html>

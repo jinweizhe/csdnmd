@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      .btn3{
+        background-color: red;
+        border: none;
+        padding: 0;
+        margin: 0;
+      }
+      .btn3 span{
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        background-color: blue;
+      }
+    </style>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2 <span style="background-color: red;">span标签</span> 按钮2 </button>
+		<button class="btn3"><span>按钮3</span></button>
+		<script>
+			var btns = document.querySelectorAll('button');
+
+			var btn1 = btns[0];
+			var btn2 = btns[1];
+			var btn3 = btns[2];
+
+			// this和ev.target分两种情况理解：
+      // 1、绑定事件的元素没有子元素：谁绑定了事件，触发事件的时候，点击的就是谁，此时this和ev.target指向是一致的
+			btn1.onclick = function (ev) {
+				console.log(this); // this在事件中指向绑定事件的元素
+				console.log(ev.target); // ev.target触发事件的目标元素：鼠标点击了谁，谁触发事件
+			};
+
+      // 2、绑定事件的元素有子元素
+      // 2.1 如果点击的是绑定事件的元素btn2，触发事件的元素就是btn2，此时this和ev.target指向是一致的
+      // 2.2 如果点击的是绑定事件元素的子元素span，触发事件的元素是span，此时this和ev.target指向是不一致的
+			btn2.onclick = function (ev) {
+				console.log(this); // this在事件中指向绑定事件的元素
+				console.log(ev.target); // ev.target触发事件的目标元素：鼠标点击了谁，谁触发事件
+			};
+
+
+      btn3.onclick = function (ev) {
+				console.log(this); // this在事件中指向绑定事件的元素
+				console.log(ev.target); // ev.target触发事件的目标元素：鼠标点击了谁，谁触发事件
+			};
+		</script>
+	</body>
+</html>

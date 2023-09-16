@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    /*
+
+    执行流程：
+    - (1)首先执行【循环变量初始值】
+    - (2)接着进行【循环条件】判断，若值=true，则执行循环体，改变【迭代循环变量】
+    - (3)重复执行步骤(2)，直到【循环条件】的值=false，立即结束循环;
+
+    循环变量初始值
+    while (循环条件) {
+      循环体
+      迭代循环变量
+    }
+
+    */
+
+
+    var i = 0;
+    var sum = 0;
+    while (i < 10) {
+      console.log('i = ' + i);
+      sum += i;
+      i++;
+    }
+    console.log('sum = ' + sum);
+
+    // while (true) {
+    //   console.log('死循环1');
+    // }
+    // while (1) {
+    //   console.log('死循环2');
+    // }
+
+    // while循环使用循环次数不确定，也可以不用定义i，使用其他方式定义循环条件
+    // 弹出一个带输入框的弹窗， 提示信息：你是好人吗？  如果输入：是，显示：回答正确；否则，一直询问，并提示：回答错误，请再次回答。
+
+    var ok = false; // 记录回答是否正确
+    var result = ''; // 记录回答的结果
+    result = prompt('你是好人吗？');
+    while (ok == false) {
+      if (result == '是') {
+        ok = true; // 回答正确
+        alert('回答正确');
+      } else {
+        // ok = false; // 回答错误
+        result = prompt('回答错误，请再次回答');
+      }
+    }
+
+
+
+    // var index = 0; // 记录回答是否正确 0表示回答错误，1表示回答正确
+    // var result = ''; // 记录回答的结果
+    // result = prompt('你是好人吗？');
+    // while (index == 0) {
+    //   if (result == '是') {
+    //     index = 1; // 回答正确
+    //     alert('回答正确');
+    //   } else {
+    //     result = prompt('回答错误，请再次回答');
+    //   }
+    // }
+
+    // result 的值是：是 或者 不是
+    var result = prompt('你是好人吗？');
+    // while (result == '不是') {
+    //   result = prompt('回答错误，请再次回答')
+    // }
+    while (result != '是') {
+      result = prompt('回答错误，请再次回答')
+    }
+
+    // if (result == '是') {
+    alert('回答正确');
+    // }
+
+
+    // - 老师每天检查张三的学习是否合格，如果不合格，则继续学习，否则，提示“恭喜合格”。学习任务为：上午阅读教材，学习理论部分，下午上机编程，掌握代码部分。(是否合格，从键盘输入，y表示合格)
+    var isOk = prompt('是否合格');
+    while (isOk != 'y') {
+      isOk = prompt('继续学习：上午阅读教材，学习理论部分，下午上机编程，掌握代码部分')
+    }
+    alert('恭喜合格');
+
+    // var isOk = prompt('是否合格');
+    // for (; isOk != 'y';) {
+    //   isOk = prompt('继续学习：上午阅读教材，学习理论部分，下午上机编程，掌握代码部分')
+    // }
+    // alert('恭喜合格');
+
+
+
+
+  </script>
+</body>
+
+</html>

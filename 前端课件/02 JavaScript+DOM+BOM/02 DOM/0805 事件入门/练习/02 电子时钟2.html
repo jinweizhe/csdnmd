@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.box {
+				width: 650px;
+				height: 650px;
+				background: url(./images/clock.jpg) no-repeat;
+				margin: auto;
+				position: relative;
+			}
+			.box .pot {
+				width: 30px;
+				height: 30px;
+				background-color: #000;
+				border-radius: 30px;
+				position: absolute;
+				top: 311px;
+				left: 311px;
+				z-index: 99;
+			}
+			.box .hour {
+				width: 10px;
+				height: 170px;
+				background-color: red;
+				border-radius: 5px;
+				position: absolute;
+				top: 190px;
+				left: 322px;
+				transform-origin: center 80%;
+			}
+			.box .minute {
+				width: 5px;
+				height: 200px;
+				background-color: green;
+				border-radius: 2px;
+				position: absolute;
+				top: 151px;
+				left: 324px;
+				transform-origin: center 88%;
+			}
+			.box .second {
+				width: 3px;
+				height: 260px;
+				background-color: blue;
+				border-radius: 2px;
+				position: absolute;
+				top: 110px;
+				left: 324px;
+				transform-origin: center 83%;
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="pot"></div>
+			<div class="hour"></div>
+			<div class="minute"></div>
+			<div class="second"></div>
+		</div>
+		<script>
+			var hour = document.querySelector('.hour');
+			var minute = document.querySelector('.minute');
+			var second = document.querySelector('.second');
+			function secTime() {
+				var now = new Date(),
+					nowSec, nowHour;
+				nowSec = now.getSeconds();
+				nowMin = now.getMinutes();
+				nowHour = now.getHours();
+
+				hour.style.transform = 'rotate(' + (nowHour * 30 ) + 'deg)';
+				minute.style.transform = 'rotate(' + (nowMin * 6 + nowSec / 10) + 'deg)';
+				second.style.transform = 'rotate(' + nowSec * 6 + 'deg)';
+			}
+			secTime();
+			setInterval(secTime, 1000);
+		</script>
+	</body>
+</html>

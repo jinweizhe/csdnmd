@@ -1,0 +1,25 @@
+字符串练习
+var str = 'abaasdffggghhjjkkgggfddssss344343';
+1.查询字符串长度
+2.查找 ‘j’ ‘c’ ‘b’ 是否在字符串中存在
+3.取出 ‘3’ 和 ‘d’ 存放到新字符串中
+4.替换指定字符 将第一个 ‘g’替换为’22’ ‘ss’替换为’b’
+5.将字符串里的所有‘g’ 替换为 ‘a’。（2种写法replace、replaceall）
+6.截取字符串中第1-5的字符串
+7.找出出现次数最多的字符和次数
+8.var str="JAVASCRIPT";把字符串转为小写，返回新的字符串。
+9.var str="javascript";把字符串转为大写，返回新的字符串。
+10.返回指定下标位置的字符。如果index不在0-str.length(不包含str.length)之间，返回空字符串。
+11.返回指定下标位置的字符的unicode编码,这个返回值是 0 - 65535 之间的整数。
+12.var str="javascript";返回字符串中提取的子字符串"cript"、"vascript"。（每个结果3中写法）
+13.var str="javascript";提取字符串中介于两个指定下标之间的字符"vasc"、"ip"、"ava"。（每个结果3种写法）
+14.var str="javascript";在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串"j**v**script"。
+15.var mystr1="Hello";var mystr2="world!";将一个或多个字符串拼接起来，返回拼接到的新的字符串，原字符串不变。（2种写法）
+16.var str1 = "      javascript   ";删除元素前置及后缀的所有空格，然后返回结果，原字符串不变。
+17.var str = "my-first-friend-lucky-man"将字符串变成驼峰法（每个单词首字母大写）。
+18.自己使用函数封装所有的字符串方法，实现相应的功能。
+
+
+
+
+

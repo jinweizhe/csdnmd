@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
+  <style>
+    .user-table {
+      border: 1px solid;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    .user-table td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loginBox"></div>
+  <div id="listBox"></div>
+
+
+
+  <script id="user-temp" type="text/html">
+    {{if error == 0}}
+    <div class="">
+      <span>{{data.username}}</span>
+      <a href="javascript:void()" id="logoutBtn" class="logout-btn">退出登录</a>
+      <hr>
+    </div>
+    {{else}}
+    <div class="login">
+      <a href="./login.html">登录</a>
+      <a href="./regist.html">注册</a>
+      <hr>
+    </div>
+    {{/if}}
+  </script>
+
+  <script id="list-temp" type="text/html">
+    {{each data}}
+    <p>{{$value.username}}-{{$value.age}}</p>
+    {{/each}}
+  </script>
+
+  <script>
+
+    // 获取用户信息，只要获取用户信息成功，表示已经登录
+    (getUser);
+    function getUser () {
+      var xhrUser = new XMLHttpRequest();
+      xhrUser.onreadystatechange = function () {
+        if (xhrUser.readyState === 4 && xhrUser.status === 200) {
+          console.log('响应的数据：', xhrUser.responseText);
+          var res = JSON.parse(xhrUser.responseText);
+          console.log(res);
+          var html = template('user-temp', res);
+          loginBox.innerHTML = html;
+          if (res.error == 0) {
+            getList();
+          }
+        }
+      }
+      xhrUser.open('GET', 'http://127.0.0.1:3000/user');
+      xhrUser.send();
+    }
+
+    // 退出登录  
+    loginBox.onclick = function (ev) {
+      // console.log(ev.target.id, ev.target.classList.contains('logout-btn'));
+      if (!ev.target.classList.contains('logout-btn')) {
+        return;
+      }
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          getUser();
+        }
+      }
+      xhr.open('GET', 'http://127.0.0.1:3000/logout');
+      xhr.send();
+    }
+
+
+    function getList () {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var res = JSON.parse(xhr.responseText);
+          console.log(res);
+          listBox.innerHTML = template('list-temp', res)
+        }
+      }
+      xhr.open('GET', 'http://127.0.0.1:3000/all/user');
+      xhr.send();
+    }
+
+  </script>
+</body>
+
+</html>

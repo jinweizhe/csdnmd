@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<div class="province-box"></div>
+    <hr>
+		<div class="city-box"></div>
+		<script src="./city.js"></script>
+		<script>
+			var cityBox = document.querySelector('.city-box');
+			var provinceBox = document.querySelector('.province-box');
+			console.log(data);
+
+      showProvicne();
+      function showProvicne(){
+        for(var i = 0; i < data.length; i++){
+          var province = data[i];
+          console.log(province);
+          var span = document.createElement('span');
+					provinceBox.appendChild(span);
+
+          span.index = i;
+					span.innerHTML = province.provinceName + ' - ';
+        }
+      }
+
+
+      provinceBox.onclick = function(ev){
+        // console.log();
+        if (ev.target.tagName == 'SPAN') {
+          console.log(ev.target.index);
+          showCity(ev.target.index);
+        }
+      }
+
+
+      
+			function showCity(index) {
+
+        cityBox.innerHTML =  '';
+				var province = data[index];
+				for (var i = 0; i < province.citys.length; i++) {
+					var city = province.citys[i];
+					var span = document.createElement('span');
+					cityBox.appendChild(span);
+					span.innerHTML = city.cityName + ' - ';
+				}
+			}
+		</script>
+	</body>
+</html>

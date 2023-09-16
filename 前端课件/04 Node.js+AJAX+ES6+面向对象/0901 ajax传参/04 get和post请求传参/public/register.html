@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<form>
+			<div><input type="text" placeholder="账号" /></div>
+			<div><input type="password" placeholder="密码" /></div>
+			<button type="button" onclick="registClick()">注册</button>
+			<button type="button"><a href="index.html">去登录</a></button>
+		</form>
+		<script>
+			var nameInput = document.querySelector('[type="text"]');
+			var pswInput = document.querySelector('[type="password"]');
+			function registClick() {
+				var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						// console.log(xhr.responseText);
+						// 对响应结果进行处理
+						var res = JSON.parse(xhr.responseText);
+						console.log(res);
+						if (res.error == 0) {
+							// 注册成功，去登录
+							location.href = './index.html';
+						} else {
+							alert(res.data);
+						}
+					}
+				};
+				xhr.open('POST', `http://127.0.0.1:3000/register`);
+
+				// 使用原生的xhr发送请求，需要设置在请求头设置数据类型
+				xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+				// post请求参数放在请求体中，使用xhr请求就是在 xhr.send(请求体);
+				// xhr.send('username=张三&password=123');
+				xhr.send(`username=${nameInput.value}&password=${pswInput.value}`);
+			}
+		</script>
+	</body>
+</html>

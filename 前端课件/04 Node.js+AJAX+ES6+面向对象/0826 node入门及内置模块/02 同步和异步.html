@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+
+	</head>
+	<body>
+		<script>
+      // sync
+			// 同步：代码按照书写顺序从上往下一行一行的执行
+			// console.log('打印1');
+			// for(var i = 0; i < 10000; i++){
+			//   console.log('------');
+			// }
+			// console.log('打印2');
+
+      // async
+			// 异步：先执行同步代码，遇到异步代码，不会等待异步执行完毕，先之后异步之后的代码
+
+			// console.log(1);
+
+			// setTimeout(function () {
+			// 	// console.log(2);
+			// 	for (var i = 0; i < 10000; i++) {
+			// 		console.log('------');
+			// 	}
+			// }, 0);
+
+			// console.log(3);
+
+        // 同步函数：使用返回返回执行的结果（同步函数执行的时候要等待函数执行完毕，用返回接收结果）
+        // 异步函数：使用回调函数，在回调函数中添加参数，参数就是异步操作执行的结果（程序执行的时候不会等待异步函数执行完毕，先执行异步函数之后的操作，当异步函数执行的完毕的时候会调用异步函数的回调函数，在回调函数中添加参数，参数就是异步操作执行的结果）
+
+        function method(fn){
+          setTimeout(function(){
+            fn(2)
+          },0)
+        }
+
+        console.log(1);
+        method(function(a){
+          console.log('---',a);
+        });
+        console.log(3);
+
+        // 我请你吃饭用异步：  
+        // 你请我吃饭用同步
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      main {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+      div{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div></div>
+    </main>
+    
+    <script>
+
+      var html = document.documentElement;
+      var body = document.body;
+      var main = document.querySelector('main');
+      var div = document.querySelector('div');
+
+      // 使用addEventListener的第三个参数可以指定事件是在冒泡阶段触发还是在捕获阶段触发
+      // addEventListener(type, callback, userCapture);
+      // type: 事件类型，比如点击事件 click 
+      // callback：事件监听函数，触发事件事件时执行的函数
+      // userCapture：是一个布尔类型，如果值为true，事件在捕获阶段触发，如果值为false，事件在冒泡阶段触发，默认是false
+
+      // 事件传播：事件流，细分为三个阶段，捕获阶段、目标阶段、冒泡阶段
+      // 捕获阶段：从祖先元素到目标元素，一般是从window对象开始，到被点击的元素
+      // 目标阶段：被点击元素触发事件
+      // 冒泡阶段：从目标元素开始到祖先元素，从被点击的元素到window对象
+
+    
+			// 事件传播先有捕获阶段，再有目标阶段，最后是冒泡阶段
+			// 当在目标元素上触发事件，由window对象先得到事件，然后向内传播给子元素，依次直至到达目标元素，这个阶段是捕获阶段，然后事件在目标元素上触发，随后从目标元素开始，事件向外传播给父元素，依次直至到达window对象为止，这个阶段就是冒泡阶段
+
+      // div.addEventListener('click', function(){ alert('目标') });
+
+      // window.addEventListener('click', function(){ alert('window 捕获') }, true);
+      // window.addEventListener('click', function(){ alert('window 冒泡') }, false);
+      // document.addEventListener('click', function(){ alert('document 捕获') }, true);
+      // document.addEventListener('click', function(){ alert('document 冒泡') }, false);
+      // html.addEventListener('click', function(){ alert('html 捕获') }, true);
+      // html.addEventListener('click', function(){ alert('html 冒泡') }, false);
+
+      // body.addEventListener('click', function(){ alert('body 捕获') }, true);
+      // body.addEventListener('click', function(){ alert('body 冒泡') }, false);
+
+      // main.addEventListener('click', function(){ alert('main 捕获') }, true);
+      // main.addEventListener('click', function(){ alert('main 冒泡') }, false);
+
+      // div.addEventListener('click', function(){ alert('div 捕获') }, true);
+      // div.addEventListener('click', function(){ alert('div 冒泡') }, false);
+
+
+      // onclick 是在冒泡阶段触发
+      div.onclick = function(){ alert('目标元素div')}
+      main.onclick = function(){ alert('目标元素main')}
+
+      // div.addEventListener('click', function(){ alert('目标') });
+
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="left">left</div>
+    <ul class="nav-list">
+      <li class="item item1"><a href="">选项1</a></li>
+      <!-- 导航条选项的内容 -->
+      <li class="item item2">li标签<a href="">选项2</a></li>
+      <li class="item item3"><a href="">选项3</a></li>
+      <li class="item item4"><a href="">选项4</a></li>
+      <li class="item item5"><a href="">选项5</a></li>
+      <li class="item item6"><a href="">选项6</a></li>
+    </ul>
+    <div class="right">right</div>
+  </nav>
+  <script>
+    // 节点的遍历：以某个节点为基础，向上查找父节点 parent，向下查找子节点 child，同级之间查找兄弟节点 sibling
+
+    // 节点：元素节点、文本节点、属性节点、注释节点、文档节点等
+    // 节点遍历得到的结果可能包含节点的各种类型，不仅仅只有元素节点
+
+    var ul = document.querySelector('.nav-list');
+
+    // 1、向上遍历节点
+    console.log(ul.parentNode);
+    // console.log(ul.parentNode.parentNode);
+
+    // 2、向下遍历
+    console.log(ul.firstChild);
+    console.log(ul.lastChild);
+    console.log(ul.childNodes);
+
+    // 3、同级遍历
+    console.log(ul.nextSibling);
+    console.log(ul.previousSibling);
+
+    for(var i = 0; i < ul.childNodes.length; i++){
+      var node = ul.childNodes[i];
+      // console.log(node);
+      console.log('节点类型 nodeType: ',node.nodeType);
+      console.log('节点名称 nodeName: ',node.nodeName);
+      console.log('节点的值 nodeValue: ',node.nodeValue);
+      console.log('节点的值 textContent: ',node.textContent);
+      console.log('---------------------');
+    }
+
+
+    console.log(document.querySelector('a').textContent);
+
+  </script>
+</body>
+
+</html>

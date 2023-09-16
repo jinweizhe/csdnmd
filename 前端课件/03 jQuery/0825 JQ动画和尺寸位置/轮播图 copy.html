@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style type="text/css">
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+
+			.content {
+				width: 520px;
+				height: 280px;
+				margin: 0 auto;
+				position: relative;
+				user-select: none;
+			}
+
+			.content .list li {
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+				line-height: 280px;
+				font-size: 100px;
+				background-color: red;
+			}
+			.content .list li:nth-child(2) {
+				background-color: orange;
+			}
+			.content .list li:nth-child(3) {
+				background-color: yellow;
+			}
+			.content .list li:nth-child(4) {
+				background-color: green;
+			}
+			.content .list li:nth-child(5) {
+				background-color: cyan;
+			}
+
+			.content .list li.current {
+				display: block;
+			}
+
+			.content .indicator {
+				position: absolute;
+				left: 5px;
+				bottom: 5px;
+			}
+
+			.content .indicator li {
+				float: left;
+				width: 20px;
+				height: 20px;
+				margin: 5px;
+				line-height: 20px;
+				background-color: black;
+				color: white;
+				text-align: center;
+				cursor: pointer;
+			}
+
+			.content .indicator li.active {
+				background-color: rgb(250, 250, 250);
+				color: red;
+			}
+
+			.content .page {
+				position: absolute;
+				right: 10px;
+				bottom: 10px;
+				color: white;
+			}
+
+			.content .page span {
+				display: inline-block;
+				width: 30px;
+				height: 30px;
+				background-color: #000;
+				opacity: 0.3;
+				text-align: center;
+				line-height: 30px;
+				cursor: pointer;
+			}
+
+			.content .page span:hover {
+				opacity: 0.5;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="content">
+			<ul class="list">
+				<li class="current">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<ul class="indicator">
+				<li class="active">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ul>
+			<div class="page">
+				<span class="prev">&lt;</span>
+				<span class="next">&gt;</span>
+			</div>
+		</div>
+
+		<script>
+			var index = 0;
+
+			function next() {
+				index++;
+				if (index == 5) {
+					index = 0;
+				}
+				show();
+			}
+
+			function prev() {
+				index--;
+				if (index == -1) {
+					index = 4;
+				}
+				show();
+			}
+
+			function show() {
+				console.log('index=', index);
+				$('.list li').eq(index).addClass('current').siblings().removeClass('current');
+				$('.indicator li').eq(index).addClass('active').siblings().removeClass('active');
+			}
+			// 手动控制
+			$('.next').click(next);
+			$('.prev').click(prev);
+
+			// 自动
+			var timer = setInterval(next, 2000);
+			$('.content').hover(
+				function () {
+					clearInterval(timer);
+					timer = null;
+				},
+				function () {
+					if (timer) {
+						return;
+					}
+					timer = setInterval(next, 2000);
+				}
+			);
+
+
+      // 指示灯
+      $('.indicator li').mouseenter(function(){
+        console.log($(this).index());
+        index = $(this).index();
+        show();
+      })
+    
+
+			// $('.next').click(function () {
+			// 	index++;
+			// 	if (index == 5) {
+			// 		index = 0;
+			// 	}
+			// 	console.log('index=', index);
+			// 	$('.list li').eq(index).addClass('current').siblings().removeClass('current');
+			// 	$('.indicator li').eq(index).addClass('active').siblings().removeClass('active');
+			// });
+			// $('.prev').click(function () {
+			//   index--;
+			//   if (index == -1) {
+			//     index = 4
+			//   }
+			//   console.log('index=', index);
+			// 	$('.list li').eq(index).addClass('current').siblings().removeClass('current');
+			// 	$('.indicator li').eq(index).addClass('active').siblings().removeClass('active');
+			// })
+
+			// setInterval(function () {
+			// 	index++;
+			// 	if (index == 5) {
+			// 		index = 0;
+			// 	}
+			// 	// console.log('index=', index);
+			// 	// $('.list li').eq(index).addClass('current').siblings().removeClass('current');
+			// 	// $('.indicator li').eq(index).addClass('active').siblings().removeClass('active');
+			// }, 1000);
+		</script>
+	</body>
+</html>

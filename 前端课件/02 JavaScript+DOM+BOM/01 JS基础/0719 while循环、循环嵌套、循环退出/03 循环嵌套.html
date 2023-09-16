@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 循环嵌套：把内层循环看成是外层循环的循环体，外层循环执行一次，内层循环执行一个完整的过程
+    // for (var i = 0; i < 3; i++) {
+    //   console.log('i ============', i);
+    //   for (var j = 0; j < 6; j++) {
+    //     console.log('j = ', j);
+    //   }
+    // }
+
+
+    // var i = 0;
+
+
+    // console.log('i ============', i);
+    // for (var j = 0; j < 6; j++) {
+    //   console.log('j = ', j);
+    // }
+    // i++;
+
+    // console.log('i ============', i);
+    // for (var j = 0; j < 6; j++) {
+    //   console.log('j = ', j);
+    // }
+    // i++;
+
+    // console.log('i ============', i);
+    // for (var j = 0; j < 6; j++) {
+    //   console.log('j = ', j);
+    // }
+    // i++;
+
+
+
+    // 1班有1人，从键盘输入每一位同学的成绩，计算总成绩
+    // var sum = 0;
+    // var score = prompt('1班1号同学的成绩：');
+    // sum += score;
+    // alert('总成绩 = ' + sum);
+
+
+    // 1班有6人，从键盘输入每一位同学的成绩，计算总成绩----------------------------
+
+    // var sum = 0;
+
+    // var score = prompt('1班1号同学的成绩：') * 1;
+    // sum += score;
+
+    // var score = prompt('1班2号同学的成绩：') * 1;
+    // sum += score;
+
+    // var score = prompt('1班3号同学的成绩：') * 1;
+    // sum += score;
+
+    // alert('总成绩 = ' + sum);
+
+    // 把需要重复执行的代码放入循环语句
+    // var sum = 0;只需要执行一次
+
+    // var score = prompt('1班1号同学的成绩：')*1;
+    // sum += score;
+    // 这两行代码需要执行多次，是重复的代码，需要放在for语句中
+
+    // alert('总成绩 = ' + sum); 只需要执行一次的代码
+
+
+    // 把上述代码改造成循环语句
+
+    // var sum = 0;
+    // for (var i = 1; i <= 6; i++) {
+    //   var score = prompt('1班'+i+'号同学的成绩：') * 1;
+    //   sum += score;
+    // }
+    // alert('1班总成绩 = ' + sum);
+
+
+    // 上面86行到91行是一个班成绩的计算，想去计算3个班
+
+
+
+    // 1班--------------------------
+    // var sum = 0;
+    // for (var i = 1; i <= 6; i++) {
+    //   var score = prompt('1班'+i+'号同学的成绩：') * 1;
+    //   sum += score;
+    // }
+    // alert('1班总成绩 = ' + sum);
+
+
+    // 2班--------------------------
+    // var sum = 0;
+    // for (var i = 1; i <= 6; i++) {
+    //   var score = prompt('2班'+i+'号同学的成绩：') * 1;
+    //   sum += score;
+    // }
+    // alert('2班总成绩 = ' + sum);
+
+
+    // 3班--------------------------
+    // var sum = 0;
+    // for (var i = 1; i <= 6; i++) {
+    //   var score = prompt('3班'+i+'号同学的成绩：') * 1;
+    //   sum += score;
+    // }
+    // alert('3班总成绩 = ' + sum);
+
+
+
+    // 有3个班，每个班级4人，试求各个班级总成绩
+
+    // 外层for语句控制有几个班
+    for (var i = 1; i <= 3; i++) {
+      var sum = 0;
+      // 计算一个班级成绩的开始，sum每次计算班级成绩的要从0开始
+      // 内层for语句控制一个班有几个人 
+      for (var j = 1; j <= 4; j++) {
+        // 得到每一位同学的成绩
+        var score = prompt(i + '班' + j + '号同学的成绩：') * 1;
+        // 把成绩进行累加存入sum
+        sum += score;
+      }
+      alert(i + '班总成绩 = ' + sum);
+    }
+
+
+
+    // 有3个班，每个班级4人，试求各个班级总成绩，把这三个班的总成绩加起来，展示结果
+
+    var banji = 0;
+    // 外层for语句控制有几个班
+    for (var i = 1; i <= 3; i++) {
+      // 计算一个班级成绩的开始，sum每次计算班级成绩的要从0开始
+      var sum = 0;
+      // 内层for语句控制一个班有几个人 
+      for (var j = 1; j <= 4; j++) {
+        // 得到每一位同学的成绩
+        var score = prompt(i + '班' + j + '号同学的成绩：') * 1;
+        // 把成绩进行累加存入sum
+        sum += score;
+      }
+
+      alert(i + '班总成绩 = ' + sum);
+      banji += sum;
+    }
+    alert('3个班级总成绩' + banji);
+
+    // 每个年级有3个班，每个班级4人，试求各个班级总成绩，把这三个班的总成绩加起来，展示结果
+    for (var k = 1; k <= 5; k++) {
+      var banji = 0;
+      // 外层for语句控制有几个班
+      for (var i = 1; i <= 3; i++) {
+        // 计算一个班级成绩的开始，sum每次计算班级成绩的要从0开始
+        var sum = 0;
+        // 内层for语句控制一个班有几个人 
+        for (var j = 1; j <= 4; j++) {
+          // 得到每一位同学的成绩
+          var score = prompt(i + '班' + j + '号同学的成绩：') * 1;
+          // 把成绩进行累加存入sum
+          sum += score;
+        }
+
+        alert(i + '班总成绩 = ' + sum);
+        banji += sum;
+      }
+      
+      alert(k+'年级总成绩' + banji);
+    }
+
+
+  </script>
+</body>
+
+</html>

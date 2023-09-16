@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			var arr = [2, 3, 4, 5, 6, 7, 8];
+			// 不带initValue: arr.reduce(function(prev, current, index){})
+
+			// 第一次执行回调函数，prev是数组中第一个元素的值，current是第二个元素的值
+			// 从第二次开始，prev是回调函数return的值，current依次取数组元素的值
+			var data = arr.reduce(function (prev, current, index) {
+				// console.log('prev = ', prev, 'current = ', current);
+				// 第一次执行：prev=2 current=3  prev + current = 5
+				// 第二次执行：prev=5 current=4  prev + current = 9
+				// 第三次执行：prev=9 current=5  prev + current = 14
+
+				return prev + current;
+				// return 10;
+			});
+			// console.log('data = ', data);
+
+			var arr = [2, 3, 4, 5, 6, 7, 8];
+			// 带initValue
+			// arr.reduce(function(prev, current, index){}, initValue);
+
+			// 第一次执行回调函数，prev是initValue的值，current是第一个元素的值
+			// 从第二次开始，prev是回调函数return的值，current依次取数组元素的值
+			var data = arr.reduce(function (prev, current, index) {
+				console.log('prev = ', prev, 'current = ', current);
+				// 第一次执行：prev=0 current=2  prev + current = 2
+				// 第二次执行：prev=2 current=3  prev + current = 5
+				// 第三次执行：prev=5 current=4  prev + current = 9
+				// 求数组中所有数字的和
+				// return prev + current;
+
+  
+				// 求偶数和
+				if (current % 2 == 0) {
+					return prev + current;
+				}else{
+          return prev + 0;
+        }
+			}, 0);
+      console.log('data = ', data);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="address"></div>
+			<p class="result">江苏省-南京市</p>
+		</div>
+
+		<script>
+			var allCitys = [
+				{
+					citys: [
+						{
+							cityName: '南京市',
+							area: [{ areaName: '雨花区' }, { areaName: '鼓楼区' }, { areaName: '玄武区' }, { areaName: '江宁区' }],
+						},
+						{
+							cityName: '苏州市',
+							area: [{ areaName: '苏州一区' }, { areaName: '苏州二区' }, { areaName: '苏州三区' }],
+						},
+					],
+					provinceName: '江苏省',
+				},
+				{
+					citys: [
+						{
+							cityName: '杭州市',
+							area: [{ areaName: '杭州一区' }, { areaName: '杭州二区' }],
+						},
+						{
+							cityName: '绍兴市',
+							area: [{ areaName: '绍兴一区' }, { areaName: '绍兴二区' }, { areaName: '绍兴三区' }],
+						},
+						{
+							cityName: '嘉兴市',
+							area: [{ areaName: '嘉兴一区' }, { areaName: '嘉兴二区' }, { areaName: '嘉兴三区' }],
+						},
+					],
+					provinceName: '浙江省',
+				},
+			];
+
+			console.dir(allCitys);
+
+			var address = document.querySelector('.address');
+			var result = document.querySelector('.result');
+
+			// 创建省份的列表
+			var provinceSelect = document.createElement('select');
+			address.appendChild(provinceSelect);
+			for (var i = 0; i < allCitys.length; i++) {
+				var provinceName = allCitys[i].provinceName;
+				var option = document.createElement('option');
+				option.innerHTML = provinceName;
+				provinceSelect.appendChild(option);
+			}
+
+			// 创建市的列表
+			var citySelect = document.createElement('select');
+			address.appendChild(citySelect);
+			updateCitys();
+			function updateCitys() {
+				// 先清空城市列表
+				citySelect.innerHTML = '';
+				// 选择省的时候，更新对应的城市下拉菜单，根据选择省份的索引值，找出对应的显示的城市列表
+				var citys = allCitys[provinceSelect.selectedIndex].citys;
+				for (var i = 0; i < citys.length; i++) {
+					var cityName = citys[i].cityName;
+					var option = document.createElement('option');
+					option.innerHTML = cityName;
+					citySelect.appendChild(option);
+				}
+			}
+
+			// 创建区的下拉菜单
+			var areaSelect = document.createElement('select');
+			address.appendChild(areaSelect);
+			updateArea();
+			function updateArea() {
+				// 先清空区的列表
+				areaSelect.innerHTML = '';
+				// 选择省份和城市的时候，根省份的索引值和城市的索引值，找出对应显示的区列表
+				var area = allCitys[provinceSelect.selectedIndex].citys[citySelect.selectedIndex].area;
+				for (var i = 0; i < area.length; i++) {
+					var areaName = area[i].areaName;
+					var option = document.createElement('option');
+					option.innerHTML = areaName;
+					areaSelect.appendChild(option);
+				}
+			}
+
+			// 省级下拉列表点击事件
+			provinceSelect.onchange = function () {
+				// 更新城市列表
+				updateCitys();
+				//更新区列表
+				updateArea();
+				updateAddress();
+			};
+			// 城市下拉列表点击
+			citySelect.onchange = function () {
+				// 更新区的列表
+				updateArea();
+				updateAddress();
+			};
+			// 区列表点击
+			areaSelect.onchange = function () {
+				updateAddress();
+			};
+
+			updateAddress();
+			function updateAddress() {
+				var province = allCitys[provinceSelect.selectedIndex]; //省份对象
+				var provinceName = province.provinceName; //省份名字
+				var city = province.citys[citySelect.selectedIndex]; //城市对象
+				var cityName = city.cityName; //城市名字
+				var area = city.area[areaSelect.selectedIndex]; //区的对象
+				var areaName = area.areaName; //区的名字
+				result.innerHTML = provinceName + '-' + cityName + '-' + areaName;
+			}
+		</script>
+	</body>
+</html>

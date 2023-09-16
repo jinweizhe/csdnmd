@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 使用class重写People
+
+    // class 声明一个类
+    // constructor()方法是类的默认方法，通过new命令生成对象实例时，自动调用该方法。一个类必须有constructor()方法，如果没有显式定义，一个空的constructor()方法会被默认添加。
+    class People {
+      num = 100;
+      static n = 1;
+      // constructor 构造函数
+      constructor(name, age) {
+        this.name = name;
+        this.age = age;
+      }
+      // 方法直接添加在原型上
+      eat () {
+        console.log(this.name + '在吃饭');
+      }
+
+      static fn () {
+        console.log('---');
+      }
+    }
+
+    // 实例方法：也叫对象方法，使用对象打点调用：对象.方法
+    // 类方法：也叫静态方法，直接使用类名调用：类名.方法
+
+    // 只要是在方法前添加了 static关键字都是静态方法
+
+    let p = new People('三三', 18);
+
+    // People.fn();
+    // p.eat();
+
+    // Math.max();
+    // (new Date()).getFullYear()
+
+
+
+    // extends 表示继承关系
+    class Child extends People {
+      constructor(name, age) {
+        // super调用父类的构造函数
+        super(name, age);
+      }
+      play () {
+        console.log(this.name + '在玩耍');
+      }
+    }
+
+    let xiaosan = new Child('小三', 6);
+    console.log(xiaosan);
+
+
+  </script>
+</body>
+
+</html>

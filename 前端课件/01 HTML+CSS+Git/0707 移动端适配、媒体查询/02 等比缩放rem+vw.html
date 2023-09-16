@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      box-sizing: border-box;
+    }
+
+    html {
+      /* 以iPhone6为参考，设计图尺寸为375px，屏幕尺寸也是375，在iPhone6尺寸下，让和html的字体尺寸是100px，当屏幕的宽度发生变化的时候，html字体大小也会发生变化，页面上的尺寸和字体大小使用rem，这样，当屏幕宽度变化，页面就会自适应了 */
+      font-size: calc(100vw/375 * 100);
+    }
+
+    body {
+      font-size: 16px;
+    }
+
+    /* 当屏幕的宽度大于等于768px的时候，让html的字体大小为204.8px，这样写的目的：配合最大屏幕宽度768px，让rem的最大值为204.8px */
+    @media screen and (min-width: 768px) {
+      html {
+        font-size: 204.8px;
+      }
+    }
+
+    body {
+      max-width: 768px;
+      margin: auto;
+    }
+
+    header {
+      height: 0.44rem;
+      line-height: 0.44rem;
+      text-align: center;
+      background-color: lightblue;
+      font-size: 0.18rem;
+    }
+
+    .box {
+      height: 0.45rem;
+      background: linear-gradient(176deg, rgba(76, 126, 255, 1) 0%, rgba(100, 174, 252, 1) 100%);
+
+      display: flex;
+      justify-content: space-between;
+      padding: 15px 12px 0 15px;
+    }
+    .box .logo{
+      width: 0.9rem;
+
+    }
+    .box img {
+      width: 100%;
+    }
+    .box .right{
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .menu {
+      display: flex;
+      background: linear-gradient(176deg, rgba(76, 126, 255, 1) 0%, rgba(100, 174, 252, 1) 100%);
+    }
+
+    .menu span {
+      width: calc(100% / 3);
+      height: 0.44rem;
+      text-align: center;
+      line-height: 0.44rem;
+      font-size: 0.18rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    main {
+      padding: 0.05rem;
+    }
+
+    main .list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      font-size: 0.12rem;
+    }
+
+    main .list .item {
+      width: 1.725rem;
+      height: .97rem;
+      padding: .05rem;
+    }
+
+    main .list .item div {
+      width: 100%;
+      height: 100%;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+
+<body>
+  <header>天气预报</header>
+  <div class="box">
+    <div class="logo">
+      <img src="https://mat1.gtimg.com/qqcdn/xw/20211215/images/logo-text-whitetext_v2.png" alt="">
+    </div>
+    <div class="right">
+      <div>无障碍</div>
+      <div class="login">登录</div>
+    </div>
+  </div>
+  <div class="menu">
+    <span>要闻</span><span>热点</span><span>视频</span>
+  </div>
+  <main>
+    <ul class="list">
+      <li class="item">
+        <div>item1</div>
+      </li>
+      <li class="item">
+        <div>item2</div>
+      </li>
+      <li class="item">
+        <div>item3</div>
+      </li>
+      <li class="item">
+        <div>item4</div>
+      </li>
+      <li class="item">
+        <div>item5</div>
+      </li>
+      <li class="item">
+        <div>item6</div>
+      </li>
+    </ul>
+  </main>
+
+
+</body>
+
+</html>

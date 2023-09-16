@@ -1,0 +1,20 @@
+
+{{include './header.html'}}
+
+<p> {{title}} </p>
+<ul>
+  {{each data }}
+  <li>
+    {{$index}}-{{$value.name}} - 
+    {{set age = $value.age}}
+    {{if age>20}}
+      <strong>{{age}} </strong>
+    {{else}}
+      {{age}} 
+    {{/if}}
+  </li>
+  {{/each}}
+</ul>
+
+
+{{include './footer.html'}}

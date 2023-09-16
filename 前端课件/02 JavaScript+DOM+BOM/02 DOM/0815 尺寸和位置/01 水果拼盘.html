@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<title>水果拼盘</title>
+		<style>
+			ul {
+				list-style: none;
+				padding: 0;
+				margin: 0;
+			}
+
+			.box {
+				width: 700px;
+				margin: 0 auto;
+				background-color: beige;
+				display: flex;
+				justify-content: space-between;
+			}
+
+			.right-box {
+				width: 200px;
+				float: left;
+			}
+
+			.left-box {
+				width: 463px;
+				height: 722px;
+				background-image: url(./images/看图识字.png);
+				float: left;
+				position: relative;
+				display: flex;
+				justify-content: center;
+			}
+
+			.outer-box {
+				width: 420px;
+				height: 620px;
+				margin-top: 80px;
+				display: flex;
+				justify-content: center;
+				flex-wrap: wrap;
+				align-items: flex-end;
+				/* background-color: blue; */
+			}
+
+			.item-box {
+				width: 420px;
+				height: 82px;
+				display: flex;
+				justify-content: space-around;
+				/* background-color: orange; */
+			}
+
+			.item-box li {
+				width: 80px;
+				height: 80px;
+				background-color: lightblue;
+				text-align: center;
+				padding-top: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<div class="left-box">
+				<div class="outer-box">
+					<ul class="item-box">
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+					</ul>
+					<ul class="item-box">
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+					</ul>
+					<ul class="item-box">
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+					</ul>
+					<ul class="item-box">
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+						<li class="item"></li>
+					</ul>
+				</div>
+			</div>
+			<div class="right-box">
+				<img src="images/1.png" alt="" id="img1" />
+				<img src="images/2.png" alt="" id="img2" />
+				<img src="images/3.png" alt="" id="img3" /><img src="images/4.png" alt="" id="img4" /><img src="images/5.png" alt="" id="img5" /><img src="images/6.png" alt="" id="img6" /><img src="images/7.png" alt="" id="img7" /><img src="images/8.png" alt="" id="img8" /><img src="images/9.png" alt="" id="img9" /><img src="images/10.png" alt="" id="img10" /><img src="images/11.png" alt="" id="img11" /><img src="images/12.png" alt="" id="img12" /><img src="images/13.png" alt="" id="img13" /><img src="images/14.png" alt="" id="img14" /><img src="images/15.png" alt="" id="img15" /><img src="images/16.png" alt="" id="img16" />
+			</div>
+		</div>
+		<script>
+			// 目标元素
+			var items = document.querySelectorAll('.item-box .item');
+			// 被拖动元素
+			var imgs = document.querySelectorAll('.right-box img');
+			var rigthBox = document.querySelector('.right-box');
+
+			// 让图片在页面上随机显示
+			// 打乱数组的顺序
+			var arr = Array.from(imgs);
+			for (var i = 0; i < 16; i++) {
+				var index = Math.floor(Math.random() * arr.length);
+				arr[index].id = i;
+				rigthBox.appendChild(arr[index]);
+				arr.splice(index, 1);
+			}
+
+			for (var i = 0; i < items.length; i++) {
+        imgs[i].index = i;
+        items[i].index = i;
+				imgs[i].ondragstart = function (ev) {
+					console.log('被拖动元素', this);
+          ev.dataTransfer.setData('id', this.id);
+				};
+
+				items[i].ondragover = function (ev) {
+					ev.preventDefault();
+				};
+				items[i].ondrop = function (ev) {
+					ev.preventDefault();
+          var el = document.getElementById(ev.dataTransfer.getData('id'));
+          if (el && el.index == this.index) {
+            console.log(el.index, this.index);
+            this.appendChild(el);
+          }
+				};
+			}
+		</script>
+	</body>
+</html>

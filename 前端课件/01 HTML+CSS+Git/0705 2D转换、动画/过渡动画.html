@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin: 200px;
+      overflow: hidden;
+    }
+
+    .inner {
+      width: 200px;
+      height: 400px;
+      /* margin: 0 auto; */
+      background-color: blue;
+      /* position: relative;
+      left: 0;
+      top: 0; */
+
+      /* transition-property: 设置过渡的属性，默认值为all，过渡能过渡的所有属性; */
+      /* transition-property: height; */
+      /* transition-property: height, width; */
+      /* transition-property: all; */
+
+      /* transition-duration: 设置过渡的时间，单位秒s 或者 毫秒ms; */
+      /* transition-duration: 500ms; */
+      /* transition-duration: 0.5s; */
+
+      /* 设置过渡的速度类型 */
+      /* transition-timing-function: linear; */
+
+      /* 设置延迟时间 */
+        /* 动画延迟时间设置为负值，并没有让动画提前开始，会改变动画开始的起始位置，设置为-0.5s，让动画从0.5秒的位置开始 */
+      /* transition-delay: 1s; */
+
+      transition: all 1s linear -0.5s;
+    }
+    .inner>div{
+      width: 200px;
+      height: 200px;
+      
+      background-color: lightblue;
+    }
+    .inner>.bottom{
+      background-color: lightcoral;
+    }
+    .box:hover .inner {
+      /* height: 10px;
+      width: 10px; */
+
+      /* transform: translate(100px); */
+
+      /* left: 100px; */
+      /* top: -200px; */
+
+      transform: translateY(-200px);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="inner">
+      <div class="top">1</div>
+      <div class="bottom">2</div>
+    </div>
+  </div>
+</body>
+
+</html>

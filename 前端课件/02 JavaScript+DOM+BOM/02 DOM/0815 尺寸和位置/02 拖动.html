@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			table {
+				border: 1px solid;
+				border-collapse: collapse;
+				border-spacing: 0;
+			}
+
+			td {
+				width: 80px;
+				height: 80px;
+				border: 1px solid;
+				text-align: center;
+			}
+
+			.item {
+				display: inline-block;
+				width: 60px;
+				height: 60px;
+				line-height: 60px;
+				text-align: center;
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+
+	<body>
+		<table>
+			<tr>
+				<td class="t1d1">
+					<div class="item" id="t1-item1" draggable="true">选项1</div>
+				</td>
+				<td class="t1d2">
+					<div class="item" id="t1-item2" draggable="true">选项2</div>
+				</td>
+				<td class="t1d3">
+					<div class="item" id="t1-item3" draggable="true">选项3</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="t2d1">
+					<div class="item" id="t2-item1" draggable="true">选项4</div>
+				</td>
+				<td class="t2d2">
+					<div class="item" id="t2-item2" draggable="true">选项5</div>
+				</td>
+				<td class="t2d3">
+					<div class="item" id="t2-item3" draggable="true">选项6</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="t3d1"></td>
+				<td class="t3d2"></td>
+				<td class="t3d3"></td>
+			</tr>
+		</table>
+		<script>
+			// 被拖动元素
+			var items = document.querySelectorAll('.item');
+
+			for (var i = 0; i < items.length; i++) {
+				items[i].ondragstart = function (ev) {
+					ev.dataTransfer.setData('id', this.id);
+				};
+			}
+
+			// 目标元素
+			var tds = document.querySelectorAll('td');
+
+			for (var i = 0; i < tds.length; i++) {
+				tds[i].ondragover = function (ev) {
+					ev.preventDefault();
+				};
+				tds[i].ondrop = function (ev) {
+					ev.preventDefault();
+          var el = document.getElementById(ev.dataTransfer.getData('id'));
+          if(el){
+            // console.log(el,this.children.length);
+            if(this.children.length > 0){
+              el.parentElement.appendChild(this.firstElementChild);// 先把目标元素的子元素挪到被拖动元素父元素的内部
+            }
+            this.appendChild(el);
+          }
+          // if(el){
+          //   // console.log(el,this.children.length);
+          //   if(this.children.length > 0){
+          //     // 如果目标元素有子元素，先把目标元素的子元素挪到被拖动元素父元素的内部，然后再把被拖动元素放入目标元素
+          //     console.log('子元素：',this.firstElementChild);
+          //     console.log('被拖动元素父元素：',el.parentElement);
+          //     el.parentElement.appendChild(this.firstElementChild);// 先把目标元素的子元素挪到被拖动元素父元素的内部
+          //     this.appendChild(el);
+          //   }else{
+          //     // 如果目标元素没有子元素，直接放入目标元素
+          //     this.appendChild(el);
+          //   }
+          // }
+				};
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 使用indexOf或者lastIndexOf封装startsWith 、 endsWith、includes 函数
+
+			// 封装includes
+			function isIncludeStr(str, char) {
+				return str.indexOf(char) > -1;
+			}
+			console.log(isIncludeStr('hello world', 'w')); // true
+			console.log(isIncludeStr('hello world', 'q')); // false
+			console.log(isIncludeStr('hello world', 'ww')); // false
+
+			// 封装startsWith
+			function startsWith(str, char) {
+				return str.indexOf(char) == 0;
+			}
+			console.log(startsWith('hello world', 'h'));
+			console.log(startsWith('hello world', 'he'));
+			console.log(startsWith('hello world', 'hel'));
+			console.log(startsWith('王小二', '王'));
+
+			// 封装endsWith
+			function endsWith(str, char) {
+				return str.lastIndexOf(char) + char.length == str.length;
+			}
+
+			console.log(endsWith('hello world!', '!'));
+			console.log(endsWith('hello world!', 'd!'));
+			console.log(endsWith('hello world!', 'ld!'));
+			console.log(endsWith('王小二', '二'));
+
+			var str = 'hello world!';
+			// console.log(str.indexOf('h'));
+			// console.log(str.indexOf('he'));
+			// console.log(str.indexOf('hel'));
+			// console.log(str.indexOf('hell'));
+			// console.log(str.lastIndexOf('!'));
+			// console.log(str.lastIndexOf('d!'));
+			// console.log(str.lastIndexOf('ld!'));
+			// console.log(str.lastIndexOf('rld!'));
+
+			function concat() {
+				console.log(arguments);
+        var str = '';
+        for(var i = 0; i < arguments.length; i++){
+          str += arguments[i];
+        }
+        // console.log('str = ' , str);
+        return str;
+			}
+      console.log(concat('hello world!','ab','bc','cd'));
+      console.log(['hello world!','ab','bc','cd'].join(''));
+
+
+      function indexOf(str, char){
+        for(var i = 0; i < str.length; i++){
+          // console.log(str[i], char ,str[i] == char, i);
+          if (str[i] === char) {
+            return i;
+          }
+        }
+        return -1;
+      }
+      console.log(indexOf('hello world!', 'l'));
+      console.log(indexOf('hello world!', 'q'));
+		</script>
+	</body>
+</html>

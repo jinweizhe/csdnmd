@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    /* 
+      相对定位：参考位置是相对于元素自身，一般是用于对元素自身位置的微调或者给子元素的绝对定位提供参考
+      绝对定位：子绝父相：参考位置相对于有定位方式（relative、absolute、fixed）的父级元素，把元素固定在相对元素的某个位置
+      固定位置：参考位置是浏览器窗口（可视页面）
+    */
+
+    /* 
+      在使用定位布局时，可能会出现盒子重叠的情况。此时，可以使用 z-index 来控制盒子的层叠顺序(z轴) 
+      - 属性值可以是正整数、负整数或 0，默认值是auto，值越大盒子越靠上
+      - 标准文档流中，如果z-index属性值相同，则按照书写顺序，后面的元素会覆盖前面的元素，后来居上
+      - z-index只能在定位的元素上面生效：relative absolute fixed sticky
+
+      使用规则：
+      - 亲兄弟元素：同一父级下面的子元素，谁的z-index值大，谁在上
+      - 父子元素：想让子元素的层级调整到父元素的下面，给子元素设置z-index负值，但是父元素不能设置有效的z-index
+      - 堂兄弟元素：不同父级下面的子元素之间：要看父级和父级之间、父级和子级之间的具体值
+    */
+    .outer {
+      width: 300px;
+      height: 300px;
+      background-color: blue;
+      position: fixed;
+      z-index: auto;
+      cursor: pointer;
+    }
+
+    .inner {
+      width: 300px;
+      height: 300px;
+      background-color: red;
+      /* transform: translate(0, 10px); */
+      position: relative;
+      top: 10px;
+    }
+
+    .box1 {
+      width: 200px;
+      height: 30px;
+      background-color: lightblue;
+      /* margin-left: 20px;
+      margin-top: -5px; */
+      transform: translate(20px, -5px);
+      position: relative;
+      z-index: -2;
+    }
+
+    .box1 span {
+      background-color: rgb(136, 142, 143);
+
+    }
+
+    .box1 span:nth-child(1) {
+      /* position: relative;
+      z-index: 3; */
+    }
+
+    .box2 {
+      width: 200px;
+      height: 80px;
+      background-color: rgb(71, 224, 109);
+      /* margin-left: 20px;
+      margin-top: -15px; */
+      position: relative;
+      /* z-index: 2; */
+      /* overflow: hidden; */
+    }
+
+    .box2 span {
+      width: 60px;
+      height: 25px;
+      background-color: rgb(70, 100, 105);
+      display: block;
+    }
+
+    .box2 span:nth-child(3) {
+      background-color: lightcoral;
+      position: relative;
+      top: 10px;
+      /* bottom: 10px; */
+
+      /* margin-top: 10px; */
+      /* margin-bottom: 20px; */
+    }
+
+    .box2 span:nth-child(1) {
+      /* position: relative;
+      z-index: 2; */
+      line-height: 30px;
+      position: absolute;
+      top: calc(50% - 15px);
+      right: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="inner">
+      <div class="box1">
+        <span>文字1</span>
+        <span>文字2</span>
+        <span>文字3</span>
+        <span>文字4</span>
+      </div>
+      <div class="box2">
+        <span>文字5</span>
+        <span>文字6</span>
+        <span>文字7</span>
+        <span>文字8</span>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

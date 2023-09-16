@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <p id="p"></p>
+		<script>
+			// 计算朋友圈发布时间：
+
+			// - 一分钟以内，显示：刚刚发布
+			// - 一小时以内，显示：xx分钟前
+			// - 一天以内，显示：xx小时前
+			// - 超过一天，显示：xx天前
+
+			var now = new Date();
+			var target = new Date('2022 8 1 11:14:00');
+			var offsetTime = (now.getTime() - target.getTime()) / 1000;
+
+			// 定义一分钟、一小时、一天所占用的秒数
+			var SECOND = 1;
+			var MINUTE = SECOND * 60;
+			var HOUR = MINUTE * 60;
+			var DAY = HOUR * 24;
+
+			var days = Math.floor(offsetTime / DAY);
+			// 把天数占用的秒数去除 offsetTime%DAY，再用剩余的时间对一小时占用的秒数取整
+			var hours = Math.floor((offsetTime % DAY) / HOUR);
+			// 把小时数占用的秒数去除 offsetTime%HOUR，再用剩余的时间对一分钟占用的秒数取整
+			var minutes = Math.floor((offsetTime % HOUR) / MINUTE);
+			var seconds = Math.floor((offsetTime % MINUTE) / SECOND);
+
+			// console.log(days, hours, minutes, seconds);
+			var result = '';
+			if (days > 0) {
+				result = days + '天前';
+			} else if (hours > 0) {
+				result = hours + '小时前';
+			} else if (minutes > 0) {
+				result = minutes + '分钟前';
+			} else {
+				result = '刚刚发布';
+			}
+
+      p.innerHTML = result;
+		</script>
+	</body>
+</html>

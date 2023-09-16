@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <ul class="list">
+      <li class="item">01</li>
+      <li class="item">02</li>
+      <li class="item">03</li>
+    </ul>
+    <div class="news">
+      <ul class="list">
+        23123
+        <li class="item item1">新闻1</li>
+        <li class="item item2">新闻2</li>
+        <li class="item item3">新闻3</li>
+        <!-- 12321 -->
+        <li class="item item4">新闻4</li>
+        <li class="item item5">新闻5</li>
+        <li class="item item6">新闻6</li>
+      </ul>
+    </div>
+    <script>
+    
+      // 元素节点的遍历：以某个元素对象为基础向上（父级）、向下（子元素）、同级之间（兄弟/同胞）查找元素
+
+      var ul = document.querySelector('.news .list');
+
+      // 1、向上遍历: 找父元素
+      console.log(ul.parentElement);// div
+      // console.log(ul.parentElement.parentElement);// body
+      // console.log(ul.parentElement.parentElement.parentElement); //html
+      // console.log(ul.parentElement.parentElement.parentElement.parentElement);// null
+
+      // 2、向下遍历：找子元素，子元素可能会有多个
+      console.log(ul.children);// 子元素找到的是一个集合
+      // 获取子元素的数量 
+      console.log(ul.childElementCount);
+      console.log(ul.children.length);
+      // 找到第一个子元素
+      console.log(ul.firstElementChild);
+      console.log(ul.children[0]);
+      // 找到最后一个子元素
+      console.log(ul.lastElementChild);
+      console.log(ul.children[ul.childElementCount - 1]);
+      console.log(ul.children[ul.children.length - 1]);
+
+      // 3、同级之间的遍历：找兄弟（同胞）元素
+      var item3 = ul.querySelector('.item3');
+      // 找上一个相邻的兄弟元素
+      console.log(item3.previousElementSibling);
+      // 找下一个相邻的兄弟元素
+      console.log(item3.nextElementSibling);
+
+
+    </script>
+  </body>
+</html>

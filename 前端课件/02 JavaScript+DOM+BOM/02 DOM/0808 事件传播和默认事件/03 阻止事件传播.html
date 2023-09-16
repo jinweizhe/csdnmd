@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			main {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+			}
+			div {
+				width: 100px;
+				height: 100px;
+				background-color: lightblue;
+			}
+			a {
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div></div>
+		</main>
+
+		<script>
+			var main = document.querySelector('main');
+			var div = document.querySelector('div');
+
+			// ev.stopPropagation();和ev.stopImmediatePropagation();阻止事件传播，可以在捕获阶段阻止，也可以在冒泡阶段阻止
+			// stopPropagation不能阻止同级别的多个事件：比如在同一个div上添加多个冒泡事件
+			// stopImmediatePropagation 能够阻止同级别的多个事件
+			// 使用onclick或者addEventListener(false)添加事件是在冒泡阶段触发，阻止事件传播一般都是在阻止事件的冒泡
+
+			// document.body.addEventListener('click', function(){ alert('body 捕获') }, true);
+			// document.body.addEventListener('click', function(){ alert('body 冒泡') }, false);
+
+			// main.addEventListener('click', function(ev){
+			//   alert('main 捕获1');
+			//   // 阻止事件传播
+			//   // ev.stopPropagation();
+
+			//   // 立即阻止事件传播
+			//   // ev.stopImmediatePropagation();
+			// }, true);
+			// main.addEventListener('click', function(ev){
+			//   alert('main 捕获2');
+			// }, true);
+			// main.addEventListener('click', function(ev){
+			//   // ev.stopPropagation();
+			//   ev.stopImmediatePropagation();
+			//   alert('main 冒泡1');
+			// }, false);
+			// main.addEventListener('click', function(ev){
+			//   alert('main 冒泡2');
+			// }, false);
+
+			// div.addEventListener('click', function(){ alert('div 捕获') }, true);
+			// div.addEventListener('click', function(){ alert('div 冒泡') }, false);
+
+			// onclick 是在冒泡阶段触发
+			div.onclick = function (ev) {
+        ev.stopPropagation();
+				alert('目标元素div');
+			};
+			main.onclick = function () {
+				alert('目标元素main');
+			};
+
+			// div.addEventListener('click', function(){ alert('目标') });
+		</script>
+	</body>
+</html>

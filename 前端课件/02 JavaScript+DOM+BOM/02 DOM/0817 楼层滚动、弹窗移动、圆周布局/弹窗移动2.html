@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+				min-width: 800px;
+			}
+			html,
+			body {
+				height: 100%;
+			}
+			button {
+				position: fixed;
+				right: 100px;
+				top: 100px;
+			}
+			.mask {
+				/* 可视页面的宽高 */
+				width: 100%;
+				height: 100%;
+				background-color: lightblue;
+				position: absolute;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				display: none;
+			}
+			.box {
+				width: 200px;
+				height: 150px;
+				background-color: red;
+				position: absolute;
+				top: calc(50% - 75px);
+				left: calc(50% - 100px);
+			}
+			.box .header {
+				height: 30px;
+				background-color: orange;
+				cursor: move;
+				/* 禁止用户选中文本内容 */
+				user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mask">
+			<div class="box">
+				<div class="header"><a href="javascript:;" class="close">&times;</a></div>
+			</div>
+		</div>
+		<button>弹窗</button>
+
+		<div class="main">
+			<p>撑开页面1</p>
+			<p>撑开页面2</p>
+			<p>撑开页面3</p>
+			<p>撑开页面4</p>
+			<p>撑开页面5</p>
+			<p>撑开页面6</p>
+			<p>撑开页面7</p>
+			<p>撑开页面8</p>
+			<p>撑开页面9</p>
+			<p>撑开页面10</p>
+			<p>撑开页面11</p>
+			<p>撑开页面12</p>
+			<p>撑开页面13</p>
+			<p>撑开页面14</p>
+			<p>撑开页面15</p>
+			<p>撑开页面16</p>
+			<p>撑开页面17</p>
+			<p>撑开页面18</p>
+			<p>撑开页面19</p>
+			<p>撑开页面20</p>
+			<p>撑开页面21</p>
+			<p>撑开页面22</p>
+			<p>撑开页面23</p>
+			<p>撑开页面24</p>
+			<p>撑开页面25</p>
+			<p>撑开页面26</p>
+			<p>撑开页面27</p>
+			<p>撑开页面28</p>
+			<p>撑开页面29</p>
+			<p>撑开页面30</p>
+			<p>撑开页面31</p>
+			<p>撑开页面32</p>
+			<p>撑开页面33</p>
+			<p>撑开页面34</p>
+			<p>撑开页面35</p>
+			<p>撑开页面36</p>
+			<p>撑开页面37</p>
+			<p>撑开页面38</p>
+			<p>撑开页面39</p>
+			<p>撑开页面40</p>
+			<p>撑开页面41</p>
+			<p>撑开页面42</p>
+			<p>撑开页面43</p>
+			<p>撑开页面44</p>
+			<p>撑开页面45</p>
+			<p>撑开页面46</p>
+			<p>撑开页面47</p>
+			<p>撑开页面48</p>
+			<p>撑开页面49</p>
+			<p>撑开页面50</p>
+			<p>撑开页面51</p>
+			<p>撑开页面52</p>
+			<p>撑开页面53</p>
+			<p>撑开页面54</p>
+			<p>撑开页面55</p>
+			<p>撑开页面56</p>
+			<p>撑开页面57</p>
+			<p>撑开页面58</p>
+			<p>撑开页面59</p>
+			<p>撑开页面60</p>
+		</div>
+		<script>
+			var btn = document.querySelector('button');
+			var close = document.querySelector('.close');
+			var box = document.querySelector('.box');
+			var mask = document.querySelector('.mask');
+			var header = document.querySelector('.header');
+
+			// 点击按钮显示遮罩层
+			btn.onclick = function () {
+				mask.style.display = 'block';
+				document.documentElement.style.overflow = 'hidden';
+				reset();
+			};
+			close.onclick = function () {
+				mask.style.display = 'none';
+				document.documentElement.style.overflow = 'auto';
+			};
+
+			function reset() {
+				var scrollTop = document.documentElement.scrollTop;
+				var scrollLeft = document.documentElement.scrollLeft;
+				var clientHeight = document.documentElement.clientHeight;
+				var clientWidth = document.documentElement.clientWidth;
+				var offsetHeight = box.offsetHeight;
+				var offsetWidth = box.offsetWidth;
+
+				// var scrollHeight = document.documentElement.scrollHeight;
+				console.log('scrollTop = ' + scrollTop);
+
+				// 重新计算mask的尺寸，用可视页面的尺寸加上滚动的距离
+				mask.style.height = clientHeight + scrollTop + 'px';
+				mask.style.width = clientWidth + scrollLeft + 'px';
+				// mask.style.height = scrollHeight + 'px';
+				// 计算box的显示位置
+				box.style.left = (clientWidth - offsetWidth) / 2 + scrollLeft + 'px';
+				box.style.top = (clientHeight - offsetHeight) / 2 + scrollTop + 'px';
+			}
+
+			window.onscroll = function () {};
+
+			window.onresize = function () {
+				reset();
+			};
+
+			header.onmousedown = function (e) {
+				var offsetX = e.offsetX;
+				var offsetY = e.offsetY;
+
+				var clientHeight = document.documentElement.clientHeight;
+				var offsetHeight = box.offsetHeight;
+				var clientWidth = document.documentElement.clientWidth;
+				var offsetWidth = box.offsetWidth;
+
+				var scrollTop = document.documentElement.scrollTop;
+				var scrollLeft = document.documentElement.scrollLeft;
+
+				document.onmousemove = function (ev) {
+					// var x = ev.clientX - offsetX + scrollLeft;
+					// var y = ev.clientY - offsetY + scrollTop;
+					var x = ev.pageX - offsetX ;
+					var y = ev.pageY - offsetY;
+
+					var minX = 0 + scrollLeft;
+					var maxX = clientWidth - offsetWidth + scrollLeft;
+					x = x < minX ? minX : x;
+					x = x > maxX ? maxX : x;
+
+					var minY = 0 + scrollTop;
+					var maxY = clientHeight - offsetHeight + scrollTop;
+					y = y < minY ? minY : y;
+					y = y > maxY ? maxY : y;
+					console.log('x: ' + x + ' y: ' + y);
+
+					box.style.left = x + 'px';
+					box.style.top = y + 'px';
+				};
+			};
+
+			document.onmouseup = function (ev) {
+				document.onmousemove = null;
+			};
+
+			// 鼠标的位置
+			// 1、相对于被点击元素的左上角：ev.offsetX, ev.offsetY;
+			// 2、相对于可视页面的左上角：ev.clientX, ev.clientY;
+			// 3、相对于整个页面的左上角：ev.pageX, ev.pageY;
+      // pageY = clientY + scrollTop
+
+			// var html = document.documentElement;
+			// console.log(html.clientWidth, html.clientHeight);
+			// console.log(html.scrollWidth, html.scrollHeight);
+			// console.log(html.scrollLeft, html.scrollTop);
+
+      // scrollHeight >= clientHeight + scrollTop;
+
+			// 页面的尺寸和位置：全部都是使用html标签获取
+			// 1、可视页面的尺寸：html.clientWidth, html.clientHeight
+			// 2、整个页面的尺寸：html.scrollWidth, html.scrollHeight
+			// 3、滚动距离：html.scrollLeft, html.scrollTop
+
+			// console.log(box.offsetWidth, box.offsetHeight);
+			// console.log(box.offsetLeft, box.offsetTop);
+
+			// 元素的尺寸和位置
+			// 1、元素的尺寸：box.offsetWidth, box.offsetHeight
+			// 2、元素的位置（相当于有定位方式父级元素的偏移量）：box.offsetLeft, box.offsetTop
+		</script>
+	</body>
+</html>

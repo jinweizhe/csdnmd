@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 300px;
+				height: 300px;
+				border: 1px solid #ccc;
+			}
+      .box img{
+        max-width: 100%;
+        min-height: 100%;
+      }
+		</style>
+	</head>
+	<body>
+
+		<div class="box">拖动到这里</div>
+
+		<script>
+			var box = document.querySelector('.box');
+
+			// 拖动事件分两大类：
+			// 1、绑定在被拖动元素上：dragstart、drag、dragend
+			// 2、绑定在目标元素上：dragenter、dragover、dragleave、drop
+
+			// 拖动事件使用的两种场景
+			// 场景一：在浏览器页面上拖动，在页面上从一个位置（被拖动元素）拖动到另一个位置（目标元素）：需要给被拖动元素 和 目标元素绑定事件
+			// 场景二：从浏览器的外部拖动文件到浏览器页面：比如从电脑某个文件夹拖动图片到浏览器页面，此时，就没有了被拖动元素，只需要给目标元素绑定事件
+
+			// 在拖动事件对象中都有一个属性 dataTransfer 用来做拖动事件的数据交换
+			// 如果使用场景一，需要在被拖动元素的事件上（一般是dragstart事件）使用setData设置数据，然后在目标元素的drop事件中使用getData获取数据
+          // ev.dataTransfer.setData(数据标识, 数据); // 设置数据
+          // ev.dataTransfer.getData(数据标识);  // 获取数据
+          // 数据标识：字符串类型，用来标识数据，设置数据的时候使用什么样的标识，获取数据的时候还是使用同一个标识
+          // 数据：字符串类型，需要在拖动事件中传递的数据 
+
+      // 如果使用场景二：没有被拖动元素，不需要使用setData和getData，但是需要获取被拖动的文件，使用dataTransfer.files获取被拖动的文件
+
+		
+			// 在目标元素上绑定拖动事件，需要在dragover和drop中阻止默认事件：因为把文件资源拖动到浏览器后，浏览器会默认打开这些文件，比如把图片拖动进入浏览器，浏览器默认会打开图片，所以需要阻止拖动事件的默认行为
+			// 如果触发了dragleave事件就不会触发drop事件， 如果触发了drop事件就不会触发dragleave事件
+			box.ondragover = function (ev) {
+				ev.preventDefault();
+			};
+			box.ondrop = function (ev) {
+				ev.preventDefault();
+
+				console.log('进入目标元素后，没有离开，在目标元素范围内松开鼠标');
+				console.dir(ev.dataTransfer.files);
+        var file = ev.dataTransfer.files[0];   
+        box.innerHTML = '';
+        if (file.type.startsWith('image')) {
+          // 如果是图片，显示在页面上
+          console.log('图片');
+          var img = document.createElement('img');
+          box.appendChild(img);
+          // 根据文件创建一个临时的URL
+          console.log(URL.createObjectURL(file));
+          img.src = URL.createObjectURL(file);
+        }else if(file.type.startsWith('audio')){
+          // 如果是音频，播放音频
+          var audio = document.createElement('audio');
+          box.appendChild(audio);
+          audio.src = URL.createObjectURL(file);
+          audio.play();
+        }else{
+          // 其他文件，展示名字
+          box.innerHTML = file.name;// 获取文件名
+        }
+			};
+
+       // {
+      //   lastModified: 1499305178000
+      //   lastModifiedDate: Thu Jul 06 2017 09:39:38 GMT+0800 (中国标准时间) {}
+      //   name: "效果图.png"
+      //   size: 47539
+      //   type: "image/png"
+      //   webkitRelativePath: ""
+      // }
+		</script>
+	</body>
+</html>

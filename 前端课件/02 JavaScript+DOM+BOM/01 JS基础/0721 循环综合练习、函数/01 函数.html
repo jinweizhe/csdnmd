@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			fn();
+			// 函数：函数也叫方法，是一段代码的集合，方便重复使用
+
+			// 创建函数有两种方式：函数声明 和 函数表达式
+
+			// 一、函数声明
+			/*
+        格式：  
+        function 函数名 () {
+          函数体
+        }
+
+        1、function：声明函数的关键字
+        2、函数名：与变量名名规范一致，使用字母、下划线_、$开头，其后可以使用字母、数字、下划线、$，命名要有意义
+        3、()：是参数列表
+        4、{}：是函数体，函数内具体的逻辑代码
+      */
+			// 创建一个函数
+			function fn() {
+				var a = 2;
+				console.log('函数fn a =', a);
+			}
+			// 调用函数：函数声明之后不会自动执行，需要调用函数，才能执行函数体中的代码
+			// 格式：函数名();
+			// fn();
+
+			console.log('-------------');
+
+			// fn();
+
+			// 二、函数表达式：使用function创建函数赋值给一个变量，把该变量当做函数名使用
+			// 函数表达中function创建的函数没有名字，名字的函数也叫匿名函数
+			// 格式：var 变量名(函数名) = function() {}
+
+			var f2 = function () {
+				console.log('函数 f2');
+
+				// f3();
+				// f2();
+			};
+			f2(); // 调用函数
+			// f2();
+
+			// 函数之间可以相互调用，但是要有一个结束的条件，否则会出现死循环
+			var f3 = function () {
+				console.log('函数 f3');
+				// f2();
+			};
+			// f3();
+
+			// 三、函数的参数
+			// 函数的参数就是调用函数时传递的数据，参数放在参数列表()中：(参数1, 参数2, ...)；一个函数的参数可以有无数个
+
+			// 创建函数时添加的参数叫形参：形式上的参数，没有实际的值，默认值是undefined
+			function sayHello(word) {
+				alert('鹦鹉说：' + word);
+			}
+			// 调用函数时添加的参数（数据）叫实参：实际上的参数，实参使用来给形参赋值的
+			// 调用函数时，传递具体的数据
+			// sayHello('恭喜发财');
+			sayHello();
+
+			// 求两个数字的和
+			// var a = 1;
+			// var b = 2;
+			// var c = a + b;
+			// console.log('c = ' + c);
+
+			// var a = 3;
+			// var b = 4;
+			// var c = a + b;
+			// console.log('c = ' + c);
+
+			// 把重复的代码写入函数，使用的时候直接调用函数即可
+			function add(a, b) {
+				var c = a + b;
+				// console.log('c = ' + c);
+				// return c;
+			}
+			// add(1, 2);
+			// add(3, 4);
+			var res = add(100, 200);
+			console.log('res = ' + res);
+
+			var m = 6;
+			var n = 8;
+			add(m, n);
+
+			// var sum = res * 2;
+			// var sum = add(100, 200) * 2;
+
+			// 让求和的结果乘以2
+
+			// var sum = Math.pow(10, 1) + 2;
+
+			// var res = Math.pow(2, 3);
+			// console.log('res = ' + res);
+		</script>
+	</body>
+</html>

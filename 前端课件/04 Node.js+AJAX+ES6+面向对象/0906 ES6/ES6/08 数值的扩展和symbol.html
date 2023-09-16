@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // Number.isInteger()用来判断一个数值是否为整数。
+    Number.isInteger(25) // true
+    Number.isInteger(25.1) // false
+    // JavaScript 内部，整数和浮点数采用的是同样的储存方法，所以 25 和 25.0 被视为同一个值。
+    Number.isInteger(25) // true
+    Number.isInteger(25.0) // true
+
+    // BigInt 是一种新的数据类型，表示大整数
+    // 为了与 Number 类型区别，BigInt 类型的数据必须添加后缀n
+    console.log(123, typeof 123);// 123 'number'
+    console.log(123n, typeof 123n);// 123n 'bigint'
+
+
+    // JavaScript 原生提供BigInt函数，可以用它生成 BigInt 类型的数值。转换规则基本与Number()一致，将其他类型的值转为 BigInt。
+    BigInt(123) // 123n
+    BigInt('123') // 123n
+    BigInt(false) // 0n
+    BigInt(true) // 1n
+
+    // ES6 引入了一种新的原始数据类型Symbol，表示独一无二的值。
+    let s1 = Symbol('hello');
+    let s2 = Symbol('hello');
+
+    console.log(s1, s2, s1 == s2, typeof s1);// Symbol(hello) Symbol(hello) false 'symbol'
+    
+    let o = {
+      a: 1,
+      a: 2,
+      [s1]: 10,
+      [s2]: 20
+    }
+
+    console.log(o);
+
+
+    // JS的数据类型总共八种
+    // ES5中：
+    // 三种常用的 number、string、boolean
+    // 两种特殊的：null和undefined
+    // 一种复杂的：对象：统称的为对象，细分为object、array、function等
+    // ES6新增加了：bigint 和 symbol
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			var arr = [2, 3, 4, 5, 6, 7, 8];
+
+			// find 查找，从数组中找到第一个符合条件的元素并返回该元素，如果找不到返回undefined
+
+			// 在回调函数中使用数组的元素添加某种运算，运算的结果是一个布尔值，在回调函数中使用return返回运算结果，当运算结果为true，data的值就是该元素
+			var data = arr.find(function (item) {
+				console.log('item = ', item);
+				return item % 2 == 1;
+			});
+			console.log(data);
+
+			// findIndex 查找索引值，从数组中找到第一个符合条件的元素的索引值，并返回该元素的索引值，如果找不到就返回-1
+			// 功能和indexOf相似，不同的是findIndex添加的是一个函数，在函数内可以实现更加复杂的逻辑代码
+
+      // 在回调函数中使用数组的元素添加某种运算，运算的结果是一个布尔值，在回调函数中使用return返回运算结果，当运算结果为true，index的值就是该元素的索引值
+			var index = arr.findIndex(function (item) {
+        return item%2 == 1;
+      });
+      console.log(index);
+
+			var users = [
+				{ name: '汤姆', age: 22 },
+				{ name: '丽丽', age: 21 },
+				{ name: '花花', age: 22 },
+				{ name: '露西', age: 20 },
+				{ name: '李明', age: 20 },
+				{ name: '花花', age: 20 },
+			];
+      console.log(users.indexOf('花花'));
+
+      var index = users.findIndex(function (item){
+        return item.name == '花花';
+      });
+
+			// --------------------------------------
+			// 从users中找到输入的账号名，并打印该账号的信息
+			// var users = [
+			// 	{ name: '汤姆', age: 22 },
+			// 	{ name: '丽丽', age: 21 },
+			// 	{ name: '花花', age: 22 },
+			// 	{ name: '露西', age: 20 },
+			// 	{ name: '李明', age: 20 },
+			// 	{ name: '花花', age: 20 },
+			// ];
+			// var username = prompt('账号');
+			// var user = users.find(function (item) {
+			//   // console.log(item.name);
+			//   return item.name == username;
+			// });
+			// console.log(user);
+		</script>
+	</body>
+</html>

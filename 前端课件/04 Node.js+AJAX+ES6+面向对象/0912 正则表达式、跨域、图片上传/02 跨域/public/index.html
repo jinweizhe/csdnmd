@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- <button onclick="jsonpClick();">JSONP跨域</button> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.min.js"></script>
+  <script>
+
+
+    // axios.get('http://127.0.0.1:3000/info').then(res => {
+    //   console.log(res);
+    // });
+
+    // JSONP的跨域：
+    // 原理是利用script标签能够跨域的特性，发请求的时候给后端传递一个函数名，后端在返回的结果中调用这个函数并给这个函数传递数据
+    // JSONP 只能发送get请求
+
+    // let script = document.createElement("script");
+    // document.body.appendChild(script);
+    // // script.src = 'http://127.0.0.1:3000/info?callback=getinfo';
+    // script.src = 'http://127.0.0.1:3000/info?callback=getinfo';
+    // function getinfo (data) {
+    //   console.log('data=', data);
+    // }
+
+    // 在支持JSONP的接口的参数名有一个是 callback ，参数值设置为?
+
+    // JQ中专门用于发送JSONP请求的方法
+    $.getJSON('http://127.0.0.1:3000/info?callback=?').then(data => {
+      console.log('data=', data);
+    });
+
+    axios.get('http://127.0.0.1:3000/tag_api/v1/query_category_briefs').then(res => {
+      console.log(res.data);
+    });
+
+
+  </script>
+</body>
+
+</html>

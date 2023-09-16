@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 简单数据类型（基本数据类型）：number、string、boolean、null、undefined
+    // 复杂数据类型：统称为对象类型object，细分为：Object、Array、Function、Date等
+
+    // typeof获取数据类型
+    // 1、简单数据类型，是什么类型typeof出来就是特性
+        // 1.1 null比较特殊，typeof的结果是object 
+        // 1.2 NaN比较特殊，NaN本质上就是数字类型，所以typeof的结果number
+    // 2、复杂数据类型，typeof的结果一般是object
+
+
+    // 一、常用的三种基本数据类型：数字 number；字符串 string；布尔值 boolean；
+
+    // 1、数字 number：可以表示整数和小数
+    var age = 18;// 整数
+    var weight = 62.6;//小数
+    var num = -6; // 负值
+
+    // 0.1+0.2不等于0.3
+    var a = 0.1, b = 0.2;
+    var c = a + b;
+    console.log('a=', a, 'b=', b, 'c=', c);
+
+
+    // 数字类型有一个特殊的值：NaN: not a number 不是一个数字
+    // 一般当返回的结果应该是数字，但是最终结果得不到一个数字，就会返回NaN
+    console.log(0/0); // NaN
+    console.log(Number('6'));// 6
+    console.log(Number('你好'));// NaN
+
+    // NaN的表示一个非数字，但是他的数据类型是number类型
+    console.log(typeof NaN);
+
+
+
+
+    // 2、字符串 string：字符串的内容放在单引号 或者 双引号中，推荐使用单引号
+    var name = '张三';
+    var name = "李 四";
+
+    // 双引号可以嵌套单引号，单引号也能嵌套双引号
+    var str = '卞敬杰是"好人"';
+    var str = "卞敬杰是'好人'";
+    // 转义字符 \'
+    var str = '卞敬杰是\'好人\'';
+    console.log(str);
+
+    // 3、布尔 boolean：布尔值只有两个 true 和 false；true表示真，false表示假
+    // 布尔值用来表示只有两种取值情况
+    var isSingleDog = true;
+    var open = true;
+    var show = false;
+
+
+    // 二、两个特殊的类型：undefined 未定义；null 空
+
+    // 1、undefined 未定义：一般是指变量应该有值，但是还没有定义
+    // 声明变量但是没有给变量赋值，变量的默认值是undefined，
+    // var m;
+    // 上面的代码就相当于声明m变量并赋值undefined   
+    var m = undefined;
+    console.log('m: ' + m);
+
+    console.log(typeof m);// undefined
+    console.log(typeof undefined);// undefined
+
+
+    // 2、null 空：一般是表示变量（对象类型的变量）不应该有值
+    var n = null;
+    console.log('n:',n);
+    // 比较特殊的是 typeof null 的结果是 object；
+    console.log(typeof n);// object
+    console.log(typeof null);// object
+
+    // var div = document.querySelector('div');
+    // console.log('div: ', div);
+
+
+    // 三、复杂数据类型：统称为对象类型object，细分为：Object、Array、Function、Date等
+    var zhangsan = { name: '张三'};
+
+    console.log(typeof zhangsan);// object
+    console.log(typeof {});// object
+    console.log(typeof []);// object
+
+
+
+    // console.log(typeof 2);
+    // console.log(typeof '2');
+    // console.log(typeof true);
+
+
+
+
+    // typeof 变量名; 用来获取变量的类型
+    // console.log(typeof age);
+    // console.log(typeof name);
+    // console.log(typeof open);
+
+
+  </script>
+</body>
+
+</html>

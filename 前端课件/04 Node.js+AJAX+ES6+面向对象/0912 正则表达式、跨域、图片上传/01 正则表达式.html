@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 正则表达式：是由字母、数字、汉字和特殊字符：+ - ? 等组成的一个逻辑表达式，用于对字符串的验证，比如：手机号是否合法，邮箱是否合法 或者 从字符串中提取指定的字符
+
+    // 创建正则表达式的方式：
+    // 1、使用RegExp正则对象
+    // let pattern = new RegExp('box', 'i');
+    // 2、字面量的方式
+    // let pattern = /box/;
+
+    // 正则表达式的修饰符：i  g
+    // i: ignore case 忽略大小写
+    // g: global 全局搜索
+
+    // 属性：
+    // ignoreCase 是否添加了i修饰符；
+    // global： 是否添加了g修饰符
+    // console.log(pattern.ignoreCase, pattern.global);
+    // console.log(pattern);
+
+    // 正则对象方法：
+    // 1、test() 使用正则模式匹配一段字符串是否符合，符合返回true，不符合返回false
+    // 2、exec() 从字符串中找到符合正则模式的结果放入数组中，如果没有符合条件的返回null
+
+    let pattern = /box/;
+    let str = 'this is a box! this is a Box!';
+
+    console.log(pattern.lastIndex);
+    console.log(pattern.test(str));
+
+    console.log(pattern.exec(str));
+
+
+    // 字符串中一些方法也支持正则表达式
+    console.log(str.replace(/box/gi, 'BOX'));// 替换字符串
+    console.log(str.replaceAll(/box/g, 'BOX'));
+    console.log(str.search(/box/));// 找到字符串中符合正则模式的索引值
+    console.log(str.split(/box/i));// 分隔字符串
+    console.log(str.match(/box/gi));// 找到字符串中符合正则模式的结果放入数组中
+
+
+  </script>
+</body>
+
+</html>

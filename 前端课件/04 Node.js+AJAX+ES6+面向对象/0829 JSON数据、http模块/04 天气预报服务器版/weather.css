@@ -1,0 +1,56 @@
+html,body{
+    height: 100%;
+}
+body{
+    margin: 0;
+    overflow: hidden;
+    background-image: linear-gradient(to bottom,rgb(10,100,200),rgb(10,170,200));
+    color: white;
+    text-align: center;
+    text-shadow: 1px 0 3px #000;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+header{
+    font-size: 30px;
+}
+main .icon{
+
+}
+main .temper{
+    font-size: 22px;
+    line-height: 30px;
+}
+main .temper sup{
+    font-size: 14px
+}
+main .weather{
+    font-size: 18px;
+}
+main .wind{
+    font-size: 14px;
+    line-height: 200%;
+}
+main .current{
+    font-size: 14px;
+}
+section{
+    width: 33.33%;
+    float: left;
+    border-right: 1px solid orange;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+section:nth-child(3){
+    border: none;
+}
+section .week{
+    font-size: 16px;
+}
+section .icon{
+    margin: 5px 0;
+}
+section .weather{
+    line-height: 150%;
+}

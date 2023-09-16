@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<!-- <select id="select">
+			<option>html</option>
+			<option>css</option>
+			<option selected>js</option>
+			<option>jquery</option>
+			<option>node</option>
+		</select> -->
+
+		<select id="provinceSelect"></select>
+		<select id="citySelect"></select>
+		<select id="areaSelect"></select>
+
+		<script src="./city_code.js"></script>
+		<script>
+      
+      // select.onchange = function () {
+      //   // selectedIndex 被选中选项的索引值
+      //   console.log(select.value, select.selectedIndex);
+			// };
+
+			// console.table(data);
+			showProvince();
+			function showProvince() {
+				for (var i = 0; i < data.length; i++) {
+					var province = data[i];
+					// console.log(province.name);// 省份的名字
+          var option = document.createElement("option");
+          provinceSelect.appendChild(option);
+          option.innerHTML = province.name;
+				}
+			}
+
+
+      showCity(0)
+      function showCity(index) {
+        citySelect.innerHTML = '';
+        var province = data[index];//根据被选中的索引值找到省份对象
+        console.log(province);
+        var citys = province.city;// 省份对象的城市列表
+        for(var i = 0; i < citys.length; i++) {
+          var city = citys[i];// 城市对象
+          console.log(city);
+          var option = document.createElement("option");
+          citySelect.appendChild(option);
+          option.innerHTML = city.name;
+        }
+      }
+      // selectedIndex 默认选中第一项，selectedIndex的默认值就是0
+      console.log('provinceSelect.selectedIndex=',provinceSelect.selectedIndex);
+
+      // 选中省份，根据被选中省份的索引值选择找到省份对象province，省份对象中有一个属性city，是城市列表
+      provinceSelect.onchange = function(){
+        console.log(provinceSelect.selectedIndex);
+        showCity(provinceSelect.selectedIndex)
+      }
+		</script>
+	</body>
+</html>

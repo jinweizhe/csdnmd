@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    .box {
+      width: 300px;
+      height: 260px;
+      margin: 50px auto;
+      position: relative;
+      background-color: lightblue;
+      /* overflow: hidden; */
+    }
+
+    .list-box {
+      height: 200px;
+      width: 2100px;
+      position: absolute;
+      left: -300px;
+    }
+
+    .item {
+      width: calc(100% / 7);
+      height: 100%;
+      float: left;
+      font-size: 100px;
+      color: white;
+      text-align: center;
+      line-height: 200px;
+    }
+
+    .item1 {
+      background-color: red;
+    }
+
+    .item2 {
+      background-color: yellow;
+    }
+
+    .item3 {
+      background-color: blue;
+    }
+
+    .item4 {
+      background-color: green;
+    }
+
+    .item5 {
+      background-color: lightpink;
+    }
+
+    .pre,
+    .next {
+      position: absolute;
+      top: calc(110px - 25px);
+      width: 30px;
+      height: 50px;
+      background-color: lightgray;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .next {
+      left: 270px;
+    }
+
+    .indicator {
+      width: 120px;
+      height: 30px;
+      position: absolute;
+      bottom: 10px;
+      left: 40%;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background-color: white;
+      float: left;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="list-box">
+      <div class="item item5">5</div>
+      <div class="item item1">1</div>
+      <div class="item item2">2</div>
+      <div class="item item3">3</div>
+      <div class="item item4">4</div>
+      <div class="item item5">5</div>
+      <div class="item item1">1</div>
+    </div>
+    <div class="pre" onclick="pre()">&lt;</div>
+    <div class="next" onclick="next()">&gt;</div>
+    <div class="indicator">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </div>
+</body>
+
+</html>
+<script>
+  // 下标要从1开始，因为播放的第一张图前面有一张最后那张图，下标要注意对应
+  var box = document.querySelector(".box");
+  var listBox = document.querySelector(".list-box");
+  var dots = document.querySelectorAll(".dot");
+  var index = 1;
+  var moveTimer;
+
+  // 1.点击手动控制
+  // 点击下一张
+  function next() {
+    console.log('next');
+
+    index++;// 2 3 4 5 6  2 3 4 5 6 ... 
+    if (index == 7) {
+      index = 2;
+      listBox.style.left = "-300px";
+    }
+    move();
+  }
+  // 点击上一张
+  function pre() {
+    console.log('prev');
+    index--;// 0 4 3 2 1  0 4 3 2 1 ... 
+    if (index == -1) {
+      index = 4;
+      listBox.style.left = "-1500px";
+    }
+    move();
+  }
+  console.log('index = ' + index, listBox.offsetLeft);
+  // 具体移动的函数
+  function move() {
+    console.log('index = ' + index, listBox.offsetLeft);
+    // 计算要移动的长度
+    var offset = -300 * index - listBox.offsetLeft;
+    var count = 0;
+    var interval = 10;
+    // 速度：切换下一张速度为负值，切换上一张速度为正值
+    var speed = offset / 30;
+    clearInterval(moveTimer);
+    moveTimer = setInterval(function () {
+      count++;
+      listBox.style.left = listBox.offsetLeft + speed + "px";
+      if (count >= 30) {
+        clearInterval(moveTimer);
+        listBox.style.left = -300 * index + "px";
+      }
+    }, 10);
+
+    // 圆点的控制
+    for (var i = 0; i < dots.length; i++) {
+      dots[i].classList.remove('active');
+    }
+    if (index == 6) index = 1;
+    if (index == 0) index = 5;
+
+    dots[index - 1].classList.add('active');
+  }
+
+  // 2.自动控制
+  // var timer = setInterval(next, 2000);
+  // box.onmouseenter = function () {
+  //   clearInterval(timer);
+  //   timer = null;
+  // }
+  // box.onmouseleave = function () {
+  //   if (timer) return;
+  //   timer = setInterval(next, 2000);
+  // }
+
+  // 3.点击指示灯控制
+  for (var i = 0; i < dots.length; i++) {
+    dots[i].index = i;
+    dots[i].onclick = function () {
+      index = this.index;
+      next();
+    }
+  }
+
+</script>

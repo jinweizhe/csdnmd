@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 数组：是一组数据有序的集合，数组中的每一个值叫做元素，每个元素都有自己的位置（下标），位置使用数字表示，数字组成了数组的索引值
+			// 位置（下标、索引值）：从0开始，一次是0 1 2 ...
+
+			// 一、创建数组
+			// 1、使用Array和new
+			// var arr = new Array(); // 长度为0的空数组
+			// // 注意：如果给Array传递一个参数：1、参数是一个数字，表示的数组的长度；2、参数不是数字，表示长度为1的数组
+			// var arr = new Array(20); // 长度为20的空数组
+			// var arr = new Array('20'); // 长度为1，元素值为 '20'的数组
+			// var arr = new Array(2, 4, 6); // 长度为3，元素值为 2 4 6的数组
+
+			// 2、使用字面量
+			var arr = []; // 长度为0的数组
+			var arr = [20]; // 长度为1，数组元素为20
+			var arr = ['20']; // 长度为1，数组元素为 '20'
+			var arr = [2, 4, 6]; // 长度为为3，数组元素为2 4 6
+
+			// 数组的元素可以是任意类型的值
+			// var arr = [2, 4, [1, 2, 3, 4], true, 'hello', { name: '张三', age: 12, values: [1, 2, 3] }];
+
+			console.log(arr);
+
+			// 二、使用索引值访问或者修改数组元素的值
+			var names = ['张三', '李四', '王五'];
+
+			// 访问数组的元素值，如果索引值超过最大索引值，会得到undefined，也叫数组的越界
+			var name = names[1];
+			console.log(names[1]); // '李四'
+			console.log(names[100]); // undefined
+
+			// 添加或者修改数组元素值
+			// 修改：使用已经存在索引值是修改元素的值
+			// 添加：使用不存在的索引值是添加元素的值
+			names[2] = '小王'; // 修改索引为2的元素的值
+			names[3] = '大王';
+			// names[100] = 100;
+
+			// 三、数组的长度值：一般数组的长度值和数组的元素值相等的
+			var names = ['张三', '李四', '王五'];
+			// 数组的长度值通过length属性获取
+			console.log(names.length);
+
+			console.log(names[0]); // 获取数组中第一个元素的值
+			// 数组最大索引值 = length - 1;
+			console.log(names[names.length - 1]); // 获取数组汇总最后一个元素的值
+
+			// length是可读写，通过length属性可以修改数组的长度值
+			// names.length = 2; // 长度值变小，从最后一个元素开始往前删除元素
+			// name.length = 4;// 长度值变大，数组中原有的元素值不变，往数组的末尾处增加长度，数组的元素默认值为undefined
+
+			// 通过length值往数组的末尾处增加一个元素
+			names[names.length] = '王1';
+			// names[names.length] = '王1';
+			// names[names.length] = '王1';
+			// names[names.length] = '王1';
+
+			console.log(names);
+
+      // 四、遍历数组: 使用for语句，i的值是数组的索引值
+      var arr = [2,4,6,8];
+      for(var i = 0; i < arr.length; i++){
+        var n = arr[i];
+        console.log('n = ', n);
+      }
+
+
+			var nums = []; // 1 3 5 7 ...
+			for (var i = 0; i < 10; i++) {
+				nums[i] = 2 * i + 1;
+			}
+
+			// var nums = []; // 1 3 5 7 ...
+			// var index = 0;
+			// for (var i = 0; i < 20; i++) {
+			// 	if (i % 2 == 1) {
+			//     nums[index] = i;
+			// 		index++;
+			// 	}
+			// }
+			// console.log(nums);
+
+			var nums = []; // 1 3 5 7 ...
+			// nums.length
+			for (var i = 0; i < 20; i++) {
+				if (i % 2 == 1) {
+					nums[nums.length] = i;
+				}
+			}
+			console.log(nums);
+		</script>
+	</body>
+</html>

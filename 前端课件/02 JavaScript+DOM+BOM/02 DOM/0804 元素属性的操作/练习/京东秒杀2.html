@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			.main {
+				background-image: url(https://misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/img/4a15d8883775742e3efbb850ae14def7.png);
+				width: 190px;
+				height: 260px;
+				background-position: center;
+				background-size: contain;
+				overflow: hidden;
+				background-color: red;
+				margin: 0 auto;
+			}
+
+			.top {
+				width: 100%;
+				text-align: center;
+				font-size: 30px;
+				font-weight: 700;
+				margin-top: 31px;
+				color: white;
+			}
+
+			.end {
+				text-align: center;
+				margin-top: 90px;
+				font-size: 14px;
+				color: white;
+				display: flex;
+				align-items: center;
+			}
+
+			.end span:first-child {
+				font-size: 18px;
+				padding-right: 2px;
+				vertical-align: middle;
+				display: inline-block;
+				/* margin-top: -1px; */
+				font-weight: bolder;
+				margin-left: 31px;
+			}
+
+			.main div:last-child {
+				margin-left: auto;
+				margin-right: auto;
+				width: 130px;
+				height: 30px;
+				margin-top: 10px;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: center;
+			}
+
+			.main div:last-child p:nth-child(odd) {
+				width: 30px;
+				height: 30px;
+				text-align: center;
+				background-color: #2f3430;
+				/* margin-right: 20px; */
+				color: white;
+				font-size: 20px;
+				font-weight: bold;
+				line-height: 30px;
+			}
+
+			.main div:last-child p:nth-child(even) {
+				color: white;
+				font-size: 20px;
+				font-weight: bold;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="main">
+			<p class="top">京东秒杀</p>
+			<div class="end"><span id="hour">20:00</span><span class=".span">点场 距结束</span></div>
+			<div>
+				<p class="hour">1</p>
+				<p>:</p>
+				<p class="minute">1</p>
+				<p>:</p>
+				<p class="second">1</p>
+			</div>
+		</div>
+		<script>
+			function addPrefix0(a) {
+				if (a < 10) {
+					return '0' + a;
+				}
+				return a;
+			}
+
+			var hourTop = document.getElementById('hour');
+			var hourBox = document.querySelector('.hour');
+			var minuteBox = document.querySelector('.minute');
+			var secondBox = document.querySelector('.second');
+
+			function updateTime() {
+				var now = new Date();
+				var hours = now.getHours();
+				var minutes = now.getMinutes();
+				var seconds = now.getSeconds();
+				// 显示的时间只有偶数：8点 10点 12点，如果是奇数时间，让整点的小时数减一
+				var ht = hours % 2 == 1 ? hours - 1 : hours;
+				hourTop.innerHTML = addPrefix0(ht) + ':00';
+
+				var target = new Date();
+				// target.setHours(now.getHours()%2==0 ? now.getHours()+2 : now.getHours()+1);
+				target.setHours(ht+2);
+				target.setMinutes(0);
+				target.setSeconds(0);
+        // 在一个时间段内，target不变，now一直在变大，剩余时间一直在减少
+				var allTimes = (target.getTime() - now.getTime())/1000;
+
+				var hour = Math.floor(allTimes / 3600);
+				var minute = Math.floor((allTimes % 3600) / 60);
+				var second = Math.floor(allTimes % 60);
+				hourBox.innerHTML = addPrefix0(hour);
+				minuteBox.innerHTML = addPrefix0(minute);
+				secondBox.innerHTML = addPrefix0(second);
+			}
+			updateTime();
+			setInterval(updateTime, 1000);
+		</script>
+	</body>
+</html>

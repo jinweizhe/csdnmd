@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<a href="./window.html">去window页面</a>
+		<button onclick="history.forward();">前进</button>
+		<button onclick="history.go(1);">前进</button>
+
+		<script>
+			// history 对页面的历史记录进行操作
+			// 点击a添加的超链接可以添加历史记录
+
+			// history.back(); //后退：访问上一个历史记录，等价于 g(-1)
+			// history.forward(); //前进：访问下一个历史记录。等价于 g(1)
+			// history.go(n);// n表示整数，可以为正也可以为负值：正值表示前进，负值后退，0或者不传表示刷新当前页面。
+			// go方法传递数字，可以调到某条历史记录 g(3)
+
+			// 增加一条历史记录
+      var index = 0;
+			document.onclick = function () {
+        index++;
+				history.pushState({index: index}, '');
+        console.log('增加历史记录',index);
+			};
+      // 只有用户点击浏览器倒退按钮和前进按钮，或者使用 JavaScript 调用`History.back()`、`History.forward()`、`History.go()`方法时才会触发。
+      window.onpopstate = function (ev){
+        console.log(ev);
+      }
+
+      // history.pushState();
+      // history.replaceState();
+		</script>
+	</body>
+</html>

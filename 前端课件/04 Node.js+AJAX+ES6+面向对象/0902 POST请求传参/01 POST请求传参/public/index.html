@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// get和post方法是客户端发送请求到后端，发请求的时候可以传递参数
+			// get和post传递参数的方式不一致
+			
+      // get请求传参：参数使用?拼接在url的后面：http://127.0.0.1:3000/login?username=张三&password=123
+			
+      // post请求传参，参数放在请求体中：xhr.send(请求体)
+			// 客户端请求体的参数格式三种形式：
+			// 1、urlencoded类型：key=1value1&key2=value2
+			// 2、json类型：{key1:value1, key2:value2}
+			// 3、formdata类型：是一种二进制类型的数据
+
+      // 客户端使用什么类型的数据：是json和urlencoded，在接口文档中有说明，会在接口说明中标明数据的格式是application/x-www-form-urlencoded，还是application/json，如果在接口文档中没有说明，可能是两种形式的数据都支持，传递json类型的也可以，传递urlencoded类型的也可以
+
+      // 在原生ajax，使用urlencoded需要字符串拼接，使用json可以使用js对象转为json字符串
+
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function () {
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log(xhr.responseText);
+				}
+			};
+			xhr.open('POST', `http://127.0.0.1:3000/info`);
+
+      // Content-Type 告诉服务器客户端发送的请求体的参数是什么类型的，根据不同格式的数据，服务端要做不同的处理
+      
+      // 1、传递 urlencoded 类型的数据，Content-Type的类型设置为：application/x-www-form-urlencoded
+      // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			// xhr.send('psw=123');
+
+      // 传递多个key值相同的属性，在后端获取的值会自动成为数组，req.body的值是：{num:'10', psw:['123','456']}
+      // xhr.send('psw=123&psw=456&num=10');
+
+
+      // 2、传递 json 类型的数据，Content-Type的类型设置为：application/json
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      // xhr.send('{"psw":"123"}');
+      var data = {
+        psw:'123'
+      }
+      // xhr.send(JSON.stringify(data));
+
+      console.log('{"psw":"123"}',JSON.stringify({psw:"123"}));
+
+		</script>
+	</body>
+</html>

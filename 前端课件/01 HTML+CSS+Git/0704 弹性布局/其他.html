@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .content {
+      /* font-size: 10px; */
+    }
+
+    .content p {
+      font-size: 2em;
+      /* font-size: 30px; */
+
+      width: 20em;
+      text-indent: 2em;
+      background-color: lightblue;
+    }
+
+    .box{
+      width: 200px;
+      height: 200px;
+      /* 线性渐变 */
+      /* background-image: linear-gradient(to right top, #f00, #0f0f, #00f, #ff0); */
+      /* 径向渐变 */
+      background-image: radial-gradient(circle, red 5%, yellow, green);
+
+    }
+  </style>
+</head>
+
+<body>
+
+  
+
+  <div class="box">
+
+  </div>
+
+  <div class="content">
+    <p>它是描述相对于应用在当前元素的字体尺寸，所以它也是相对长度单位。一般浏览器字体大小默认为16px，则2em == 32px；</p>
+  </div>
+
+  <!-- 
+    em以当前标签字体大小作为标准计算。
+
+    当前标签字体大小需要为px。如果当前标签的字体大小为em，则向上找父标签的字体大小，逐级相乘，直至找到有明确字体大小定义的标签。
+
+    举例：p标签内部的span标签的字体大小计算方法是：2 * 10px = 20px
+
+  -->
+
+
+  <style>
+    #em {
+      font-size: 10px;
+    }
+  </style>
+  <p id="em">
+    em是相对单位，等于当前元素字体大小。
+    <span style="font-size: 2em">
+      内部的文字
+      <span style="font-size: 0.5em">内部的内部</span>
+    </span>
+  </p>
+
+
+  <style>
+    #rem {
+      font-size: 10px;
+    }
+  </style>
+  <p id="rem">
+    rem 是根 em（root em）的缩写，rem作用于非根元素时，相对于根元素字体大小；rem作用于根元素字体大小时，相对于其出初始字体大小。
+    <span style="font-size: 2rem">
+      内部的文字
+      <span style="font-size: 0.5rem">内部的内部</span>
+    </span>
+  </p>
+
+  <div>
+    <input type="color" onchange="fn(event)">
+    <input type="number">
+    <input type="date">
+    <input type="range">
+  </div>
+  <audio src="http://jinxizhen.gitee.io/your_music/src/qiaobianguniang.mp3" controls loop></audio>
+  <video src="https://videos.nfsq.com.cn/asset/336b633adf441b9467ddcc24831ca4ff/c04edd6066afab2b068627ef6fda4a63.mp4"
+    controls loop autoplay muted></video>
+  <div>
+    <label for=" username">姓名：</label>
+    <input type="text" id="username" name="username" placeholder="请输入账号" autocomplete="off" />
+  </div>
+  <div>
+    <label>性别：</label>
+    <label><input type="radio" name="sex" value="male" checked />男</label>
+    <label><input type="radio" name="sex" value="female" />女</label>
+  </div>
+  <script>
+    function fn (ev) {
+      alert(ev.target.value);
+    }
+  </script>
+</body>
+
+</html>

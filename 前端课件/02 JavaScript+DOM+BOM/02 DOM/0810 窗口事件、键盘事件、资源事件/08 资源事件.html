@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			img {
+				/* display: none; */
+			}
+		</style>
+	</head>
+	<body>
+		<h1>hello world</h1>
+    <input type="file" hidden>
+
+		<a href="http://www.baidu.com" target="_self">百度</a>
+
+		<!-- 如果给img设置 display:none; 图片是否加载: 依然会加载 -->
+		<!-- <img src="https://imgcps.jd.com/ling4/100009077475/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5f3a47329785549f6bc7a6f3/bd3c61b4/cr/s/q.jpg" alt="" /> -->
+
+		<script>
+			// 在window对象上监听load事件，在JS中添加load 事件，把其余所有的JS代码放在load事件中，这样等待页面所有的资源加载完毕之后，才能执行JS代码
+
+			// 在 window 对象上，load 事件会在整个页面（包括所有外部资源如图片、JavaScript 文件和 CSS 文件）加载完成后触发。
+			window.onload = function () {
+				console.log('页面资源加载完毕');
+			};
+
+			window.onerror = function () {
+				console.log('window error');
+			};
+
+			// 使用img标签添加load事件
+			// var img = document.querySelector('img');
+			var input = document.querySelector('input');
+			// var img = document.createElement('img');
+			var img = new Image();
+			img.src = 'https://imgcps.jd.com/ling4/100009077475/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5f3a47329785549f6bc7a6f3/bd3c61b4/cr/s/q.jpg';
+			console.dir(img);
+			document.body.appendChild(img);
+			img.onload = function () {
+				console.log('图片加载成功');
+			};
+			img.onerror = function () {
+				console.log('图片加载失败');
+			};
+
+      img.onclick = function () {
+        input.click(); // 相当于点击了input标签一次
+      }
+
+    
+
+			window.onunload = function () {
+				console.log('页面被卸载');
+			};
+
+			// window.onbeforeunload = function (ev) {
+			// 	var info = '是否关闭页面';
+			// 	ev.returnValue = info;
+			// 	return info;
+			// };
+
+			// DOMContentLoaded 在document对象上监听的事件：文档加载完毕触发
+			document.addEventListener('DOMContentLoaded', function () {
+				console.log('文档加载完毕');
+			});
+
+			document.onclick = function () {
+				// document.body.webkitRequestFullScreen();
+				// console.log(document.fullscreenElement);
+			};
+
+			// document.addEventListener('fullscreenchange', function (event) {
+			// 	console.log(document.fullscreenElement);
+			// 	if (document.fullscreenElement) {
+			// 		console.log('进入全屏');
+			// 	} else {
+			// 		console.log('退出全屏');
+			// 	}
+			// });
+		</script>
+	</body>
+</html>

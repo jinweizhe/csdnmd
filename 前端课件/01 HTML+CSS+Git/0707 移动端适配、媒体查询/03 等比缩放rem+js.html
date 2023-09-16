@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1,viewport-fit=cover">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+
+    body {
+      max-width: 768px;
+      margin: auto;
+    }
+
+    header {
+      height: 0.44rem;
+      line-height: 0.44rem;
+      text-align: center;
+      background-color: lightblue;
+      font-size: 0.18rem;
+    }
+
+    .menu {
+      display: flex;
+      background: linear-gradient(176deg, rgba(76, 126, 255, 1) 0%, rgba(100, 174, 252, 1) 100%);
+    }
+
+    .menu span {
+      width: calc(100% / 3);
+      height: 0.44rem;
+      text-align: center;
+      line-height: 0.44rem;
+      font-size: 0.18rem;
+      color: white;
+      font-weight: 700;
+    }
+
+    main {
+      padding: 0.05rem;
+    }
+
+    main .list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      font-size: 0.12rem;
+    }
+
+    main .list .item {
+      width: 1.725rem;
+      height: .97rem;
+      padding: .05rem;
+    }
+
+    main .list .item div {
+      width: 100%;
+      height: 100%;
+      background-color: lightcoral;
+    }
+  </style>
+</head>
+
+<body>
+  <header>天气预报</header>
+  <div class="menu">
+    <span>要闻</span><span>热点</span><span>视频</span>
+  </div>
+  <main>
+    <ul class="list">
+      <li class="item">
+        <div>item1</div>
+      </li>
+      <li class="item">
+        <div>item2</div>
+      </li>
+      <li class="item">
+        <div>item3</div>
+      </li>
+      <li class="item">
+        <div>item4</div>
+      </li>
+      <li class="item">
+        <div>item5</div>
+      </li>
+      <li class="item">
+        <div>item6</div>
+      </li>
+    </ul>
+  </main>
+
+  <script>
+    (function (base, min, max, scaling) {
+      var cacheWidth = 0;
+      var timer;
+      var docEl = document.documentElement;
+      var recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        clientWidth = Math.max(Math.min(clientWidth, max), min);
+        if (cacheWidth !== clientWidth) {
+          clearInterval(timer);
+          cacheWidth = clientWidth;
+          docEl.style.fontSize = scaling * (clientWidth / base) + 'px';
+        }
+      }
+      recalc();
+      setTimeout(recalc, 300);
+      if (!window.addEventListener) return;
+      var resizeWithTimer = function () { timer = setInterval(recalc, 10); }
+      if ('onorientationchange' in window) window.addEventListener('orientationchange', resizeWithTimer);
+      if ('onresize' in window) window.addEventListener('resize', resizeWithTimer);
+    })(375, 300, 768, 100);
+  </script>
+</body>
+
+</html>

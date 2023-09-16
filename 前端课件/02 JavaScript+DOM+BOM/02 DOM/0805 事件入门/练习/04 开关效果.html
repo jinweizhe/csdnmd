@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			body {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<button>蓝色</button>
+    
+		<script>
+			var btn = document.querySelector('button');
+
+      // 方法三：
+			btn.onclick = function () {
+				if (btn.innerHTML == '蓝色') {
+					// 背景是红色，要改成蓝色
+					document.body.style.backgroundColor = 'blue';
+					btn.innerHTML = '红色';
+				} else {
+					// 背景是蓝色，要改成红色
+					document.body.style.backgroundColor = 'red';
+					btn.innerHTML = '蓝色';
+				}
+			};
+
+			// 方法二：对2求余法
+			// var index = 0;
+			// btn.onclick = function () {
+			// 	index++;
+			//   index = index%2;
+			// 	if (index) {
+			// 		// 背景是红色，要改成蓝色
+			// 		document.body.style.backgroundColor = 'blue';
+			// 	} else {
+			// 		// 背景是蓝色，要改成红色
+			// 		document.body.style.backgroundColor = 'red';
+			// 	}
+			// };
+
+			// 方法一：使用布尔值
+			var isRed = true; // 值为true说明是红色
+			btn.onclick = function () {
+				if (isRed) {
+					// 背景是红色，要改成蓝色
+					document.body.style.backgroundColor = 'blue';
+					// isRed = false; // 对isRed的值取反：从true变成false
+					// isRed = !isRed;
+				} else {
+					// 背景是蓝色，要改成红色
+					document.body.style.backgroundColor = 'red';
+					// isRed = true; // 对isRed的值取反：从false变成true
+					// isRed = !isRed;
+				}
+				isRed = !isRed;
+			};
+		</script>
+	</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 一、对象属性和函数的简洁表示法
+
+    let name = '张三';
+    let age = 18;
+
+    let obj = {
+      // name:name,// 属性名是name，属性的值是name变量的值
+      // 1、属性的简洁表示法：把变量的名作为属性名，变量的值作为属性值
+      // 使用场景：已经有声明好的变量名、从其他地方得到的变量直接存入对象、解构赋值就是属性简洁表示法的应用
+      name, // 等价于 name: name, 
+      age,
+      say: function () {
+        console.log('say函数');
+      },
+      // 2、函数的简洁表示法：把 :function 省略
+      run () {
+        console.log('run函数');
+      }
+    }
+
+    // 二、对象的扩展运算符 ...  
+    let o1 = { v1: 10, v2: 20 };
+    let o2 = { v2: 200, v3: 300 };
+    let o3 = {...o1, ...o2}
+
+
+
+  </script>
+</body>
+
+</html>

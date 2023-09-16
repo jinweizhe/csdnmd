@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 字面量字符：从字面就能知道所表示的意思 /box/
+    // 元字符: 是一些特殊的字符 ? * +
+
+    let str = 'helloworld!';
+
+    // 字符组 []
+    // 包含 abc 其中一个即可
+    // console.log(/[abc]/.test(str)); // false
+    // console.log(/[abco]/.test(str));// true
+
+    // 在 [] 中使用 - 表示连续的区间，abc用[a-c]表示，a到z的26个英文字母用[a-z]表示
+    // [0-9a-zA-Z]表示匹配任意一个数字或者字母
+    // console.log(/[0-9a-zA-Z]/.test(str));
+    // console.log(/[0-9a-zA-Z]/.test('你好'));
+    // [\u4e00-\u9fa5] 表示所有的中文
+    // console.log(/[\u4e00-\u9fa5]/.test('你好'));
+    // console.log(/[\u4e00-\u9fa5]/.test('砼'));
+
+    // 在 [] 中使用 ^ 表示取反的意思，[^a-c] 表示除abc之外的其他字符
+    // console.log(/[^a-c]/.test(str));
+
+
+    // 正则表达式引擎提供了一些快捷方式，是某些常见模式的简写方式，如下：
+    // \d 匹配0-9之间的任一数字，相当于[0-9]。
+    // \w 匹配任意的字母、数字和下划线，相当于[A-Za-z0-9_]。
+    // \s 匹配空格（包括换行符、制表符、空格符等），相等于[ \t\r\n\v\f]。
+    // \b 匹配词的边界。
+
+    // 快捷方式也可以取反，例如对于\w的取反为\W，将小写改写成大写即可，其他快捷方式也遵循这个规则。
+    // \D 匹配所有0-9以外的字符，相当于[^0-9]。
+    // \W 除所有字母、数字和下划线以外的字符，相当于[^A-Za-z0-9_]。
+    // \S 匹配非空格的字符，相当于[^ \t\r\n\v\f]。
+    // \B 匹配非词边界，即在词的内部。
+
+    // ^用在正则表达式开始的位置，表示以什么字符开头
+    // $用在正则表达式结尾的位置，表示以什么字符结尾
+    // console.log(/^abc/.test('bbcc')); // false
+    // console.log(/^abc/.test('abbcc'));// false
+    // console.log(/^abc/.test('abcc'));// true
+
+    // . 匹配换行指定任意一个字符
+    // console.log(/a.c/.test('abc'));// true
+    // console.log(/a.c/.test('axc'));// true
+    // console.log(/a.c/.test('a\nc'));// false
+
+    // | 表示或的意思
+    // console.log(/a|c/.test('abc'));// true
+    // console.log(/a|c/.test('bbb'));// false
+
+    // () 表示分组
+    // console.log(/(abc)+/.test('abc'));// true
+    // console.log(/(abc)+/.test('abxc'));// false
+    // console.log(/(abc)+/.test('axbabc'));// false
+
+    // X? 表示X出现0次或者1次 {0,1}
+    // console.log(/lll?/.test(str)); // true
+    // console.log(/llll?/.test(str)); // false
+    // console.log(/hel?/.test(str)); // true
+    // console.log(/xxl?/.test(str)); // false
+
+    // X* 表示X出现0次或者多次 {0,}
+    // console.log(/lll*/.test(str)); // true
+    // console.log(/llll*/.test(str)); // false
+    // console.log(/hel*/.test(str)); // true 
+    // console.log(/xxl*/.test(str)); // false
+    
+    // X+ 表示X出现1次或者多次 {1,}
+    // console.log(/ow+/.test(str)); // true
+    // console.log(/ll+/.test(str)); // true
+    // console.log(/lll+/.test(str)); // false
+    // console.log(/llll+/.test(str)); // false
+    // console.log(/hel+/.test(str)); // true 
+    // console.log(/xxl+/.test(str)); // false
+
+    // {n}表示恰好重复n次
+    // {n,}表示至少重复n次
+    // {n,m}表示重复不少于n次，不多于m次。
+
+    // let p = /13(0|1|2|4|5|6|8|9)[0-9]{8}/;
+
+  </script>
+</body>
+
+</html>

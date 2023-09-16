@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // let res = a || b;
+    // a || b 两边a和b都不是布尔值，
+    // 如果a的值转为布尔值为true，res的值就是a的值
+    // 如果a的值转为布尔值为false，res的值就是b的值
+
+    // 1、函数的默认参数
+    // function priceFormat(value){
+    //   // if (value == undefined) {
+    //   //   value = 0;
+    //   // }
+    //   // 给参数value添加一个默认值
+    //   value = value || 0;
+    //   return value.toFixed(2);
+    // }
+    // console.log(priceFormat());
+    // console.log(priceFormat(100.1234));
+
+    // 在es6中可以给函数的参数添加默认值
+    // 调用函数的时候，如果没有传递参数，value的值使用默认值0；如果传递的参数，传递的参数是什么，value的值就是什么
+    function priceFormat (value = 0) {
+      return value.toFixed(2);
+    }
+    console.log(priceFormat());
+    console.log(priceFormat(100.1234));
+
+    // 2、ES6 引入 rest 参数（形式为 ...变量名），用于获取函数的多余参数，这样就不需要使用arguments对象了。rest 参数搭配的变量是一个数组，该变量将多余的参数放入数组中。
+
+    // values 是一个数组
+    function add (...values) {
+      let sum = 0;
+      for (var val of values) {
+        sum += val;
+      }
+      return sum;
+    }
+
+    add(2, 5, 3) // 10
+
+
+    // 3、箭头函数
+    // 无参无返回值
+    // let f1 = function () {
+    //   console.log('函数1');
+    // }
+
+    // 没有参数，圆括号不能省略
+    // 如果函数体只有一行执行语句，可以把花括号省略
+    // let f1 = () => console.log('函数1');
+    let f1 = () => {
+      console.log('函数1')
+    };
+    f1();
+
+
+    // 有参无返回值
+    // let f2 = function (a) {
+    //   console.log('函数2 a=', a);
+    // }
+
+    // 如果只有一个参数，圆括号可以写，也可以不写
+    // let f2 = a => console.log('函数2 a=', a);
+    let f2 = (a) => console.log('函数2 a=', a);
+    f2(100);
+
+
+    // 无参有返回值
+    // let f3 = function () {
+    //   console.log('函数3');
+    //   return 100;
+    // }
+
+
+    // 如果箭头指向一个具体的值，或者表达式，就像相当于添加了return语句返回这个值
+    let f3 = () => 1000;
+    // let f3 = () => {
+    //   return 100
+    // };
+    console.log(f3());
+
+
+    // 有参有返回值
+    // let f4 = function (a, b) {
+    //   console.log('函数4');
+    //   return a + b;
+    // }
+
+
+    // 如果有多个参数圆括号不能省略
+    let f4 = (a, b) => a + b;
+    console.log(f4(10, 20));
+
+    // ----------------------------------------------------------------
+    // 箭头函数有几个使用注意点。
+    // （1）箭头函数没有自己的this对象。
+    // （2）不可以当作构造函数，也就是说，不可以对箭头函数使用new命令，否则会抛出一个错误。
+    // （3）不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。
+
+
+    // 如果箭头指向一个具体的值，或者表达式，就像相当于添加了return语句返回这个值
+    // let fn = () => {
+    //   return {
+    //     name: '张三',
+    //     age: 18,
+    //   }
+    // }
+    // let fn = () => ({
+    //   name: '张三',
+    //   age: 18,
+    // });
+    // console.log(fn());
+
+
+
+    function insert (value) {
+      return {
+        into: function (array) {
+          return {
+            after: function (afterValue) {
+              array.splice(array.indexOf(afterValue) + 1, 0, value);
+              return array;
+            }
+          };
+        }
+      };
+    }
+
+    let insert = value => ({
+      into: array => ({
+        after: afterValue => {
+          array.splice(array.indexOf(afterValue) + 1, 0, value);
+          return array;
+        }
+      })
+    })
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

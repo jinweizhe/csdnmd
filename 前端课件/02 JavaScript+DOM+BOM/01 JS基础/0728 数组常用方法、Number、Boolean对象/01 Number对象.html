@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// Number 是三大包装对象之一，可以作为构造函数来创建对象（一般不用），也可以作为工具函数把其他类型转为数字类型
+			// console.log(Number('1'));
+			// console.log(Number('a'));
+
+			var num = 3.1465926;
+
+			// toFixed保留几位小数（四舍五入）
+			console.log(num.toFixed(2));
+
+			// // 最大数字
+			// console.log(Number.MAX_VALUE);
+			// // 无限接近于0的正数
+			// console.log(Number.MIN_VALUE);
+			// // 最小数字
+			// console.log(-Number.MAX_VALUE);
+
+			// window 是JS在浏览器环境中的全局对象，有很多全局的属性或者方法都在window对象上，但是使用的时候可以省略window
+			// window.console.log();
+			// window.alert();
+			// window.parseInt();
+			// window.parseFloat();
+			// window.isNaN();
+
+			// 在ES6中，把一些全局的属性和方法移植到了Number上，属性和方法的功能保持一致，但是Number.isNaN和全局的isNaN之间有一点变化
+
+			// console.log(window.NaN);
+			// console.log(Number.NaN);
+
+			// console.log(window.isNaN());
+			// console.log(Number.isNaN());
+
+			// console.log(window.parseInt());
+			// console.log(Number.parseInt());
+
+			// console.log(window.parseFloat());
+			// console.log(Number.parseFloat());
+
+			// NaN 非数字，是JS中唯一一个不等于自身的值，判断一个值是否是NaN不能使用等号判断，使用isNaN函数判断
+			console.log(NaN === NaN); // false
+			// isNaN 判断一个值是否是非数字，如果是非数字返回true；否则返回false(如果是数字返回false)
+
+			// isNaN 先把参数转为数字类型，如果能够转为数字返回false，如果不能转为数字就转成了NaN，此时返回true
+			// 1、先把参数转为数字类型
+			// 2、判断参数的是是不是 NaN，如果是NaN返回true，否则返回false
+			console.log(isNaN(NaN)); // true
+			console.log(isNaN('a')); // true
+			console.log(isNaN(0 / 0)); // true
+			console.log(isNaN(12)); // false
+
+			console.log(isNaN(undefined)); //true
+
+			console.log(isNaN(1)); //false
+			console.log(isNaN(0)); //false
+			console.log(isNaN(true)); //false
+			console.log(isNaN(false)); //false
+			console.log(isNaN('1')); //false
+			console.log(isNaN('')); //false
+			console.log(isNaN(null)); //false
+
+			console.log('------------------------------');
+
+			// Number.isNaN 不会把参数转为数字类型，只有参数是真正的数字类型，并且值是NaN，才能返回true
+			// 1、先判断参数是不是数字类型，如果不是直接返回false（不会做数据类型的转换）
+			// 2、如果是数字类型，再判断是是不是 NaN，如果是NaN返回true，否则返回false
+			console.log(Number.isNaN(NaN)); // true
+			console.log(Number.isNaN('a')); // false
+			console.log(Number.isNaN(0 / 0)); // true
+			console.log(Number.isNaN(12)); // false
+
+			console.log(Number.isNaN(undefined)); //false
+			console.log(Number.isNaN(1)); //false
+			console.log(Number.isNaN(0)); //false
+			console.log(Number.isNaN(true)); //false
+			console.log(Number.isNaN(false)); //false
+			console.log(Number.isNaN('1')); //false
+			console.log(Number.isNaN('')); //false
+			console.log(Number.isNaN(null)); //false
+
+
+      // JavaScript 内部，整数和浮点数采用的是同样的储存方法，所以 2 和 2.0 被视为同一个值。
+      console.log(Number.isInteger(2));
+      console.log(Number.isInteger(2.0));
+
+      // 如果是其他的数据类型，不会把参数转为数字
+      console.log(Number.isInteger(true));// false
+
+		</script>
+	</body>
+</html>

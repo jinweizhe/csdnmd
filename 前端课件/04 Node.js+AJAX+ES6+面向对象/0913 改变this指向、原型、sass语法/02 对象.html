@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 创建对象
+    // var o1 = {
+    //   name: '张三',
+    //   age: 18,
+    //   say () {
+    //     console.log('我是' + this.name);
+    //   }
+    // }
+
+    // var o2 = {
+    //   name: '李四',
+    //   age: 18,
+    //   say () {
+    //     console.log('我是' + this.name);
+    //   }
+    // }
+
+    // 对于同类型的对象，创建多个，直接使用字面量的方式，需要做很多重复的工作，使用构造函数添加对象的属性和方法，减少属性和方法的重复添加
+
+
+    function People (n, a) {
+      console.log(this);
+
+      this.name = n;
+      this.age = a;
+      // this.say = function () {
+      //   console.log('我是' + this.name);
+      // };
+    }
+
+    People.prototype.say = function () {
+      console.log('我是' + this.name);
+    }
+
+    var o1 = new People('张三', 18);
+    var o2 = new People('李四', 22);
+
+    o1.say();
+    o2.say();
+
+    console.log(o1.say === o2.say);
+
+
+
+
+  </script>
+</body>
+
+</html>

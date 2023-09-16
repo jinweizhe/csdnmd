@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .box {
+      width: 720px;
+      height: 500px;
+      background-color: blue;
+
+      /* 
+      设置 display: flex; 的元素叫做容器，他的所有子元素叫做项目
+      容器存在两根轴：主轴 和 交叉轴
+      默认情况下（没有改变主轴方向）：
+        主轴：水平从左往右
+        交叉轴：垂直从上往下
+      
+      */
+      display: flex;
+
+      /* flex-direction: 改变主轴方向，
+      默认值row;主轴水平从左往右 */
+      /* flex-direction: row; */
+      flex-direction: column;
+
+      /* 不管是主轴方向的对齐，还是交叉轴方向的对齐，容器的尺寸足够大，可以让项目有移动的空间 */
+
+      /* justify-content 控制项目在主轴方向上的对齐方式： */
+      /* 居中对齐 */
+      /* justify-content: center; */
+
+      /* around 环绕； between 在...之间；evenly 平均的；*/
+      /* 沿主轴方向在项目的两边添加相等的间距，效果：项目与项目之间的间距相等，并且项目与容器之间间距的2倍 */
+      /* justify-content: space-around; */
+      /* 沿主轴方向在项目与项目之间添加相等的间距，效果：项目与项目之间的间距相等，但是项目与容器之间没有间距 */
+      /* justify-content: space-between; */
+      /* 沿主轴方向在项目与项目之间、容器与项目之间添加相等的间距，效果：项目与项目之间、容器与项目之间间距都是相等的 */
+      /* justify-content: space-evenly; */
+
+      /* align-items: 控制项目在交叉轴方向上的对齐方式; */
+      /* align-items: flex-start; */
+      /* align-items: flex-end; */
+      /* align-items: center; */
+      
+    }
+
+    .box .item {
+      width: 200px;
+      height: 150px;
+      background-color: lightcoral;
+    }
+
+    .box .item:nth-child(2n) {
+      background-color: lightblue;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="box">
+    <div class="item">item1</div>
+    <div class="item">item2</div>
+    <div class="item">item3</div>
+    <div class="item">item4</div>
+    <div class="item">item5</div>
+    <div class="item">item6</div>
+  </div> -->
+  <p>段落</p>
+</body>
+
+</html>

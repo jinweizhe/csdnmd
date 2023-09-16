@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      table, td{
+        border: 1px solid black;
+      }
+      header{
+        width: 500px;
+        height: 50px;
+        background-color: orange;
+        line-height: 50px;
+        text-align: center;
+        color: white;
+      }
+    </style>
+	</head>
+	<body>
+		<div class="header">
+			<ul>
+				<li>1</li>
+				<li>2</li>
+				<li>3</li>
+			</ul>
+		</div>
+
+    <ul class="list">
+      <li>231</li>
+    </ul>
+		<!-- 
+      在.nav内部：
+      找ul
+      找所有的li标签
+      找内容为国际的li标签
+      找内容为首页的a标签
+      -->
+		<nav class="nav">
+			<div class="container">
+				<ul class="nav-list">
+					<li class="home"><a href="#">首页</a></li>
+					<li><a href="#">国内</a></li>
+					<li><a href="#">国际</a></li>
+					<li><a href="#">科技</a></li>
+					<li><a href="#">娱乐</a></li>
+					<li><a href="#">互联网</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<script>
+      // 创建 美化 添加
+      // var table = document.createElement("table");
+      // document.body.appendChild(table);
+      // var tr = document.createElement("tr");
+      // table.appendChild(tr);
+      // var td = document.createElement("td");
+      // td.innerHTML = 1;
+      // tr.appendChild(td);
+      // var td = document.createElement("td");
+      // td.innerHTML = 2;
+      // tr.appendChild(td);
+
+      // input.placeholder = '---';
+
+      var header = document.createElement("header");
+      header.innerHTML = '存款收益计算器';
+      document.body.appendChild(header);
+
+
+
+
+
+
+      //       在.nav内部：
+      // 找ul
+      // 找所有的li标签
+      // 找内容为国际的li标签
+      // 找内容为首页的a标签
+      var nav = document.querySelector('.nav');
+      var ul = nav.getElementsByTagName('ul')[0];
+      console.log(ul);
+      var lis = nav.getElementsByTagName('li');
+      console.log(lis);
+      var li3 = nav.querySelector('li:nth-child(3)');
+      console.log(li3);
+      var a = nav.querySelector('.home a');
+      console.log(a);
+
+      // 在.nav内部：
+			// 找ul
+      // 使用类名查找的时候，记得从集合中取出元素
+      // var ul = document.getElementsByClassName('nav-list')[0];
+      var ul = document.querySelector('.nav .nav-list');
+      // var ul = document.querySelectorAll('.nav .nav-list')[0];
+      console.dir(ul);
+			// 找所有的li标签
+      var lis = document.querySelectorAll('.nav .nav-list li');
+      console.log(lis);
+			// 找内容为国际的li标签
+      var li3 = lis[2];
+      var li3 = document.querySelector('.nav .nav-list li:nth-child(3)');
+      console.log(li3);
+			// 找内容为首页的a标签
+      var a = document.querySelector('.nav .nav-list .home a');
+      console.log(a);
+		</script>
+	</body>
+</html>

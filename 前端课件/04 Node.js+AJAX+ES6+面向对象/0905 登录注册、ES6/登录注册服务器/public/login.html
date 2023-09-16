@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <form>
+    <label>账号：<input type="text" name="username" required></label> <br>
+    <label>密码：<input type="password" name="password" required></label> <br>
+    <input class="login-btn" type="button" value="登录">
+    <button type="button"><a href="./regist.html">去注册</a></button>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
+  <script>
+
+
+    var loginBtn = document.querySelector('.login-btn');
+
+    loginBtn.onclick = function () {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('响应的数据：', xhr.responseText);
+          var res = JSON.parse(xhr.responseText);
+          if (res.error == 0) {
+            location.href = './index.html';
+          }else{
+            layer.msg(res.data);
+          }
+        }
+      }
+      xhr.open('POST', 'http://127.0.0.1:3000/login');
+
+      console.log($('form').serialize());
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send($('form').serialize());
+    }
+
+    
+  </script>
+</body>
+
+</html>

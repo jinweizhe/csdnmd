@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// - 去除字符串 `'  hh   l   e  '` 中所有的空格，至少两种写法
+			// 方法一：使用一个新的字符串变量，把原字符串中的非空格字符拼接到新变量中
+			var str = '  hh   l   e  ';
+			var newStr = '';
+			for (var i = 0; i < str.length; i++) {
+				// var char  = str.charAt(i);
+				var char = str[i];
+				// 判断某个字符是否是空格
+				// console.log('char = -'+char+'-', char === ' ');
+				// console.log('char = -'+char+'-', char.indexOf(' ') == 0);
+				console.log('char = -' + char + '-', char.includes(' '));
+				if (!char.includes(' ')) {
+					newStr += char;
+				}
+			}
+			console.log('newStr = ', newStr);
+
+			// 方法二：replaceAll
+			var newStr = str.replaceAll(' ', '');
+			console.log('newStr = ', newStr);
+
+			// 方法二：使用replace
+			var str = '  hh   l   e  ';
+			var newStr = '';
+			for (var i = 0; i < str.length; i++) {
+				var char = str.charAt(i);
+				console.log('前char =' + char + '=');
+				char = char.replace(' ', '');
+				char = char.trim();
+				console.log('后char =' + char + '=');
+				// 在执行拼接之前，如果char是空格，把空格转换为空字符串
+				newStr += char;
+			}
+			console.log('newStr = ', newStr);
+
+			// 方法三：使用replace
+			var str = '  hh   l   e  ';
+			// 重复让自己去空格，把去空格之后的结果赋值给自己，每执行一次空格少一个，有多少空格执行多少次
+			// str = str.replace(' ', '');
+			// str = str.replace(' ', '');
+			// str = str.replace(' ', '');
+
+			var length = str.length;
+			for (var i = 0; i < length; i++) {
+				str = str.replace(' ', '');
+				// console.log('i = ', i, 'str = ',str,'length = ',str.length);
+			}
+			console.log('str =' + str + '=');
+
+			// 优化方法三
+			var str = '  hh   l   e  ';
+			console.log(str.split(' '));
+			// 使用字符串分隔，先得到空格的数量
+			var length = str.split(' ').length - 1;
+			for (var i = 0; i < length; i++) {
+				str = str.replace(' ', '');
+				// console.log('i = ', i, 'str = ',str,'length = ',str.length);
+			}
+			console.log('str =' + str + '=');
+
+			// 方法四：
+			var str = '  hh   l   e  ';
+			for (var i = 0; i < str.length; i++) {
+				if (str.includes(' ')) {
+					str = str.replace(' ', '');
+					i--;
+				}
+				console.log('i = ', i, 'str = ', str, 'length = ', str.length);
+			}
+			console.log('str =' + str + '=');
+
+			// 方法：while
+			var str = '  hh   l   e  ';
+			// 只要包含空格，就执行一次while去一次空格
+			while (str.includes(' ')) {
+				str = str.replace(' ', '');
+			}
+			console.log('str =' + str + '=');
+
+			// - 字符串 `'qwert'` 反转，至少两种写法
+			var str = 'qwert';
+			var newStr = '';
+			for (var i = 0; i < str.length; i++) {
+				// newStr += str[str.length - 1 - 0];
+				// newStr += str[str.length - 1 - 1];
+				newStr += str[str.length - 1 - i];
+			}
+			console.log('newStr = ', newStr);
+
+			var str = 'qwert';
+			var newStr = '';
+			var index = 0;
+			for (var i = 0; i < str.length; i++) {
+				index--;
+				newStr += str.at(index);
+			}
+			console.log('newStr = ', newStr);
+
+			console.log(str.split('').reverse().join(''));
+
+			// - 字符串 `'abbaacca'` 去重
+			var str = 'abbaacca';
+			var newStr = '';
+			// 使用一个新的字符串变量，把原字符串中的字符如果在新变量中不存在，把该字符拼接到新变量中
+			for (var i = 0; i < str.length; i++) {
+				var char = str.charAt(i);
+				// 判断newStr中不包含char的时候，在进行拼接
+				if (!newStr.includes(char)) {
+					newStr += char;
+				}
+			}
+			console.log('newStr = ' + newStr);
+
+			// - 一个数组中存放着若干人名`['唐僧','王小二','猪八戒','孙悟空','王二狗','王小利']`，找出所有姓王的名字
+			var names = ['唐僧', '王小二', '猪八戒', '孙悟空', '王二狗', '王小利'];
+			for (var i = 0; i < names.length; i++) {
+				var name = names[i];
+				if (name.startsWith('王')) {
+					console.log(name);
+				}
+			}
+
+			var str = 'give me some sunshine give me some rain give me another changce i wanna grow up once again';
+			// - 统计上述字符串中字母a出现了多少次
+			console.log(str.split('a').length - 1);
+
+      var count = 0;
+      for(var i = 0; i < str.length; i++){
+        if (str[i] === 'a') {
+          count++;
+        }
+      }
+      console.log('count: ' + count);
+
+
+		</script>
+	</body>
+</html>

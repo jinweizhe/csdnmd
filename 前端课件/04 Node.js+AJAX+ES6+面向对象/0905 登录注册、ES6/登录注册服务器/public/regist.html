@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- 使用表单的时候，表单元素都放在form标签中，并且给每一个表单元素添加name属性，name属性的值就是参数名 -->
+  <form>
+    <label>账号：<input type="text" name="username" required></label> <br>
+    <label>密码：<input type="password" name="password" required></label> <br>
+    <label>确认：<input type="password" name="confirm" required></label> <br>
+    <label>年龄：<input type="text" name="age" required></label> <br>
+    <div>性别：
+      <label><input type="radio" name="sex" value="男" checked> 男</label>
+      <label><input type="radio" name="sex" value="女"> 女</label>
+    </div>
+    <div>专业：
+      <select name="major">
+        <option value="html">HTML</option>
+        <option>CSS</option>
+        <option>JS</option>
+      </select>
+    </div>
+    <div>爱好：
+      <label><input type="checkbox" name="hobby" value="运动">运动</label>
+      <label><input type="checkbox" name="hobby" value="游戏">游戏</label>
+      <label><input type="checkbox" name="hobby" value="音乐">音乐</label>
+    </div>
+    <input class="regist-btn" type="button" value="注册">
+    <button type="button"><a href="login.html">去登录</a></button>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
+  <script>
+
+    var registBtn = document.querySelector('.regist-btn');
+    // var nameInput = document.querySelector('[name=username]');
+    // var pswInput = document.querySelector('[name=password]');
+    // var confInput = document.querySelector('[name=confirm]');
+    // var ageInput = document.querySelector('[name=age]');
+    // var majorSelect = document.querySelector('[name=major]');
+    // var sexInput = document.querySelectorAll('[name=sex]');
+    // var hobbyInput = document.querySelectorAll('[name=hobby]');
+
+
+    // 单选框、复选框需要添加vlaue属性
+    // 获取输入框、单选框、复选框的值使用：input.value    
+    // 获取select的值用: select.value
+      // 当option标签有value属性，select.value的值就是value属性的值
+      // 当option标签没有value属性，select.value的值就是option标签的内容
+
+    registBtn.onclick = function () {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          console.log('响应的数据：', xhr.responseText);
+          var res = JSON.parse(xhr.responseText);
+          if (res.error == 0) {
+            location.href = './login.html';
+          }else{
+            layer.msg(res.data);
+          }
+        }
+      }
+      xhr.open('POST', 'http://127.0.0.1:3000/regist');
+
+      // 把form标签中表单元素带name属性的值格式化成 encoded 类型的数据 
+      console.log($('form').serialize());
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send($('form').serialize());
+
+      // xhr.setRequestHeader('Content-Type', 'application/json');
+
+      // var hobbbys = [];
+      // for(var i = 0; i < hobbyInput.length; i++){
+      //   if (hobbyInput[i].checked) {
+      //     hobbbys.push(hobbyInput[i]).value;
+      //   }
+      // }
+
+      // var data = {
+      //   username: nameInput.value,
+      //   password: pswInput.value,
+      //   confirm: confInput.value,
+      //   age: ageInput.value,
+      //   sex: sexInput[0].checked ? sexInput[0].value : sexInput[1].value,
+      //   major: majorSelect.value,
+      //   hobby: [hobbyInput[0].checked ? hobbyInput[0].value : '', hobbyInput[1].checked ? hobbyInput[1].value : '',hobbyInput[2].checked ? hobbyInput[2].value : '',]
+      // }
+      // xhr.send(JSON.stringify(data));
+
+
+    }
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .w {
+      width: 900px;
+      margin: auto;
+    }
+
+    .nav {
+      line-height: 50px;
+    }
+
+    .nav-list {
+      display: flex;
+    }
+
+    .nav-list .item {
+      padding: 0 10px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .nav-list .item.active,
+    .nav-list .item:hover {
+      color: #fff;
+      background-color: #ff5d23;
+    }
+
+    #list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #list .item {
+      width: 180px;
+      height: 200px;
+      text-align: center;
+    }
+
+    #list .item img {
+      width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav" id="nav">
+
+  </nav>
+  <div class="w">
+    <div id="list"></div>
+  </div>
+
+  <script id="nav-template" type="text/html">
+    <ul class="nav-list w">
+      {{each data}}
+      <li class="item {{$index==0 ? 'active': ''}}">{{$value.name}}</li>
+      {{/each}}
+    </ul>
+  </script>
+
+  <script id="list-template" type="text/html">
+    {{each list}}
+    <div class="item">
+      <img src="{{$value.squareIconUrlW}}" alt="">
+      <p>{{$value.cname2}}</p>
+      <p>{{$value.hn}}</p>
+    </div>
+    {{/each}}
+  </script>
+
+  <script>
+
+    // 获取游戏名字的请求
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        var res = JSON.parse(xhr.responseText);
+        console.log(res);
+        nav.innerHTML = template('nav-template', res);
+
+        var items = document.querySelectorAll('.item');
+        // 初次运行程序，添加active类名，并获取列表数据
+        // items[0].classList.add('active');
+        getList('PCgame');
+        
+
+        for (var i = 0; i < items.length; i++) {
+          items[i].index = i;
+          items[i].onclick = function () {
+            for (var i = 0; i < items.length; i++) {
+              items[i].classList.remove('active');
+            }
+            this.classList.add('active');
+            var shortName = res.data[this.index].shortName;
+            getList(shortName);
+
+          }
+        }
+
+      }
+    }
+    xhr.open('GET', 'http://127.0.0.1:3000/japi/weblist/apinc/shortName');
+    xhr.send();
+
+
+    // getList函数的功能是传入一个 shortName，得到数据列表并渲染到页面上
+    // 初次运行程序需要执行一次，直接传入 PCgame
+    // 当点击不同的选项，每点击一次执行一次，根据点击不同的选项传入不同的名字，获取不同的数据
+    function getList (shortName) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var res = JSON.parse(xhr.responseText);
+          console.log(res);
+          list.innerHTML = template('list-template', res.data)
+        }
+      }
+      xhr.open('POST', 'http://127.0.0.1:3000/japi/weblist/apinc/getC2List');
+
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send('shortName=' + shortName);
+    }
+
+
+  </script>
+</body>
+
+</html>

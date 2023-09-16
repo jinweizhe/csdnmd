@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style>
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: lightblue;
+				position: absolute;
+				top: 100px;
+				left: 100px;
+        /* transform: rotate(0); */
+        display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<button class="b1">显示隐藏</button>
+		<button class="b2">滑动动画</button>
+		<button class="b3">淡入淡出</button>
+		<button class="b4">自定义动画</button>
+		<button class="b5">串行动画</button>
+    <button class="stop">停止</button>
+		<div class="box">动画</div>
+		<script>
+			// JQ内置了三种动画效果：显示隐藏、滑动动画、淡入淡出，如果内置的动画效果不能满足要求，还可以自定义动画效果
+
+			// $(selector).动画函数(动画时间，动画结束的回调函数)
+			// 动画时间：JQ内置的动画函数都可以传递一个时间参数，可以是时间名词：fast  normal  slow分别对应：200ms 400ms 600ms，也可以是具体时间数字，单位是毫秒。如果不传递时间，是直接使用display:none或者block，隐藏和显示元素
+			// 动画结束的回调函数：当动画结束的时候调用的函数
+
+			// 一、显示隐藏
+			var start = true;
+			$('.b1').click(function () {
+				// if (start) {
+				// 	$('div').hide(1000, function () {
+				//     console.log('动画结束');
+				//   });
+				// } else {
+				// 	$('div').show(1000);
+				// }
+				// start = !start;
+				// 开关效果
+				$('div').toggle(1000);
+			});
+
+      // 二、滑动动画
+      var start = true;
+			$('.b2').click(function () {
+				if (start) {
+					$('div').slideDown(100);
+        } else {
+					$('div').slideUp(100);
+				}
+				start = !start;
+				// 开关效果
+				// $('div').slideToggle(1000);
+        // $('div').animate({
+        //   top:150,
+        //   height:0,
+        // }, 1000)
+			});
+
+			// 三、淡入和淡出
+			var start = true;
+			$('.b3').click(function () {
+				// if (start) {
+				// 	$('div').fadeOut(1000);
+				// } else {
+				// 	$('div').fadeIn(1000);
+				// }
+				// start = !start;
+				// 开关效果
+				// $('div').fadeToggle();
+
+        // 自定义渐变效果
+				if (start) {
+					$('div').fadeTo(1000, 0.2);
+				} else {
+					$('div').fadeTo(1000, 0.8);
+				}
+				start = !start;
+			});
+
+      // 四、自定义动画
+      // $(selector).animate(CSS属性，动画时间，速度类型？，完成函数？)
+      // CSS属性：是一个对象，用来写动画结束时的样式。结构是：{属性名：属性值，属性名：属性值，...}
+      // 动画时间：单位毫秒
+      // 速度类型：速度类型：swing和linear
+      // 完成函数：动画结束时执行的函数
+      // 只需要写出结束时的样式，JQ会自动根据动画时间执行动画
+
+      $('.b4').click(function(){
+        $('div').animate({
+          left:400,
+          width: 100,
+          height: 75,
+          opacity: 0.5,
+          // transform: 'translateX(100px)',
+          // backgroundColor: 'red',
+        }, 1000, 'linear', function(){
+          console.log(this);// 动画结束的函数中this指向动画的元素
+          $('div').animate({left:100}, 1000, function(){
+            console.log('动画结束');
+          });
+        });
+      });
+
+      $('.b5').click(function(){
+        // 给同一个标签添加多个animate，可以实现串行动画
+        $('div')
+        .animate({left: 800}, 10000)
+        .animate({top: 400}, 1000)
+        .animate({left: 100}, 1000)
+        .animate({top: 100}, 1000)
+      });
+
+
+
+
+
+      $('.stop').click(function () {
+
+        // 判断元素是否在动画
+        console.log($('div').is(':animated'));
+
+        // 停止当前动画
+        // $('div').stop();
+        // 参数1：是否清空串行动画，停止当前及后面所有的动画
+        // $('div').stop(true);
+        // 参数2：是否让当前动画立即完成，不会影响后面的动画
+        // $('div').stop(false, true);
+      });
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+		</style>
+	</head>
+	<body>
+		<!-- 如果给标签添加了id，会在JS代码中生成同名的变量，可以直接使用 -->
+		<button id="btn">按钮</button>
+		<script>
+	
+
+			// this是在函数调用时传递的默认参数，可以在函数中直接使用
+			// this的指向不同的函数中指向是不固定的
+
+			// this：谁调用函数，this就是指向谁
+			// 如果函数没有明确的调动对象，this一般是指向window
+
+			btn.onclick = function () {
+				console.log('btn click:', this);
+
+				var that = this;
+
+				requestAnimationFrame(move)
+				function move() {
+					console.log('btn move: this', this);
+					console.log('btn move: that', that);
+				}
+			};
+
+			// 对象中的函数是由对象调用的，所以对象的函数中的this指向该对象
+			// var zhangsan = {
+			//   name:'张三',
+			//   say: function(){
+			//     console.log('say:', this);
+			//   }
+			// }
+			// zhangsan.say();
+
+			// 全局变量都是window对象的属性，可以使用  window.属性名 来访问全局变量
+			// var a = 100;
+			// console.log(window.a, a);
+
+			// 在全局作用域声明的函数，是全局函数，也是window对象的属性，使用window.move() 等价于 move()
+			// move();
+			// window.move();
+			// function move(){
+			//   // var a = 10;
+			//   // console.log('move: this.a',this.a);
+			//   // console.log('move: a',a);
+
+			//   fn()
+			//   function fn(){
+			//     console.log(this);
+			//   }
+			// }
+		</script>
+	</body>
+</html>

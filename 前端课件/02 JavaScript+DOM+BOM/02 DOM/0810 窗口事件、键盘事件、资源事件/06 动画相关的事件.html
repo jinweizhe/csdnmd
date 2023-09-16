@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			p {
+				display: inline-block;
+			}
+			.bg {
+				transition: all 1s;
+			}
+			.bg:hover {
+				background-color: blue;
+			}
+			.rotate1 {
+				animation: rt1 10s linear;
+			}
+			@keyframes rt1 {
+				to {
+					transform: rotate(0);
+				}
+				from {
+					transform: rotate(360deg);
+				}
+			}
+			.rotate2 {
+				animation: rt2 10s linear;
+			}
+			@keyframes rt2 {
+				to {
+					transform: rotate(0);
+				}
+				from {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<button>按钮</button>
+		<button class="btn2">下一个</button>
+		<p class="bg">hello world</p>
+
+		<audio src="qiaobianguniang.mp3"></audio>
+
+		<script>
+			window.onload = function () {
+				var btn1 = document.querySelector('button');
+				var btn2 = document.querySelector('.btn2');
+				var p = document.querySelector('p');
+				var audio = document.querySelector('audio');
+
+				// audio.src = 'qiaobianguniang.mp3';
+				document.onclick = function () {
+					audio.play(); //播放
+					// audio.pause(); //暂停
+				};
+
+				// 给标签添加类名实现某种关键帧动画，如果想让动画重复执行，当动画结束之后，移除动画的类名，下次再次添加类名
+				btn1.onclick = function () {
+					p.classList.add('rotate1');
+				};
+				// 把标签的类名重置，动画会重新从头开始
+				btn2.onclick = function () {
+					p.classList.remove('rotate1');
+					p.classList.add('rotate2');
+				};
+
+				// 关键帧动画的事件
+				// animationstart 动画开始时时触发的事件
+				// animationend 动画结束时触发的事件
+				// animationiteration 动画多次执行的时候触发
+				p.addEventListener('animationend', function () {
+					console.log('动画结束');
+					p.classList.remove('rotate1');
+				});
+				// 过渡动画的事件
+				// transitionstart 过渡动画开始的时候执行
+				// transitionend  过渡动画结束的时候执行
+				p.addEventListener('transitionend', function () {
+					console.log('过渡结束');
+				});
+			};
+		</script>
+	</body>
+</html>

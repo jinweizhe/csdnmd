@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+
+	<body>
+		<script>
+			// 用户登录系统时需要输入用户名和密码，系统对用户输入的用户名和密码进行验证。验证次数最多3次，超过三次则程序结束。假设正确的用户名和密码为kate和123456
+
+			// var isLoop = true;
+			// var username = '',
+			// 	password = '',
+			// 	count = 3;
+
+			// while (isLoop) {
+			// 	username = prompt('Enter your username');
+			// 	password = prompt('Enter your password');
+			//   count--;
+			// 	if (username == 'kate' && password == '123456') {
+			// 		alert('登录成功');
+			// 		break;
+			// 	} else {
+			//     if (count <= 0) {
+			//       break;
+			//     } else {
+			//       alert('账号或者密码错误，还有'+count+'次机会');
+			//     }
+			// 	}
+			// }
+
+			var username = '',
+				password = '',
+				count = 3;
+
+			while (count > 0) {
+				username = prompt('Enter your username');
+				password = prompt('Enter your password');
+
+				count--;
+				console.log('count = ' + count);
+				if (username == 'kate' && password == '123456') {
+					alert('登录成功');
+					break;
+				} else {
+					if (count > 0) {
+						alert('账号或者密码错误，还有' + count + '次机会');
+					} else {
+						alert('错误次数达到上限');
+					}
+				}
+			}
+		</script>
+	</body>
+</html>

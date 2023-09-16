@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title></title>
+		<style>
+			#box {
+				width: 500px;
+				margin: 0 auto;
+			}
+
+			#box .content {
+				line-height: 30px;
+				display: flex;
+				justify-content: space-between;
+				color: #808080;
+			}
+
+			#box .right {
+				/* display: none; */
+			}
+
+			#box .right strong {
+				font-size: 25px;
+			}
+
+			#box .right strong.active {
+				color: orange;
+			}
+
+			#box .input textarea {
+				width: 500px;
+				height: 120px;
+				border: 1px solid #ccc;
+				box-shadow: 0 0 5px rgba(0, 0, 0, 0.15) inset;
+				resize: none;
+				outline: none;
+				font-size: 16px;
+				color: #808080;
+			}
+
+			#box .input textarea:focus {
+				border: 1px solid #f93;
+				box-shadow: none;
+				color: black;
+			}
+			button {
+				background-color: orange;
+				border: none;
+				/* opacity: 0.5; */
+				cursor: not-allowed;
+			}
+			.active {
+				/* opacity: 1; */
+				cursor: auto;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="box">
+			<div class="content">
+				<span>有什么新鲜事想告诉大家?</span>
+				<span class="right">已经输入<strong>0</strong>字</span>
+			</div>
+			<div class="input"><textarea class="text"></textarea></div>
+			<button onclick="alert('发布')" disabled>发布</button>
+		</div>
+		<script type="text/javascript">
+			var textarea = document.querySelector('.text');
+			var strong = document.querySelector('strong');
+			var button = document.querySelector('button');
+
+			textarea.oninput = function () {
+				var str = textarea.value;
+				if (str.length > 0) {
+					button.className = 'active';
+					button.disabled = false;
+				} else {
+					button.className = '';
+					button.disabled = true;
+				}
+
+				var count = 0; // 记录字的个数
+				for (var i = 0; i < str.length; i++) {
+					var ch = str[i];
+					// console.log(ch,ch.charCodeAt(0));
+					if (ch.charCodeAt(0) > 255) {
+						// 汉字字符，汉字出现一次，count加1
+						count++;
+					} else {
+						// 英文字符，英文出现一次，count加0.5
+						count += 0.5;
+					}
+				}
+				console.log(count, Math.ceil(count));
+				strong.innerHTML = Math.ceil(count);
+			};
+
+			// var str = '今天好开心40+temp';
+			// console.log(str.length);
+			// var count = 0;
+			// for (var i = 0; i < str.length; i++) {
+			// 	var ch = str[i];
+			// 	// console.log(ch,ch.charCodeAt(0));
+			// 	if (ch.charCodeAt(0) > 255) {
+			// 		// 汉字字符，汉字出现一次，count加1
+			// 		count++;
+			// 	} else {
+			// 		// 英文字符，英文出现一次，count加0.5
+			// 		count += 0.5;
+			// 	}
+			// }
+			// console.log(count, Math.ceil(count));
+		</script>
+	</body>
+</html>

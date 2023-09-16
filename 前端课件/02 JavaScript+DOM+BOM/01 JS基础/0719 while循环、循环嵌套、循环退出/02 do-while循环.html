@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+
+  <script>
+
+    /*
+
+    执行流程：
+    - (1)首先执行【循环变量初始值】，先执行一次【循环体】和改变【迭代循环变量】
+    - (2)接着进行【循环条件】判断，若值=true，则继续执行循环体，改变【迭代循环变量】
+    - (3)重复执行步骤(2)，直到【循环条件】的值=false，立即结束循环;
+
+    循环变量初始值
+    do {
+      循环体
+      迭代循环变量
+    } while (循环条件);
+
+    */
+
+    // do...while语句和while语句相似，不同点：do...while不管【循环条件】是什么，先执行一次循环体
+
+    while (false) {
+      console.log('while-----------');
+    }
+
+    do {
+      console.log('------------');
+    } while (false);
+
+    var i = 1;
+    var sum = 0;
+    do {
+      sum += i;
+      i++;
+    } while (i <= 100);
+    console.log('sum = ' + sum);
+
+
+
+  </script>
+</body>
+
+</html>

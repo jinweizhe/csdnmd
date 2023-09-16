@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+      .box{
+        width: 100%;
+        height: 60px;
+        display: flex;
+        justify-content: center;
+        align-items:  center;
+        background-color: lightblue;
+      }
+      .box .item{
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+        background-color: red;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <!-- 使用第一种绑定事件的方式，比较繁琐，标签比较多，需要在每一个标签上添加onclick属性，传值的时候，直接在调用函数的时候传递具体的参数
+      直接在标签上使用onclick属性，适用于标签比较所少的时候
+      -->
+      <!-- <div class="item" data-index="0" onclick="itemClick(0)"></div>
+      <div class="item" data-index="1" onclick="itemClick(1)"></div>
+      <div class="item" data-index="2" onclick="itemClick(2)"></div>
+      <div class="item" data-index="3" onclick="itemClick(3)"></div>
+      <div class="item" data-index="4" onclick="itemClick(4)"></div> -->
+      <div class="item" data-index="0" onclick="itemClick(this)"></div>
+      <div class="item" data-index="1" onclick="itemClick(this)"></div>
+      <div class="item" data-index="2" onclick="itemClick(this)"></div>
+      <div class="item" data-index="3" onclick="itemClick(this)"></div>
+      <div class="item" data-index="4" onclick="itemClick(this)"></div>
+    </div>
+    <script>
+
+      var colors = ['red', 'green', 'yellow', 'blue', 'purple'];
+
+      var items = document.querySelectorAll('.box .item');
+
+      for(var i = 0; i < items.length; i++){
+        var item = items[i];
+        item.style.background = colors[i];
+      }
+
+      // 方式一：直接传递数字，index的值就是 0 1 2 3 4 
+      // function itemClick(index){
+      //   // 点击某个元素，找到该元素在页面上box内部的索引值
+      //   document.body.style.background = colors[index];
+      // }
+
+      // this：在事件中是指绑定事件的元素，具体来说就是谁调用了onclick属性，this就是指向谁
+      // ev.target: 指的是被点击的元素，在事件中鼠标点击了谁，target就是谁
+
+
+      // 方式二：传递this或者event，找到被点击的元素，this就是被点击的元素，使用event，ev.target是被点击的元素
+      function itemClick(item){
+        // 点击某个元素，找到该元素在页面上box内部的索引值
+        console.log(item.dataset.index);
+        document.body.style.background = colors[item.dataset.index];
+      }
+    
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 500px;
+				background-color: red;
+			}
+			.list {
+				width: 300px;
+				background-color: blue;
+			}
+			.list li {
+				width: 200px;
+				background-color: green;
+			}
+		</style>
+	</head>
+	<body>
+		<button>增加</button>
+		<div class="box">
+			<ul class="list">
+				<li>选项1</li>
+				<li>选项2</li>
+				<li>选项3</li>
+			</ul>
+		</div>
+		<script>
+			var btn = document.querySelector('button');
+			var list = document.querySelector('.list');
+			var box = document.querySelector('.box');
+
+			// 1、让选项从4开始 4 5 6 7 ...
+			// 2、给每一li标签添加点击事件，点击li标签让其文字变红
+
+			// var index = list.children.length;
+			btn.onclick = function () {
+				var newLi = document.createElement('li');
+				list.appendChild(newLi);
+				// index++;
+				newLi.innerHTML = '选项' + list.children.length;
+
+				// var lis = document.querySelectorAll('.list li');
+				// console.log(lis);
+				// for (var i = 0; i < lis.length; i++) {
+				// 	lis[i].onclick = function () {
+				// 		this.style.color = 'red';
+				// 	};
+				// }
+			};
+			// 事件代理：利用冒泡的原理，把本应该添加到子元素的事件，直接添加到父级元素上，当点击子元素的时候，事件会冒泡到父级元素上，使用target找到被点击的元素
+			// 这种情况一般需要使用target判断 target 是不是我们想要点击的元素
+			box.onclick = function (ev) {
+				console.dir(ev.target);
+        if (ev.target.tagName == 'LI') {
+          ev.target.style.color = 'red';
+        }
+			};
+
+			// list.onclick = function (ev) {
+			//   console.dir(ev.target.tagName);
+			//   // if (this != ev.target) {
+			//   //   console.log(ev.target);
+			//   // }
+			// };
+		</script>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<div class="box">
+			<ul class="nav-list">
+				<li class="item1">选项1</li>
+				<li class="item2">选项2</li>
+				<li class="item3"><a href="">选项3</a></li>
+				<li class="item4"><a href="">选项4</a></li>
+				<li class="item5">选项5</li>
+				<li class="item6">
+					<ul>
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		<script>
+			// 元素的遍历：向上parent、向下child、同级sibling
+
+			// 1、向上遍历
+			console.log($('.item3').parent()); // 找到父元素
+			// console.log($('.item3').parents());// 找到所有的父级元素
+
+			// 2、向下遍历
+			// .children() 找到内部所有的子元素，是一种父子关系
+			console.log($('ul.nav-list').children());
+
+			// .find() 找到内部的后代元素，是一种包含关系
+			console.log($('ul.nav-list').find('li'));
+			console.log($('ul.nav-list').find('a'));
+
+			// 3、同级遍历
+			// .prev() 上一个相邻的兄弟元素
+			console.log($('.item3').prev());
+			// .next() 下一个相邻的兄弟元素
+			console.log($('.item3').next());
+			// .siblings() 找到所有的兄弟元素，不包含自己
+			console.log($('.item3').siblings());
+
+			// parent(selector) 找到符合条件的父元素
+			// console.log($('.item3').parent('.nav-list'));
+		</script>
+	</body>
+</html>

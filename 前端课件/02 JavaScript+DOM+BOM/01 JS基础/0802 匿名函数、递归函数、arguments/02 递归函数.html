@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 递归函数：在函数的内部调用函数自己，但是递归函数需要有一个结束条件，否则就会造成死循环
+			var index = 0;
+			function fn() {
+				index++;
+				console.log('fn index: ' + index);
+				if (index >= 6) {
+					return;
+				}
+				fn();
+			}
+			// fn();
+
+			// 打印1-10的数字
+			var sum = 0;
+			function fn1(n) {
+				if (n <= 0) {
+					return;
+				}
+				console.log('n = ' + n);
+				sum += n;
+				fn1(n - 1);
+			}
+			// fn1(10);
+			// console.log(sum);
+
+			// 求1-10的和
+			function fn2(n) {
+				if (n <= 1) {
+					return 1;
+				}
+				return fn2(n - 1) + n;
+			}
+			var sum = fn2(1);
+			console.log(sum);
+
+			// 斐波那契数列指的是这样一个数列 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233 ...
+			function feibo(n) {
+				if (n <= 2) {
+					return 1;
+				}
+				var res = 0,
+					t1 = 1,
+					t2 = 1;
+				for (var i = 2; i < n; i++) {
+					res = t1 + t2;
+					t1 = t2;
+					t2 = res;
+				}
+				return res;
+			}
+			console.log(feibo(10));
+
+			// function feibo(n) {
+			// 	if (n <= 2) {
+			// 		return 1;
+			// 	}
+			// 	return feibo(n - 2) + feibo(n - 1);
+			// }
+			// console.log(feibo(10));
+		</script>
+	</body>
+</html>

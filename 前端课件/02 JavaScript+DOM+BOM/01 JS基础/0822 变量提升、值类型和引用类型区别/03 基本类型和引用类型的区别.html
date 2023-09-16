@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 基本数据类型：是值类型，保存在栈区，string、number、boolean、null、undefined都是基本类型
+			// 引用数据类型：是引用类型，保存在堆区，除去基本类型之外的都是引用类型
+			// 引用类型统称为对象类型，细分为：Object、Array、Date、Function等
+
+			// 一、基本类型的特点
+			// 1、变量的值存储在栈区，变量的值不受其他变量的影响
+			// 2、保存和复制的是值本身，是一种【值传递】
+			// 3、判断数据类型使用typeof，比较特殊的是 typeof null的结果是object
+			// 4、基本类型使用 == 作比较的时候，比价的是变量的值
+			var a = 2; // a保存的数字2
+			var b = a; // 把变量a的值复制一份，然后赋值给变量b，复制的数字2（值本身）
+			b = 6;
+			console.log('a=', a, 'b=', b);
+			b = '2';
+			console.log(a == b);
+
+			// 二、引用类型的特点
+			// 1、引用类型的值存储在堆区，变量的值会受到引用对象的影响
+			// 2、保存和复制的是指向对象的一个内存地址，是一种【引用传递】
+			// 3、判断数据类型使用 instanceof
+      // 4、引用类型使用 == 比较的时候，比较的是内存地址
+			var a1 = {
+				// a1保存的是对象的内存地址
+				name: '汪晨',
+				age: 18,
+				weight: 60,
+			};
+			var a2 = a1; // 把变量a1的值复制一份，然后赋值给变量a2，复制的是a1保存的内存地址
+			a2.weight = 80;
+
+			console.log(a1, a2);
+
+			// var a3 = [];
+			// var a4 = [];
+			// console.log(a3 instanceof Array);// 判断构造函数的原型是否在对象的原型链上，如果是，该对象就是通过构造函数创建的实例（对象），返回结果是true，否则返回false
+			// console.log(a2 instanceof Array);
+
+			// console.log(a3 == a4);
+
+			// console.log(typeof {}, typeof []);
+		</script>
+	</body>
+</html>

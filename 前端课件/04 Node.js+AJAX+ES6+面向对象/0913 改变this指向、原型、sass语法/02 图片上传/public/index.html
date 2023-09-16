@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- <ol>
+    <li><a href="./01 点击上传.html">点击上传</a></li>
+    <li><a href="./02 拖拽上传.html">拖拽上传</a></li>
+  </ol> -->
+
+  <!-- accept="image/*" 规定选择的文件类型 -->
+  <input type="file" id="input" multiple accept="image/*" hidden><br>
+  <div class="box" id="box">点击选择文件</div>
+  <!-- <button onclick="upload()">点击上传</button> -->
+  <!-- <button onclick="axiosUpload()">axios点击上传</button> -->
+  <script>
+    // 隐藏tupe=file的文件选择框，点击某个标签，触发文件选择框的点击事件
+    // 1、点击box触发文件选择框
+    box.onclick = function () {
+      input.click();// 触发文件选择框的选择文件的事件
+    }
+    // 2、把选择的图片显示在页面上，监听change事件
+    input.onchange = function () {
+      let file = input.files[0];
+      console.log(file);
+      if (!file.type.startsWith("image")) {
+        return alert("只能选择图片");
+      }
+      box.innerHTML = '';
+      let img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      box.appendChild(img);
+
+      // 选择图片之后立即上传
+      let data = new FormData();
+      data.append('myfile', file);
+      // axios.post('http://127.0.0.1:3000/upload', data).then(res => {
+      //   console.log(res.data);
+      //   alert(res.data.data);
+      // });
+      axios({
+        url: 'http://127.0.0.1:3000/upload',
+        method: 'POST',
+        data: data,
+      }).then(res => {
+        console.log(res.data);
+        alert(res.data.data);
+      });;
+    }
+
+    // 3、点击上传文件
+    function axiosUpload () {
+      let file = input.files[0];
+      console.log('file=', file);
+      if (!file) {
+        return alert("先选择图片");
+      }
+      let data = new FormData();
+      data.append('myfile', file);
+      axios.post('http://127.0.0.1:3000/upload', data).then(res => {
+        console.log(res.data);
+      });
+    }
+    function upload () {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.responseText);
+        }
+      }
+      xhr.open('POST', 'http://127.0.0.1:3000/upload');
+      // 获取上传的文件对象
+      let file = input.files[0];
+
+      let data = new FormData();
+      // 把数据添加到formdata对象汇总
+      // data.append('username', '张三');
+      data.append('myfile', file);
+      xhr.send(data);
+
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			.box {
+				width: 60px;
+				height: 30px;
+				background-color: lightgray;
+				text-align: center;
+				position: relative;
+				cursor: pointer;
+			}
+			.box .btn {
+				line-height: 28px;
+				border: 1px solid red;
+			}
+			.box .list {
+				width: 100%;
+
+				position: absolute;
+				left: 0;
+				top: 30px;
+				line-height: 30px;
+				background-color: #ccc;
+				display: none;
+			}
+			.box .close {
+				border-top: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="btn">输入法</div>
+			<div class="list">
+				<div>手写</div>
+				<div>拼音</div>
+				<div class="close">关闭</div>
+			</div>
+		</div>
+		<div class="other">其他</div>
+		<script>
+			var btn = document.querySelector('.btn');
+			var list = document.querySelector('.list');
+			var divs = document.querySelectorAll('.list div');
+
+			// 点击btn让list显示
+			btn.onclick = function (ev) {
+        // ev.stopPropagation();
+        console.log('btn');
+				list.style.display = 'block';
+			};
+
+			// for (var i = 0; i < divs.length; i++) {
+			// 	divs[i].onclick = function () {
+      //     console.log('----');
+			// 		// if (this.innerHTML != '关闭') {
+			// 		// 	// 点击手写或者拼音，给btn改变内容
+			// 		// 	btn.innerHTML = this.innerHTML;
+			// 		// }
+      //     // 利用冒泡的原理，当点击手写、拼音、关闭的时候，让事件冒泡到body上，会触发body的事件
+			// 		list.style.display = 'none';
+			// 	};
+			// }
+      // 点击空白处，让list隐藏
+			document.body.onclick = function () {
+        console.log('body');
+				list.style.display = 'none';
+
+			};
+
+			// for (var i = 0; i < divs.length; i++) {
+			// 	divs[i].onclick = function () {
+			// 		console.log(this.innerHTML);
+			// 		if (this.innerHTML == '关闭') {
+			// 			// 点击关闭，让list隐藏
+			// 			// list.style.display = 'none';
+			// 		} else {
+			// 			// 点击手写或者拼音，给btn改变内容，并隐藏list
+			// 			btn.innerHTML = this.innerHTML;
+			// 			// list.style.display = 'none';
+			// 		}
+			//     list.style.display = 'none';
+			// 	};
+			// }
+		</script>
+	</body>
+</html>

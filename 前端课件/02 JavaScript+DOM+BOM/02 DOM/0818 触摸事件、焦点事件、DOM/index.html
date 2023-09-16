@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.outer {
+				width: 200px;
+				height: 200px;
+				background-color: rgb(222, 171, 171);
+				/* overflow: hidden; */
+			}
+			.box {
+				width: 100px;
+				height: 100px;
+				background-color: rgb(114, 114, 212);
+			}
+			.inner {
+				width: 50px;
+				height: 400px;
+				background-color: orange;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outer" id="outer">
+			<div class="box" id="box">
+				<!-- <div class="inner"></div> -->
+			</div>
+		</div>
+		<script>
+			outer.onmousedown = function () {
+				document.onmousemove = function (ev) {
+					console.log(ev.pageX - outer.offsetLeft);
+					var distance = ev.pageX - outer.offsetLeft;
+					distance = distance < 0 ? 0 : distance;
+					distance = distance > outer.offsetWidth ? outer.offsetWidth : distance;
+					box.style.width = distance + 'px';
+          box.innerHTML = Math.floor((distance/outer.offsetWidth).toFixed(2)*100);
+				};
+			};
+			// outer.ontouchstart = function () {
+			//   console.log('start');
+
+			//   document.ontouchmove = function (ev) {
+			//     var pageX = ev.touches[0].pageX
+			//     var distance = pageX-outer.offsetLeft;
+			//     distance = distance < 0 ? 0 : distance;
+			//     distance = distance > outer.offsetWidth ? outer.offsetWidth : distance;
+			//     console.log(distance);
+			// 		box.style.width = distance +'px'
+			// 	};
+			// };
+
+			var obj = {
+				name: '张三',
+				lisi: {
+					name: '李四',
+					say: function () {
+						console.log('---');
+					},
+				},
+			};
+
+			console.log(obj.age);
+
+			// obj.lisi.say();
+			// obj.wangwu?.say(); 链判断运算符
+			// if (obj.wangwu) {
+			//   obj.wangwu.say();
+			// }
+
+			// div.style
+		</script>
+	</body>
+</html>

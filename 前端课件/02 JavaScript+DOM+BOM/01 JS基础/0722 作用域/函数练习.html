@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// - 使用函数，从键盘获取三个数字，找出最大值
+			function maxValue(a, b, c) {
+				// var max = a > b ? (a > c ? a : c) : (b > c ? b : c);
+				// return max;
+				return a > b ? (a > c ? a : c) : b > c ? b : c;
+			}
+
+			console.log(maxValue(3, 1, 2));
+
+			// - 使用函数，从键盘输入一个年份，判断是否是闰年
+			// 1、直接返回true或者false
+			// function isLeepYear(year) {
+			// 	if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+			// 		return true;
+			// 	} else {
+			// 		return false;
+			// 	}
+			// }
+
+			// 2、在函数内定义个布尔变量，最后使用return返回这个布尔变量
+			// function isLeepYear(year) {
+			//   var isLeep = false;//如果变量的值为true，是闰年
+			// 	if (year % 400 == 0 || (year % 4 == 0 && year % 100 != 0)) {
+			// 		isLeep = true;
+			// 	}
+			//   return isLeep;
+			// }
+
+			// 3、直接使用return语句返回判断的结果
+			function isLeepYear(year) {
+				return year % 400 == 0 || (year % 4 == 0 && year % 100 != 0);
+			}
+			console.log(isLeepYear(2006));
+
+			// - 使用函数，把2000-3000之间的闰年打印出来
+			for (var i = 2000; i <= 3000; i++) {
+				if (isLeepYear(i)) {
+					// console.log('闰年：', i);
+				}
+			}
+			// - 使用函数，输出2月份的天数：如果是闰年，则2月份是29天；如果是平年，则2月份是28天
+			// var year = 2010;
+			// if (isLeepYear(year)) {
+			// 	alert('29');
+			// } else {
+			// 	alert('28');
+			// }
+
+			// - 使用函数，从键盘输入一个数字，判断是否是质数
+			// 先封装一个函数，使用函数作为一个工具，最终函数返回true或者false
+
+			// 1、直接返回true或者false
+			// function isPrimeValue(n) {
+			// 	if (n < 2) {
+			// 		return false;
+			// 	}
+			// 	for (var i = 2; i < n; i++) {
+			// 		// console.log('i = ' + i);
+			// 		if (n % i == 0) {
+			// 			return false; // 在函数内添加了for语句，如果在for语句内使用了return，return会结束函数，结束函数的同时也会结束for语句
+			// 			// break;
+			// 		}
+			// 	}
+			// 	return true;
+			// }
+
+			// 2、定义布尔变量，最终返回这个变量
+			function isPrimeValue(n) {
+				var isPrime = true; // 如果变量的值为true，n是质数
+				if (n < 2) {
+					isPrime = false;
+				}
+				// 让输入数字n对2到n-1求余
+				for (var i = 2; i < n; i++) {
+					if (n % i == 0) {
+						isPrime = false;
+						break;
+					}
+				}
+				return isPrime;
+			}
+
+			console.log(isPrimeValue(13));
+
+			// - 使用函数，打印1000以内所有的质数
+      var sum = 0;
+			for (var i = 0; i < 1000; i++) {
+				if (isPrimeValue(i)) {
+					console.log('质数：', i);
+					sum += i;
+				}
+			}
+			console.log('sum = ' + sum);
+
+			// - 使用函数，对1000以内所有的质数求和
+		</script>
+	</body>
+</html>

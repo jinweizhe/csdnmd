@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    var obj = {
+      v1: 10,
+      v2: 20
+    }
+
+    var o2 = {}
+
+    // Object.is() 比较两个对象是否是同一个对象
+    console.log(Object.is(obj, o2));
+
+    // 删除对象的属性
+    // delete obj.v1;
+
+    // var n = 100;
+    // delete window.n;
+    // console.log(n);
+
+    // 给对象添加属性
+    // 通过打点调用添加的属性：可以修改、可枚以举、可以删除
+    // obj.v3 = 30;
+
+    // 给对象添加属性
+    // Object.defineProperty 可以自定义属性的配置信息：是否可修改、可枚举、可删除
+    var num;
+    Object.defineProperty(obj, "v3", {
+      // value: 30,// 属性的值
+      // writable: true,//属性的值是否可以被修改
+      configurable: true,// 属性的值是否可以被删除
+      enumerable: true,// 属性的值是否可以被枚举
+
+      get () {
+        console.log('get');
+        return num;
+      },
+      set (v) {
+        if (v < 0) {
+          throw new Error('v3的值不能为负值');
+        }
+        console.log('set v=', v);
+        num = v;
+      }
+    });
+
+    obj.v3 = 300;
+    // delete obj.v3;
+
+    // console.log(obj.v3);
+
+
+
+    console.log(obj);
+
+    console.log(Object.keys(obj));
+    console.log(Object.getOwnPropertyNames(obj));
+    console.log(Object.getOwnPropertyDescriptor(obj, 'v3'));
+    // console.log(Object.values(obj));
+
+    for (var key in obj) {
+      console.log('key=', key);
+    }
+
+
+  </script>
+</body>
+
+</html>

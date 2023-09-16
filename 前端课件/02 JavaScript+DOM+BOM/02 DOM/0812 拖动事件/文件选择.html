@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <!-- multiple 默认只能选择一个文件，multiple属性可以同时选择多个文件 -->
+    <!-- accept="image/*" 定义文件选择时，可接受的文件类型 -->
+    <input type="file" multiple accept="image/*">
+    <script>
+
+      var input = document.querySelector('input');
+      input.onchange = function() {
+        console.log(input.files);
+      }
+    
+    </script>
+  </body>
+</html>

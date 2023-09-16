@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      *{
+        /* animation-direction: alternate; */
+        /* flex-direction: column; */
+      }
+    </style>
+	</head>
+	<body>
+		<script>
+			// var arr = [8, 6, 5, 2];
+			// 交换数组中，两个元素的位置
+			// 交换 arr[0] 和 arr[1]
+			// var temp = arr[0];
+			// arr[0] = arr[1];
+			// arr[1] = temp;
+			// console.log(arr);// [6, 8, 5, 2]
+
+			// // 交换 arr[1] 和 arr[2]
+			// var temp = arr[1];
+			// arr[1] = arr[2];
+			// arr[2] = temp;
+			// console.log(arr);// [6, 5, 8, 2]
+
+			// // 交换 arr[2] 和 arr[3]
+			// var temp = arr[2];
+			// arr[2] = arr[3];
+			// arr[3] = temp;
+			// console.log(arr);// [6, 5, 2, 8]
+
+			// var arr = [8, 6, 5, 2];
+
+      // 交换 arr[0] 和 arr[1] [6, 8, 5, 2]
+      // 交换 arr[1] 和 arr[2] [6, 5, 8, 2]
+      // 交换 arr[2] 和 arr[3] [6, 5, 2, 8]  j的最大值是2
+			// for (var j = 0; j < arr.length - 1 - 0; j++) {
+			// 	if (arr[j] > arr[j + 1]) {
+			// 		var temp = arr[j];
+			// 		arr[j] = arr[j + 1];
+			// 		arr[j + 1] = temp;
+			// 	}
+			// }
+			// console.log(arr); // [6, 5, 2, 8]
+
+      // 交换 arr[0] 和 arr[1] [5, 6, 2, 8]
+      // 交换 arr[1] 和 arr[2] [5, 2, 6, 8]  j的最大值是1
+      // 交换 arr[2] 和 arr[3] 不需要
+			// for (var j = 0; j < arr.length - 1 - 1; j++) {
+			// 	if (arr[j] > arr[j + 1]) {
+			// 		var temp = arr[j];
+			// 		arr[j] = arr[j + 1];
+			// 		arr[j + 1] = temp;
+			// 	}
+			// }
+			// console.log(arr);// [5, 2, 6, 8]
+
+      // 交换 arr[0] 和 arr[1] [2, 5, 6, 8] j的最大值是0
+      // 交换 arr[1] 和 arr[2] 不需要
+      // 交换 arr[2] 和 arr[3] 不需要
+			// for (var j = 0; j < arr.length - 1 - 2; j++) {
+			// 	if (arr[j] > arr[j + 1]) {
+			// 		var temp = arr[j];
+			// 		arr[j] = arr[j + 1];
+			// 		arr[j + 1] = temp;
+			// 	}
+			// }
+			// console.log(arr);
+
+			var arr = [8, 6, 5, 2];
+			for (var i = 0; i < arr.length-1; i++) {
+				for (var j = 0; j < arr.length - 1 - i; j++) {
+					if (arr[j] > arr[j + 1]) {
+						var temp = arr[j];
+						arr[j] = arr[j + 1];
+						arr[j + 1] = temp;
+					}
+				}
+			}
+      console.log(arr);
+		</script>
+	</body>
+</html>

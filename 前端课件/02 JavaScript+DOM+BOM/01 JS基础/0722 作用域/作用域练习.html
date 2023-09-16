@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// function m1() {
+			// 	var a = 10;
+
+			// 	function m2() {
+			// 		console.log(a); // 10
+			// 	}
+			// 	m2();
+			// }
+
+			// var a = 20;
+
+			// m1();
+
+			//---------------------------------
+
+			var a = '1';
+			function m1() {
+				var a = '2';
+
+				function m2() {
+					var a = '3';
+					console.log(a); // 3
+				}
+				m2();
+
+				console.log(a); //2
+			}
+			m1();
+			console.log(a); // 1
+
+			// ---------------------------------
+
+			var a = '1';
+			function m1() {
+				var a = '2';
+
+				function m2() {
+					console.log(a); //2
+				}
+				m2();
+
+				console.log(a); //2
+			}
+			m1();
+			console.log(a); //1
+
+			// --------------------------------
+			var a = 1;
+			function m1() {
+				var a = 2;
+				var b = 3;
+
+				m2();
+				function m2() {
+					var a = 4;
+
+					m3();
+					function m3() {
+						var a = 5;
+						console.log(a); //5
+						console.log(b); //3
+					}
+				}
+			}
+			m1();
+
+			// ----------------------------------
+
+			var a = '1';
+
+			function m1() {
+				a = '2'; // 使用的是全局变量a
+
+				function m2() {
+					a = '3'; // 使用的是全局变量a
+					console.log(a); // 3
+				}
+				m2();
+
+				console.log(a); //3
+			}
+			m1();
+			console.log(a); //3
+
+			// ----------------------------------
+
+			var a = '1';
+			function m1() {
+				var a = '2';
+
+				function m2() {
+					a = '3'; // 使用的是m1作用域中的a
+					console.log(a); // 3
+				}
+				m2();
+
+				console.log(a); // 3
+			}
+			m1();
+			console.log(a); //1
+
+			// ------------------------------
+
+			var a = 1;
+
+			function b() {
+				a = 3;
+				function c() {
+					var a = 4;
+
+					function d() {
+						a = 5; // 使用的是c函数作用域的a
+						console.log(a); // 5
+					}
+					d();
+
+					console.log(a); //5
+				}
+				c();
+
+				console.log(a); // 3
+			}
+			b();
+			console.log(a); //3
+
+			var a = 2;
+
+      document.write("<pre>");
+      for(var i = 0; i < 5; i++){
+        for(var k = 0; k < 4-i; k++){
+          document.write(" ");;
+        }
+        for(var j = 0; j < 2*i+1; j++){
+          document.write("*");
+        }
+        document.write("\n")
+      }
+      document.write("</pre>");
+
+		</script>
+	</body>
+</html>

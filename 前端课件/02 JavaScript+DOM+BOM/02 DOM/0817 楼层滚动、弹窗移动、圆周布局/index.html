@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: lightblue;
+				position: relative;
+				top: 200px;
+				left: 500px;
+				/* border-radius: 50%; */
+			}
+			.inner {
+				width: 50px;
+				height: 50px;
+				background-color: lightcoral;
+				position: absolute;
+				left: calc(100px - 25px);
+				top: calc(100px - 25px);
+				/* border-radius: 50%; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="inner"></div>
+			<div class="inner"></div>
+			<div class="inner"></div>
+			<div class="inner"></div>
+			<div class="inner"></div>
+			<div class="inner"></div>
+		</div>
+		<script>
+			var R = 100;
+			var angle = Math.PI / 6;
+			angle = 0;
+
+			var inners = document.querySelectorAll('.inner');
+
+			// document.onclick = function () {
+			// 	angle += 0.1;
+			// 	inner.style.left = 75 + R * Math.cos(angle) + 'px';
+			// 	inner.style.top = 75 + R * Math.sin(angle) + 'px';
+			// };
+
+			for (var i = 0; i < inners.length; i++) {
+				angle = (i * Math.PI) / 3;
+        inners[i].style.left = 75 + R * Math.cos(angle) + 'px';
+				inners[i].style.top = 75 + R * Math.sin(angle) + 'px';
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        list-style: none; 
+      }
+      .box{
+        padding: 0 20px;
+      }
+
+      .box .list{
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+      }
+      .box .list .item{
+        width: calc((100% - 20px)/3);
+        height: 36px;
+        border: 1px solid #999;
+        font-size: 14px;
+        padding: 7px 14px;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      main{
+        padding: 20px;
+      }
+      main .list .item>p{
+        height: 25px;
+        display: flex;
+        justify-content: space-between;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul class="list">
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+        <li class="item">市场营销</li>
+      </ul>
+    </div>
+    <main>
+      <ul class="list">
+        <li class="item">
+          <p>
+            <span>营销中心总监助理</span>
+            <span>15-20K</span>
+          </p>
+        </li>
+      </ul>
+    </main>
+  </body>
+</html>

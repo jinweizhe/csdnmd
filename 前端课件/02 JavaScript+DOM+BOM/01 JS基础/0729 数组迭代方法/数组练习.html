@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 1、[1,2,3,4,5,6,7,8,9]删除数组中所有的偶数。
+			var arr = [1,2,3,4,5,6,7,8,9];
+
+      var data = arr.filter(function(item){
+        return item%2 ==1;
+      });
+      console.log(data);
+
+
+      var arr = [1, 2, 6, 3];
+			// splice会改变原数组
+			// arr.splice(1,1);
+			// arr.splice(1,1);
+
+			// i=0 length=4 arr[i]=1  [1, 2, 6, 3]
+			// i=1 length=4 arr[i]=2  [1, 6, 3] 删除一个元素2之后，后面的元素6往前移动，i的值不能再增加，如果i的值依然增加，会把往前移动的值6跳过去
+			// i=2 length=3 arr[i]=3  [1, 6, 3]
+			// i=3 length=3结束
+
+			// ------------------
+			// i=0 length=4 arr[i]=1  [1, 2, 6, 3]
+			// i=1 length=4 arr[i]=2  [1, 6, 3] 删除2， i的值不能增加先减一再加一
+			// i=1 length=3 arr[i]=6  [1, 3]    删除6， i的值不能增加先减一再加一
+			// i=1 length=2 arr[i]=3  [1, 3]
+			// i=2 length=2 结束
+			var arr = [1, 2, 6, 3];
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i] % 2 == 0) {
+					arr.splice(i, 1);
+					i--;
+				}
+			}
+			console.log(arr);
+
+			var arr = [1, 2, 6, 3];
+			// i=3 arr[i]=3 不删除 [1, 2, 6, 3]
+			// i=2 arr[i]=6 删除6  [1, 2, 3]
+			// i=1 arr[i]=2 删除2  [1, 3]
+			// i=0 arr[i]=1 不删除 [1, 3]
+			// i=-1 结束
+			for (var i = arr.length - 1; i >= 0; i--) {
+				if (arr[i] % 2 == 0) {
+					arr.splice(i, 1);
+				}
+			}
+			console.log(arr);
+
+			// - 封装一个函数返回布尔值，判断一个数组中的所有数字是否都是质数。
+			var arr = [6,3, 5, 7, 8, 9];
+			function isPrimeValue(n) {
+				if (n < 2) {
+					return false;
+				}
+				for (var i = 2; i < n; i++) {
+					if (n % i == 0) {
+						return false;
+					}
+				}
+				return true;
+			}
+
+			// function isPrimeArr(arr) {
+			// 	for (var i = 0; i < arr.length; i++) {
+			// 		if (!isPrimeValue(arr[i])) {
+			// 			return false;
+			// 		}
+			// 	}
+			// 	return true;
+			// }
+			// console.log(isPrimeArr(arr));
+
+      var res = arr.every(function(item){
+        var flag = isPrimeValue(item);
+        return flag;
+      });
+      console.log('res = ' + res);
+
+			// - `['a','b','b','a','a','c','c','a']`数组排重。
+			var arr = ['a', 'b', 'b', 'a', 'a', 'c', 'c', 'a'];
+			var newArr = [];
+			for (var i = 0; i < arr.length; i++) {
+				// 把原数组中的元素在新数组中不存在时，把该元素添加到新数组中
+				var el = arr[i];
+				// if (!newArr.includes(el)) {
+				//   newArr.push(el);
+				// }
+				if (newArr.indexOf(el) == -1) {
+					newArr.push(el);
+				}
+			}
+			console.log(newArr);
+
+			// - 使用数组随机获取四位数字不相同的密码。[0-9]
+
+			var arr = [];
+			while (arr.length < 4) {
+				var index = Math.floor(Math.random() * 10);
+				// 1 2 7 5
+				// 把index在数组不存在的时候，再把index放入数组
+				if (!arr.includes(index)) {
+					arr.push(index);
+				}
+			}
+			console.log(arr);
+
+			// ---------------------------------------------
+			var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+			var arr = [];
+			for (var i = 0; i < 4; i++) {
+				var index = Math.floor(Math.random() * nums.length);
+				arr.push(nums[index]); // 把索引为index的值添加到arr数组
+				nums.splice(index, 1); //再把索引为index的值从nums数组中删除
+
+        // arr.push(nums.splice(index, 1)[0]);
+        // arr.push(...nums.splice(index, 1));
+			}
+
+			// var index = Math.floor(Math.random() * 10);
+			// arr.push(nums[index]); // 把索引为index的值添加到arr数组
+			// nums.splice(index, 1); //再把索引为index的值从nums数组中删除
+
+			// var index = Math.floor(Math.random() * 9);
+			// arr.push(nums[index]);
+			// nums.splice(index, 1);
+
+			// var index = Math.floor(Math.random() * 8);
+			// arr.push(nums[index]);
+			// nums.splice(index, 1);
+
+			// var index = Math.floor(Math.random() * 7);
+			// arr.push(nums[index]);
+			// nums.splice(index, 1);
+
+			console.log(arr);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/art-template/4.13.2/lib/template-web.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+
+  <style>
+    .user-table {
+      border: 1px solid;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    .user-table td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loginBox"></div>
+  <div id="listBox"></div>
+
+  <script id="user-temp" type="text/html">
+    {{if isLogin}}
+    <div class="">
+      <span>{{user.username}}</span>
+      <a href="javascript:void()" id="logoutBtn" class="logout-btn">退出登录</a>
+      <hr>
+    </div>
+    {{else}}
+    <div class="login">
+      <a href="./login.html">登录</a>
+      <a href="./regist.html">注册</a>
+      <hr>
+    </div>
+    {{/if}}
+  </script>
+
+  <script>
+
+    const token = localStorage.getItem('token');
+    const isLogin = token ? true : false;
+    console.log('token=', token);
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    }
+
+    getUser();
+    function getUser () {
+      if (token) {
+        // 判断出已经登录，获取用户数据
+        // 1、在请求头中设置token，请求头中统一设置token，后面发请求会自动在请求头中携带token
+        axios.get('http://127.0.0.1:3000/user').then(res => {
+          console.log(res.data.data);
+          loginBox.innerHTML = template('user-temp', { isLogin, user: res.data.data });
+        });
+
+        // 2、使用参数传递token
+        // axios.get('http://127.0.0.1:3000/user?token='+token).then(res => {
+        //   console.log(res.data.data);
+        //   loginBox.innerHTML = template('user-temp', { isLogin, user: res.data.data });
+        // });
+      } else {
+        // 判断出未登录，显示登录和注册按钮
+        loginBox.innerHTML = template('user-temp', { isLogin, data: '' });
+      }
+    }
+
+
+    loginBox.onclick = function (ev) {
+      if (ev.target.classList.contains('logout-btn')) {
+        // 退出登录成功，保存的token删除
+        localStorage.removeItem('token');
+        getUser();
+      }
+    }
+
+
+
+    // axios.get('http://127.0.0.1:3000/zan').then(res => {
+    //   console.log(res.data);
+    // });
+
+
+
+  </script>
+</body>
+
+</html>

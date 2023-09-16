@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.min.js"></script>
+  <style type="text/css">
+    .drag-box {
+      width: 300px;
+      height: 300px;
+      border: 2px dotted #ccc;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+      font-size: 25px;
+    }
+
+    .drag-box img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+
+<body>
+  <div class="drag-box">
+    <span>拖动图片到这里</span>
+  </div>
+  <button type="button" class="drag-btn">上传</button>
+  <script type="text/javascript">
+
+    //1、与drag、drop相关事件，需要preventDefault(),因为浏览器默认会打开拖放到页面的资源（图片）
+    //2、与drag、drop相关事件与jQuery同时使用时，需要使用event.originalEvent获取原始事件对象，
+    //因为jQuery封装事件对象中没有dataTransfer属性，更无法获取files属性
+
+    let dragBox = document.querySelector('.drag-box');
+    dragBox.ondragover = function (ev) {
+      ev.preventDefault();
+    }
+    dragBox.ondrop = function (ev) {
+      ev.preventDefault();
+      // 获取被拖拽的文件
+      let file = ev.dataTransfer.files[0];
+      console.log(file);
+
+
+      if (!file.type.startsWith("image")) {
+        return alert("只能选择图片");
+      }
+      dragBox.innerHTML = '';
+      let img = document.createElement("img");
+      img.src = URL.createObjectURL(file);
+      dragBox.appendChild(img);
+
+
+      let data = new FormData();
+      data.append('myfile', file);
+      axios.post('http://127.0.0.1:3000/upload', data).then(res => {
+        console.log(res.data);
+        alert(res.data.data);
+      });
+    }
+
+  </script>
+</body>
+
+</html>

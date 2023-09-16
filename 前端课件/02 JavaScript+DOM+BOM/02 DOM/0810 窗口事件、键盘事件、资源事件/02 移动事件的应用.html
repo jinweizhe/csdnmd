@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 200px;
+				height: 150px;
+				background-color: red;
+				position: absolute;
+				top: 100px;
+				left: 80px;
+			}
+			.box .header {
+				height: 30px;
+				background-color: #ccc;
+				cursor: move;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="header"></div>
+		</div>
+		<script>
+			var div = document.querySelector('div');
+
+      // 在div上按下鼠标，触发页面的移动事件
+      // 移动事件添加到document上是为了让div的移动更加流畅
+			div.onmousedown = function (e) {
+
+        // 当鼠标按下，获取鼠标相对于div的坐标，这个坐标在div移动的过程中是不变的
+        var offsetX = e.offsetX;
+        var offsetY = e.offsetY;
+        console.log(offsetX, offsetY);
+        
+        document.onmousemove = function (ev) {
+          
+					// console.log(ev.clientX, ev.clientY);
+					div.style.left = ev.clientX - offsetX + 'px';
+					div.style.top = ev.clientY - offsetY + 'px';
+				};
+			};
+      // 松开鼠标，移除页面的移动事件
+      // 把鼠标从开事件放在document上，是为了当鼠标是按下状态时，如果鼠标移出浏览器页面的范围松开鼠标也能触发up事件
+			document.onmouseup = function (ev) {
+				document.onmousemove = null;
+			};
+
+
+		</script>
+	</body>
+</html>

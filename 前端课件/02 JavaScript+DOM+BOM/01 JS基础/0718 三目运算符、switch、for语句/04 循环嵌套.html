@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    /*
+    以双层for循环嵌套为例：
+    - 内层循环可以看做外层循环的循环体，所以，外层循环执行一次，内层循环要执行全部次数
+    - 内层循环执行的顺序也要遵循 for 循环的执行顺序 
+    - 把双层循环看成一个表格，内层循环控制一行有多少单元格，外层循环控制有多少行
+
+    */
+
+    // 外层循环执行一次，内层执行全部的循环次数
+
+    document.write('<pre>');
+    // 当 i=0     
+    // j=0 -> *
+    // j=1 -> *
+    // j=2 -> *
+    // 当 i=1
+    // j=0 -> *
+    // j=1 -> *
+    // j=2 -> *
+    for (var i = 0; i < 3; i++) { // 控制有多少行
+      // console.log('i = ', i);
+      for (var j = 0; j < 3; j++) {// 控制一行多少列
+        // console.log('j = ', j);
+        document.write('*');
+      }
+      document.write('\n')
+    }
+
+    // 有1个班，每个班级4人，试求各个班级总成绩。(每个学生成绩从键盘输入)
+
+    var sum = 0;
+    for (var j = 0; j < 4; j++) {
+      var score = prompt((j + 1) + '号同学的成绩') * 1;
+      sum += score;
+    }
+    alert('总成绩：' + sum);
+
+
+
+    // 有3个班，每个班级4人，试求各个班级总成绩。(每个学生成绩从键盘输入)
+    // for(var i = 0; i < 3; i++){
+    //   for(var j = 0; j < 4; j++) {
+    //     console.log((i+1)+'班'+(j+1)+'同学的成绩：');
+    //   }
+    // }
+
+
+    document.write('</pre>');
+
+    // var i = 0;
+
+    // console.log('i = ', i);
+    // for (var j = 0; j < 3; j++) {
+    //   console.log('j = ', j);
+    // }
+
+    // i++;
+    // console.log('i = ', i);
+    // for (var j = 0; j < 3; j++) {
+    //   console.log('j = ', j);
+    // }
+
+    // i++;
+    // console.log('i = ', i);
+    // for (var j = 0; j < 3; j++) {
+    //   console.log('j = ', j);
+    // }
+
+    // i++
+
+  </script>
+</body>
+
+</html>

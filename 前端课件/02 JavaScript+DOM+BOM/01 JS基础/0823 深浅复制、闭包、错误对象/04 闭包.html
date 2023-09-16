@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+
+	<body>
+		<script>
+			// 闭包：定义在一个函数内部的函数，并且能够访问外部函数中的变量的函数
+			// 闭包的用途：
+			// 1、访问外部函数的变量：例1，用JS实现动画move函数、楼层滚动
+			// 2、让函数中的变量长期的存储在内存中
+			// 例1：f2是一个闭包
+			// function f1 () {
+			//   var a = 2;
+			//   var b = 3;
+			//   function f2 () {
+			//     var c = a + b;
+			//     return c;
+			//   }
+			//   return f2;
+			// }
+
+			// var fn = f1();
+			// console.log(fn());
+
+			// function f1 (){
+			//   var a = 0;
+			//   function f2() {
+			//     a++;
+			//     return a;
+			//   }
+			//   return f2;
+			// }
+			// var fn = f1();
+			// console.log(fn());
+			// console.log(fn());
+			// console.log(fn());
+
+			function f1(n) {
+				function f2() {
+					n++;
+					return n;
+				}
+				return f2;
+			}
+			var fn = f1(0);
+			console.log(fn());
+			console.log(fn());
+			console.log(fn());
+
+			// var fn1 = f1(0);
+			// fn1();
+			// var fn2 = f1(0);
+			// fn2();
+			// console.log(f1(0)());
+			// console.log(f1(0)());
+			// console.log(f1(0)());
+
+			for (var i = 0; i < 10; i++) {
+				(function (a) {
+					setTimeout(function () {
+						console.log(a);
+					}, 1000);
+				})(i);
+			}
+
+			// (function (a) {
+			// 	setTimeout(function () {
+			// 		console.log(a);
+			// 	}, 1000);
+			// })(0);
+
+			// (function (a) {
+			// 	setTimeout(function () {
+			// 		console.log(a);
+			// 	}, 1000);
+			// })(1);
+
+			// (function (a){
+			//   console.log('---',a);
+			// })(1);
+		</script>
+	</body>
+</html>

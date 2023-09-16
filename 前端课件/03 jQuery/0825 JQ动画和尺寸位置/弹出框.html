@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <title>弹出框</title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    #mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.1);
+      z-index: 2;
+      display: none;
+    }
+
+    #content {
+      height: 2000px;
+      background-color: lightblue;
+    }
+
+    #btn {
+      position: fixed;
+      top: 100px;
+      left: 100px;
+      width: 80px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    #alert {
+      width: 400px;
+      height: 200px;
+      background-color: #fff;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+    }
+
+    #alert h2 {
+      margin: 0;
+      width: 100%;
+      height: 40px;
+      background-color: #eee;
+      line-height: 40px;
+      text-align: center;
+      position: relative;
+      font-size: 16px;
+      cursor: move;
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+    }
+
+    #alert h2 .close {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      transition: all 1s linear;
+    }
+
+    #alert h2 .close:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--内容区-->
+  <div id="content"></div>
+  <button id="btn">来点我</button>
+
+  <!--遮罩层-->
+  <div id="mask">
+    <!--弹出层-->
+    <div id="alert">
+      <h2>
+        <span>用户登录</span>
+        <span class="close">&times;</span>
+      </h2>
+    </div>
+  </div>
+  <script type="text/javascript">
+
+    //第一次的时候居中，当浏览器窗口变化的时候始终居中才行
+
+    function resetAlert() {
+      var x = ($(window).width() - $('#alert').width()) / 2 + $(document).scrollLeft();
+      var y = ($(window).height() - $('#alert').height()) / 2 + $(document).scrollTop();
+      console.log(x,y);
+      $('#alert').css({ left: x, top: y });
+      $('#mask').width($(window).width()+$(document).scrollLeft()).height($(window).height()+$(document).scrollTop());
+    }
+    // 当尺寸发生变化时重新计算宽高及中心点
+    $(window).resize(resetAlert);
+    // 当页面发生滚动时重新计算宽高及中心点
+    $(document).scroll(resetAlert);
+
+    // 弹出
+    $('#btn').click(function () {
+      $('#mask').show();
+      $('html').css('overflow', 'hidden');
+      resetAlert();
+    });
+
+    // 关闭
+    $('#alert .close').click(function () {
+      $('#mask').hide();
+      $('html').css('overflow', 'auto');
+    });
+
+
+    // 让弹出框移动
+    $('#alert h2').mousedown(function (ev) {
+      //计算鼠标按下时，鼠标距离h2上边和左边的距离
+      var offsetX = ev.offsetX;
+      var offsetY = ev.offsetY;
+
+      $(document).mousemove(function (ev) {
+        // 无论鼠标的位置在H2的哪个位置上，我们都获取到H2左上角到整个视图的偏移量
+        var x = ev.pageX - offsetX;
+        var y = ev.pageY - offsetY;
+
+        // 判断范围
+        // 左右不能越界
+        var minX = $(document).scrollLeft();
+        var maxX = $(window).width() + $(document).scrollLeft() - $('#alert').width();
+
+        var minY = $(document).scrollTop();
+        var maxY = $(window).height() + $(document).scrollTop() - $('#alert').height();
+
+
+        x = x <= minX ? minX : x;// 最左边
+        x = x >= maxX ? maxX : x;// 最右边
+
+        y = y <= minY ? minY : y;// 最顶部
+        y = y >= maxY ? maxY : y;// 最底部
+
+
+        $('#alert').css({ left: x, top: y, });
+      });
+
+      //取消绑定的mousemove事件
+      $(document).mouseup(function () {
+        $(document).off('mousemove');
+      });
+    });
+
+  </script>
+</body>
+
+</html>

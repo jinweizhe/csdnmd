@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				box-sizing: border-box;
+			}
+			.slider-box {
+				margin: 10px;
+				height: 20px;
+				width: 300px;
+				/* background-color: lightblue; */
+				position: relative;
+			}
+			.slider-bg {
+				width: 100%;
+				height: 10px;
+				background-color: red;
+				position: absolute;
+				left: 0;
+				top: 5px;
+				cursor: pointer;
+			}
+			.slider-value {
+				height: 100%;
+				width: 50%;
+				background-color: green;
+				position: relative;
+				cursor: pointer;
+			}
+			.slider-ball {
+				width: 20px;
+				height: 20px;
+				background-color: orange;
+				position: absolute;
+				right: -10px;
+				top: -5px;
+				border-radius: 50%;
+				cursor: grab;
+				transition: transform 0.2s linear;
+			}
+			.slider-ball:hover {
+				transform: scale(1.2);
+			}
+			.slider-ball:active {
+				cursor: grabbing;
+			}
+		</style>
+	</head>
+	<body>
+		<p id="p"></p>
+		<div class="slider-box">
+			<div class="slider-bg">
+				<div class="slider-value">
+					<div class="slider-ball"></div>
+				</div>
+			</div>
+		</div>
+		<script>
+			var sliderBox = document.querySelector('.slider-box');
+			var sliderBg = document.querySelector('.slider-bg');
+			var sliderValue = document.querySelector('.slider-value');
+			var sliderBall = document.querySelector('.slider-ball');
+			var isMobile = navigator.userAgent.includes('Mobile');
+
+			if (isMobile) {
+				sliderBg.ontouchstart = sliderDown;
+				document.ontouchmove = sliderMove;
+				document.ontouchend = sliderUp;
+			} else {
+				sliderBg.onmousedown = sliderDown;
+				document.onmousemove = sliderMove;
+				document.onmouseup = sliderUp;
+			}
+
+			var isMove = false;
+			function sliderDown(ev) {
+				isMove = true;
+				move(ev);
+			}
+			function sliderMove(ev) {
+				if (isMove) {
+					move(ev);
+				}
+			}
+			function sliderUp() {
+				isMove = false;
+			}
+
+			function move(ev) {
+				console.log('移动', ev);
+				var pageX = 0;
+				if (isMobile) {
+					var touch = ev.touches[0];
+					pageX = touch.pageX;
+				} else {
+					pageX = ev.pageX;
+				}
+				// console.log('移动', ev.pageX, sliderBox.offsetLeft);
+				var distance = pageX - sliderBox.offsetLeft;
+				var maxWidth = sliderBox.offsetWidth;
+				distance = distance < 0 ? 0 : distance > maxWidth ? maxWidth : distance;
+				console.log(distance);
+				sliderValue.style.width = distance + 'px';
+				p.innerHTML = Math.floor((100 * distance) / maxWidth);
+			}
+		</script>
+	</body>
+</html>

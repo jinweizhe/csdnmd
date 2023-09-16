@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<p></p>
+		<script>
+			// 键盘事件：按下键盘：down、press；松开键盘：up
+			/*
+        keypress 与 keydown 事件的区别：
+        - keydown 先于 keypress 发生。
+        - keydown 是在用户按下任何键盘键（包括系统按钮，如箭头键和功能键）时发生
+        - keypress 功能键（如Ctrl、Alt、Shift、Meta、箭头等）不会触发keypress事件，因为keypress对应的就是可打印的字符 （如字母、数字按键等）
+        - keydown 捕获的 keyCode 不区分字母大小，而 keypress 区分。 
+      */
+
+			// var str = 'Hhello world';
+			// 把字符转化为对应编码十进制的值
+			// console.log(str.charCodeAt(0));// 字符编码的值，比如小写字母a是97，大写字母A是65
+			// 把十进制的值转化为对应的字符
+			// console.log(String.fromCharCode(72));
+			// console.log(String.fromCharCode(104));
+
+			// 按下某个字母，显示为大写字母
+
+			var p = document.querySelector('p');
+
+			window.onkeydown = function (ev) {
+				// 按下F5默认会刷新页面，阻止按键的默认行为
+				ev.preventDefault();
+				console.log('按下键盘 down', ev);
+				console.log(ev.keyCode); // 字符编码的值，比如小写字母a是97，大写字母A是65
+				console.log(ev.key); // 获取字符的名称，比如按下ctrl键得到 Control
+				console.log(ev.code); // 获取字符
+
+				p.innerHTML = ev.key.toUpperCase();
+				// p.innerHTML = String.fromCharCode(ev.keyCode);
+			};
+
+			window.onkeypress = function (ev) {
+				// console.log('按下键盘 press', ev);
+			};
+
+			window.onkeyup = function () {
+				// console.log('松开键盘');
+			};
+		</script>
+	</body>
+</html>

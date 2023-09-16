@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<!-- <script src="index.js"></script> -->
+		<script></script>
+		<script>
+			// 作用域：变量的作用范围
+			// 在JS中作用域分两种（ES5及之前）：全局作用域、局部作用域
+			// 全局作用域：整个script标签内和js文件内都是全局作用域的范围---同一个html文件内的script标签和外部的js文件是共用的同一个全局作用域
+			// 局部作用域：函数内的作用域叫做局部作用域（函数作用域），局部作用域的范围就是函数体内部
+			// 注意：在JS中（ES5及之前）没有块级作用域 if(){} for(){} while(){} switch(){} 等的花括号内没有独立的作用域
+
+			// 在全局作用域声明的变量叫做全局变量
+			// 在局部作用域声明（在函数内声明）的变量叫做局部变量
+			// 出现局部变量的情况：1、在函数内声明的变量；2、函数的参数（形参）也是局部变量
+
+			// 全局变量：1、在任何地方都可以使用；2、尽管声明全局变量可以不使用var，但是不推荐这样做
+			// 局部变量：1、只能在函数内是用；2、声明局部变量必须添加var关键字
+
+			console.log('script标签');
+
+			var a = 2; // 在全局作用域中声明的变量a是全局变量
+
+			console.log('全局1 a = ', a);
+
+			// for(var i = 0; i < 10; i++){
+			//   var s = i + 2;
+			// }
+
+			// console.log(' i = ', i, 's = ', s);
+
+			function fn() {
+				var a = 6; // 在函数内声明的变量a是局部变量
+				// b = 10;
+				var c = 20;
+				console.log('函数内 a = ', a);
+				console.log('函数内 c = ', c);
+			}
+			fn();
+			// console.log('全局范围 b = ', b);
+			// console.log('全局范围 c = ', c);// ReferenceError: c is not defined
+
+			function f2(n) {
+				console.log('f2 a = ', a);
+				// for (var i = 0; i < 10; i++) {
+				// 	var s = i + 2;
+				// }
+
+				console.log(' n = ', n);
+			}
+			f2(100);
+			// console.log('全局范围 n = ', n);//  ReferenceError: n is not defined
+
+			// console.log(' i = ', i, 's = ', s);
+
+			console.log('全局2 a = ', a);
+
+			// ----------------------------------------------------
+			console.log('----------------------------------------------------');
+
+			var outer = 100;
+			console.log('outer = ', outer); // 100
+
+			function f3() {
+				var outer = 200;
+				// 在函数内可以使用全局变量，如果函数内声明了和全局变量同名的变量，局部变量会覆盖全局变量的
+				console.log('outer = ', outer); // 200
+			}
+			f3();
+			// 如果局部变量和全局变量重名，在全局范围内用的还是全局变量
+			console.log('outer = ', outer); // 100
+
+			// function f4(n){
+			//   console.log('n = ', n);
+			// }
+			// var n = 300;
+			// f4(n);
+
+			// var k = 1;
+
+			/*
+      
+      当你使用一个变量时，会先从当前作用域中查找，如果找不到，会向上层作用域中查找，直至查找到全局作用域，这一查找过程样形成的链式结构叫做作用域链。
+
+      - 在哪一层作用域中找到，就使用这个变量，如果在作用域链中找不到，最终会报错
+
+      - 内部函数可以访问外部函数的变量：内层作用域可以使用外层作用域中的变量，反之，不行
+      - 当内层作用域中的变量和外层作用域中的变量重名，会覆盖外层作用域中的变量
+      */
+
+			function f4() {
+				var k = 2;
+				// console.log('k = ', k);
+
+				function f5() {
+					var k = 3;
+					var l = 6;
+					console.log('k = ', k);
+				}
+				f5();
+
+				// console.log(' l = ', l);// ReferenceError: l is not defined
+			}
+			f4();
+		</script>
+	</body>
+</html>

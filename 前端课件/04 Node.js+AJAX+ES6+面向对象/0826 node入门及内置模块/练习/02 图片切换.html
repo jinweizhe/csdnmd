@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <title></title>
+  <style type="text/css">
+    * {
+      box-sizing: border-box;
+    }
+
+    h2,
+    ul,
+    li,
+    p {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    #sidebar {
+      width: 192px;
+      border: 1px solid #ccc;
+      margin: 0 auto;
+    }
+
+    #sidebar h2 {
+      height: 30px;
+      background-color: #e9e5e3;
+      text-align: center;
+      line-height: 30px;
+      font-size: 18px;
+    }
+
+    #sidebar ul li {
+      width: 180px;
+      height: 150px;
+      margin: 5px;
+      overflow: hidden;
+      cursor: pointer;
+      position: relative;
+    }
+
+    #sidebar .imgbox {
+      width: 360px;
+      height: 150px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      /* transition: all 0.2s ; */
+    }
+
+    #sidebar .imgbox img {
+      float: left;
+    }
+    /* #sidebar ul li:hover .imgbox{
+      left: -180px;
+    } */
+
+    #sidebar .imgtitle {
+      height: 40px;
+      width: 100%;
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+      font-size: 12px;
+    }
+
+    #sidebar .imgtitle p {
+      height: 20px;
+      width: 100%;
+      line-height: 20px;
+      text-indent: 20px;
+      color: white;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #sidebar .imgtitle p:first-child {
+      top: 20px;
+    }
+
+    #sidebar .red p {
+      background-color: #d96160;
+    }
+
+    #sidebar .cyan p {
+      background-color: #134752;
+    }
+
+    #sidebar .blue p {
+      background-color: #2271af;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="sidebar">
+    <h2>专辑推荐</h2>
+    <ul>
+      <li>
+        <!--图片-->
+        <div class="imgbox">
+          <img src="images/1_1.jpg" />
+          <img src="images/1_2.jpg" />
+        </div>
+        <!--文字-->
+        <div class="imgtitle red">
+          <p>几何为网-极致绚烂</p>
+          <p>COCOON/可可尼</p>
+        </div>
+      </li>
+      <!-- <li>
+        <div class="imgbox">
+          <img src="images/2_1.jpg" />
+          <img src="images/2_2.jpg" />
+        </div>
+        <div class="imgtitle cyan">
+          <p>2013春印象</p>
+          <p>INSUN/恩裳</p>
+        </div>
+      </li>
+      <li>
+        <div class="imgbox">
+          <img src="images/3_1.jpg" />
+          <img src="images/3_2.jpg" />
+        </div>
+        <div class="imgtitle blue">
+          <p>NANMENG/南梦</p>
+          <p>JNBY/江南布衣</p>
+        </div>
+      </li> -->
+    </ul>
+  </div>
+  <script type="text/javascript">
+    $(function () {
+      $('#sidebar li').hover(function () {
+        $(this).find('.imgbox').stop().animate({ left: -180 }, 500);
+        $(this).find('p').eq(0).stop().animate({ top: 0 }, 500);
+        $(this).find('p').eq(1).stop().animate({ top: 20 }, 500);
+      }, function () {
+        $(this).find('.imgbox').stop().animate({ left: 0 }, 500);
+        $(this).find('p').eq(0).stop().animate({ top: 20 }, 500);
+        $(this).find('p').eq(1).stop().animate({ top: 0 }, 500);
+      });
+    });
+  </script>
+</body>
+
+</html>

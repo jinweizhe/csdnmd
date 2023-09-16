@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 猜字小游戏：
+    // 系统随机生成一个1~100的整数
+    // 文本框输入一个数字跟这个数字比较
+    // 如果大于这个数字，就输出：笨蛋，猜大了
+    // 如果小于这个数字，就输出：笨蛋，猜小了
+    // 如果等于这个数字，就输出：猜对了
+
+
+    // 1-100减1转化为0-99，用Math.random()乘100，再向下取整得到0-99，最后再加1得到1-100
+
+    // var random = Math.floor(Math.random() * 100) + 1;
+    // console.log(random);
+    // var num = prompt('请输入1-100之间的整数');
+    // while (true) {
+    //   if(num < random){
+    //     num = prompt('笨蛋，猜小了！');
+    //   }else if(num > random){
+    //     num = prompt('笨蛋，猜大了！');
+    //   }else{
+    //     alert('恭喜，猜对了！');
+    //     break;
+    //   }
+    // }
+
+    // do {
+    //   if(num < random){
+    //     num = prompt('笨蛋，猜小了！');
+    //   }else if(num > random){
+    //     num = prompt('笨蛋，猜大了！');
+    //   }else{
+    //     alert('恭喜，猜对了！');
+    //     break;
+    //   }
+    // } while (true);
+
+    // 增加猜对了，询问是否继续游戏
+
+    // var random = Math.floor(Math.random() * 100) + 1;
+    // console.log(random);
+    // var num = prompt('请输入1-100之间的整数');
+    // do {
+    //   if (num < random) {
+    //     num = prompt('笨蛋，猜小了！');
+    //   } else if (num > random) {
+    //     num = prompt('笨蛋，猜大了！');
+    //   } else {
+    //     var go = confirm('恭喜，猜对了！是否继续游戏');
+    //     console.log('go = ' + go);
+    //     if (go == true) {
+    //       // 继续游戏
+    //       random = Math.floor(Math.random() * 100) + 1;
+    //       console.log(random);
+    //       num = prompt('请输入1-100之间的整数');
+    //     } else {
+    //       // 结束游戏
+    //       break;
+    //     }
+    //   }
+    // } while (true);
+
+    // ----------------------------------------------------------------
+    var random = Math.floor(Math.random() * 100) + 1;
+    console.log(random);
+    var num = prompt('请输入1-100之间的整数');
+    var isLoop = true;
+    do {
+      if (num < random) {
+        num = prompt('笨蛋，猜小了！');
+      } else if (num > random) {
+        num = prompt('笨蛋，猜大了！');
+      } else {
+        isLoop = confirm('恭喜，猜对了！是否继续游戏');
+        console.log('isLoop = ' + isLoop);
+        if (isLoop) {
+          // 如果isLoop的值为true，重新产生新的随机数
+          random = Math.floor(Math.random() * 100) + 1;
+          console.log(random);
+          num = prompt('请输入1-100之间的整数');
+        }
+      }
+    } while (isLoop); // isLoop == true
+
+
+
+    // 如果使用布尔变量作为if语句的判断条件，可以简化，以go变量为例
+    // 如果布尔变量的值为true，可以直接在判断条件中使用go，if(go){}，等价于if(go == true){}
+    var go = true;
+    if (go == true) {
+      console.log('继续执行1');
+    }
+    if (go) {
+      console.log('继续执行1.1');
+    }
+    if (true) {
+      console.log('继续执行2');
+    }
+
+    // 如果布尔变量的值为false，需要在判断条件中取反，if(!open) {} 等价于 if(open == false) {}
+    var open = false;
+    if (open == false) {
+      console.log('关灯了1');
+    }
+    if (!open) {
+      console.log('关灯了1.1');
+    }
+    if (!false) {
+      console.log('关灯了2');
+    }
+
+    if (open) {
+      console.log('开灯了');
+    } else {
+      console.log('关灯了');
+    }
+
+    if (!open) {
+      console.log('关灯了');
+    } else {
+      console.log('开灯了');
+    }
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<p id="p0"></p>
+		<p id="p1"></p>
+
+		<!-- 导入第三方工具库、插件：是别人、组织使用JS封装的工具库，里面包含很多属性或者方法，可以直接实现某种功能 -->
+		<!-- moment.js、dayjs是一个时间相关的工具库 -->
+		<script src="./moment.min.js"></script>
+		<script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+		<script>
+			console.log(moment().format('YYYY年MM月DD日 hh:mm:ss E'));
+			console.log(dayjs().format('YYYY年MM月DD日 hh:mm:ss'));
+		</script>
+
+		<script>
+			// - 在页面上显示当前时间，并根据当前时间刷新时间，格式为：2022年05月02日 14:08:16 星期一
+			var dat, year, mou, cover, hour, min, sec, day;
+			var arr = ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+			function isMore(a) {
+				if (a < 10) {
+					return '0' + a;
+				}
+				return a;
+			}
+			function show01() {
+				dat = new Date(); //函数梅执行一次都需重新给dat进行一次赋值，保证dat中的日期一直持续更新
+				year = dat.getFullYear();
+				mou = isMore(dat.getMonth() + 1);
+				cover = isMore(dat.getDate());
+
+				hour = isMore(dat.getHours());
+				min = isMore(dat.getMinutes());
+				sec = isMore(dat.getSeconds());
+
+				day = isMore(arr[dat.getDay()]);
+
+				p0.innerHTML = year + '年' + mou + '月' + cover + '日 ' + hour + ':' + min + ':' + sec + ' ' + day;
+			}
+			show01();
+			setInterval(show01, 1000);
+
+			// - 计算当前时间到十月一的时间差，结果用：05天16小时02分12秒 显示，并使用定时器让时间变化
+			function update() {
+				var now = new Date();
+				var target = new Date('2022 10 1 00:00:00');
+				var offsetTime = (target.getTime() - now.getTime()) / 1000;
+
+				// 定义一分钟、一小时、一天所占用的秒数
+				var SECOND = 1;
+				var MINUTE = SECOND * 60;
+				var HOUR = MINUTE * 60;
+				var DAY = HOUR * 24;
+
+				var days = Math.floor(offsetTime / DAY);
+				// 把天数占用的秒数去除 offsetTime%DAY，再用剩余的时间对一小时占用的秒数取整
+				var hours = Math.floor((offsetTime % DAY) / HOUR);
+				// 把小时数占用的秒数去除 offsetTime%HOUR，再用剩余的时间对一分钟占用的秒数取整
+				var minutes = Math.floor((offsetTime % HOUR) / MINUTE);
+				var seconds = Math.floor((offsetTime % MINUTE) / SECOND);
+				p1.innerHTML = isMore(days) + '天' + isMore(hours) + '时' + isMore(minutes) + '分' + isMore(seconds) + '秒';
+			}
+			update();
+			setInterval(update, 1000);
+
+			// - 倒计时：00:02:15、
+      
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <h1>天气预报</h1>
+    <!-- 双花括号添加变量或者表达式 -->
+    <p> {{city}} </p>
+    <p> {{2+2}} </p>
+    <hr>
+    <!-- 数组使用each遍历：each 数组。不要忘记写/each
+      $index是数组的索引值；$value是数组的元素值
+    -->
+    {{each list}} 
+    <div> {{$index}}-{{$value}} </div>
+    {{/each}}
+    <hr>
+    <!-- 自定义索引名和元素名：each 数组 元素名 索引名  -->
+    {{each list item index}}
+      {{if item.indexOf('雷')>-1}} 
+        <div> <strong>{{index+1}} --- {{item}}</strong> </div>
+      {{else}}
+        <div> {{index+1}} --- {{item}} </div>
+      {{/if}}
+    {{/each}}
+    <hr>
+    <script>
+    
+    </script>
+  </body>
+</html>

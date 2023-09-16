@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 对象的创建有两种方式
+			// 1、使用 new关键字 和 Object 构造函数
+			// 2、使用字面量的形式
+
+			// 通过构造函数创建对象，对象也叫实例
+			// 对象的属性：name、age，对象的方法：say 都可以统称为对象的属性，根据给属性赋值的不同，区分为属性 和 方法
+			// 如果属性的值是一个函数，这个属性可以叫做方法，其余的全部都是属性
+
+			// 一、创建对象
+			// 1、使用new创建对象
+			// new 创建对象的关键字；Object是对象的构造函数
+			// var zhangsan = new Object();
+			// // 给对象添加属性
+			// zhangsan.name = '张三';
+			// zhangsan.age = 18;
+			// // 给对象添加方法
+			// zhangsan.say = function () {
+			// 	console.log('张三说你好！');
+			// };
+			// var zhangsan = new Object({
+			//   name: '张三',
+			//   age: 18,
+			//   say: function () {
+			//     console.log('张三说你好！');
+			//   }
+			// });
+
+			// 2、使用字面量的形式
+			// {} 在JS中表示对象。[] 表示数组。 / / 表示正则表达式
+			// var zhangsan = {};
+			// // 给对象添加属性
+			// zhangsan.name = '张三';
+			// zhangsan.age = 18;
+			// // 给对象添加方法
+			// zhangsan.say = function () {
+			// 	console.log('张三说你好！');
+			// };
+
+			// 使用字面量创建对象的时候，可以直接添加属性和方法
+			// 添加属性和方法的时候使用键值对的形式
+			// 键：key 是属性名，属性名的取值可以使用key、字符串、数字等
+			// 值：value 是属性值，属性值的取值可以使用数字、布尔、字符串、对象、数组、函数等
+			var zhangsan = {
+				name: '张三',
+				age: 18,
+				65: 'A', // 在对象中数字作为属性，最终数字会转为字符串
+				say: function () {
+					console.log('张三说你好！');
+				},
+			};
+
+			// log 通用的打印输出，可以传递多个参数
+			// console.log(zhangsan);
+			// dir 专门打印对象，只能传递一个参数
+			// console.dir(zhangsan);
+
+			// 二、访问对象的属性和方法
+			// 1、访问属性有两种方式
+			// 第一种使用打点调用法：对象.属性名
+			console.log(zhangsan.name);
+			// 第二种使用方括号：对象['属性名']
+			console.log(zhangsan['name']);
+
+			// console.log(zhangsan.65);
+			console.log(zhangsan[65]);
+			console.log(zhangsan['65']);
+
+			var key = 'age';
+			var key = 'name';
+			// 访问一个对象的属性，如果该属性不存在，得到的结果是 undefiend
+			console.log(zhangsan.key); // 获取张三的key属性，但是zhangsan对象没有key属性
+			console.log(zhangsan[key]); // 获取张三的key变量所表示的某个属性名的值
+
+			// 2、访问方法
+			// 第一种使用打点调用法：对象.方法名()
+			zhangsan.say();
+			// 第二种使用方括号：对象['方法名']()
+			zhangsan['say']();
+
+			// 三、添加属性和方法
+
+			zhangsan.age = 20; // age 已经存在，修改age的值
+			zhangsan.weight = 100; // weight 属性不存在，添weight属性并给weight赋值
+			zhangsan['height'] = 180;
+			zhangsan.run = function () {
+				console.log('张三跑步50圈');
+			};
+
+			// var name = zhangsan.name;
+
+			// zhangsan.run();// TypeError: zhangsan.run is not a function
+
+      // 四、遍历对象
+			// for ... in 用来遍历对象
+			// key 是对象的属性名，通过key可以访问对象的每一个属性值
+			for (var key in zhangsan) {
+				console.log('key=', key, zhangsan[key]);
+			}
+
+      // 五、in运算符：判断某个属性是否在对象中
+      console.log('name' in zhangsan);
+
+			console.log(zhangsan);
+
+			// 找到Obj对象中出现次数最多的字母，并把该字母及其次数打印输出
+			// var obj = {
+			// 	a: 6,
+			// 	d: 5,
+			// 	f: 9,
+			// 	s: 1,
+			// };
+
+      // var o = {
+      //   name:'张三',
+      //   gf:{
+      //     name:'花花'
+      //   }
+      // }
+
+			// var add = function () {}
+			// add();
+			// console.log(add);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			var news = ['假期要问回顾：月饼事件惊动阿里高层', '上海中秋假期消费者投诉情况：网络销售和食品', '马龙登时尚杂志封面 秀胸肌单眼皮放电撩人', '阿里巴巴4名工程师 因“刷月饼”被开除', '过节出门没带钱？“手机变钱包”不会太远'];
+
+			// 方法一 for------------------
+			// var result = '';
+			// for(var i = 0; i < news.length; i++){
+			//   var str = news[i];
+			//   // console.log(str.replaceAll('月','<mark>月</mark>'));
+			//   result += i+1+'、'+news[i].replaceAll('月','<mark>月</mark>')+'<br>';
+			// }
+			// // console.log(result);
+			// document.write(result);
+
+			// map 对数组元素进行处理，一般需要使用数组的元素做运算，把运算的结果返回到新数组中---新数组的长度==原数组的长度
+
+      // filter 对数组进行筛选，把符合条件的数组元素放入新数组中---新数组的长度<=原数组的长度
+
+
+			var data = news.map(function (item, index) {
+				var res = item.replaceAll('月', '<mark>月</mark>');
+				res = index + '、' + res + '<br>';
+				return res;
+			});
+			var result = data.reduce(function (prev, current, index) {
+				return prev + current;
+			}, '');
+			document.write(result);
+
+      //----------------------------------------------------------------
+      var data = news.map(function (item, index) {
+				var res = item.replaceAll('月', '<mark>月</mark>');
+				res = res + '<br>';
+				return res;
+			});
+			// console.log(data);
+
+      var data2 = data.filter(function(item){
+        console.log(item.includes('月'));
+        return item.includes('月');
+      });
+      console.log(data2);
+
+			var result = data2.reduce(function (prev, current, index) {
+				return prev+index + '、' + current;
+			}, '');
+			console.log(result);
+			document.write(result);
+
+		</script>
+	</body>
+</html>

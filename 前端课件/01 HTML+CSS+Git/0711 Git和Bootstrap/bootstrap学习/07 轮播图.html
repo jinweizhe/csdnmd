@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <!-- 引入bootstrap的css文件 -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+  <style>
+    .box{
+      width: 590px;
+      margin: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="box">
+      <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+      <!-- 指示灯 -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+      </ol>
+
+      <!-- 图片 -->
+      <div class="carousel-inner">
+        <div class="item active">
+          <img
+            src="https://imgcps.jd.com/ling4/100025520132/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5bd8253082acdd181d02fa02/480d34d1/cr/s/q.jpg"
+            alt="...">
+          <div class="carousel-caption">
+            ...
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://imgcps.jd.com/img-cubic/creative_server_cia/v2/2000366/39927877584/FocusFullshop/CkJqZnMvdDEvMTQ2MTk2LzgvMjgzNzcvODU4ODYvNjI2Yzg5MzJFZGI0Mzk2M2UvZDVlYTdkNGVjMWMyZmU0Zi5qcGcSCjk5OS10eV8wXzEwATjui3pY0J-M35QB/cr/s/q.jpg"
+            alt="...">
+          <div class="carousel-caption">
+            ...
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://imgcps.jd.com/ling4/100026667928/5Lqs6YCJ5aW96LSn/5L2g5YC85b6X5oul5pyJ/p-5bd8253082acdd181d02f9d0/f3b1c149/cr/s/q.jpg"
+            alt="...">
+          <div class="carousel-caption">
+            ...
+          </div>
+        </div>
+        <div class="item">
+          <img
+            src="https://imgcps.jd.com/img-cubic/creative_server_cia_jdcloud/v2/2000366/100024865712/FocusFullshop/CkJqZnMvdDEvMTc0NjI0LzUvMjY1OTUvMzM5NzgvNjJjNWUwYWRFMDcwOTJkYjQvMTQ0Y2M5ODk1NDdiYWFiZC5wbmcSCTUtdHlfMF81NjACOO6LekISCgznsr7lk4Hpkpzmg6AQABgBQhMKD-eLguasouS4jeWBnOathxABQhAKDOeri-WNs-aKoui0rRACQgoKBuenjeiNiRAHWLCnyc_0Ag/cr/s/q.jpg"
+            alt="...">
+          <div class="carousel-caption">
+            ...
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 控制按钮：上一张、下一张 -->
+      <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+    </div>
+  </div>
+
+  <!-- 引入jquery文件：因为bootstrap依赖jquery，必须在bootstrap.js文件之前引入jquery -->
+  <script src="./bootstrap/js/jquery.js"></script>
+  <!-- 引入bootstrap.js文件 -->
+  <script src="./bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

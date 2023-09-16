@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <div class="d1">内容1<span>子元素1</span></div>
+		<div class="d2">内容2<span>子元素2</span></div>
+    <script>
+      // 1、DOM对象和JQ对象可以相互转换
+      // JQ对象
+      var div_jq = $('.d1');
+      console.dir(div_jq);
+      // 把JQ对象转为DOM对象
+      var d1 = div_jq.get(0);
+      var d1 = div_jq[0];
+      console.log(d1);
+
+      // DOM对象
+      var div_dom = document.querySelector('div.d1');
+      console.dir(div_dom);
+      // DOM对象转为JQ对象
+      var d2 = $(div_dom);
+      console.log(d2);
+
+      // 2、DOM对象只能调用DOM对象的属性和方法，不能调用JQ对象的属性和方法
+      // JQ对象只能调用JQ对象的属性和方法，不能调用DOM对象的属性和方法   
+      console.log(div_dom.innerHTML);
+      console.log(div_jq.html());
+
+
+      // console.log(div_jq.innerHTML);
+      // console.log(div_dom.html());
+
+      $('div').click(function(){
+        console.log(this);
+        // 把this转为JQ对象
+        console.log($(this));
+      });
+
+    </script>
+  </body>
+</html>

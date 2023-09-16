@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <!-- 引入bootstrap的css文件 -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+  <style>
+    body{
+      padding-top: 70px;
+    }
+    h1 {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- navbar-inverse 设置背景为#222；navbar-fixed-top 让nav固定在页面顶部 -->
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- 当导航栏的选项折叠（宽度小于768）的时候，在导航栏右侧出现的地啊三个横线的按钮 -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <!-- 商标或者logo的位置 -->
+        <a class="navbar-brand" href="#">前端</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <!-- 选项列表 -->
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">首页</a></li>
+          <li><a href="#">HTML5</a></li>
+          <li><a href="#">CSS3</a></li>
+          <li><a href="#">JavaScript</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <div class="starter-template">
+      <h1>Bootstrap starter template</h1>
+      <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a
+        mostly barebones HTML document.</p>
+    </div>
+
+  </div><!-- /.container -->
+
+
+  <!-- 引入jquery文件：因为bootstrap依赖jquery，必须在bootstrap.js文件之前引入jquery -->
+  <script src="./bootstrap/js/jquery.js"></script>
+  <!-- 引入bootstrap.js文件 -->
+  <script src="./bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

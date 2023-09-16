@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 在调用函数的时候，浏览器会传递两个隐式参数
+			// - arguments 参数对象
+			// - this 函数上下文对象
+
+			function fn(a, b) {
+				arguments[0] = 100;
+				console.log(arguments);
+				console.log(arguments.length); // 获取参数的个数
+				console.log(arguments.callee); // 函数自己
+				console.log(arguments.callee === fn); // 函数自己
+				console.log('a=', a);
+				console.log(this);
+			}
+
+			fn(2, 3, 4, 5);
+
+			(function () {
+				console.log('-----------------', arguments);
+			})();
+
+      // 实现任意数量的参数
+			// 例：求和函数
+			function sum() {
+				var res = 0;
+				for (var i = 0; i < arguments.length; i++) {
+					var num = arguments[i];
+					res += num;
+				}
+				return res;
+			}
+			console.log('sum=', sum(2, 3, 4, 8));
+
+      // ...[a,b,c,d,e]  a,b,c,d,e
+
+			// 使用扩展运算符 ... 实现任意数量的参数，ES6新增
+			function add(...args) {
+				console.log(args);
+			}
+			add(1, 2, 3, 4, 5);
+		</script>
+	</body>
+</html>

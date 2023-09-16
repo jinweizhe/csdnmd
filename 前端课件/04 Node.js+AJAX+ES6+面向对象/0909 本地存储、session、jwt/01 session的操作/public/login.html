@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <form>
+    <label>账号：<input type="text" name="username" required value="张三"></label> <br>
+    <label>密码：<input type="password" name="password" required value="123"></label> <br>
+    <input class="login-btn" type="button" value="登录">
+    <button type="button"><a href="./regist.html">去注册</a></button>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/layer/3.5.1/layer.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+
+  <script>
+
+
+    var loginBtn = document.querySelector('.login-btn');
+
+    loginBtn.onclick = function () {
+
+      axios.post('http://127.0.0.1:3000/login', $('form').serialize()).then(res => {
+        let data = res.data;
+        console.log(data);
+        if (data.error == 0) {
+          location.href = './index.html';
+          // 登录成功，记录登录的状态
+          localStorage.setItem('isLogin', true);
+        } else {
+          layer.msg(data.data);
+        }
+      });
+
+    }
+
+  </script>
+</body>
+
+</html>

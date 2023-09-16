@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<h1>AJAX</h1>
+		<div id="box"></div>
+
+    <!-- 使用script标签添加模板。用id给模板起名字，并设置type=text/html，目的是不要把这个script标签内部的代码当成JS解析，并且还可以写标签 -->
+    <script id="user-tem" type="text/html">
+      <p class="title"> {{title}} </p>
+      <ul>
+        {{each data}}
+          <li>{{$value.name}} - {{$value.age}}  </li>
+        {{/each}}
+      </ul>
+    </script>
+    
+		<script>
+			// 第一步：创建xhr请求对象
+			var xhr = new XMLHttpRequest();
+
+			// 第二步：监听请求：当请求状态发生变化的时候会执行onreadystatechange事件
+			// xhr.readyState 记录请求的状态：0 1 2 3 4
+			// xhr.status 响应的状态码：200 表示请求成功
+      console.log('xhr.readyState=',xhr.readyState);
+			xhr.onreadystatechange = function () {
+        console.log('xhr.readyState=',xhr.readyState);
+        console.log(xhr);
+				if (xhr.readyState == 4 && xhr.status == 200) {
+					console.log('请求响应结束：');
+					// console.log( xhr.responseText);
+					var res = JSON.parse(xhr.responseText);
+					console.log(res);
+          // template() 渲染模板。参数1：模板id名；参数3：模板的数据，是一个对象，不能传数组
+          // 返回值是一个字符串：是数据和模板结合之后的字符串，包含标签还有数据
+					// var htmlstr = template('user-tem', {
+					// 	title: '好友',
+					// 	data: [11, 22, 33],
+					// });
+					var htmlstr = template('user-tem', res);
+          // console.log(htmlstr);
+          // 使用innerHTML添加字符串，可以解析里面标签
+          box.innerHTML = htmlstr;
+				}
+			};
+
+			// 第三步：连接请求
+			// 参数1：是请求方法，如果使用app.get对应GET方法；如果使用app.post对应POST方法
+			// 参数2：是请求url地址，把app.get('/info',fun)中 /info 前面加上ip地址和端口号，组成完整url地址：接口
+			xhr.open('GET', 'http://127.0.0.1:3000/info');
+
+			// 第四步：发送请求
+			xhr.send();
+		</script>
+	</body>
+</html>

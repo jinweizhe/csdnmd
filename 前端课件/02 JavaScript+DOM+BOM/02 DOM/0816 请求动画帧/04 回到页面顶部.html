@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			button {
+				position: fixed;
+				top: 100px;
+				left: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<button id="btn">按钮</button>
+		<div style="height: 6000px"></div>
+		<script>
+			var btn = document.getElementById('btn');
+			btn.onclick = function () {
+				// document.scrollingElement.scrollTop -= 10;
+
+				// scroll 滚动页面到指定位置
+				// window.scroll(x, y);
+				// x：水平方向坐标
+				// y：垂直方向坐标
+				// scroll(0, 0);// 去页面顶部
+				// scroll(0, document.documentElement.scrollHeight);// 去页面底部
+
+				scroll({
+					left: 0, // 水平方向坐标
+					top: 0,  // 垂直方向坐标
+          behavior: 'smooth',// 滑动的时候添加动画效果
+          // behavior 表示滚动行为，支持参数：smooth (平滑滚动)，instant (瞬间滚动)，默认值 auto，效果等同于 instant
+				});
+			};
+		</script>
+	</body>
+</html>

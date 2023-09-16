@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<button>按钮4</button>
+		<button>按钮5</button>
+		<button>按钮6</button>
+		<script>
+			var btns = document.querySelectorAll('button');
+
+      // var btn1 = btns[0];
+      // btn1.index = 0;
+
+			for (var i = 0; i < btns.length; i++) {
+				var btn = btns[i];
+        btn.index = i; // 用index记录每一个元素的索引值
+        console.dir(btn);
+
+        btn.onclick = function() {
+          console.dir(this);// 第一步：先找到元素
+          console.log(this.index);// 第二步：再找到元素的索引值
+        }
+
+			}
+
+      // btns[0].index = 0;
+      // btns[0].onclick = function() {
+      //   console.dir(this);
+      // }
+      // btns[1].index = 1;
+      // btns[1].onclick = function() {
+      //   console.dir(this);
+      // }
+		</script>
+	</body>
+</html>

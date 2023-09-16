@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      *{
+        padding: 0;
+        margin: 0;
+      }
+			.box {
+				margin-left: 300px;
+				margin-top: 100px;
+        position: relative;
+			}
+			.small-box {
+        width: 350px;
+				height: 350px;
+				position: relative;
+        border: 1px solid orange;
+			}
+			.small-box .small-img {
+				width: 350px;
+				height: 350px;
+			}
+			.small-box .mask {
+				width: 230px;
+				height: 230px;
+				border: 1px solid green;
+				box-sizing: border-box;
+				background-color: rgba(0, 0, 0, 0.2);
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+        z-index: 100;
+			}
+			.small-box:hover .mask {
+				cursor: move;
+				display: block;
+			}
+      .big-box{
+        width: 526px;
+        height: 536px;
+        border: 1px solid blue;
+        position: absolute;
+        top: 0;
+        left: 352px;
+        overflow: hidden;
+        display:none;
+      }
+      .big-box .big-img{
+        width: 800px;
+        height: 800px;
+        position:absolute;
+        top: 0;
+        left: 0;
+      }
+      .small-box:hover + .big-box{
+        display: block;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+				<div class="small-box">
+					<img src="https://img12.360buyimg.com/n1/jfs/t1/113345/36/15578/120310/5f3f9203Ef12a390b/89528249a8b4bbbb.jpg" alt="" class="small-img" />
+					<div class="mask"></div>
+				</div>
+				<div class="big-box">
+					<img src="https://img12.360buyimg.com/n1/jfs/t1/113345/36/15578/120310/5f3f9203Ef12a390b/89528249a8b4bbbb.jpg" alt="" class="big-img" />
+				</div>
+		</div>
+		<script>
+			var smallBox = document.querySelector('.small-box');
+			var mask = document.querySelector('.mask');
+			var box = document.querySelector('.box');
+			var bigImg = document.querySelector('.big-img');
+
+			// bigImg.offsetHeight/bigBox.offsetHeight = smallBox.offsetHeight/mask.offsetHeight
+			// 偏移量的倍数 = bigImg.offsetHeight/smallBox.offsetHeight
+      // 800/bx = 350/230
+
+			smallBox.onmouseover = function (ev1) {
+				document.onmousemove = function (ev2) {
+					var x = ev2.pageX - (box.offsetLeft+1) - mask.offsetWidth / 2;
+					var y = ev2.pageY - (box.offsetTop+1) - mask.offsetHeight / 2;
+
+					var minX = 0;
+					var maxX = smallBox.clientWidth - mask.offsetWidth;
+					x = x < minX ? minX : x;
+					x = x > maxX ? maxX : x;
+
+					var minY = 0;
+					var maxY = smallBox.clientHeight - mask.offsetHeight;
+					y = y < minY ? minY : y;
+					y = y > maxY ? maxY : y;
+
+          // console.log(smallBox.clientHeight , mask.offsetHeight,maxY);
+
+					console.log(x, box.offsetLeft, y, box.offsetTop);
+					mask.style.left = x + 'px';
+					mask.style.top = y + 'px';
+
+          bigImg.style.left = - x * bigImg.offsetWidth/smallBox.clientWidth +'px';
+          bigImg.style.top = - y * bigImg.offsetHeight/smallBox.clientHeight +'px';
+				};
+			};
+			smallBox.onmouseout = function () {
+				document.onmousemove = null;
+			};
+		</script>
+	</body>
+</html>

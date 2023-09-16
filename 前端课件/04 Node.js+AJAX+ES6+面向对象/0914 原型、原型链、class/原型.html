@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="div"></div>
+  <script>
+
+    // 原型：
+    // 构造函数的原型：prototype （内部Prototype属性的值）
+    // 对象的原型：对象.__proto__（内部[[Prototype]]属性的值），在控制台打印的结果中，对象的原型是使用 [[Prototype]] 表示
+
+    // 一、对象和构造函数之间原型的关系
+    // 通过构造函数构造的对象：该对象的原型指向这个构造函数的原型
+
+    // 二、构造函数与构造函数之间原型的关系，构造函数之间的原型都不一样
+    // 如果构造函数之间需要有继承关系：比如直接创建的构造函数Man，默认继承于Object，Man的原型的原型指向Object的原型 
+    // 如果两个构造函数之间没有继承关系，比如Man和Woman，他们的原型没有直接的关系
+
+    // 三、原型本身也是对象，在JS中只要是对象都有原型，对象的原型使用 __proto__ 获取
+
+    // 四、所有的构造函数最终都是继承于Object，原型链的终点是 Object.prototype
+
+    // 在ES6中新增了类的概念，把构造函数看成类
+    // 在继承关系中，Object被继承的构造函数称作父类，继承过来的构造函数Man称作子类（派生类）
+
+    // 原型链：访问一个对象上的属性时，先从自身查找，再从对象的原型上查找，如果没有再从原型的原型上查找，直至找到Object的原型，这些原型形成的链式结构就是原型链
+
+
+    Object.prototype.o = 100;
+
+    function Man (name) {
+      this.name = name;
+    }
+    Man.prototype.m = 100;
+    // 原型的方法的this：哪个对象调用了方法，this就是指向哪个对象
+    Man.prototype.smoke = function () {
+      console.log(this);
+    };
+
+    function Woman () { }
+    Woman.prototype.w = 100;
+
+    var m = new Man('张三');
+    var m1 = new Man('张三1');
+    var w = new Woman();
+
+    console.dir(Man);
+    console.dir(Woman);
+
+    // console.log(m);
+
+
+    // Object.getPrototypeOf() 方法返回指定对象的原型（内部[[Prototype]]属性的值）。
+    // console.log(Object.getPrototypeOf(m));
+
+
+    // console.dir(div);
+
+  </script>
+</body>
+
+</html>

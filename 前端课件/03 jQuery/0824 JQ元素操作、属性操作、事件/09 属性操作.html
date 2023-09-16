@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<img src="" alt="" />
+		<div id="box" class="inner" title="123">div</div>
+		<a href=""></a>
+		<input type="text" placeholder="账号" />
+		<hr />
+		<input type="checkbox" /> 记住密码
+		<script>
+			// 一、通用属性
+
+			// 1、attr：attribue 用来操作绝大部分属性
+			// 获取属性值
+			console.log($('#box').attr('class'));
+			console.log($('#box').attr('title'));
+			// 修改/添加属性值
+			$('#box').attr('title', '456');
+			$('img').attr('src', 'https://www.jquery123.com/assets/images/jquery-logo-md.png');
+			// 移除属性
+			$('#box').removeAttr('title');
+
+			// 2、prop：property 用来操作值为boolean类型的属性，常见的标签：单选框、复选框、下拉菜单
+			// prop()用于具有true或false两个值的属性，如checked, selected disabled hidden，其他的使用 attr()
+			$('input[type=checkbox]').prop('checked', false);
+			// $('#box').prop('hidden',true);
+
+			// 二、class属性
+			// 添加类名
+			$('#box').addClass('d1');
+			$('#box').addClass('d2 d3');
+			$('#box').addClass('d4').addClass('d5');
+
+			// 删除类名
+			$('#box').removeClass('d1');
+			$('#box').removeClass('d2 d2');
+			$('#box').removeClass(); // 不添加参数清空类名
+
+			// 判断是否包含某个类名
+			console.log($('#box').hasClass('d1'));
+
+			// 开关效果
+			$('#box').toggleClass('d1');
+
+			// $('#box')[0].classList.add()
+			// $('#box')[0].classList.remove()
+			// $('#box')[0].classList.contains()
+			// $('#box')[0].classList.toggle()
+
+			// 三、CSS属性
+			// 用法一：$(selector).css(key,value); 只能设置单个属性
+			// 用法二：$(selector).css({key:value, key:value, ...}); 可以设置多个属性
+      // key: css属性名
+      // value：css属性值
+
+      // 用法一和用法二涉及到尺寸相关的数字，可以不带单位，默认是px
+      // 用法二：多个单词的属性，可以直接写在引号中，也可以把连字符去掉，从第二个单词起首字母改为大写
+      $('div').css('color', 'red').css('font-size', 30);
+      $('div').css({
+        width: 200,
+        height: 100,
+        'background-color': 'blue',
+        fontWieght: 700,
+      });
+
+      // 四、控制元素显示和隐藏
+      $('#box').hide();// 隐藏元素
+      $('#box').show();// 显示元素
+
+		</script>
+	</body>
+</html>

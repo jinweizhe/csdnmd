@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style>
+			.box {
+				width: 200px;
+				height: 200px;
+				background-color: red;
+				position: relative;
+				overflow: hidden;
+			}
+			.inner {
+				width: 200px;
+				height: 150px;
+				background-color: lightblue;
+				position: absolute;
+				left: 0;
+				top: 10px;
+				/* transition: left .2s; */
+			}
+			/* .box:hover .inner{
+        left: 200px;
+      } */
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="inner"></div>
+		</div>
+		<script>
+			$('.box').hover(function () {
+				$('.inner').stop().animate({ left: 200 }, 1000);
+			},function () {
+        $('.inner').stop().animate({ left: 0 }, 1000);
+      });
+		</script>
+	</body>
+</html>

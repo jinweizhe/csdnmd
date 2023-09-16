@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <script src="https://cdn.bootcss.com/jquery/3.5.0/jquery.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.26.0/axios.min.js"></script>
+  <style type="text/css">
+    .drag-box {
+      width: 300px;
+      height: 300px;
+      border: 2px dotted #ccc;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #666;
+      font-size: 25px;
+    }
+
+    .drag-box img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+  <div class="drag-box">
+    <span>拖动图片到这里</span>
+  </div>
+  <button type="button" class="drag-btn">上传</button>
+  <script type="text/javascript">
+    $(function () {
+      //1、与drag、drop相关事件，需要preventDefault(),因为浏览器默认会打开拖放到页面的资源（图片）
+      //2、与drag、drop相关事件与jQuery同时使用时，需要使用event.originalEvent获取原始事件对象，
+      //因为jQuery封装事件对象中没有dataTransfer属性，更无法获取files属性
+
+      var file;
+      //jQuery：通过on可以给DOM集合同时添加多个事件
+      $(".drag-box").on({
+        dragover: function (ev) {
+          ev.preventDefault();
+          ev.stopPropagation();
+        },
+        drop: function (ev) {
+          ev.preventDefault();
+          ev.stopPropagation();
+
+          var files = ev.originalEvent.dataTransfer.files;
+          if (files.length > 1) {
+            alert('每次只能上传一张图片');
+            return;
+          }
+          if (!files[0].type.startsWith('image')) {
+            alert('只能上传图片');
+            return;
+          }
+          file = files[0];
+          $(".drag-box").html("<img src=" + URL.createObjectURL(file) + ">");
+        }
+      });
+
+      $('.drag-btn').click(function () {
+        if (!file) {
+          return alert('请先选择图片');
+        }
+
+        var data = new FormData();
+        data.append('myfile', file);
+        axios({
+          url: '/upload',
+          method: 'POST',
+          data: data,
+        }).then(res => {
+          alert(res.data.data);
+        })
+      });
+
+    });
+  </script>
+  </body>
+
+</html>

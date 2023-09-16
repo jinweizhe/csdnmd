@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <p>jQuery学习</p>
+    <script src="./jquery-3.6.0.js"></script>
+    <script>
+
+      // jQuery是JQ库提供的一个全局对象，也是一个函数，使用JQ对元素的各种操作需要使用到jQueryn对象，为了简化代码，JQ提供了一个符号$来代替jQuery对象
+
+      console.dir(window.jQuery);
+      console.dir(window.$);
+      console.dir(jQuery);
+      console.dir($);
+      console.log($ == jQuery);
+
+      // JQ语法：$(selector).action();
+      // $() 调用JQ对象  
+      // selector 是找标签的选择器，类似CSS选择择器
+      // action 是执行的某种操作，比如：.css()是改变元素样式的操作
+
+      // jQuery('p').css('color', 'red');
+      $('p').css('color', 'red');
+    
+    </script>
+  </body>
+</html>

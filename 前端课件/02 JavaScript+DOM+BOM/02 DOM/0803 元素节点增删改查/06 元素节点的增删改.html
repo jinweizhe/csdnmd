@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<ul class="list">
+      
+			<li class="item1">item1</li>
+			<li class="item2">item2</li>
+			<li class="item3">item3</li>
+			<li class="item4">item4</li>
+			<li class="item5">item5</li>
+		</ul>
+		<script>
+			var ul = document.querySelector('.list');
+			var item2 = ul.querySelector('.item2');
+			console.log(item2);
+
+			// 1、创建元素节点，参数是标签名，标签名不分大小写
+			var newLi = document.createElement('li');
+			// 给标签添加内容
+			newLi.innerHTML = '新建li';
+			console.log(newLi);
+
+			// 2、增加元素节点
+			// appendChild 增加元素节点，参数是新增的元素节点
+			// 把li标签增加到ul的内部，并放在ul最后的位置
+			// ul.appendChild(newLi);
+
+			// insertBefore 插入元素节点，参数1：新增的元素；参数2：把新增的元素放在哪个元素的前面
+			// 把li标签放在item2的前面
+			// ul.insertBefore(newLi, item2);
+
+			// 参数2是null，不能省略参数2，效果等同于 appendChild
+			// ul.insertBefore(newLi, null);
+
+			// appendChild 在父元素的最后位置插入元素节点
+			// insertBefore 在父元素内部的某个元素的前面插入元素节点
+
+			// ul.appendChild(item2);
+
+			// 3、删除
+			// removeChild 删除子元素，参数是被删除的元素节点
+			// ul.removeChild(newLi);
+			// ul.removeChild(item2);
+
+			// remove 删除自身，包括子元素
+			// ul.remove();
+
+			// 4、替换
+			// replaceChild 替换子元素: 参数1：新标签；参数2：被替换的标签
+			ul.replaceChild(newLi, item2);
+
+			// 把新建的标签
+			// 1、放在ul最后的位置
+			// ul.appendChild(newLi);
+			// ul.insertBefore(newLi, null);
+			// 2、放在ul开始的位置
+			// ul.insertBefore(newLi, item1);
+			// ul.insertBefore(newLi, ul.firstElementChild);
+			// ul.insertBefore(newLi, ul.children[0]);
+			// 3、放在ul第二位
+			// ul.insertBefore(newLi, ul.children[1]);
+			// 4、放在ul倒数第二位
+			// ul.insertBefore(newLi, ul.lastElementChild);
+			// ul.insertBefore(newLi, ul.children[ul.childElementCount-1]);
+			// ul.insertBefore(newLi, ul.children[ul.children.length-1]);
+		</script>
+	</body>
+</html>
+

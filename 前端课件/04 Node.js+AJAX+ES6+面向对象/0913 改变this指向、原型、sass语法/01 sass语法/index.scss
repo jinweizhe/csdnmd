@@ -1,0 +1,71 @@
+// sass在css的基础之上扩展了css语法，浏览器不能识别sass语法，需要把sass语法编写样式转为css文件使用
+// sass文件的后缀名使用 .scss
+// sass完全兼容css，有扩展变量、嵌套等语法
+
+// 6、导入
+@import './base.scss';
+
+// 1、变量：使用$开头，多个单词使用-连接
+$font12: 12px;
+$width: 100px;
+$borderWidth: 20px;
+
+.box {
+	$w: 200px;
+	font-size: $font12;
+	width: $width;
+	height: $width;
+	border: $borderWidth solid;
+}
+
+// 2、选择器嵌套
+.nav {
+	font-size: $font12;
+
+	// 3、& 父选择器
+	&:hover {
+		color: #f0f;
+	}
+	.nav-list {
+		background-color: orange;
+
+		.item {
+			font-size: 16px;
+
+			&:hover {
+				color: #f00;
+			}
+		}
+	}
+}
+
+// 4、混合
+// @mixin 定义混合
+// @include 导入混合
+@mixin border {
+	border: 1px solid #ccc;
+}
+@mixin font-size($n: 16px) {
+	font-size: $n;
+	width: 200px;
+	height: 200px;
+}
+
+.top {
+	background-color: orange;
+	@include border;
+	@include font-size(20px);
+}
+
+.bottom {
+	color: blue;
+	// 5、继承
+	@extend .top;
+}
+
+// 7、for语句
+@for $i from 1 through 6 {
+	.item#{$i} {
+		background-color: rgb(30 * $i, 0, 0);
+	}
+}

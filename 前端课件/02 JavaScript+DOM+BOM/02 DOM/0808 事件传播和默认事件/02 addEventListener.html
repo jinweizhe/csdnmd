@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<button>按钮</button>
+		<script>
+			var btn = document.querySelector('button');
+
+			// addEventListener的第三个参数可以是一个对象，该对象有以下属性
+			// - `capture`：布尔值，如果设为`true`，表示监听函数在捕获阶段触发，默认为`false`，在冒泡阶段触发。
+			// - `once`：布尔值，如果设为`true`，表示监听函数执行一次就会自动移除，后面将不再监听该事件。该属性默认值为`false`。
+			// - `passive`：布尔值，设为`true`时，表示禁止监听函数调用`preventDefault()`方法。如果调用了，浏览器将忽略这个要求，并在控制台输出一条警告。该属性默认值为`false`。
+			// - `signal`：该属性的值为一个 AbortSignal 对象，为监听器设置了一个信号通道，用来在需要时发出信号，移除监听函数。
+
+      btn.addEventListener(
+				'click',
+				function (e) {
+					console.log('----------2');
+				},
+				{
+					// capture: true,
+          once: true,
+				}
+			);
+			// document.addEventListener(
+			// 	'click',
+			// 	function (e) {
+			// 		console.log('----------1');
+			// 	},
+			// 	{
+			// 		capture: true,
+			// 	}
+			// );
+
+	
+		</script>
+	</body>
+</html>

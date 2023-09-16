@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul,
+			li {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			.container {
+				width: 600px;
+				margin: 0 auto;
+			}
+
+			.header {
+				background-color: lightblue;
+				height: 130px;
+			}
+
+			.item:nth-child(2n) {
+				height: 1000px;
+				background-color: lightgray;
+			}
+
+			.item:nth-child(2n + 1) {
+				height: 800px;
+				background-color: lightcoral;
+			}
+
+			.nav-left {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 60px;
+				padding: 5px;
+				border: 1px solid #ccc;
+				text-align: center;
+				border-radius: 5px;
+				position: fixed;
+				top: 200px;
+				right: calc(50% + 300px + 30px);
+			}
+
+			.nav-left li {
+				padding: 10px 0;
+				border-bottom: 1px solid #ccc;
+				cursor: pointer;
+			}
+
+			.nav-left li:last-child {
+				border: none;
+			}
+
+			.nav-left li.active {
+				background-color: #df147f;
+				border-radius: 5px;
+				border: none;
+			}
+			h1 {
+				position: fixed;
+				right: 100px;
+				top: 200px;
+				background-color: orange;
+			}
+			footer {
+				height: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header>
+			<div class="container header">头部</div>
+		</header>
+		<main>
+			<div class="container item">
+				<h2>精选品牌1</h2>
+			</div>
+			<div class="container item">
+				<h2>女装品牌2</h2>
+			</div>
+			<div class="container item">
+				<h2>鞋包品牌3</h2>
+			</div>
+			<div class="container item">
+				<h2>男装品牌4</h2>
+			</div>
+			<div class="container item">
+				<h2>运动品牌5</h2>
+			</div>
+		</main>
+		<ul class="nav-left">
+			<li class="active">精选1</li>
+			<li>女装2</li>
+			<li>鞋包3</li>
+			<li>男装4</li>
+			<li>运动5</li>
+		</ul>
+		<footer></footer>
+
+		<h1 id="h1"></h1>
+		<script>
+			var header = document.querySelector('header');
+			var lous = document.querySelectorAll('.item');
+			var navLeft = document.querySelector('.nav-left');
+			var leftItems = document.querySelectorAll('.nav-left li');
+
+			var timer = 0;
+			var speed = 0;
+      var lastIndex = 0;
+			for (var i = 0; i < leftItems.length; i++) {
+				lous[i].firstElementChild.innerHTML = lous[i].firstElementChild.innerHTML + '  offsetTop=' + lous[i].offsetTop;
+				leftItems[i].index = i;
+				leftItems[i].onclick = function () {
+					// var this = this;
+
+          // 滚动条往下走：this.index 大于 lastIndex：this.index - lastIndex计算结果为正值，正好滚动条往下走speed为正值
+          // 滚动条往上走：this.index 小于 lastindex：this.index - lastIndex计算结果为负值，正好滚动条往下走speed为负值
+					speed = (this.index - lastIndex)*30;
+
+          console.log('this.index=',this.index, 'lastIndex=',lastIndex,  'speed=',speed);
+
+          if (speed == 0 || timer) {
+            return;
+          }
+					timer = requestAnimationFrame(move.bind(this));
+					function move() {
+
+						document.documentElement.scrollTop += speed;
+						timer = requestAnimationFrame(move.bind(this));
+
+						// 停止
+						var top = lous[this.index].getBoundingClientRect().top;
+						console.log('speed = ', speed, 'top = ', top);
+						// 如果速度为正值，top从正值变变为0，一直到负值，判断top<=0停止；如果速度为负值，top从从负值变为0，一直到正值，判断top>=0停止
+						if ((speed > 0 && top-100 <= 0) || (speed < 0 && top+100 >= 0)) {
+							console.log(lous[this.index].offsetTop);
+							document.documentElement.scrollTop = lous[this.index].offsetTop - 100;
+							cancelAnimationFrame(timer);
+              timer = null;
+						}
+					}
+				};
+			}
+
+			var index = 0;
+			window.onscroll = function () {
+				var scrollTop = document.documentElement.scrollTop;
+				// console.log('scrollTop = ', scrollTop);
+
+				for (var i = 0; i < leftItems.length; i++) {
+					leftItems[i].classList.remove('active');
+					// 减 100 的作用：让楼层还没有到大可视页面顶部的时候，就开始变化
+					if (scrollTop >= lous[i].offsetTop - 100) {
+						index = i;
+					}
+				}
+				h1.innerHTML = 'scrollTop=' + scrollTop + ' index=' + index + ' ' + (index + 1) + '楼';
+				leftItems[index].classList.add('active');
+        lastIndex = index;
+				// console.log('lastIndex: ', lastIndex);
+			};
+		</script>
+	</body>
+</html>

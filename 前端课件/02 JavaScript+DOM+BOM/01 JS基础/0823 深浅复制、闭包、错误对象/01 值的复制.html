@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+      // 值类型的复制：复制的是值本身
+			// var a = 2;
+			// var b = a;
+			// b += 100;
+
+      // 引用类型的复制：复制的是内存地址
+			// var arr1 = [2];
+			// var arr2 = arr1;
+			// arr2.push(100);
+
+      // 值传递
+      // - 实参向形参传递的值是值类型(基本类型)。
+      // - **在函数内部改变形参的值，不会影响实参的值**。原因：值传递时，传递的是变量的值本身。
+			var a = 10;
+			function fn1(x) {
+        console.log('x=',x);
+				x = 100;
+        console.log('x=',x);
+			}
+			// 调用函数的时候：把a的值复制给x: x=a
+			fn1(a);
+			console.log(a);
+
+      // 引用传递
+      // - 实参向形参传递的值是引用类型。
+      // - **在函数内部改变形参的值，会影响实参的值**。原因：引用传递时，传递的是变量的内存地址，把实参的内存地址复制了一份给了形参，此时，形参和实参都是指向内存中堆上的数据所在的位置，改变形参的值就是改变了这个对象，实参的值也会发生变化。
+      var arr = [2];  
+      function fn2(x) {
+        console.log('x=',x);
+        x.push(100);
+        console.log('x=',x);
+      }
+      fn2(arr);
+      console.log('arr=',arr);
+
+
+		</script>
+	</body>
+</html>

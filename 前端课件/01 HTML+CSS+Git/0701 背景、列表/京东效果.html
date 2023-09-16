@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      /* box-sizing: border-box; */
+    }
+    ul{
+      list-style: none;
+    }
+    body{
+      background-color: #f4f4f4;
+    }
+    .w{
+      width: 1190px;
+      margin: auto;
+    }
+    .clearfix::after{
+      content:'';
+      display: block;
+      clear: both;
+      visibility: hidden;
+      height: 0;
+    }
+    .nav{
+      height: 30px;
+      background-color: #e3e4e5;
+      border-bottom: 1px solid #ddd;
+    }
+    .header{
+      height: 140px;
+      background-color: #fff;
+      border-bottom: 1px solid #ddd;
+    }
+    .menu-box{
+      background-color: #f4f4f4;
+      height: 480px;
+      margin-bottom: 30px;
+    }
+    
+    .menu-box .item{
+      width: 190px;
+      height: 470px;
+      background-color: lightblue;
+      float: left;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+    .menu-box .item.banner{
+      width: 590px;
+      position: relative;
+    }
+    .menu-box .item:last-child{
+      margin-right: 0;
+    }
+    .menu-box .list>li{
+      height: 150px;
+      background-color: red;
+      margin-bottom: 10px;
+    }
+    .menu-box .banner .img-list>img{
+      width: 100%;
+      height: 100%;
+    }
+    .menu-box .banner .btn-list>div{
+      width: 25px;
+      height: 35px;
+      color: #fff;
+      text-align: center;
+      line-height: 35px;
+      background-color: rgba(0, 0, 0, 0.15);
+      position: absolute;
+      top: calc(50% - 35px / 2);
+      cursor: pointer;
+    }
+    .menu-box .banner .btn-list>div:hover{
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .menu-box .banner .btn-list .prev-btn{
+      left: 0;
+      border-radius: 0 18px 18px 0;
+    }
+    .menu-box .banner .btn-list .next-btn{
+      right: 0;
+      border-radius: 18px 0 0 18px;
+    }
+    .menu-box .banner .indicator-list{
+      position: absolute;
+      left: 30px;
+      bottom: 30px;
+    }
+    .menu-box .banner .indicator-list>li{
+      width: 8px;
+      height: 8px;
+      background-color: rgba(255, 255, 255, 0.4);
+      float: left;
+      margin-right: 3px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 5px solid transparent;
+      background-clip: padding-box;
+    }
+    /* 先给标签设置一个边框，颜色设置为透明，这样写标签的总尺寸就固定了，后面只需要改变颜色就可以实现效果，不要改变边框的尺寸，方式元素跳动 */
+    .menu-box .banner .indicator-list>li:hover{
+      background-color: rgba(255, 255, 255, 1);
+      border-color: rgba(0, 0, 0, 0.2);
+    }
+    .main{
+      /* background-color: #f4f4f4; */
+    }
+    .main>div{
+      height: 1000px;
+      background-color: lightblue;
+    }
+  
+    .sliderbar{
+      width: 58px;
+      height: 358px;
+      background-color: red;
+      position: fixed;
+      bottom: 100px;
+      /* left: calc(50% + 1190px / 2 + 20px); */
+/* 
+      left: 50%;
+      margin-left: calc(1190px / 2 + 20px); */
+
+      left: 50%;
+      transform: translateX(calc(1190px / 2 + 20px));
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 顶部导航 -->
+  <div class="nav">
+    <div class="w">导航</div>
+  </div>
+  <!-- 头部 -->
+  <div class="header">
+    <div class="w">头部</div>
+  </div>
+  <div class="menu-box">
+    <div class="w">
+      <div class="item">1</div>
+      <div class="item banner">
+        <div class="img-list">
+          <img src="https://imgcps.jd.com/img-cubic/creative_server_cia_jdcloud/v2/2000366/39927877584/FocusFullshop/CkNqZnMvdDEvODU0OTEvMjQvMjk0NDQvMzEyMzU2LzYyYmEwNmMwRTRjMTI0NDUyLzAwMTUzOGE2MTBmZDE3M2MucG5nEgkzLXR5XzBfNTQwAjjui3pCEAoMRFVSR09E6ZSu55uYEABCFgoS5byA5ZCv5bSt5paw55Sf5rS7EAFCEAoM56uL5Y2z5oqi6LStEAJCCgoG5Yqb6I2QEAdY0J-M35QB/cr/s/q.jpg" alt="">
+        </div>
+        <div class="btn-list">
+          <div class="prev-btn">&lt;</div>
+          <div class="next-btn">&gt;</div>
+        </div>
+        <ul class="indicator-list">
+          <li class="active"></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+      <div class="item">
+        <ul class="list">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+      <div class="item">4</div>
+    </div>
+  </div>
+  <!-- 内容 -->
+  <div class="main">
+    <div class="w">内容</div>
+  </div>
+
+  <div class="sliderbar">
+    xxx
+  </div>
+
+
+</body>
+
+</html>

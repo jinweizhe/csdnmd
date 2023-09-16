@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+<body>
+
+<script type="text/javascript">
+	
+	//获取document中的所有元素
+	var all = document.all;
+	console.dir(all);
+	console.log(all.length);
+	
+	for (var i = 0; i < all.length; i++) {
+		var ele = all[i]
+		
+		if (ele.tagName == 'SCRIPT' || ele.tagName == 'HTML') {
+			console.log(123);
+			continue;
+		}
+		// document.all可以实现类似于css样式中的:
+		//  *{
+		// 	 	box-sizing:border-box;
+		//  }
+		ele.style.boxSizing = 'border-box';
+	}
+
+	
+	// 获取页面上所有的 <a> ,和 <area>	
+	console.dir(document.links)
+	
+	// 获取页面上所有的图片，即<img>
+	console.dir(document.images)
+	
+	// 获取页面上所有的表单
+	console.dir(document.forms)
+	
+	// 获取页面上所有的超链接，即<a>
+	console.dir(document.anchors)
+	
+	// 获取页面上的所有样式表，包含 <style> 和 <link>
+	console.dir(document.styleSheets)
+	
+	// 获取页面上所有的脚本程序
+	console.dir(document.scripts)
+	
+	
+	
+	
+</script>
+</body>
+</html>

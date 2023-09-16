@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 结束循环：
+    // continue：结束本次循环，继续执行下一次循环 --- 不会结束整个循环语句
+    // break：结束整个循环语句
+    
+    // 特点：
+    // continue和break可以用在for语句或者while语句中，一般是使用在循环语句中，switch中的break是一个特例
+    // 不管是break还是continue，只会影响本层循环语句，不会影响外层的循环语句
+    
+    
+    for (var i = 0; i < 10; i++) {
+      if (i == 5) {
+        console.log('这是第' + (i + 1) + '圈，休息一下，第' + (i + 1) + '圈的时间用来休息，休息结束继续下一圈');
+        continue;
+      }
+      console.log('今天已经跑了' + (i + 1) + '圈', 'i = ', i);
+    }
+
+    // continue的应用
+    // 求1-100之间的偶数和
+    var sum = 0;
+    for (var i = 1; i <= 100; i++) {
+      if (i % 2 == 1) {
+        // console.log(i+'是奇数，不能执行求和');
+        continue;
+      }
+      sum += i;
+    }
+    console.log('sum =', sum);
+
+    console.log('--------------------------------');
+
+    for (var i = 0; i < 10; i++) {
+      if (i == 5) {
+        console.log('这是第' + (i + 1) + '圈，被请吃烤羊腿，爽快的答应，剩下的全数不跑了');
+        break;
+      }
+      console.log('今天已经跑了' + (i + 1) + '圈', 'i = ', i);
+    }
+
+    // break的应用
+    // var result = prompt('你是好人吗？');
+    // if (result == '是') {
+    //   alert('回答正确');
+    // } else {
+    //   while (true) {
+    //     result = prompt('回答错误，请再次回答');
+    //     if (result == '是') {
+    //       alert('回答正确');
+    //       break;
+    //     }
+    //   }
+    // }
+
+    for (var i = 0; i < 3; i++) {
+      for (var j = 0; j < 6; j++) {
+        if (j == 4) {
+          // 不管是break还是continue，只会影响本层循环语句，不会影响外层的循环语句
+          // break;
+          continue;
+        }
+        console.log('i = ', i, ' j = ', j);
+      }
+    }
+
+
+
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			.box {
+				background-color: orange;
+			}
+      p{
+        font-size: 60px;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+      <p>撑开页面1</p>
+      <p>撑开页面2</p>
+      <p>撑开页面3</p>
+      <p>撑开页面4</p>
+      <p>撑开页面5</p>
+      <p>撑开页面6</p>
+      <p>撑开页面7</p>
+      <p>撑开页面8</p>
+      <p>撑开页面9</p>
+      <p>撑开页面10</p>
+      <p>撑开页面11</p>
+      <p>撑开页面12</p>
+      <p>撑开页面13</p>
+      <p>撑开页面14</p>
+      <p>撑开页面15</p>
+      <p>撑开页面16</p>
+      <p>撑开页面17</p>
+      <p>撑开页面18</p>
+      <p>撑开页面19</p>
+      <p>撑开页面20</p>
+      <p>撑开页面21</p>
+      <p>撑开页面22</p>
+      <p>撑开页面23</p>
+      <p>撑开页面24</p>
+      <p>撑开页面25</p>
+      <p>撑开页面26</p>
+      <p>撑开页面27</p>
+      <p>撑开页面28</p>
+      <p>撑开页面29</p>
+      <p>撑开页面30</p>
+      <p>撑开页面31</p>
+      <p>撑开页面32</p>
+      <p>撑开页面33</p>
+      <p>撑开页面34</p>
+      <p>撑开页面35</p>
+      <p>撑开页面36</p>
+      <p>撑开页面37</p>
+      <p>撑开页面38</p>
+      <p>撑开页面39</p>
+      <p>撑开页面40</p>
+    </div>
+		<script>
+			// 屏幕的大小
+			// 整个屏幕的大小：和屏幕的分辨率保持一致
+			// console.log(screen.width, screen.height);
+			// 屏幕可用的尺寸，除去屏幕上任务栏所占用的尺寸
+			// console.log(screen.availWidth, screen.availHeight);
+
+			// 浏览器相对于屏幕的位置：参照原点屏幕的左上角
+			// console.log(window.screenLeft, window.screenTop);
+
+			// 浏览器的尺寸
+			// console.log(window.outerWidth, window.outerHeight);
+			// console.log(window.innerWidth, window.innerHeight);
+
+			// client 客户，顾客、用户：clientWidth 用户能看到的高度，理解成可视页面的尺寸
+			// scroll：滚动；scrollHeight 可以滚动的整个高度，就是整个页面的尺寸
+			// scrollTop：页面滚动的距离
+
+			// 浏览器可视页面的尺寸：用html标签的宽高获取
+			// 可视页面：理解成用户可以看到的页面，不包含页面滚动到外面的部分和滚动条的尺寸
+			console.log(document.documentElement.clientWidth, document.documentElement.clientHeight);
+
+			// 浏览器整个页面的尺寸：如果页面出现滚动条，包含滚动到外面的页面尺寸，但是不包含滚动条的尺寸
+			console.log(document.documentElement.scrollWidth, document.documentElement.scrollHeight);
+
+			// 获取页面滚动的尺寸
+			console.log(document.documentElement.scrollLeft, document.documentElement.scrollTop);
+
+
+      // scrollTop 和 scrollLeft是可读写的值
+      // 把scrollTop的值设置为为0，可以让页面滚动条到页面顶部
+      // 把scrollTop的值设置为scrollHeight - clientHeigh（滚动的最大距离），可以让滚动条到页面底部
+      document.documentElement.scrollTop = 200;
+
+      console.log('页面正在发生滚动的元素：',document.scrollingElement);
+      // scrollingElement 获取页面上发生滚动的元素，一般是html，也有可能是body
+			// console.log(document.scrollingElement.scrollLeft, document.scrollingElement.scrollTop);
+      // 可以用 document.scrollingElement.scrollTop 来代替 document.documentElement.scrollTop获取页面滚动的距离
+
+			// 当滚动条滚动到页面底部时：
+			// scrollHeight = clientHeight + scrollTop
+
+			// 配合scroll事件，实时获取页面滚动的距离
+			// window.onscroll = function () {
+			// 	var scrollHeight = document.documentElement.scrollHeight;
+			// 	var clientHeight = document.documentElement.clientHeight;
+			// 	var scrollTop = document.documentElement.scrollTop;
+
+			// 	console.log(scrollHeight - (clientHeight + scrollTop));
+			// 	if (scrollHeight - (clientHeight + scrollTop) < 100) {
+			// 		console.log('小于100');
+			// 	}
+			// 	if (scrollHeight - (clientHeight + scrollTop) <= 0) {
+			// 		console.log('到底了');
+			// 	}
+			// };
+
+			// 当滚动条距离页面底部小于100px时，打印距离目标小于100
+			// 判断页面是否滚动到了最底部，如果滚动到了最底部，弹出我已经到底了
+		</script>
+	</body>
+</html>

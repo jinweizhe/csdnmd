@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // Promise用来解决异步操作
+    // 三种状态：挂起、成功、失败
+    // 状态的变化只能是到成功或者失败：
+    // ①从挂起到成功
+    // ②从挂起到失败
+
+    let promise = new Promise(function (resolve, reject) {
+      console.log('创建promise对象的回调函数立即执行');
+      // 如何让promise的状态发生变化：只有调用resolve或者reject函数，才能让promise的状态发生变化
+      // 调用resolve变为成功状态，then(callback)执行
+      // 调用reject变为失败状态，catch(callback)执行
+      // resolve(1);调用resolve函数，传递的参数，会给data
+      // reject(2);调用reject函数，传递的参数，会给error
+      if (Math.random() >= 0.5) {
+        resolve('成功');
+      } else {
+        reject('失败');
+      }
+    });
+
+    // 当promise的状态改变之后，可以使用then和catch函数获取状态的变化
+    // then(callback) 获取成功的状态
+    // catch(callback) 获取失败的状态
+    promise.then(function (data) {
+      console.log('then 1执行，变为成功状态 data=', data);
+    }).catch(function (error) {
+      console.log('catch执行，变为失败状态 error=', error);
+    });
+
+    // then(成功的函数，失败的函数) then传递两个函数：第一个变为成功状态的时候执行；第二个变为失败状态的时候执行
+    // then(nul，失败的函数) then第一个参数传递null，相当于是catch
+
+
+
+    console.log('其他操作');
+
+
+  </script>
+</body>
+
+</html>

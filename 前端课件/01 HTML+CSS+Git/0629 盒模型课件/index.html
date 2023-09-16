@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/index.css">
+  <style>
+    .box {
+      padding: 10px;
+    }
+
+    .box .item {
+      font-size: 20px;
+
+      background-color: lightblue;
+    }
+
+    /* :not(排除掉的元素) */
+    .box .item:not(.box .item:nth-child(2)) {
+      border: 1px solid;
+    }
+
+    /* .item:nth-child(1){
+        background-color: lightblue;
+      }
+      .item:nth-child(2){
+        background-color: rgb(21, 76, 94);
+      }
+      .item:nth-child(3){
+        background-color: rgb(21, 23, 24);
+      } */
+    /* .d2 {
+      background-color: lawngreen;
+    }
+
+    .d3 {
+      background-color: rgb(35, 41, 29);
+    } */
+
+    /* .d1 {
+      color: red;
+    }
+
+    .d2 {
+      color: red;
+    }
+
+    .d3 {
+      color: red;
+    } */
+
+    .box>.item {}
+
+    /* 找到第几个子元素（p标签） */
+    p:nth-child(2) {
+      color: red;
+    }
+
+    p:nth-of-type(2) {
+      font-size: 30px;
+    }
+
+    .box::after {
+      content: '-----------';
+      display: block;
+    }
+    span{
+      font-size: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 
+    内联元素不要嵌套块级元素，但是a标签除外
+    块级元素作为容器，但是p标签除外
+
+    1、p标签不要嵌套块级元素，p标签内可以放文本和图片
+    2、a标签内可以嵌套任意的内容：div、p、span、img等，但是a标签不要嵌套a标签
+   -->
+
+
+  <h1>Home</h1>
+
+  <!-- 块级元素 -->
+  <!-- 行内元素、内联元素 -->
+  <!-- 行内块元素 -->
+
+  &gt;
+  &lt;
+
+  <!-- img\13.jpg -->
+  <!-- C:\Users\Jinxizhen\Desktop\项目\img\13.jpg -->
+  <img src="./img/13.png" alt="">
+  <span>12312afj</span>
+
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+
+  <div class="box">
+    <div class="item d1"><a href="http://www.xx.com">1</a></div>
+    <div class="item d2"><span>2</span></div>
+    <div class="item d3">3</div>
+    <span>123</span>
+    <span>456</span>
+    <span>789</span>
+  </div>
+
+  <script>
+
+
+  </script>
+</body>
+
+</html>

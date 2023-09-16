@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      
+    </style>
+	</head>
+	<body>
+    <div class="active"></div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.js"></script>
+
+		<script>
+
+      // console.log(_.random('你好'));
+
+      // 创建错误对象，仅仅创建错误对象，程序不会终止
+			var err = new Error('报错了，执行失败');
+      // 使用throw抛出错误，会导致程序终止
+      // throw err; // Error: 报错了，执行失败
+
+      // throw 123;
+
+      // console.dir(err);
+      // console.log(err.message);// 获取错误的信息
+
+      // throw new SyntaxError('缺少圆括号');
+      // throw new TypeError('不能获取null的style属性');
+      // throw new ReferenceError('不能使用未声明的变量a')
+      // var div = null;
+      // var div = undefined;
+      // div.style.backgroundColor = 'red';
+      // div.id = 'ddd';
+    
+      // var obj = {};
+
+      // obj.say();
+      // console.log(a);
+
+
+      // try...catch 用于对错误处理，把可能会报错的代码放入try代码块，一旦try中的代码报错，就会执行catch，就不终止程序
+      // try {
+      //   // 可能会报错的代码
+      // } catch (error) {
+      //   // 一旦报错就会执行catch
+      // }finally{
+      //   // 不管是否报错，最终都会执行的操作
+      // }
+      var div = document.querySelector('.active1')
+
+      try {
+          div.style.backgroundColor = 'red';
+      } catch (error) {
+        console.log(error);
+      }finally{
+        console.log('最终都会执行的操作');
+      }
+
+      console.log('之后的代码');
+
+    </script>
+	</body>
+</html>

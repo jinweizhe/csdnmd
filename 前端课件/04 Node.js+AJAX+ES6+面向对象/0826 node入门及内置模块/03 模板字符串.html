@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 普通字符串不能换行
+			// var str = 'hello world';
+
+			var count = 10;
+
+			// 模板字符串 `` 用反引号替代普通的字符串
+			// 1、能够换行，在反引号每部可以随意的添加单引号和双引号
+			var str = `he
+      'll'o'' w"o"
+      rld`;
+      console.log(str, typeof str);
+			// 2、在模板字符串中添加 ${变量} 可以解析变量
+			var str = '<div> 结果是：'+ count + ' </div>';
+      // 用${}替代普通字符串的拼接
+			var str = `<div>${count} 结果是：${count} </div>`;
+			console.log(str);
+		</script>
+	</body>
+</html>

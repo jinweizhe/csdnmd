@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // var chinese = prompt('请输语文成绩') * 1;
+    // var math = prompt('请输数学成绩') * 1;
+    // var english = prompt('请输英语成绩') * 1;
+    // console.log(chinese + math + english);
+
+    // var res = 123.456789
+    // console.log(res.toFixed(3));
+
+    // 从键盘获取 圆的半径r， 圆柱高h，定义一个圆周率常量 PI = 3.1415926 ，求出圆周长，园面积，圆柱体积 取小数点后两位 有文字说明，例如：圆周长 = xxx.xx 
+    var r = prompt('请输圆半径');
+    var h = prompt('请输圆柱高');
+    var PI = 3.1415926;
+
+    var zhouchang = 2*PI*r;
+    var mianji  = PI*r*r;
+    var tiji = mianji*h;
+
+    console.log('圆周长：',zhouchang.toFixed(2));
+    console.log('圆面积：',mianji.toFixed(2));
+    console.log('圆体积：',tiji.toFixed(2));
+
+
+
+  </script>
+</body>
+
+</html>

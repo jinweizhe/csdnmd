@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 一、Set
+    // Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。
+    let set = new Set([1, 1, 2, 3, 5, 2, 6, 3, 5]);
+    console.log(set);
+    // 使用扩展运算符转为数组
+    console.log([...set]);
+    // 应用：
+    // 1、数组去重
+    console.log([...new Set([1, 1, 2,])]);
+    // 2、字符串去重
+    console.log([...new Set('hello')].join(''));
+
+    // 二、Map 
+    // 对象也是一种键-值对的集合，但是对象的键的类型必须是字符串类型
+    // Map是一种键-值对的集合，Map的键的类型不限于是字符串类型，可以是：对象、数组、字符串等
+
+    let o = {
+      0: 'x0',
+      1: 'x1',
+      2: 20,
+      a: 10,
+    }
+    console.log(o, o.a, o['a'], o[2], o['2']);
+
+    let m = new Map();
+    m.set('name', '张三');
+    m.set(o, 'hello');
+    console.log(m);
+
+
+
+  </script>
+</body>
+
+</html>

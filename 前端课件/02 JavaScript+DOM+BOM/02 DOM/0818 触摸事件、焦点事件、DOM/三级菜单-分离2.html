@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    a {
+      text-decoration: none;
+      font-size: inherit;
+      color: inherit;
+    }
+
+    .w {
+      width: 1170px;
+      margin: auto;
+    }
+
+    .header {
+      background-color: lightblue;
+      height: 130px;
+    }
+
+    nav {
+      width: 100%;
+      height: 43px;
+      background-color: #fff;
+      transition: all 0.3s linear 0.2s;
+      z-index: 999;
+    }
+
+    .nav-list {
+      height: 43px;
+      display: flex;
+      line-height: 43px;
+    }
+
+    .nav-list li {
+      padding: 0 15px;
+      color: #333;
+    }
+
+    .nav-list .menu-level1 {
+      background-color: #f10180;
+      cursor: pointer;
+      color: #fff;
+      width: 156px;
+      text-align: center;
+    }
+
+    .nav-list li.first {
+      color: #f10180;
+      font-weight: 700;
+    }
+
+    .nav-list li:not(:nth-child(1)):not(:nth-child(2)):hover {
+      cursor: pointer;
+      color: #f10180;
+    }
+
+    /* 三级菜单 */
+    .nav {
+      position: relative;
+    }
+
+    .menu-level2 {
+      width: 156px;
+      position: absolute;
+      left: 0;
+      top: 43px;
+      font-size: 12px;
+      height: 0;
+      overflow: hidden;
+      transition: all 0.2s linear;
+      box-shadow: -2px 2px 3px rgba(0, 0, 0, .1);
+      background-color: #f10180;
+    }
+
+    .menu-level2>li {
+      width: 100%;
+      line-height: 45px;
+      background-color: #f10180;
+      color: #fff;
+      padding-left: 35px;
+      cursor: pointer;
+    }
+
+    .menu-level2 li.active,
+    .menu-level2 li:hover {
+      background-color: #fff;
+      color: #f10180;
+    }
+
+    .menu-level3 {
+      position: absolute;
+      left: 156px;
+      top: 43px;
+      box-shadow: 2px 2px 3px rgba(0, 0, 0, .1);
+    }
+
+    .menu-level3 li {
+      height: 500px;
+      width: 1100px;
+      padding: 16px 40px;
+      font-size: 12px;
+      background-color: #fff;
+      display: none;
+      border-top: 1px solid #eee;
+    }
+
+    .menu-level3 li dl {
+      display: flex;
+    }
+
+    .menu-level3 li dl dt {
+      width: 83px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700;
+    }
+
+    .menu-level3 li dl dd {
+      margin-left: 12px;
+    }
+
+    .menu-level3 li dl dd a {
+      margin-right: 10px;
+    }
+
+    .menu-level3 li dl dd a:hover {
+      color: #f10180;
+    }
+
+    .show {
+      display: block !important;
+    }
+
+    .hide {
+      display: none !important;
+    }
+
+    /* 横幅广告 */
+    .banner {
+      width: 100%;
+      height: 400px;
+      background-color: rgba(0, 0, 0, .1);
+    }
+
+    /* 主要内容 */
+    .main {
+      background-color: lightblue;
+      height: 2000px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部 -->
+  <header>
+    <div class="w header">头部</div>
+  </header>
+  <!-- 导航菜单 -->
+  <nav>
+    <div class="w nav">
+      <ul class="nav-list">
+        <li class="menu-level1">全部分类</li>
+        <li class="first">首页</li>
+        <li class="">唯品快抢</li>
+        <li>女装</li>
+        <li>家电</li>
+        <li>鞋包</li>
+      </ul>
+      <ul class="menu-level2">
+        <li>女装/男装/内衣</li>
+        <li>女鞋/男鞋/箱包</li>
+        <li>护肤彩妆/个护</li>
+        <li>运动户外</li>
+        <li>家电数码</li>
+        <li>母婴童装</li>
+        <li>运动户外</li>
+        <li>家电数码</li>
+        <li>母婴童装</li>
+        <li>唯品国际/唯品奢</li>
+      </ul>
+      <ul class="menu-level3">
+        <li>
+          <dl>
+            <dt><span>冬季热卖</span><span>&gt;</span></dt>
+            <dd>
+              <a href="javascript:;">羽绒服</a>
+              <a href="javascript:;">休闲裤</a>
+            </dd>
+          </dl>
+        </li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+      </ul>
+    </div>
+  </nav>
+  <!-- 横幅广告 -->
+  <div class="banner"></div>
+  <!-- 主要内容 -->
+  <main>
+    <div class="w main">内容</div>
+  </main>
+  <script>
+    // ---------------------------三级菜单的处理
+    var menuLevel1 = document.querySelector('.menu-level1');
+    var menuLevel2 = document.querySelector('.menu-level2');
+    var menuLevel2Items = document.querySelectorAll('.menu-level2 li');
+    var menuLevel3 = document.querySelector('.menu-level3');
+    var menuLevel3Items = document.querySelectorAll('.menu-level3 li');
+
+
+
+    var selectedIndex = 0;
+    var pageY = 0;
+
+    function showMenuLevel2(ev) {
+      menuLevel2.style.height = '500px';
+    }
+    function hideMenuLevel2(ev) {
+      menuLevel2.style.height = 0;
+    }
+
+    // 给选中的让二级菜单添加背景和颜色，同时显示对应的三级菜单
+    function showItems(){
+      menuLevel2Items[selectedIndex]?.classList.add('active');
+      menuLevel3Items[selectedIndex]?.classList.add('show');
+    }
+    // 移除二级菜单添加背景和颜色，同时隐藏对应的三级菜单
+    function hideItems(){
+      menuLevel2Items[selectedIndex]?.classList.remove('active');
+      menuLevel3Items[selectedIndex]?.classList.remove('show');
+    }
+
+    // 鼠标移入一级菜单让二级菜单显示
+    menuLevel1.onmouseenter = function () {
+      showMenuLevel2();
+    };
+    menuLevel1.onmouseleave = function () {
+      console.log('menuLevel1.onmouseleave');
+      hideMenuLevel2();
+      hideItems();
+    }
+
+    // 鼠标移入二级菜单让二级菜单保持显示
+    menuLevel2.onmouseenter = function () {
+      console.log('menuLevel2.onmouseenter');
+      showMenuLevel2();
+    };
+    menuLevel2.onmouseleave = function (ev) {
+      hideMenuLevel2();
+      if (ev.pageY >= 173) {
+        hideItems();
+      }
+    };
+    // 鼠标移入三级菜单让二级菜单保持显示，并保持样式的展示
+    menuLevel3.onmouseenter = function () {
+      showMenuLevel2();
+      showItems();
+    };
+    menuLevel3.onmouseleave = function () {
+      hideMenuLevel2();
+      hideItems();
+    };
+
+    // 根据二级菜单的选项显示三级菜单的内容
+    for (var i = 0; i < menuLevel2Items.length; i++) {
+      menuLevel2Items[i].index = i;
+      menuLevel2Items[i].onmouseenter = function () {
+        hideItems();
+        selectedIndex = this.index;
+        showItems();
+      }
+    }
+
+  
+  </script>
+</body>
+
+</html>

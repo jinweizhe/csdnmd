@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 400px;
+				border: 1px solid #000;
+			}
+			.header {
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				display: flex;
+				background-color: #000;
+			}
+			/* css选择器优先级：按照选择器的权值，权值越大优先级越高，多个选择器把权值相加 */
+			.header > a {
+				/* 继承 */
+				/* font-size: inherit; */
+				color: inherit;
+				text-decoration: none;
+        background-color: #000;
+				color: #fff;
+				width: 100px;
+			}
+			.header > a.active {
+				background-color: #ccc;
+        color: #000;
+			}
+      .content .list{
+        display: none;
+      }
+      .content .show{
+        display: block;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="header">
+				<a href="javascript:;" class="active">选项1</a>
+				<a href="javascript:;">选项2</a>
+				<a href="javascript:;">选项3</a>
+			</div>
+			<div class="content">
+				<ul class="list show">
+					<li>内容1</li>
+					<li>内容2</li>
+					<li>内容3</li>
+					<li>内容4</li>
+					<li>内容5</li>
+				</ul>
+				<ul class="list">
+					<li>内容1</li>
+					<li>内容2</li>
+					<li>内容3</li>
+					<li>内容4</li>
+					<li>内容5</li>
+					<li>内容6</li>
+					<li>内容7</li>
+				</ul>
+				<ul class="list">
+					<li>内容1</li>
+					<li>内容2</li>
+					<li>内容3</li>
+				</ul>
+			</div>
+		</div>
+
+		<script>
+
+      var items = document.querySelectorAll('.header a');
+      var list = document.querySelectorAll('.list');
+
+      for(var i = 0; i < items.length; i++){
+        items[i].index = i;
+
+        items[i].onclick = function(){
+
+          for(var i = 0; i < items.length; i++){
+            items[i].classList.remove('active');
+            list[i].classList.remove('show');
+          }
+
+          console.log(this.index);
+          this.classList.add('active');
+          list[this.index].classList.add('show');
+        }
+      }
+
+    </script>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <form>
+      <div><input type="text" placeholder="账号"></div>
+      <div><input type="password" placeholder="密码"></div>
+      <button type="button" onclick="loginClick()">登录</button>
+      <button type="button" ><a href="register.html">去注册</a></button>
+    </form>
+
+    <!-- 跳转页面：1、使用a标签；2、location.href = ''  -->
+		<script>
+			// 前端传递参数的参数名和后端接收的参数名要保持一致
+			// 比如：账号使用 username表示，密码使用 password表示
+			// 在实际开发中 后端会进行数据库设计，其中有一项工作就是规定各种参数名以及参数之间的数据结构，参数名也叫字段名
+
+      var nameInput = document.querySelector('[type="text"]');
+      var pswInput = document.querySelector('[type="password"]');
+			function loginClick() {
+        // 当点击登录按钮的时候，获取输入框的值
+        // console.log(nameInput.value, pswInput.value);
+
+        if (nameInput.value == '') {
+          return alert('账号不能为空');
+        }
+        if (pswInput.value == '') {
+          return alert('密码不能为空');
+        }
+
+        var xhr = new XMLHttpRequest();
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						// console.log(xhr.responseText);
+            // 用户名错误：弹窗提示用户名不存在
+            // 密码错误：弹窗提示密码错误 
+            // 登录成功：跳转到home.html
+            // 对响应结果进行处理
+            var res = JSON.parse(xhr.responseText);
+            console.log(res);
+            if (res.error == 0) {
+              // 登录成功
+              location.href = './home.html'
+            } else {
+              alert(res.data)
+            }
+					}
+				};
+				// get请求参数拼接在url的后面：url?key1=value1&key2=value2
+				// 发送请求的时候会把参数传递给后端，后端要对前端传递的数据进行处理
+        // xhr.open('GET', 'http://127.0.0.1:3000/login?username=张三&password=123');
+        xhr.open('GET', `http://127.0.0.1:3000/login?username=${nameInput.value}&password=${pswInput.value}`);
+        // xhr.open('GET', 'http://127.0.0.1:3000/login?username='+nameInput.value+'&password='+pswInput.value);
+        xhr.send();
+
+			}
+
+    
+		</script>
+	</body>
+</html>

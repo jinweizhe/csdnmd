@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    
+    <script>
+      // var str = 'hello';
+      // str = str.replace(str[0], str[0].toUpperCase());
+      // console.log(str);
+      
+      var str = "my first friend lucky man";
+      var arr = str.split(' ');
+
+      console.log(arr);
+      var newStr = '';
+      for(var i = 0; i < arr.length; i++){
+        var s = arr[i];
+        s = s.replace(s[0], s[0].toUpperCase());
+        console.log(s);
+        newStr += s;
+      }
+      console.log('newStr = ' + newStr);
+
+
+    </script>
+  </body>
+</html>

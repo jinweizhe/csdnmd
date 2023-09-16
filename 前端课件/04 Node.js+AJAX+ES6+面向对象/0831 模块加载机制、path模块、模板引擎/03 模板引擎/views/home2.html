@@ -1,0 +1,32 @@
+
+{{include './header.html'}}
+
+<p> {{title}} </p>
+<p>{{fn(6)}}</p>
+<ul>
+  {{each data }}
+  <li>
+    {{$index}}-{{$value.name}} - 
+
+    <hr>
+
+    {{set age = $value.age}}
+    {{if age>20}}
+      <strong>{{fn(age)}} </strong>
+    {{else}}
+      {{fn(age)}} 
+    {{/if}}
+
+    <hr>
+    {{if $value.age>20}}
+      <strong>{{$value.age}} </strong>
+    {{else}}
+      {{$value.age}} 
+    {{/if}}
+    <hr>
+  </li>
+  {{/each}}
+</ul>
+
+
+{{include './footer.html'}}

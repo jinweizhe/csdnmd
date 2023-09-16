@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			ul,
+			li {
+				padding: 0;
+				margin: 0;
+				list-style: none;
+			}
+
+			.container {
+				width: 600px;
+				margin: 0 auto;
+			}
+
+			.header {
+				background-color: lightblue;
+				height: 130px;
+			}
+
+			.item {
+				/* font-size: 50px; */
+			}
+			.item:nth-child(2n) {
+				height: 1000px;
+				background-color: lightgray;
+			}
+
+			.item:nth-child(2n + 1) {
+				height: 800px;
+				background-color: lightcoral;
+			}
+
+			.nav-left {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				width: 60px;
+				padding: 5px;
+				border: 1px solid #ccc;
+				text-align: center;
+				border-radius: 5px;
+				position: fixed;
+				top: 200px;
+				right: calc(50% + 300px + 30px);
+			}
+
+			.nav-left li {
+				padding: 10px 0;
+				border-bottom: 1px solid #ccc;
+				cursor: pointer;
+			}
+
+			.nav-left li:last-child {
+				border: none;
+			}
+
+			.nav-left li.active {
+				background-color: #df147f;
+				border-radius: 5px;
+				border: none;
+			}
+			h1 {
+				position: fixed;
+				right: 100px;
+				top: 200px;
+				background-color: orange;
+			}
+			footer {
+				height: 500px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- <header>
+			<div class="container header">头部</div>
+		</header> -->
+		<main>
+			<div class="container item">
+				<h2>精选品牌1</h2>
+			</div>
+			<div class="container item">
+				<h2>女装品牌2</h2>
+			</div>
+			<div class="container item">
+				<h2>鞋包品牌3</h2>
+			</div>
+			<div class="container item">
+				<h2>男装品牌4</h2>
+			</div>
+			<div class="container item">
+				<h2>运动品牌5</h2>
+			</div>
+		</main>
+		<ul class="nav-left">
+			<li class="active">精选1</li>
+			<li>女装2</li>
+			<li>鞋包3</li>
+			<li>男装4</li>
+			<li>运动5</li>
+		</ul>
+		<footer></footer>
+
+		<h1 id="h1"></h1>
+		<script>
+			var header = document.querySelector('header');
+			var lous = document.querySelectorAll('.item');
+			var navLeft = document.querySelector('.nav-left');
+			var leftItems = document.querySelectorAll('.nav-left li');
+
+			for (var i = 0; i < leftItems.length; i++) {
+				console.log(i + 1 + '楼', lous[i].offsetTop);
+
+				lous[i].firstElementChild.innerHTML = lous[i].firstElementChild.innerHTML +'  offsetTop=' + lous[i].offsetTop;
+
+				leftItems[i].index = i;
+				leftItems[i].onclick = function () {
+					for (var i = 0; i < leftItems.length; i++) {
+						leftItems[i].classList.remove('active');
+					}
+					this.classList.add('active');
+
+					// 让页面的滚动距离跟着点击选项对应楼层的偏移量
+					document.documentElement.scrollTop = lous[this.index].offsetTop - 100;
+				};
+			}
+
+			var index = 0;
+			// scrollTop > 0  index = 0;
+			// scrollTop > 800  index = 1;
+			// scrollTop > 1800  index = 2;
+			window.onscroll = function () {
+				var scrollTop = document.documentElement.scrollTop;
+				console.log('scrollTop = ', scrollTop);
+
+				for (var i = 0; i < leftItems.length; i++) {
+					leftItems[i].classList.remove('active');
+          // 减 100 的作用：让楼层还没有到大可视页面顶部的时候，就开始变化 
+					if (scrollTop >= lous[i].offsetTop - 100) {
+						index = i;
+					}
+				}
+	
+
+				// 页面每滑动一次，所有的if语句都要执行一次
+				// if (scrollTop >= lous[0].offsetTop) { //0
+				// 	index = 0;
+				// }
+				// if (scrollTop >=  lous[1].offsetTop) {// 800
+				// 	index = 1;
+				// }
+				// if (scrollTop >=  lous[2].offsetTop) {// 1800
+				// 	index = 2;
+				// }
+				// if (scrollTop >=  lous[3].offsetTop) {
+				// 	index = 3;
+				// }
+				// if (scrollTop >=  lous[4].offsetTop) {
+				// 	index = 4;
+				// }
+
+				console.log('index: ', index);
+				h1.innerHTML = 'scrollTop=' + scrollTop + ' index=' + index + ' ' + (index + 1) + '楼';
+        leftItems[index].classList.add('active');
+			};
+		</script>
+	</body>
+</html>

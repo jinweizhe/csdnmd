@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style>
+			.item {
+				width: 100px;
+				height: 100px;
+				margin: 10px;
+				background-color: red;
+			}
+			p {
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="item">1</div>
+			<p>9999</p>
+			<div class="item">
+				2
+				<p>段落</p>
+			</div>
+			<div class="item">3</div>
+		</div>
+		<ul>
+			<li class="item">1</li>
+			<li class="item">2</li>
+			<li class="item">3</li>
+		</ul>
+		<script>
+			// 绑定事件：.on()  .one()
+			// 移除事件：.off()
+			// 主动触发事件：.trigger()
+
+			// 一、绑定事件
+			// $(selector).on(eventType, callback);
+			// $(selector).eventType(callback);
+			// selector 选择器，找标签使用
+			// eventType：事件类型，比如：鼠标单击事件 click  mouseenter  keydown
+			// callback：事件触发时执行的函数·
+
+			// 使用$('.item')找到的是一个元素集合，绑定事件、改变元素样式、改变元素类名等各种操作，不需要重新遍历元素，直接调用各种操作方法，JQ在调用操作方法的时候会自动遍历元素集合，为每一个元素添加操作方法
+			// $(selector).action();
+
+			// $('.item').css('font-size', 30).css('color', 'orange');
+
+			// $('.item').on('click', function (ev) {
+			// 	console.log('点击事件', this);
+			// });
+
+			// $('.box .item').click(function (ev) {
+			// 	// 1、找标签：使用this或者ev.target
+			// 	console.log('点击事件', this);
+			// 	console.log(ev.target);
+			// 	// 2、找标签的索引值: $(this).index()
+			// 	// index() 找父元素内部子元素的索引值，不同的父元素下的子元素，索引值会重新计算，我们使用一般都是找到某个父元素下的所有子元素
+			// 	console.log($(this).index());
+			// });
+
+      // 二、移除事件： $(selector).off(eventType);
+      // 添加事件的时候给元素添加什么类型的事件，移除的时候也是什么类型的事件
+      // $('.item').off('click');
+
+
+      // 只能执行一次的事件
+      // $('.item').eq(0).one('click', function() {
+      //   console.log('一次性的事件');
+      // });
+
+
+      // $('.item').eq(0).on('click', function() {
+      //   console.log('事件');
+      // });
+
+
+      // trigger主动触发事件，相当于是点击了一次标签
+      // $('.item').eq(0).trigger('click');
+
+      // var div = document.querySelector('.item')
+      // // div.addEventListener('click', function(){}, {once: true})
+      // div.addEventListener('click', function(){
+      //   console.log('---');
+      // });
+      // div.click();
+		</script>
+	</body>
+</html>

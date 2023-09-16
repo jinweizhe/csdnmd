@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <!-- 引入bootstrap的css文件 -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap.css">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <!-- 
+      按钮用来触发模态框
+      data-toggle="modal" 固定写法，不能修改，表示这是一个模态框
+      data-target="#myModal" 用来链接模态框的id值
+    -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#add">
+      增加
+    </button>
+
+    <!-- 模态框 -->
+    <div class="modal fade" id="add">
+      <div class="modal-dialog">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">增加列表</h4>
+          </div>
+
+          <div class="modal-body">
+            <form class="form-horizontal">
+              <div class="form-group">
+                <label for="username" class="col-sm-2 control-label">姓名</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="username" placeholder="姓名">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="age" class="col-sm-2 control-label">年龄</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control" id="age" placeholder="年龄">
+                </div>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary">保存</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 引入jquery文件：因为bootstrap依赖jquery，必须在bootstrap.js文件之前引入jquery -->
+  <script src="./bootstrap/js/jquery.js"></script>
+  <!-- 引入bootstrap.js文件 -->
+  <script src="./bootstrap/js/bootstrap.js"></script>
+</body>
+
+</html>

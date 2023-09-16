@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 原始值：就是基本数据类型（简单数据类型）包含：数字 number、布尔 boolean、字符串 string、null、undefined
+			// 引用值：就是对象类型（复杂数据类型），对象类型统称为Object，细分为：Object、Function、Array、Date等
+
+			// 原始值包装类型：或者叫原始值包装对象
+			// JS中三种原始值：数字、布尔、字符串，在一定条件下会自动转为对象，这种对象就叫做原始值包装对象
+			// 把原始值转为包装对象，这样做的目的：是让原始值可以调用自己的属性和方法
+
+			// 数字、布尔、字符串对应的三种原始值包装对象是：Number、Boolean、String
+
+			//-----------------------------------------------------
+      // 原始值对象的区分
+      // 三种原始值包装对象是：Number、Boolean、String
+      
+      //  只有在三种包装对象的前面使用new的时候，创建才是对象
+      var num1 = new Number(12);
+
+      // 如果直接使用三种包装对象，就变成了普通的转换函数：Number()转换为数字、Boolean()转换为布尔、String()转换为字符串
+      var num2 = Number(12);
+      var num3 = 12;
+
+      console.log(typeof num1, typeof num2);
+    
+      console.log(num1, num1.valueOf(), num1 + 6, '12', num1.toString());
+      console.log(num2);
+
+      // num1 是一个包装对象；num2是一个普通的数字（也是一个原始值）
+      // 注意：
+      // 1、一般情况不要主动的去创建原始值包装对象，容易和原始值混淆
+      // 2、不管原始值包装对象存储的值是什么，转为布尔类型的值全部为true
+
+      // 只要是对象类型，转为布尔值一定是true
+
+      // var a = new Boolean(false);
+      // var a = new Number(0);
+      // var a = new String('');
+
+      // console.log(typeof a, !a);
+      // if (a) {
+      //   console.log('----');
+      // }
+
+
+
+
+			// ----------------------------------------------------------------
+
+			// 引用类型
+			var o = new Object();
+			o.age = 18;
+
+			// 原始值类型
+			var num = 12;
+			// num.n = 100;
+
+			console.log(num.toFixed(2));
+
+			var str1 = 'hello world';
+			str1.age = 18;
+			console.log(typeof str1); // string
+
+			// 只要是使用new创建的实例必然是一个对象类型
+			var str2 = new String('hello world');
+			str2.age = 18;
+			console.log(typeof str2); // object
+
+			console.log(o.age, str2.age, str1 == str2);
+			console.log(str1);
+			console.log(str2);
+			console.log(String(str2));
+		</script>
+	</body>
+</html>

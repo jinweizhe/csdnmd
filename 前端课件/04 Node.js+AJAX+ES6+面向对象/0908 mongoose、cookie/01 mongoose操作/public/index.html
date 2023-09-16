@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <h1>mongoose</h1>
+    <hr>
+    <form action="http://127.0.0.1:3000/save" method="get">
+      <input type="text" name="username" placeholder="账号">
+      <input type="number" name="age" placeholder="年龄">
+      <input type="text" name="sex" placeholder="性别">
+      <input type="submit" value="保存">
+    </form>
+    
+    <hr>
+
+    <form action="http://127.0.0.1:3000/find" method="get">
+      <input type="text" name="username" placeholder="账号">
+      <input type="submit" value="查找">
+    </form>
+    <hr>
+
+    <form action="http://127.0.0.1:3000/delete" method="get">
+      <input type="text" name="username" placeholder="账号">
+      <input type="submit" value="删除">
+    </form>
+    <hr>
+
+    <form action="http://127.0.0.1:3000/update" method="get">
+      <input type="text" name="username" placeholder="账号">
+      <input type="number" name="age" placeholder="年龄">
+      <input type="submit" value="修改">
+    </form>
+    <hr>
+    <form action="http://127.0.0.1:3000/count" method="get">
+      <input type="text" name="username" placeholder="账号">
+      <input type="submit" value="个数">
+    </form>
+    <hr>
+    <script>
+    
+    </script>
+  </body>
+</html>

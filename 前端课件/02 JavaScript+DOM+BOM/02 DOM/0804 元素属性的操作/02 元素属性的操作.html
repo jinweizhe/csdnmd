@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      .x3{
+        color: #f00;
+      }
+		</style>
+	</head>
+	<body>
+		<div id="box" class="box" abc="123">div标签</div>
+		<img src="https://misc.360buyimg.com/mtd/pc/index_2019/1.0.0/assets/img/4a15d8883775742e3efbb850ae14def7.png" alt="" />
+    <p>段落</p>
+    <a href="">百度</a>
+    <input type="text" name="username" id="username" placeholder="账号">
+    <script>
+
+      // 元素属性的操作，分为五种方式：
+      // 1、标准属性：打点调用法，适用于一些常见的属性 id title src input标签的属性：type value placeholder等
+      // 2、万能用法：使用attribute，适用于所有的属性，包括自定义属性
+      // 3、类名操作：className和classList
+      // 4、CSS样式的操作：style
+      // 5、data-自定义属性：特殊的自定义属性：data-*=""
+
+      var div = document.querySelector('div');
+      var img = document.querySelector('img');
+      var input = document.querySelector('input');
+      var a = document.querySelector('a');
+
+      // 一、打点调用法，适用于标准属性
+      // HTML 元素的标准属性（即在标准中定义的属性），会自动成为元素节点对象的属性。
+      // 在标签上添加的自定义属性，无法使用元素对象获取，但是可以使用getAttribute获取
+      console.log(div.abc);
+      // 给div对象添加index属性，用来记录标签的编号
+      div.index = 1;
+      console.log(div.index);
+      // console.log(div.id);
+      div.id = 'xxx';
+      div.title = 'xxx';
+      // a标签的href属性   
+      a.href = 'http://';
+      // 使用src改变图片的地址
+      img.src = 'https://img14.360buyimg.com/n7/jfs/t1/116903/11/27292/187299/62e9f5f2E0dfae465/6d1f559f44d416db.jpg.avif';
+      // input标签相关的属性
+      // input.type = 'checkbox';
+      // input.checked = true;
+      input.placeholder = 'xxx';
+      // input.value = '张三';// 改变输入框的内容，获取输入框输入的值使用 input.value
+      console.log(input.value, typeof input.value);
+
+      // 二、使用attribute，可以操作所有的属性 
+      // 1.get获取属性，参数是标签的属性名
+      console.log(div.getAttribute('title'));
+      console.log(div.getAttribute('class'));
+      // 2、设置或者修改属性
+      // div.setAttribute(属性名, 属性值); 如果标签上存在属性，添加该属性；如果存在属性，修改该属性的值
+      div.setAttribute('id', 'idxxx');
+      div.setAttribute('title', 'ttitttttt');
+      // 3、删除某个属性
+      div.removeAttribute('title');
+      // 4、判断是否有某个属性
+      console.log(div.hasAttribute('title'));
+
+      // 使用attribute操作自定义属性
+      console.log(div.getAttribute('abc'));
+      console.log(div.getAttribute('index'));
+
+      div.removeAttribute('abc');
+
+
+
+
+      // 三、类名的操作
+      // 在JS中操作类名有两种方式：className 和 classList
+      // 1、使用className
+      // class 在JS中是关键字，在JS中不能直接使用，使用className代替class；
+      // 直接设置类名，会覆盖原有的类名：相当直接修改class属性的值
+      // div.className = 'x1';
+      // div.className = 'x1 x2 x3';// 添加多个类名，中间使用空格隔开
+
+      // 使用字符串拼接的方式保留原有的类名
+      // div.className = div.className + ' x1 x2';
+
+      // 删除类名
+      // div.className = div.className.replace(' x1', '');
+      // 清空类名
+      // div.className = '';
+      
+      // 2、使用classList，推荐的用法
+      // 添加类名，一次只能添加一个，并不会覆盖原有的类名
+      div.classList.add('x1');
+      div.classList.add('x2');
+      // 移除类名，一次只能移除一个类名
+      div.classList.remove('x1');
+      div.classList.remove('x2');
+      // 判断是否包含某个类名
+      console.log(div.classList.contains('box'));
+      // toggle 开关效果：如果原来有x1类名，就删除；如果原来没有x1类名，就添加。
+      div.classList.toggle('x1');
+      // 根据索引值获取类名
+      console.log(div.classList.item(1));
+      console.log(div.classList[1]);
+
+      console.log(div.classList);
+      console.log(div.className);
+
+
+    </script>
+	</body>
+</html>

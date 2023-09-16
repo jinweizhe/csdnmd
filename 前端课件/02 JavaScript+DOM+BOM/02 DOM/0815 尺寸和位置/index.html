@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.header {
+				height: 200px;
+			}
+			.footer {
+				height: 1000px;
+			}
+			main > div {
+				height: 500px;
+				background-color: lightblue;
+			}
+			main > div:nth-child(2n) {
+				height: 600px;
+				background-color: lightcoral;
+			}
+			button {
+				position: fixed;
+				top: 100px;
+				left: 100px;
+			}
+		</style>
+	</head>
+	<body>
+		<button>3楼</button>
+		<div class="header">头部</div>
+		<main>
+			<div class="lou1">1楼</div>
+			<div class="lou2">2楼</div>
+			<div class="lou3">3楼</div>
+			<div class="lou4">4楼</div>
+			<div class="lou5">5楼</div>
+			<div class="lou6">6楼</div>
+		</main>
+		<div class="footer">底部</div>
+		<script>
+      var btn = document.querySelector('button');
+      var lou3 = document.querySelector('.lou3');
+
+      console.log(lou3.offsetTop);
+
+
+      btn.onclick = function(){
+        document.documentElement.scrollTop = lou3.offsetTop + 100;
+      }
+    </script>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<h1>AJAX</h1>
+		<button onclick="fn()">请求数据</button>
+		<div id="box"></div>
+
+		<script id="user-tem" type="text/html">
+			<p class="title">{{title}}</p>
+			<ul>
+				{{each data}}
+				<li>{{$value.name}} - {{$value.age}}</li>
+				{{/each}}
+			</ul>
+		</script>
+    
+		<script>
+			function fn() {
+				// 第一步：创建xhr请求对象
+				var xhr = new XMLHttpRequest();
+
+				// 第二步：监听请求
+				xhr.onreadystatechange = function () {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						var res = JSON.parse(xhr.responseText);
+						var htmlstr = template('user-tem', res);
+						box.innerHTML = htmlstr;
+					}
+				};
+
+				// 第三步：连接请求
+				xhr.open('GET', 'http://127.0.0.1:3000/info');
+
+				// 第四步：发送请求
+				xhr.send();
+			}
+		</script>
+	</body>
+</html>

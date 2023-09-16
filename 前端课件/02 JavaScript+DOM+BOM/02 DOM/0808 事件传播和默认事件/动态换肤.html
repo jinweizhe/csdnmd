@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+				list-style: none;
+			}
+			.w {
+				width: 600px;
+				margin: auto;
+			}
+      body{
+        background-color: #ffdddc;
+      }
+      .btn-list{
+        height: 50px;
+        display: flex;
+        align-items: center;
+      }
+      .btn-list div{
+        width: 15px;
+        height: 15px;
+        background-color: #fe0000;
+        border: 5px solid #fe0000;
+        margin-right: 10px;
+        cursor: pointer;
+      }
+      .btn-list div:nth-child(2){
+        background-color: #008001;
+        border: 5px solid #008001;
+      }
+      .btn-list div:nth-child(3){
+        background-color: #000;
+        border: 5px solid #000;
+      }
+      .btn-list div.active{
+        background-color: #fff;
+      }
+      .nav-list{
+        background-color: #fe0000;
+        display: flex;
+      }
+      .nav-list li{
+        border-top: 1px solid #fff;
+        border-bottom: 1px solid #fff;
+        border-right: 1px solid #fff;
+        line-height: 40px;
+        width: 100px;
+        text-align: center;
+        color: #fff;
+      }
+      .nav-list li:nth-child(1){
+        border-left: 1px solid #fff;
+      }
+		</style>
+	</head>
+	<body>
+		<div class="w">
+			<div class="btn-list">
+				<div class="item active"></div>
+				<div class="item"></div>
+				<div class="item"></div>
+			</div>
+			<ul class="nav-list">
+				<li class="item">推荐</li>
+				<li class="item">视频</li>
+				<li class="item">汽车</li>
+				<li class="item">游戏</li>
+				<li class="item">直播</li>
+				<li class="item">科技</li>
+			</ul>
+		</div>
+
+		<script>
+
+      var btns = document.querySelectorAll('.btn-list div');
+      var navList = document.querySelector('.nav-list');
+
+      var navColors = ['#fe0000','#008001','#000000'];
+      var bodyColors = ['#ffdddc','#a3c6a8','#cccccc'];
+
+      for(var i = 0; i < btns.length; i++){
+        btns[i].index = i;
+        btns[i].onclick = function(){
+          for(var i = 0; i < btns.length; i++){
+            btns[i].classList.remove('active');
+          }
+          this.classList.add('active');
+
+          document.body.style.backgroundColor = bodyColors[this.index];
+          navList.style.backgroundColor = navColors[this.index];
+        }
+      }
+
+    </script>
+	</body>
+</html>

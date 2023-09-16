@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    
+    <script>
+      // 浏览器中的存储方案：
+      // 1、内存存储，比如创建变量，运行程序存储在内存中，关闭程序，内存存储的数据消失
+      // 2、cookie存储： cookie由服务端生成，发送给浏览器，浏览器会自动存储，一般存储空间4KB
+      // 3、WebStorage存储：在HTML5中增加的WebStorage，分为 sessionStorage 和 localStorage，把数据存储在浏览器中，一般存储空间为5MB
+
+      
+      // 不管是cookie存储，还是storage存储，都不能跨域访问
+      // 使用storage存储，可以实现页面之间传递数据
+
+
+
+      // sessionStorage：会话存储，关闭浏览器（会话结束）存储的数据被删除
+      // localStorage：持久化存储，只要不主动删除，存储的数据一直存在，关闭浏览器数据也不会被删除
+
+      // sessionStorage 和 localStorage 除了存储时间长短不一样之外，使用的方法和属性都是一样的
+      // 1、数据的存储 setItem(key, value) 
+      // 2、数据的获取 getItem(key)
+      // 3、删除某一条数据：removeItem(key)
+      // 4、清空数据：clear()
+      // 5、获取数据的长度值：length
+
+      // key：存储的键名：键值可以随意起名，存储值使用哪个键值，获取数据也需要使用哪个键值
+      // value: 存储的具体值，存储的值只能是字符串类型，如果是对象{} 或者 数组[] 需要使用 JSON.stringify() 把对象 或者 数组转为JSON字符串在进行存储，获取数据的使用JSON.parse()再把得到的JSON字符串转为对象
+      
+      // 注意：存储的值为对象或者数组的时候需要转为JSON字符串
+
+      // 1、持久化存储
+
+      // localStorage.setItem('name', '张三');
+      // localStorage.setItem('age', 18);
+
+      console.log(localStorage.getItem('name'));
+      console.log(localStorage.getItem('age'));
+      // 获取值的时候，如果获取的key值没有对应的数据，返回结果是null
+      console.log(localStorage.getItem('sex'));
+
+
+      let user = {
+        username:'张三',
+        age: 18,
+      }
+      // localStorage.setItem('user', JSON.stringify(user));
+      // console.log(JSON.parse(localStorage.getItem('user')));
+      // 在使用JSON.parse 先判断值是否存在
+      let result = localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')) : {}
+
+
+      // localStorage.removeItem('name');
+
+      // localStorage.clear();
+
+      console.log(localStorage.length);
+
+      // 2、会话存储
+      // sessionStorage.setItem('num', 10);
+
+      // JSON.parse解析的报错：原因是传递给parse函数的数据不是一个有效的JSON字符串，报下面的错误
+      // 'xxx' is not valid JSON
+    
+
+      
+    
+    </script>
+  </body>
+</html>

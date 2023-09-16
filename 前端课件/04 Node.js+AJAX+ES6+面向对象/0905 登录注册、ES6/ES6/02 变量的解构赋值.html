@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构
+
+    // 1、数组的解构赋值
+    let arr = [2, 4, 6, 8];
+
+    // 声明变量a和b，并把数组索引为0和1的值分别赋值给a和b  
+    let [a, b, ...c] = arr;
+    // 声明变量a和b，并把数组索引为0和2的值分别赋值给a和b  
+    // 解构赋值的同时添加默认值，如果数组中有对应的值会把默认值覆盖掉
+    // let [a, , b = 100] = arr;
+    // console.log(a, b);
+
+
+    // 2、对象的解构赋值
+    // 数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。如果在对象中找不到同名的属性，变量的值是undefiend
+    let zs = {
+      name: '张三',
+      age: 18,
+      weight: 80,
+    }
+    // 声明name和age变量，并把对象中同名属性的值赋值给name和age
+    // let {name, age} = zs;
+    // 和变量的书写顺序没有关系
+    // 解构赋值的同时添加默认值，如果对象中有对应的值会把默认值覆盖掉
+    // let { age, weight = 100 } = zs;
+    // console.log(weight, age);
+
+    // 3、字符串的结构赋值
+    let [s1, s2] = 'hello';
+    console.log(s1, s2);
+
+    // 解构赋值的应用
+    let { PI, random, floor } = Math;
+    console.log(PI, random(), floor(3.2));
+
+    // 函数的参数如果接受的是一个对象，可以直接结构参数
+    function setData ({ name, age = 10, weight = 20 }) {
+
+    }
+    setData(zs);
+
+    let x = 1;
+    let y = 2;
+    [x, y] = [y, x];
+
+
+    // 扩展
+    let obj = {
+      name: '张三',
+      age: 18,
+      weight: 80,
+    }
+
+    // 对象的解构赋值的内部机制，是先找到同名属性name，然后再赋给对应的变量username。真正被赋值的是后者username，而不是前者name。
+    // 下面代码中，name是匹配的模式，username才是变量。真正被赋值的是变量username，而不是模式name。
+    let { name: username } = obj;
+    console.log(username);
+
+
+
+
+  </script>
+</body>
+
+</html>

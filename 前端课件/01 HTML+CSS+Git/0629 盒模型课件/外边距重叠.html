@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    /* span{
+        background-color: red;
+        display: inline-block;
+        margin: 20px;
+      } */
+    /* 
+      什么情况下发生外边距重叠：
+      - 发生重叠需要是相邻的非浮动元素；
+      - `margin` 重叠元素只发生在块级元素上（包括行内块元素）；
+      - 重叠发生在垂直外边距上，即margin-top/margin-bottom；
+      - 重叠后取其中最大的那个margin值作为最终值；
+      
+      外边距重叠的情况
+        1、兄弟元素上下外边距重叠
+        2、父子元素之间：子元素的上外边距或者下外边距会穿透父元素，表现为父元素的外边距
+
+      解决父子元素之间的重叠：1、给父元素设边框；2、给元素设置内边距；3、让父元素变成BFC(浮动、定位、弹性布局、overflow: hidden)
+
+      外边距重叠计算规则
+        不论是哪种情况下的margin重叠，重叠后取多个margin值中的最大值。
+        外边距重叠的计算规则：1、正正取大值；2、正负值相加；3、负负取最负；
+      */
+
+    .box1 {
+      width: 200px;
+      height: 100px;
+      background-color: red;
+      /* margin-bottom: 10px; */
+    }
+
+    .box2 {
+      width: 200px;
+      height: 160px;
+      background-color: blue;
+      /* margin-top: 10px; */
+      margin-left: 10px;
+      /* padding-top: 10px; */
+      /* box-sizing: border-box; */
+      /* border-top: 1px solid */
+      /* overflow: hidden; */
+    }
+
+    .inner {
+      width: 100px;
+      height: 80px;
+      background-color: orange;
+      margin-top: 10px;
+      margin-left: 10px;
+
+      /* position: relative;
+        top: 10px; */
+    }
+    .w{
+      width: 640px;
+      margin: auto;
+      background-color: lightgray;
+      padding-top: 50px;
+    }
+    .box {
+      /* width: 640px; */
+      background-color: lightblue;
+      /* margin: 0 -10px; */
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    .box .item {
+      width: 200px;
+      height: 100px;
+      background-color: lightcoral;
+
+      float: left;
+      margin: 10px;
+      /* margin-right: 20px;
+        margin-bottom: 20px; */
+      /* margin: 0 10px 20px 10px; */
+    }
+
+    /* .box .item:nth-child(3n){
+        margin-right: 0;
+      } */
+    .clear {
+      clear: both;
+      
+    }
+
+    .box-item{
+      /* width: 100%; */
+      background-color: lightblue;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .box-item .item {
+      width: 200px;
+      height: 100px;
+      background-color: lightcoral;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box1">
+  </div>
+  <div class="box2">
+    <div class="inner">inner</div>
+  </div>
+  <!-- <span>span</span> -->
+  <!-- <p>1</p>
+    <p>2</p>
+    <p>3</p> -->
+
+  <div class="w">
+    <div class="box">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="w">
+    <div class="box-item">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+      <!-- <div class="item">8</div> -->
+    </div>
+  </div>
+</body>
+
+</html>

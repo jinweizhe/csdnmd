@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <form>
+    <input type="text" name="username" placeholder="账号"> <br>
+    <input type="text" name="age" placeholder="年龄"> <br>
+    <button type="button" onclick="login()">登录</button>
+  </form>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+  <script>
+
+
+
+
+
+    // get和post方法是客户端发送请求到后端，发请求的时候可以传递参数
+
+    // get和post传递参数的方式不一致
+
+    // get请求传参：参数使用?拼接在url的后面：http://127.0.0.1:3000/login?username=张三&password=123
+
+    // post请求传参，参数放在请求体中：xhr.send(请求体)
+    // 客户端请求体的参数格式三种形式：
+    // 1、urlencoded类型：key=1value1&key2=value2
+    // 2、json类型：{key1:value1, key2:value2}
+    // 3、formdata类型：是一种二进制类型的数据
+
+    function login () {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.responseText);
+        }
+      }
+
+      xhr.open('POST', 'http://127.0.0.1:3000/login');
+
+      // 1、传递encoded类型的数据
+      // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      // xhr.send('username=张三&age=18');
+
+      // 2、传递json类型的数据
+      // xhr.setRequestHeader('Content-Type', 'application/json');
+      // xhr.send(JSON.stringify({ username: '张三', age: 18 }));
+
+      // 3、传递formdata类型的数据，只能使用post请求，不同于encoded和json
+      // encoded和json只能传递文本类型的数据
+      // formdata除了可以传递文本类型的数据，还可以传递文件：图片、音视频等，主要是为了传递文件的，服务端需要对文件做处理
+
+      // formdata类型的数据使用 FormData构造函数来创建
+      let data = new FormData();
+      // 把数据添加到formdata对象汇总
+      data.append('username','张三');
+      data.append('age',18);
+
+
+      // 在创建FormData对象的时候，传递一个原生的form标签对象，form标签内部的表单元素设置name属性，等价于调用append方法
+      // let data = new FormData(document.forms[0]);
+
+      // 根据设置的key获取对应的值
+      // console.log(data.get('username'));
+
+      // xhr.send(data);
+
+
+      axios.post('http://127.0.0.1:3000/login', data).then(res => {
+        console.log(res.data);
+      });
+
+    }
+  </script>
+</body>
+
+</html>

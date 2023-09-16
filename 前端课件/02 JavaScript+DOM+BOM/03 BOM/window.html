@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<a href="./location.html">location</a>
+		<button onclick="history.back();">后退</button>
+		<button onclick="history.go(-1);">后退</button>
+		<script>
+			// window 有两层含义
+			// 1、在ECMAScript中作为全局对象
+			// 2、在BOM中作为浏览器窗口对象
+
+			// 一、作为全局对象时，在全局作用域声明的 变量和函数，会自动成为window对象的属性
+			// 还有很多系统自带的API，也在window对象上：alert、console、document
+			// 不管是自己声明的，还是系统自带的API，使用的时候省略window.
+			var a = 100;
+			console.log(a, window.a);
+
+			function fn() {
+				console.log('fn函数');
+			}
+			fn();
+			window.fn();
+
+			// 二、在浏览器窗口对象
+			// 打开一个标签页
+			// window.open('https://www.baidu.com/','_blank');
+		</script>
+	</body>
+</html>

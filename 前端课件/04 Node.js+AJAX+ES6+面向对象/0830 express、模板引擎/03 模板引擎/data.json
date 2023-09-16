@@ -1,0 +1,22 @@
+{
+  "error":0,
+  "msg":"success",
+  "title":"好友列表",
+  "data":[
+    {
+      "name": "张三",
+      "age": 18,
+      "height": 175
+    },
+    {
+      "name": "李四",
+      "age": 19,
+      "height": 180
+    },
+    {
+      "name": "王五",
+      "age": 18,
+      "height": 170
+    }
+  ]
+}

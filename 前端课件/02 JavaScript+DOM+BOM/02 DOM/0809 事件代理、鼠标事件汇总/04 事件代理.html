@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				box-sizing: border-box;
+			}
+			.box {
+				width: 60px;
+				height: 30px;
+				background-color: lightgray;
+				text-align: center;
+				position: relative;
+				cursor: pointer;
+			}
+			.box .btn {
+				line-height: 28px;
+				border: 1px solid red;
+			}
+			.box .list {
+				width: 100%;
+				position: absolute;
+				left: 0;
+				top: 30px;
+				line-height: 30px;
+				background-color: #ccc;
+				display: none;
+			}
+			.box .list > div {
+				background-color: orange;
+			}
+			.box .close {
+				border-top: 1px solid red;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="btn">输入法</div>
+			<div class="list">
+				<div>手写</div>
+				<div>拼音</div>
+				<div>双拼</div>
+				<div>五笔</div>
+				<div>繁体</div>
+				<div>英文</div>
+				<div class="close">关闭</div>
+			</div>
+		</div>
+		<div class="other">其他</div>
+		<script>
+			var btn = document.querySelector('.btn');
+			var list = document.querySelector('.list');
+			var divs = document.querySelectorAll('.list div');
+
+			// 点击btn让list显示
+			btn.onclick = function (ev) {
+				ev.stopPropagation();
+				list.style.display = 'block';
+			};
+			// 点击空白处，让list隐藏
+			document.body.onclick = function () {
+				// console.log('body click');
+				list.style.display = 'none';
+			};
+
+			// 由于事件会在冒泡阶段向上传播到父节点，因此可以把子节点的监听函数定义在父节点上，由父节点的监听函数统一处理多个子元素的事件。这种方法叫做事件的代理（delegation）。
+			// 事件代理的好处：1.减少DOM的操作，优化性能；2.减少对象的创建，节省内存。
+			// 事件代理的原理：就是用事件的冒泡原理实现的，适合使用事件代理的是一些支持冒泡的事件。
+
+			// 方式一：给父元素添加点击事件，利用冒泡的原理，当点击子元素的时候，事件冒泡到父元素，通过target找到被点击的元素
+			// 利用冒泡的原理：点击子元素手写、拼音、关闭三个标签，事件先冒泡到父元素list，然后会一直冒泡到body
+			// 利用target查找被点击的元素
+			list.onclick = function (ev) {
+				// console.log(ev.target.innerHTML);
+				// if (ev.target.innerHTML != '关闭') {
+				//   btn.innerHTML = ev.target.innerHTML;
+				// }
+			};
+
+			// 方式二：找到每一个子元素，然后给每一个子元素添加点击事件
+			// for (var i = 0; i < divs.length; i++) {
+			// 	divs[i].onclick = function (ev) {
+			// 		if (this.innerHTML != '关闭') {
+			// 			// btn.innerHTML = this.innerHTML;
+			// 			btn.innerHTML =ev.target.innerHTML;
+			// 		}
+			// 	};
+			// }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 一、单分支
+    // 如果条件成立，就执行语句；否则不执行
+    // 条件：可以是一个表达式，运算结果一般是布尔值，如果不是布尔值在判断过程中会把表达式的结果转为布尔值
+    // 表达式是使用【关系运算符】和【逻辑运算符】组成的一个式子
+    // if (条件) {
+    //   语句
+    // }
+
+    // 案例：从键盘获取年龄，判断如果年龄不小于18，输出：“你已经成年了”。
+
+    // var age = prompt('年龄');
+    // if (age >= 18) {
+    //   console.log('你已经成年了，你要对自己负责');
+    // }
+
+    // 从键盘获取年龄，判断如果年龄是18，输出：“你成年了”。
+    // if (age == 18) {
+    //   console.log('你成年了');
+    // }
+
+    // 从键盘输入账号和密码，假设账号是“张三”，密码是“123”，如果账号密码都正确输出登录成功
+    // var username = prompt('账号');
+    // var password = prompt('密码');
+    // if (username == '张三' && password == '123') {
+    //   alert('登录成功！');
+    // }
+
+
+    // 二、双分支
+    // 如果条件成立（条件为true），则执行语句1；如果条件不成立（条件为false），则执行语句2;
+    // 两个语句有且只能有一个执行
+    // if (条件) {
+    //   语句1
+    // } else {
+    //   语句2
+    // }
+
+    // 案例：从键盘获取年龄，判断如果年龄不小于18，输出：“您已成年，可以继续注册”；否则，输出：“本系统不对未成年人开放”。
+    var age = prompt('年龄');
+    if (age >= 18) {
+      // 当age大于等于18执行
+      console.log('您已成年，可以继续注册');
+    } else {
+      // 当age小于18执行
+      console.log('本系统不对未成年人开放');
+    }
+
+    // 从键盘输入账号和密码，假设账号是“张三”，密码是“123”，如果账号密码都正确输出：登录成功，否则输出：账号或密码错误
+    var username = prompt('账号');
+    var password = prompt('密码');
+
+    if (username == '张三' && password == '123') {
+      // 当username等于张三，并且password是123的时候执行
+      alert('登录成功！');
+    } else {
+      // 当username不等于张三或者password不是123的时候执行
+      alert('账号或者密码错误');
+    }
+
+    // 三、多分支
+    // 先判断条件1，如果条件1成立，执行语句1；如果条件1不成立，再判断条件2，如果条件2成立，执行语句2,；否则执行语句3。
+    // if (条件1) {
+    //   语句1
+    // } else if (条件2) {
+    //   语句2
+    // } else {
+    //   语句3
+    // }
+
+    // 案例：从键盘输入一个数字，判断如果是正数，输出：“正数”；如果是负数，输出：“负数”；否则，输出：“0”。
+    var num = prompt('数字') * 1;
+    if (num > 0) {
+      alert('正数');
+    } else if (num < 0) {
+      alert('负数');
+    } else {
+      alert('0');
+    }
+
+
+    // 案例：从键盘获取考试分数
+    // 如果分数不低于90，输出：优秀；
+    // 如果分数不低于80，输出：良好；
+    // 如果分数不低于70，输出：中等；
+    // 如果分数不低于60，输出：及格；
+    // 否则，输出：不及格。
+
+    var score = prompt('分数');
+    if (score >= 90) {
+      alert('优秀');
+    } else if (score >= 80) { // score >= 80 && score < 90
+      alert('良好');
+    } else if (score >= 70) {
+      alert('良好');
+    } else if (score >= 60) {
+      alert('中等');
+    } else {
+      alert('不及格');
+    }
+
+
+    // if (score >= 90) {
+    //   alert('优秀');
+    // }
+    // if (score >= 80  && score < 90) { 
+    //   alert('良好');
+    // }
+    // if (score >= 70 && score < 80) {
+    //   alert('良好');
+    // } 
+    // if (score >= 60 && score < 70) {
+    //   alert('中等');
+    // } 
+    // if (score < 60) {
+    //   alert('不及格');
+    // }
+
+    // 四、分支嵌套
+    // 案例：输入性别、身高、收入。
+    // 如果是男性，就判断身高大于180，或者收入大于10000，输出"I do!"；否则输出"你是个好人”。
+    // 如果是女性，输出"我们性别不合适"。
+
+    var sex = prompt('性别');
+    if (sex == '男') {
+      // 判断身高或者收入
+      var height = prompt('身高');
+      var money = prompt('收入');
+      if (height > 180 || money > 10000) {
+        alert('I do!');
+      } else {
+        alert('你是个好人');
+      }
+    } else {
+      alert('我们性别不合适');
+    }
+
+    // 从键盘输入账号和密码，假设账号是“张三”，密码是“123”
+    // 如果账号密码都正确输出：登录成功，
+    // 否则：先输出：登录失败。如果是账号错误，就输出：账号错误；如果是密码错误：就输出：密码错误
+
+    var username = prompt('账号');
+    var password = prompt('密码');
+    
+    if (username == '张三') {
+      if (password == '123') {
+        alert('登录成功');
+      } else {
+        alert('登录失败，密码错误');
+      }
+    } else {
+      alert('登录失败，账号错误');
+    }
+
+
+  </script>
+</body>
+
+</html>

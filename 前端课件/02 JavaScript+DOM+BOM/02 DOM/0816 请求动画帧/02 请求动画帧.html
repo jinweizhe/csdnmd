@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+
+      // 请求动画帧:
+
+      // setTimeout(fn0, 1000/60);
+      function fn0(){
+        console.log('定时器执行');
+        setTimeout(fn0, 1000/60);
+      }
+
+      // 当浏览器重新绘制的时候，会自动调用requestAnimationFrame函数，浏览器的绘制会根据屏幕的刷新率进行，普通电脑（60Hz）刷新率是16.7毫秒，作用类似setTimeout，把setTimeout的间隔时间设置为16.7就和requestAnimationFrame类似
+
+      // 使用 requestAnimationFrame 添加回调函数，函数默认会接收一个参数，表示 requestAnimationFrame 执行的时间戳
+      // requestAnimationFrame 调用的时候会返回一个非0的值，理解成请求动画帧的编号，使用这个编号可以取消请求动画帧
+      var timer = requestAnimationFrame(fn);
+      function fn(time){
+        console.log('请求动画帧执行', time);
+        // 时间戳会自动增长，time>=3000 表示执行时间超过3秒的时候
+        // 1、用时间戳终止请求动画帧的重复执行
+        // if (time >= 3000) {
+        //   return;
+        // }
+        // requestAnimationFrame(fn);
+
+
+        // 2、用 cancelAnimationFrame 终止请求动画帧的执行
+        timer = requestAnimationFrame(fn);
+        if (time >= 3000) {
+          cancelAnimationFrame(timer);// 取消请求动画帧的执行 
+        }
+      }
+
+    </script>
+	</body>
+</html>

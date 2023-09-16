@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			html,
+			body {
+				height: 100%;
+			}
+			body {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				overflow: hidden;
+			}
+			h1 {
+				font-size: 200px;
+				margin: 0;
+			}
+
+			.error {
+				color: #f00;
+			}
+			.animate__animated {
+				animation-duration: 0.5s;
+				animation-fill-mode: both;
+			}
+			.animate__shakeX {
+				animation-name: shakeX;
+			}
+			@keyframes shakeX {
+				0%,
+				to {
+					transform: translateZ(0);
+				}
+				10%,
+				30%,
+				50%,
+				70%,
+				90% {
+					transform: translate3d(-10px, 0, 0);
+				}
+				20%,
+				40%,
+				60%,
+				80% {
+					transform: translate3d(10px, 0, 0);
+				}
+			}
+
+			.animate__zoomIn1 {
+				animation-name: zoomIn1;
+			}
+			@keyframes zoomIn1 {
+				0% {
+					opacity: 0;
+					transform: scale3d(0.3, 0.3, 0.3);
+				}
+				50% {
+					opacity: 1;
+				}
+			}
+			.animate__zoomIn2 {
+				animation-name: zoomIn2;
+			}
+			@keyframes zoomIn2 {
+				0% {
+					opacity: 0;
+					transform: scale3d(0.3, 0.3, 0.3);
+				}
+				50% {
+					opacity: 1;
+				}
+			}
+		</style>
+	</head>
+	<body>
+    <!-- 程序开始执行的时候，添加一次动画zoomIn -->
+		<h1 id="char" class="animate__animated animate__zoomIn1">A</h1>
+		<p id="result">正确个数：0 错误个数：0 正确率：0%</p>
+		<script>
+			var char = document.getElementById('char');
+			var result = document.getElementById('result');
+
+			// 随机产生A-Z的大写字母，转化为产生[65,90]之间的随机整数
+			var random;
+			function getChar() {
+				random = Math.floor(Math.random() * 26 + 65);
+        random = 65;
+				char.innerHTML = String.fromCharCode(random);
+			}
+			getChar();
+
+			var okCount = 0; // 记录正确次数
+			var errCount = 0; // 记录错误次数
+			window.onkeydown = function (ev) {
+				console.log(ev.keyCode, ev.key, random);
+        // 当按键不是A-Z的时候，终止程序的执行
+				if (ev.keyCode < 65 || ev.keyCode > 90) {
+					return;
+				}
+				// 把按键的值和随机数相比，如果一致，就是猜对了，否则，就是猜错了
+				if (ev.keyCode == random) {
+					// 猜对了，让正确的次数加1，再随机产生一个字母，同时让zoomIn动画再次执行
+					okCount++;
+					getChar();
+          // char.classList.add('animate__zoomIn1');// 添加zoomIn动画，不管按键有多快，动画都是每隔0.5秒执行一次
+          // 如果按键特别快，每按一次按键，就让动画重新开始一次
+          // 如何让动画重新开始：切换动画的样式类名，zoomIn1和zoomIn2实现一模一样的动画效果，只要类名切换动画就会重新开始，zoomIn1切换到zoomIn2 或者 从zoomIn2切换到zoomIn1
+          resetZoomIn()
+				} else {
+					// 猜错了
+					errCount++;
+					char.classList.add('error');
+					char.classList.add('animate__shakeX');// 添加shakeX动画
+				}
+				// 正确率=正确个数/(正确次数+错误次数)
+				var rate = Math.floor((100 * okCount) / (okCount + errCount));
+				result.innerHTML = '正确个数：' + okCount + ' 错误个数：' + errCount + ' 正确率：' + rate + '%';
+				console.log(rate, okCount, errCount);
+			};
+
+      function resetZoomIn() {
+        // if (char.classList.contains('animate__zoomIn1')) {
+        //   char.classList.remove('animate__zoomIn1');
+        //   char.classList.add('animate__zoomIn2');
+        // }else{
+        //   char.classList.remove('animate__zoomIn2');
+        //   char.classList.add('animate__zoomIn1');
+        // }
+        char.classList.toggle('animate__zoomIn1');
+        char.classList.toggle('animate__zoomIn2');
+      }
+
+			// 当char的动画执行完毕的时候触发的事件
+			// char.addEventListener('animationend', function () {
+			// 	char.classList.remove('error');
+      //   // 当动画执行完毕之后，把动画的样式类名移除，为下一次动画做准备
+			// 	char.classList.remove('animate__shakeX');
+			// 	// char.classList.remove('animate__zoomIn1');
+			// });
+		</script>
+	</body>
+</html>

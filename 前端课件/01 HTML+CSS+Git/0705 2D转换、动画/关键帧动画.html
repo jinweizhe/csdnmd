@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      body{
+        margin: 0;
+      }
+      .box{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+      .inner{
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        position: absolute;
+        left: 100px;
+        top: 50px;
+
+        /* 设置动画的名字 */
+        /* animation-name: move; */
+        /* 设置动画的执行事件 */
+        /* animation-duration: 5s; */
+        /* 设置动画的速度类型 */
+        /* animation-timing-function: linear; */
+        /* 设置动画的延迟时间 */
+        /* 动画延迟时间设置为负值，并没有让动画提前开始，会改变动画开始的起始位置，设置为-2，让动画从2秒的位置开始 */
+        /* animation-delay: -2s; */
+        /* 设置动画执行的次数，默认是1，可以设置任意的数字，infinite是无限次数，次数可以是小数 */
+        /* animation-iteration-count: 1; */
+        /* 设置动画执行的方向 */
+        /* animation-direction: alternate; */
+        /* 保留动画结束时的状态 */
+        /* animation-fill-mode: forwards; */
+        /* 设置动画是否播放 */
+        /* animation-play-state: paused; */
+
+        /* animation: name duration timing-function delay iteration-count direction fill-mode play-state; */
+        animation: move 1s linear infinite alternate paused;
+      }
+      .box:hover .inner {
+        animation-play-state: running;
+      }
+
+      @keyframes move {
+        /* 设置关键帧的时候动画开始的状态和结束的状态属性要保持一致，否则动画不起作用；比如开始的时候使用left，结束的时候也要使用left */
+        0%{ left: 100px; }
+        /* 80%{ left: 200px; } */
+        100%{ left: calc(100% - 200px - 100px);}
+        /* from { 
+          left: 100px;
+        }
+        to{
+          left: 600px;
+        } */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="inner"></div>
+    </div>
+  </body>
+</html>

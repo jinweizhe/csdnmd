@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 在ES6中增加了 Promise，用来处理异步操作
+    // promise有三种状态：挂起状态、成功状态、失败状态
+    // 创建Promise对象，添加异步操作，异步操作执行结束，promise的状态会发生改变，改变只有两种情况：
+    // 第一种：从挂起到成功状态
+    // 第二种：从挂起到失败状态
+    // 一旦状态改变，就不会再变，任何时候都可以得到这个结果。
+
+    // 创建Promise实例（对象）是同步操作，需要把异步操作放在Promise构造函数的回调函数中
+    // 回调函数是当创建Promise对象的时候立即执行
+    // 该回调函数有两个参数：resolve 和 reject，这两个参数都是函数
+
+    // 当Promise的状态从挂起转为成功，需要执行 resolve 函数，只要resolve函数执行，就可以执行then1函数，如果给resolve函数传递值，这个值会传递给data
+    // 当Promise的状态从挂起转为失败，需要实行 reject 函数，只要reject函数执行，就可以执行then2函数，如果给reject函数传递值，这个值会传递给error
+    let p = new Promise(function (resolve, reject) {
+      // console.log(resolve, reject);
+      // resolve(123);
+      // reject(456);
+
+      let img = new Image();
+      // 给图片src设置一个url地址，会异步下载图片，下载成功执行load事件，下载失败执行error事件
+      img.src = 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf1.png';
+      img.onload = function () {
+        console.log('图片下载成功');
+        resolve('图片下载成功');
+      }
+      img.onerror = function () {
+        console.log('图片下载失败');
+        reject('图片下载失败');
+      }
+
+    });
+
+    // then()函数使用来获取promise对象的结果，任何时候都可以使用then函数获取promise的结果
+    // then函数的两个参数也是函数：函数1 和 函数2
+    // 当执行了 resolve 函数，就会执行then的函数1，得到成功的结果data
+    // 当执行了 reject 函数，就会执行then的函数2，得到失败的结果error 
+    // p.then(function (data) {
+    //   console.log('then 1 data=', data);
+    // }, function (error) {
+    //   console.log('then 2 error=', error);
+    // });
+
+    // 也可以只给then函数1，然后使用catch获取失败的结果  
+    p
+      .then(function (data) {
+        console.log(' data=', data);
+      })
+      .catch(function (error) {
+        console.log(' error=', error);
+      });
+
+
+    // document.onclick = function () {
+    //   p.then(function (data) {
+    //     console.log('then 1 data=', data);
+    //   }, function (error) {
+    //     console.log('then 2 error=', error);
+    //   });
+    // }
+
+
+
+
+
+
+
+  </script>
+</body>
+
+</html>

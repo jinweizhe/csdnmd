@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <div>1</div>
+    <span class="tp">tp1</span>
+    <div class="active">2</div>
+		<main id="main" class="main">
+			<!-- 标签名不分大小写，一般习惯小写 -->
+			<div>sssssssssssssss</div>
+			<div id="box">div带box id的标签</div>
+			<div class="inner top active">带inner 类名的标签</div>
+			<div class="inner top">带inner 类名的标签</div>
+			<div class="inner">带inner 类名的标签 <span class="tp">tp10</span></div>
+			<div class="inner">带inner 类名的标签 <span class="tp">tp20</span></div>
+			<label><input type="checkbox" name="hobby" /> 游戏</label>
+			<label><input type="checkbox" name="hobby" /> 音乐</label>
+      <span class="tp">tp100</span>
+		</main>
+
+		<script>
+			// 元素节点的查找：通过JS找到页面上的标签，在JS中标签称作元素/元素节点
+			// 在DOM树中，一切节点皆是对象
+
+			// 找标签的基础用法：以document为基础调用找标签的方法，会搜索整个文档
+			// document.getElementById
+			// document.getElementsByName
+
+			// document.getElementsByClassName
+			// document.getElementsByTagName
+			// document.querySelector
+			// document.querySelectorAll
+
+			// 找标签升级用法：以某个元素对象el为基础作为父节点，搜索这个元素el的内部
+			// el.getElementsByClassName
+			// el.getElementsByTagName
+			// el.querySelector
+			// el.querySelectorAll
+
+
+      // 一、基础用法
+      //#region 
+			// 1、通过id名找到标签: 找到的是单个标签，如果找不到返回null
+			// 注意：参数传递的是id名，不带#
+			var box = document.getElementById('box');
+			console.log(box);
+			console.dir(box);
+
+			// if (box) {
+			//   box.innerHTML = '------';
+			// }
+
+			// 2、通过类名找标签：找到的是一个类数组的元素集合，如果找不到返回一个空集合
+			// 注意：1、参数传递的是类名，不带. 2、如果写了多个类名，类名之间用空格隔开，表示某个标签同时具有多个类名
+			// 元素集合：是一个类似数组的结构，有索引值和长度属性length
+			var inner = document.getElementsByClassName('inner');
+			// var inner = document.getElementsByClassName('inner top');// 找到同时具有inner 和 top 类名的标签
+			console.log(inner);
+			// inner[0].innerHTML = '-=-=-=';
+			// 可以使用for语句遍历元素集合
+			// for (var i = 0; i < inner.length; i++) {
+			// 	var el = inner[i];
+			// 	el.innerHTML = i + 1;
+			// }
+    
+
+			// 3、通过标签名找标签：找到是一个元素集合，如果找不到返回一个空集合
+			// 注意：标签名不分大小写，一般小写
+			var divs = document.getElementsByTagName('div');
+			console.log(divs);
+			// 通过标签名如果传入 * 找到页面上所有的标签
+			var all = document.getElementsByTagName('*');
+			console.log(all);
+
+			// 4、通过name属性值找标签：找到的是一个节点列表，如果找不到返回一个空列表
+			// 一般是用于带有name属性的元素：表单元素form/input/select/option等
+			var input = document.getElementsByName('hobby');
+			console.log(input);
+
+			// querySelector和 querySelectorAll  都是使用css选择器找标签，在css样式中怎么写选择器在这里就怎么用
+			// 5、找到页面上第一个符合条件的元素，如果找不到返回null
+			var div = document.querySelector('.inner');
+			var div = document.querySelector('.inner.top'); // 找到同时具有inner和top类名的标签
+			var div = document.querySelector('.inner .tp'); // 找到inner内部具有tp类名的标签
+			var div = document.querySelector('body div:nth-child(2)');
+			var div = document.querySelector('body > div');
+			console.log(div);
+
+			// 6、找到页面上所有符合条件的元素，返回一个节点列表
+			var inners = document.querySelectorAll('.inner');
+			console.log(inners);
+      //#endregion
+
+      // 二、升级用法
+      var main = document.querySelector('#main');
+      var main = document.getElementById('main');
+      console.log(main);
+
+      // 以main为基础，查找内部的元素，可以是子元素，也可以是子孙元素，是一种包含的关系
+      var tp = main.getElementsByClassName('tp');
+      var tp = main.getElementsByTagName('span');
+      var tp = main.querySelector('.tp');
+      var tp = main.querySelectorAll('.tp');
+      console.log(tp);
+
+
+
+		</script>
+	</body>
+</html>

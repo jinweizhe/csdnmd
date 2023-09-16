@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<!-- 
+      给标签添加事件有三种方式：
+      1、在标签上使用 on事件类型
+      2、在JS中使用元素对象：元素对象.on事件类型
+      3、使用事件监听：addEventListener
+
+      事件类型：指的是各种事件，比如，鼠标单击事件类型 click，键盘按下事件 keydown
+    -->
+		<!-- 
+      方式1：在标签上添加 onclick 属性：onclick="写一段JS代码"，当点击按钮的时候会执行这一段JS代码 
+      绑定事件函数的时候：在引号中直接调用函数，当点击按钮的时候，会执行函数
+      调用函数的时候可以传递参数，参数有三种：
+      1、自定义的值：数字、布尔值、字符串等，根据需要传递一个值  onclick="login(1);"
+      2、传递event：event是在事件中默认的一个值，表示事件对象，在事件对象中有一些事件相关的属性和方法
+      3、传递this：this是函数的默认参数，在事件函数中this是指绑定事件的元素：谁绑定了事件onclick，this就是指向谁
+    -->
+		<!-- <button class="btn1" onclick=" var a = 2; console.log('点击了按钮',a);">按钮1</button> -->
+		<!-- <button class="btn1" onclick="login(1);">按钮11</button> -->
+		<!-- <button class="btn1" onclick="login(2);">按钮12</button> -->
+    <!-- <button class="btn1" onclick="login(event);">按钮11  </button> -->
+    <button class="btn1" onclick="login(this);">按钮11  </button>
+    
+		<button class="btn2">按钮2</button>
+		<button class="btn3">按钮3</button>
+
+		<script>
+			function login(ev) {
+        console.log('login ev=',ev);
+        // console.log(ev.target);// 指的是触发事件的目标元素：鼠标点击了谁，target就是谁
+      }
+
+      var btn1 = document.querySelector('.btn1');
+      // 移除事件 
+      btn1.removeAttribute('onclick');
+
+      // login(1);
+      // login(2);
+
+      // 方式2：在元素对象上绑定onclick 属性
+      var btn2 = document.querySelector('.btn2');
+      // 给onclick赋值的时候，可以先声明函数，再把函数赋值onclick；或者直接给onclick属性赋值一个函数
+
+      // 如果在元素对象上绑定事件，事件函数会默认传递一个参数事件对象，可以在函数中定义任意的名字来接收事件对象
+      // ev 使用来接收事件对象的，名字可以随便起，一般是使用：e 或者 ev 或者 event
+      function register(ev) {
+        console.log('register');
+        // console.log(this);// 在事件函数中this是指绑定事件的元素：谁绑定了事件onclick，this就是指向谁
+        console.log(ev.target);// 指的是触发事件的目标元素：鼠标点击了谁，target就是谁
+      }
+      btn2.onclick = register;
+
+      btn2.onclick = function(ev) {
+        console.log('点击按钮 2');
+        console.log(this);
+        console.log(ev.target);
+      }
+
+      btn2.onclick = null;// 移除事件
+
+      // 方式3：使用 addEventListener 绑定函数
+      // btn3.addEventListener(事件类型, 函数);
+      // 事件类名：就是事件名，不带on 比如：click mousedown等
+      // 函数：事件处理函数，当触发事件的时候调用函数
+      var btn3 = document.querySelector('.btn3');
+
+      // 给addEventListener绑定事件的时候，可以先声明函数，再把函数传递给addEventListener；或者直接给addEventListener传递一个函数
+      // 这种方式绑定事件，也会就收默认的参数事件对象，和绑定事件的对象this
+
+      // 先声明函数，把函数赋值给addEventListener，可以方便的移除事件
+      function submit(ev){
+        console.log('submit');
+        console.log(ev.target);
+        console.log(this);
+      }
+      btn3.addEventListener('click', submit);
+
+      // 直接在 addEventListener 中添加函数，无法移除事件 
+      btn3.addEventListener('click', function(ev){
+        console.log('点击按钮3 ');
+        console.log(ev.target);
+        console.log(this);
+      });
+
+      // 移除事件：事件类型和绑定事件的类名保持一致，函数也要和绑定事件时保持一致：需要是同一个事件对象
+      // btn3.removeEventListener(事件类型, 函数)
+      btn3.removeEventListener('click', submit);
+
+
+
+
+
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.outer {
+				width: 60px;
+				height: 30px;
+				position: relative;
+			}
+			.btn {
+				width: 60px;
+				height: 30px;
+				line-height: 30px;
+				text-align: center;
+				background-color: blue;
+			}
+			.box {
+				width: 100%;
+				height: 100px;
+				background-color: lightblue;
+				position: absolute;
+				top: 30px;
+				left: 0;
+				display: none;
+			}
+			.close {
+				cursor: pointer;
+				background-color: red;
+				display: inline-block;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+			<div class="btn">点击</div>
+			<div class="box">
+				<span class="close">&times;</span>
+				<div>内容</div>
+			</div>
+		</div>
+		<main style="height: 1000px; background-color: lawngreen"></main>
+		<script>
+			// 1、点击btn让box显示
+			// 2、点击关闭按钮，让box隐藏                                                                               ·
+			// 3、当box显示的时候，点击页面空白处，让box隐藏
+
+			var btn = document.getElementsByClassName('btn')[0];
+			var box = document.querySelector('.box');
+			var closeBtn = document.querySelector('.close');
+
+			document.body.onclick = function (ev) {
+				console.log('body --------');
+				box.style.display = 'none';
+			};
+
+			btn.onclick = function (ev) {
+				console.log('btn ');
+        // 阻止事件向body冒泡：点击btn让box显示后，防止触发body的事件，因为body事件中让box隐藏了
+        // 如果不阻止事件冒泡，点击btn让box显示，接着触发body的时间，让box隐藏，页面上永远都看不到box显示
+				ev.stopPropagation();
+				box.style.display = 'block';
+			};
+
+			closeBtn.onclick = function (ev) {
+				box.style.display = 'none';
+			};
+
+			box.onclick = function (ev) {
+        // 点击box阻止事件向body冒泡，防止点击box的内容区隐藏box
+				ev.stopPropagation();
+			};
+		</script>
+	</body>
+</html>

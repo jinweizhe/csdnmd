@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+ 
+      div{
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+      }
+      a{
+        background-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+      <div>
+        <a href="http://www.baidu.com" target="_blank">百度一下</a>
+        <!-- href="某种协议" javascript:JS代码; 也是一种JS协议，当点击a标签的时候会执行一段JS代码，如果什么都执行空着或者写上void(0) -->
+        <!-- <a href="javascript:;">百度一下</a> -->
+      </div>
+    
+    <script>
+
+      // 默认行为：当点击标签的时候，我们没有做任何处理，会触发标签自带的一些行为，这些行为就是默认行为
+      // 比如：点击a标签会跳转页面、在form标签中点击type=submit的按钮会提交表单、点击F5会刷新页面等
+
+      var a = document.querySelector('a');
+
+      a.onclick = function(ev){
+        // 阻止默认行为
+        ev.preventDefault();
+
+        // 获取默认行为是否被阻止，是一个只读属性：只能获取值，不能设置值
+        console.log(ev.defaultPrevented);
+      }
+
+    
+    </script>
+  </body>
+</html>

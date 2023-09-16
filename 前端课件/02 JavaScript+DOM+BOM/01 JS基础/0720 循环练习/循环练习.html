@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="author" content="金西振" />
+  <title></title>
+  <style>
+    /* *{
+      line-height: 10px;
+    } */
+  </style>
+</head>
+
+<body>
+  <div>哈&#x3000;哈&nbsp;哈</div>
+  <script>
+    // - 2006年培养学员8万人，每年增长25%，请问按此增长速度，到哪一年培训学员人数将达到20万人
+    // var sum = 8;
+    // var year = 2006;
+    // while (true) {
+    //   // sum =  sum * 1.25;
+    //   sum *= 1.25;
+    //   year++;
+    //   if (sum > 20){
+    //     break;
+    //   }
+    // }
+    // console.log('sum = ' + sum, 'year = ' + year);
+
+    //------------------------------------------------------------------------------
+    var sum = 8;
+    var year = 2006;
+    while (sum <= 20) {
+      sum *= 1.25;
+      year++;
+    }
+    console.log('sum = ' + sum, 'year = ' + year);
+
+    document.write('<pre>');
+
+    // - 99乘法表
+    for (var i = 1; i <= 9; i++) {
+      for (var j = 1; j <= i; j++) {
+        var res = j + 'x' + i + '=' + i * j;
+        document.write(res + ' ');
+      }
+      document.write('\n');
+    }
+
+    // - 打印5行5列的矩形
+    for (var i = 1; i <= 5; i++) {
+      for (var j = 1; j <= 5; j++) {
+        document.write('&times;');
+      }
+
+      document.write('\n');
+    }
+    document.write('------------------------------------\n');
+    // - 打印高度为5的直角三角形：倒三角形 和 正三角形
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < i + 1; j++) {
+        document.write('&times;');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    for (var i = 0; i < 5; i++) {
+      for (var j = 0; j < 5 - i; j++) {
+        document.write('&times;');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    for (var i = 0; i < 5; i++) {
+      for (var k = 0; k < 4 - i; k++) {
+        document.write('&nbsp;');
+      }
+      for (var j = 0; j < i + 1; j++) {
+        document.write('&times;');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    for (var i = 0; i < 5; i++) {
+      for (var k = 0; k < i; k++) {
+        document.write('&nbsp;');
+      }
+      for (var j = 0; j < 5 - i; j++) {
+        document.write('&times;');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    // - 打印高度为8的等腰三角形
+
+    for (var i = 0; i < 8; i++) {
+      for (var k = 0; k < 7 - i; k++) {
+        document.write(' ');
+      }
+
+      for (var j = 0; j < 2 * i + 1; j++) {
+        document.write('*');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    for (var i = 0; i < 8; i++) {
+      for (var k = 0; k < 7 - i; k++) {
+        document.write('&nbsp');
+      }
+
+      for (var j = 0; j < 2 * i + 1; j++) {
+        document.write('&times;');
+      }
+      document.write('\n');
+    }
+
+    document.write('------------------------------------\n');
+
+    // 菱形
+
+    for (var i = 0; i < 6; i++) {
+      for (var k = 0; k < 5 - i; k++) {
+        document.write(' ');
+      }
+
+      for (var j = 0; j < 2 * i + 1; j++) {
+        document.write('*');
+      }
+      document.write('\n');
+    }
+    for (var i = 0; i < 5; i++) {
+      for (var k = 0; k < i + 1; k++) {
+        document.write(' ');
+      }
+
+      for (var j = 0; j < 9 - 2 * i; j++) {
+        document.write('*');
+      }
+      document.write('\n');
+    }
+
+
+    document.write('------------------------------------\n');
+
+    for (var i = 0, j = 10; i < 11; i++, j--) {
+      if (i < 6) {
+        for (var k = 0; k < 5 - i; k++) {
+          document.write(' ');
+        }
+        for (var x = 0; x < 2 * i + 1; x++) {
+          document.write('*');
+        }
+        document.write('\n');
+      } else {
+        console.log(j);
+        for (var k = 0; k < 5 - j; k++) {
+          document.write(' ');
+        }
+        for (var x = 0; x < 2 * j + 1; x++) {
+          document.write('*');
+        }
+        document.write('\n');
+      }
+    }
+
+
+
+    // 怎样用一百块买一百只鸡，已知公鸡5块一只，母鸡3块一只，小鸡一块钱3只
+    // 假设：公鸡x只，母鸡y只，小鸡z只
+    // 总计100只： x + y + z = 100
+    // 总计100元：5x + 3y + z/3 = 100
+    // x <= 20
+    // y <= 33
+    // z <= 100
+    for (var x = 0; x <= 20; x++) {
+      for (var y = 0; y <= 33; y++) {
+        for (var z = 0; z <= 100; z++) {
+          if (x + y + z == 100 && 5 * x + 3 * y + z / 3 == 100) {
+            document.write('公鸡：' + x + ' 母鸡：' + y + ' 小鸡：' + z + '\n')
+          }
+        }
+      }
+    }
+
+    document.write('</pre>');
+
+
+
+  </script>
+</body>
+
+</html>

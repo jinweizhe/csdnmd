@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+			}
+      button{
+        border: none;
+        padding: 0;
+        margin: 0;
+        height: 30px;
+      }
+      .outer{
+        width: 300px;
+        height: 300px;
+        background-color: red;
+        position: relative;
+      }
+			#box {
+				width: 100px;
+				height: 200px;
+				background-color: orange;
+				/* padding: 10px;
+        border: 1px solid; */
+
+				position: absolute;
+				top: 80px;
+				left: 60px;
+			}
+			.main {
+				height: 1000px;
+				background-color: lightblue;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- 如果给标签添加了id，会在JS代码中生成同名的变量，可以直接使用 -->
+    <!-- <div class="main"></div> -->
+		<div class="outer">
+			<div id="box"></div>
+		</div>
+		<div class="main"></div>
+		<script>
+			// console.log(document.documentElement.clientWidth);
+			var box = document.getElementById('box');
+
+			console.log(box.offsetLeft, box.offsetTop);
+			// console.log(box.offsetWidth);
+
+			// getBoundingClientRect 获取元素的尺寸和位置信息，得到是一个对象，在对象中有 x y top left right bottom width height 这些属性
+			var rect = box.getBoundingClientRect();
+			// rect.width 元素的宽度，等价于 offsetWidth
+			// rect.height 元素的高度，等价于offsetHeight
+			// rect.top和 rect.y：元素顶部相对于可视页面顶部的距离，值可能为正值，也有可能为负值
+			// rect.left 和 rect.x：元素左边相对于可视页面顶部的距离，值可能为正值，也有可能为负值
+      
+			// rect.right = rect.left + rect.width
+			// rect.bottom = rect.top + rect.height
+
+			console.log(rect);
+
+			
+		</script>
+	</body>
+</html>

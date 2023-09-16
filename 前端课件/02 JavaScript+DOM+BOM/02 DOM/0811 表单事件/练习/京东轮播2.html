@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东布局</title>
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <style>
+        .dianji{
+            width: 9px;
+            height: 9px;
+            top: 2px;
+            left: 0;
+            border: 3px solid rgba(0,0,0,.1);
+            position: relative;
+            top: 0;
+        }
+        .dianji::after{
+            content: " ";
+            width: 9px;
+            height: 9px;
+            position: absolute;
+            border-radius: 50%;
+            left: 0;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="header ">
+        <div class="w">
+            <div class="address"></div>
+            <div class="navigation-right"></div>
+        </div>
+    </div>
+    <div class="search">
+        <div class="w">
+            <div class="loge"></div>
+            <div class="search-center"></div>
+            <div class="loge"></div>
+        </div>
+    </div>
+    <div class="fs">
+        <div class="w">
+            <div class="loge"></div>
+            <div class="search-center">
+                <div class="flow-img">
+                    <img src="./img/q0.jpg" alt="">
+                    <a href="javascript: ;" class="a1">&lt;</a>
+                    <a href="javascript: ;" class="a2">&gt;</a>
+                    <div class="nav-bottom">
+                        <p data-index="0"></p>
+                        <p data-index="1"></p>
+                        <p data-index="2"></p>
+                        <p data-index="3"></p>
+                        <p data-index="4"></p>
+                        <p data-index="5"></p>
+                        <p data-index="6"></p>
+                        <p data-index="7"></p>
+                    </div>
+                </div>
+                <div class="fixed-img"></div>
+            </div>
+            <div class="loge"></div>
+        </div>
+    </div>
+    <div class="kill">
+        <div class="w wd">
+        </div>
+    </div>
+    <div class="nav"></div>
+    <div class="w wo"></div>
+    <script> 
+
+        console.time('ad');
+        var left = document.querySelector('.a1');
+        var right = document.querySelector('.a2');
+        var img = document.querySelector('.flow-img img');
+        var btn = document.querySelector('.nav-bottom');
+        var ind = 0;
+
+        btn.children[ind].className = 'dianji';
+        img.src = './img/q' + ind + '.jpg';
+
+        function next() {
+            btn.children[ind].className = '';
+            if (ind == 7) {
+                ind = 0;
+            } else {
+                ind = ind + 1;
+            }
+            btn.children[ind].className = 'dianji';
+            img.src = './img/q' + ind + '.jpg';
+        }
+        var d1 = setInterval(next, 3000);
+        left.addEventListener('click',function () {
+            clearInterval(d1);
+            btn.children[ind].className = '';
+            if (ind == 0) {
+                ind = 7;
+            } else {
+                ind = ind - 1;
+            }
+            btn.children[ind].className = 'dianji';
+            img.src = './img/q' + ind + '.jpg';
+            d1 = setInterval(next, 3000);
+        });
+        right.addEventListener('click',function () {
+            clearInterval(d1);
+            btn.children[ind].className = '';
+            if (ind == 7) {
+                ind = 0;
+            } else {
+                ind = ind + 1;
+            }
+            btn.children[ind].className = 'dianji';
+            img.src = './img/q' + ind + '.jpg';
+            d1 = setInterval(next, 3000);
+        });
+        btn.addEventListener('click',function (ev) {
+            if (ev.target != this) {
+                clearInterval(d1);
+                btn.children[ind].className = '';
+
+                ind = ev.target.dataset.index * 1;
+                btn.children[ind].className = 'dianji';
+                img.src = './img/q' + ind + '.jpg';
+                d1 = setInterval(next, 3000);
+            }
+        })
+        console.timeEnd('ad');
+    </script>
+</body>
+</html>

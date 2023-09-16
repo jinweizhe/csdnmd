@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+      body {
+        margin: 0;
+      }
+			.box {
+				position: fixed;
+				top: 100px;
+				left: 100px;
+			}
+      main{
+        background-color: rgb(255, 150, 150);
+      }
+		</style>
+	</head>
+
+	<body>
+		<div class="box">
+			<button onclick="topClick()">回到顶部1</button>
+			<button onclick="bottomClick()">回到底部1</button>
+			<button onclick="topClick2()">回到顶部2</button>
+			<button onclick="bottomClick2()">回到底部2</button>
+		</div>
+		<main>
+			<p>第01行</p>
+			<p>第02行</p>
+			<p>第03行</p>
+			<p>第04行</p>
+			<p>第05行</p>
+			<p>第06行</p>
+			<p>第07行</p>
+			<p>第08行</p>
+			<p>第09行</p>
+			<p>第10行</p>
+			<p>第11行</p>
+			<p>第12行</p>
+			<p>第13行</p>
+			<p>第14行</p>
+			<p>第15行</p>
+			<p>第16行</p>
+			<p>第17行</p>
+			<p>第18行</p>
+			<p>第19行</p>
+			<p>第20行</p>
+			<p>第21行</p>
+			<p>第22行</p>
+			<p>第23行</p>
+			<p>第24行</p>
+			<p>第25行</p>
+			<p>第26行</p>
+			<p>第27行</p>
+			<p>第28行</p>
+			<p>第29行</p>
+			<p>第30行</p>
+			<p>第31行</p>
+			<p>第32行</p>
+			<p>第33行</p>
+			<p>第34行</p>
+			<p>第35行</p>
+			<p>第36行</p>
+			<p>第37行</p>
+			<p>第38行</p>
+			<p>第39行</p>
+			<p>第40行</p>
+			<p>第41行</p>
+			<p>第42行</p>
+			<p>第43行</p>
+			<p>第44行</p>
+			<p>第45行</p>
+			<p>第46行</p>
+			<p>第47行</p>
+			<p>第48行</p>
+			<p>第49行</p>
+			<p>第50行</p>
+			<p>第51行</p>
+			<p>第52行</p>
+			<p>第53行</p>
+			<p>第54行</p>
+			<p>第55行</p>
+			<p>第56行</p>
+			<p>第57行</p>
+			<p>第58行</p>
+			<p>第59行</p>
+			<p>第60行</p>
+			<p>第61行</p>
+			<p>第62行</p>
+			<p>第63行</p>
+			<p>第64行</p>
+			<p>第65行</p>
+			<p>第66行</p>
+			<p>第67行</p>
+			<p>第68行</p>
+			<p>第69行</p>
+			<p>第70行</p>
+			<p>第71行</p>
+			<p>第72行</p>
+			<p>第73行</p>
+			<p>第74行</p>
+			<p>第75行</p>
+			<p>第76行</p>
+			<p>第77行</p>
+			<p>第78行</p>
+			<p>第79行</p>
+			<p>第80行</p>
+			<p>第81行</p>
+			<p>第82行</p>
+			<p>第83行</p>
+			<p>第84行</p>
+			<p>第85行</p>
+			<p>第86行</p>
+			<p>第87行</p>
+			<p>第88行</p>
+			<p>第89行</p>
+			<p>第90行</p>
+			<p>第91行</p>
+			<p>第92行</p>
+			<p>第93行</p>
+			<p>第94行</p>
+			<p>第95行</p>
+			<p>第96行</p>
+			<p>第97行</p>
+			<p>第98行</p>
+			<p>第99行</p>
+			<p>第100行</p>
+		</main>
+
+		<script>
+			function topClick() {
+				scroll({
+					top: 0,
+					left: 0,
+					behavior: 'smooth',
+				});
+			}
+			function bottomClick() {
+				scroll({
+					top: document.documentElement.scrollHeight,
+					left: 0,
+					behavior: 'smooth',
+				});
+			}
+
+			// 回到顶部
+			var timer1;
+			var speed = 0; // 滚动条向下移动为正值，滚动条向上移动为负值
+			function topClick2() {
+				if (timer1) return;
+				speed = -50;
+				timer1 = requestAnimationFrame(update);
+
+				function update() {
+          // 让scrollTop的值减少
+					document.scrollingElement.scrollTop += speed;
+
+          // 重复调用update函数，让scrollTop的值减少的代码反复执行
+					timer1 = requestAnimationFrame(update);
+
+          // 当scrollTop的值为0的时候，停止update函数的执行
+					if (document.scrollingElement.scrollTop <= 0) {
+						console.log('去顶部：', document.scrollingElement.scrollTop);
+						cancelAnimationFrame(timer1);
+						timer = null;
+					}
+				}
+
+
+			}
+			// 回到底部
+			var timer2;
+			function bottomClick2() {
+				if (timer2) return;
+				var scrollTop = document.scrollingElement.scrollTop;
+				var scrollHeight = document.documentElement.scrollHeight;
+				var clientHeight = document.documentElement.clientHeight;
+				speed = 50;
+				timer2 = requestAnimationFrame(update);
+
+				function update() {
+
+					document.scrollingElement.scrollTop += speed;
+
+          console.log('去底部：', document.scrollingElement.scrollTop, clientHeight, scrollHeight);
+          
+					timer2 = requestAnimationFrame(update);
+					if (document.scrollingElement.scrollTop + clientHeight >= scrollHeight) {
+						cancelAnimationFrame(timer2);
+						timer2 = null;
+					}
+				}
+			}
+
+			// requestAnimationFrame(move);
+
+			// function move() {
+			// 	console.log('move');
+
+      //   requestAnimationFrame(move);
+			// }
+
+			// setInterval(move, 1000);
+
+
+      // setTimeout(move, 1000);
+      // function move() {
+			// 	console.log('move');
+
+      //   setTimeout(move, 1000);
+			// }
+		</script>
+	</body>
+</html>

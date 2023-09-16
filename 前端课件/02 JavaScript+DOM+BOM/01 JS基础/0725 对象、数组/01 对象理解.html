@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// 对象包含属性和方法
+			// 属性 表示对象的静态特征
+			// 方法 表示对象的动态行为
+
+			// 当表示一个整体，这个整体的数据比较复杂，用到数字、布尔、字符串等，
+			// 比如，描述一个人的属性
+			var name = '张三';
+			var age = 18;
+			var sex = true;
+			var height = 180;
+
+			// 如果想要表示多个人的属性和方法，直接使用变量会变得比较繁琐
+			var zhangsan = {};
+      // 属性
+			zhangsan.name = '张三';
+			zhangsan.age = 18;
+			zhangsan.sex = true;
+      // 方法
+			zhangsan.say = function () {
+				console.log('我叫' + this.name);
+			};
+
+			var lisi = {};
+			lisi.name = '李四';
+			lisi.age = 18;
+			lisi.sex = true;
+
+			console.log(zhangsan);
+			console.log(zhangsan.name);
+      zhangsan.say();
+
+      
+		</script>
+	</body>
+</html>

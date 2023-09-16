@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<div class="d1">内容1<span>子元素1</span></div>
+		<div class="d2">内容2<span>子元素2</span></div>
+		<input type="text" />
+		<script>
+			// 操作元素的内容
+			// DOM中的用法:
+			// innerHTML
+			// innerText
+			// textContent
+
+			// JQ的用法：
+			// .html()用法等价于 innerHTML
+			console.log($('.d1').html()); // 内容1<span>子元素1</span>
+			// .text() 用法等价于 innerText
+			console.log($('.d2').text()); // 内容1子元素1
+			// .val()获取输入框的值，等价于input.value
+			console.log($('input').val());
+
+			$('.d1').html('<p>段落1</p>');
+			$('.d2').text('<p>段落2</p>');
+			$('input').val('张三');
+		</script>
+	</body>
+</html>

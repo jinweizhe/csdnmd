@@ -1,0 +1,111 @@
+{
+	// Place your snippets for html here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// },
+
+	"HTML5文档基本结构": {
+		"prefix": "goh5",
+		"body": [
+			"<!DOCTYPE html>",
+			"<html lang=\"zh-CN\">",
+			"\t<head>",
+			"\t\t<meta charset=\"utf-8\">",
+			"\t\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">",
+			"\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no\">",
+			"\t\t<meta name=\"author\" content=\"金西振\">",
+			// "\t\t<script src=\"https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js\"></script>",
+			"\t\t<title>$1</title>",
+			"\t\t<style>",
+			"\t\t",
+			"\t\t</style>",
+			"\t</head>",
+			"\t<body>",
+			"\t\t$2",
+			"\t\t<script>",
+			"\t\t",
+			"\t\t</script>",
+			"\t</body>",
+			"</html>"
+		],
+		"description": "HTML5基本结构"
+	},
+
+	"Bootstrap文档基本结构": {
+		"prefix": "goboot",
+		"body": ["<!DOCTYPE html>", "<html lang=\"zh-CN\">", "<head>", "\t<meta charset=\"utf-8\">", "\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">", "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">", "\t<meta name=\"author\" content=\"金西振\">", "\t<title>$1</title>", "\t<link href=\"bootstrap/css/bootstrap.css\" rel=\"stylesheet\">", "\t<style>", "\t\t", "\t</style>", "</head>", "<body>", "\t$2", "\t<script src=\"bootstrap/js/jquery.js\"></script>", "\t<script src=\"bootstrap/js/bootstrap.js\"></script>", "</body>", "</html>"],
+		"description": "Bootstrap文档基本结构"
+	},
+
+	"Vue2.x文档基本结构": {
+		"prefix": "gov2",
+		"body": [
+			"<!DOCTYPE html>",
+			"<html lang=\"zh-CN\">",
+			"<head>",
+			"\t<meta charset=\"utf-8\">",
+			"\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">",
+			"\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">",
+			"\t<meta name=\"author\" content=\"金西振\">",
+			"\t<script src=\"https://unpkg.com/vue@2\"></script>",
+			"\t<title></title>",
+			"\t<style>",
+			"\t\t",
+			"\t</style>",
+			"</head>",
+			"<body>",
+			"<div id=\"app\">",
+			"\t",
+			"</div>",
+			"<script>",
+			"Vue.config.productionTip = false;",
+			"new Vue({",
+			"\tel: '#app',",
+			// "\tdata() {",
+			//     "\t\treturn {",
+			//         "\t\t\t$1",
+			//     "\t\t}",
+			// "\t},",
+			"\tdata: {",
+			"\t\t$1",
+			"\t},",
+			"});",
+			"</script>",
+			"</body>",
+			"</html>"
+		],
+		"description": "Vue文档基本结构"
+	},
+
+	"Vue3.x文档基本结构": {
+		"prefix": "gov3",
+		"body": ["<!DOCTYPE html>", "<html lang=\"zh-CN\">", "<head>", "\t<meta charset=\"utf-8\">", "\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">", "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">", "\t<meta name=\"author\" content=\"金西振\">", "\t<script src=\"https://unpkg.com/vue@3\"></script>", "\t<title></title>", "\t<style>", "\t\t", "\t</style>", "</head>", "<body>", "<div id=\"app\">", "\t", "</div>", "<script>", "const app = Vue.createApp({", "\tdata(){", "\t\treturn {", "\t\t\t", "\t\t}", "\t}", "});", "app.mount('#app');", "</script>", "</body>", "</html>"],
+		"description": "Vue文档基本结构"
+	},
+	"Vue3.x组合式文档基本结构": {
+		"prefix": "gov3s",
+		"body": ["<!DOCTYPE html>", "<html lang=\"zh-CN\">", "<head>", "\t<meta charset=\"utf-8\">", "\t<meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">", "\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\">", "\t<meta name=\"author\" content=\"金西振\">", "\t<script src=\"https://unpkg.com/vue@3\"></script>", "\t<title></title>", "\t<style>", "\t\t", "\t</style>", "</head>", "<body>", "<div id=\"app\">", "\t", "</div>", "<script>", "let { createApp } = Vue;", "const app = createApp({", "\tsetup(props){", "\t\t", "\t\treturn {", "\t\t\t", "\t\t}", "\t}", "});", "app.mount('#app');", "</script>", "</body>", "</html>"],
+		"description": "Vue文档基本结构"
+	},
+
+	"Vue模板结构": {
+		"prefix": "gotmp",
+		"body": ["<script id=\"$1\" type=\"text/html\">", "\t<div>", "\t\t", "\t</div>", "</script>"],
+		"description": "Vue模板结构"
+	},
+
+	"清除浮动": {
+		"prefix": "goclear",
+		"body": [".clearfix:after{", "\tcontent:\"\";", "\tdisplay:block;", "\tclear:both;", "\tvisibility:hidden;", "\theight:0", "}", ".clearfix{", "\tzoom:1", "}"],
+		"description": "Vue模板结构"
+	}
+}

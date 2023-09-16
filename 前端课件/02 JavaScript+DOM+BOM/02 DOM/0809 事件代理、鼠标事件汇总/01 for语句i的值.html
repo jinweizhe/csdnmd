@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<button>按钮1</button>
+		<button>按钮2</button>
+		<button>按钮3</button>
+		<script>
+			var btns = document.querySelectorAll('button');
+
+			for (var i = 0; i < 3; i++) {
+				// 循环体
+				// 当点击按钮的时候，for语句已经结束，只要for语句结束，i的值必定是3，i也是一个全局变量，在事件函数中也能访问i的值
+				btns[i].onclick = function () {
+					console.log(i); // 全局变量i
+				};
+				// 循环体
+        
+			}
+
+			// for语句的执行流程
+			// 作用域：
+
+			// for (var i = 0; i < 3; i++) {
+			// 	// 循环体
+			//   // 当点击按钮的时候，for语句已经结束，只要for语句结束，i的值必定是3，i也是一个全局变量，在事件函数中也能访问i的值
+			// 	btns[0].onclick = function () {
+			// 		console.log(i);// 全局变量i
+			// 	};
+			// 	btns[1].onclick = function () {
+			// 		console.log(i);
+			// 	};
+			// 	btns[2].onclick = function () {
+			// 		console.log(i);
+			// 	};
+			//   // 循环体
+			// }
+
+			// console.log(i);
+
+			// btns[0].onclick = function () {
+			// 	console.log(i);
+			// };
+			// btns[1].onclick = function () {
+			// 	console.log(i);
+			// };
+			// btns[2].onclick = function () {
+			// 	console.log(i);
+			// };
+		</script>
+	</body>
+</html>

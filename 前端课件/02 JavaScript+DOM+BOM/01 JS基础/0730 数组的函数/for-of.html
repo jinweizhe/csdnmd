@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+    <mark>12312</mark>
+		<script>
+			var arr = [2, 3, 4, 5];
+			// for-in 使用来遍历对象 {}
+			// for-of和for-in都能用来遍历数组 []
+
+			for (var value of arr) {
+				console.log(value);
+			}
+
+			for (var key in arr) {
+				console.log(key);
+			}
+
+      var obj = {v1:100, v2:200}
+      for (var key in obj) {
+				console.log(key);
+			}
+
+      // for (var value of obj) {
+			// 	console.log(value);
+			// }
+
+		</script>
+	</body>
+</html>

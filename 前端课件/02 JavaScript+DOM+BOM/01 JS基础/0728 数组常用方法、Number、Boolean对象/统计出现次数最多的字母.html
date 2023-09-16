@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+			// - 统计上述字符串中出现次数最多的字母是什么
+			// 方法一：使用字符串分割法
+			var str = 'give me some sunshine give me some rain give me another changce i wanna grow up once again';
+			console.log(str.split('i'));
+			var a_z = 'qwertyuiopasdfghjklzxcvbnm';
+			var max = -1;
+			var char = '';
+			for (var i = 0; i < a_z.length; i++) {
+				var count = str.split(a_z[i]).length - 1;
+				if (count > max) {
+					max = count;
+					char = a_z[i];
+				}
+			}
+			console.log(char, max);
+
+			// 方法二：使用对象，从对象中找最大值
+			var str = 'give me some sunshine give me some rain give me another changce i wanna grow up once again';
+			var obj = {};
+			for (var i = 0; i < str.length; i++) {
+				var ch = str.charAt(i);
+        if (ch === ' ') {
+          continue;
+        }
+				// 把字符串中的字符当做对象的属性名，出现的次数当做属性值
+				// 先判断obj对象中是否有ch所表示字符的属性，如果没有，给obj[ch]赋值1,；如果有让obj[ch]自增
+				if (!obj[ch]) {
+					obj[ch] = 1;
+				} else {
+					obj[ch]++;
+				}
+			}
+			console.log(obj);
+
+      var max = -1, char = '';
+      for(var key in obj) {
+        if (obj[key] > max) {
+          max = obj[key];
+          char = key;
+        }
+      }
+      console.log(char, max);
+      
+
+			// var obj = {};
+
+			// var ch = 'a';
+			// // obj[ch] = 6;
+			// console.log(obj[ch]);
+			// if (!obj[ch]) {
+			//   obj[ch] = 1;
+			// } else {
+			//   obj[ch] = obj[ch] + 1;
+			// }
+
+			// // obj[ch] = obj[ch] + 1;
+
+			// console.log(obj);
+		</script>
+	</body>
+</html>

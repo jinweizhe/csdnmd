@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+    <!-- # 最大值最小值 -->
+  <script>
+    // - 分别从键盘输入三个不相同的数字，使用if语句
+    //   - 找出他们中的最小数，输出
+    //   - 找出他们中的中间数，输出 （使用逻辑运算符）
+    //   - 找出他们中的最大，最小，中间数，并输出（if 和 三目运算符）
+    var a = prompt('请输入第一个数') *1;
+    var b = prompt('请输入第二个数') *1;
+    var c = prompt('请输入第三个数') *1;
+    if (a > b) {
+      if (a > c) {
+        if (b > c) {
+          console.log(a + "最大值");
+          console.log(b + "中间值");
+          console.log(c + '最小值');
+        }
+        else {
+          console.log(a + "最大值");
+          console.log(c + "中间值");
+          console.log(b + '最小值');
+        }
+      } else {
+        if (b > c) {
+          console.log(c + "最大值");
+          console.log(a + "中间值");
+          console.log(b + '最小值');
+        } else {
+          console.log(c + "最大值");
+          console.log(a + "中间值");
+          console.log(b + '最小值');
+        }
+      }
+
+    } else {
+      if (a < c) {
+        if (b < c) {
+          console.log(c + "最大值");
+          console.log(b + "中间值");
+          console.log(a + '最小值');
+        }
+        else {
+          console.log(b + "最大值");
+          console.log(c + "中间值");
+          console.log(a + '最小值');
+        }
+      } else {
+        if (b > c) {
+          console.log(b + "最大值");
+          console.log(a + "中间值");
+          console.log(c + '最小值');
+        }
+        else {
+          console.log(c + "最大值");
+          console.log(b + "中间值");
+          console.log(a + '最小值');
+        }
+
+      }
+    }
+
+    // var max1 = ((a > b) ? a : b);
+    // // var max2 = (((a > b) ? a : b) > c) ? ((a > b) ? a : b) : c;
+    // console.log(max3 + '最大值');
+  </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <!-- <ol>
+    <li><a href="./01 点击上传.html">点击上传</a></li>
+    <li><a href="./02 拖拽上传.html">拖拽上传</a></li>
+  </ol> -->
+
+  <input type="file" id="input" multiple accept="image/*"><br>
+  <button onclick="upload()">点击上传</button>
+  <script>
+    function upload () {
+      let xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          console.log(xhr.responseText);
+        }
+      }
+
+      xhr.open('POST', 'http://127.0.0.1:3000/upload');
+
+      console.dir(input.files);
+
+      // 获取上传的文件对象
+      let file = input.files[0];
+
+      let data = new FormData();
+      // 把数据添加到formdata对象汇总
+      // data.append('username', '张三');
+      data.append('myfile', file);
+
+      xhr.send(data);
+
+    }
+
+  </script>
+</body>
+
+</html>

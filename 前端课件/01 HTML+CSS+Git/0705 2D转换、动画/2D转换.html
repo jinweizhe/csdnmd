@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .box {
+      width: 200px;
+      height: 200px;
+      background-color: red;
+      margin: 100px;
+    }
+
+    .inner {
+      width: 200px;
+      height: 200px;
+      background-color: blue;
+
+      /* 改变旋转中心点 */
+      transform-origin: 50px 30px;
+
+    }
+    
+    /* 2D转换熟练：translate移动；rotate旋转；scale缩放 */
+    .box:hover .inner {
+      transition: all 1s linear;
+
+      /* width: 100px; */
+      /* 1、移动 */
+      /* transform: translate(50px); */
+      /* transform: translate(50px, 30px); */
+      /* transform: translateX(-100px); */
+      /* transform: translateY(-100px); */
+
+      /* 2、旋转: 单位 deg；正值顺时针旋转；负值逆时针旋转； */
+      /* transform: rotate(60deg); */
+
+      /* 3、缩放 */
+      transform: scale(0.5);
+      /* transform: scale(0.5, 1.5); */
+      /* transform: scaleX(0.5); */
+      /* transform: scaleY(0.5); */
+
+      /* transform: translate(200px) rotate(30deg); */
+      /* transform: rotate(30deg) translate(200px); */
+      
+    }
+    .btn{
+      width: 200px;
+      height: 30px;
+      background-color: red;
+      
+    }
+    /* 2D转换对内联元素无效，内联元素需要转为块级元素或者行内块元素才能使用2D转换 */
+    .btn span{
+      display: inline-block;
+    }
+    .btn:hover span{
+      transform: rotate(180deg);
+      /* background-color: blue; */
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="inner">1234567890111111</div>
+  </div>
+
+  <div class="btn"><span>&gt;</span></div>
+</body>
+
+</html>

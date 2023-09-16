@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      *{
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+      }
+      .box{
+        height: 50px;
+        line-height: 50px;
+        display: flex;
+        justify-content:center;
+      }
+      .list{
+        display: flex;
+      }
+      .list .item{
+        margin: 0 20px;
+        cursor: pointer;
+        border-top: 3px solid transparent;
+      }
+      .list .active{
+        color: #4db38f;
+        border-top-color:  #4db38f;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <ul class="list">
+        <li class="item active">推荐</li>
+        <li class="item">视频</li>
+        <li class="item">汽车</li>
+        <li class="item">游戏</li>
+        <li class="item">直播</li>
+        <li class="item">科技</li>
+      </ul>
+    </div>
+    <script>
+
+      var items = document.querySelectorAll('.list .item');
+
+      for(var i = 0; i < items.length; i++){
+        var item = items[i];
+
+        // 通过切换类名让标签的样式改变，也可以直接使用style改变标签的样式
+        item.onclick = function(ev){
+          // 点击标签，让自己添加active类型名，其余兄弟元素的active移除
+
+          // 先让所有元素移除active：用foi语句遍历所有的元素移除类名
+          for(var i = 0; i < items.length; i++){
+            items[i].classList.remove('active');
+          }
+
+          // 然后再让自己添加active；点击谁，给谁添加active类名
+          this.classList.add('active');
+        }
+      }
+    
+    </script>
+  </body>
+</html>

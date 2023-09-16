@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <title></title>
+    <style>
+    
+    </style>
+  </head>
+  <body>
+    <!-- 在同一个HTML文件中导入多个JS文件
+      1、按照导入顺序执行JS代码
+      2、运行的时候会把所有导入的JS文件拼接在一起运行在全局作用域 
+
+      弊端：1、JS文件顺序不能改变；2、所有的代码都是运行在同一作用域，有命名冲突的隐患
+    -->
+    <script src="./index1.js"></script>
+    <script src="./index2.js"></script>
+    <script>
+      console.log('index');
+      console.log(a1, a2);
+    
+    </script>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    // 总工资已知
+    var gongzi = prompt('工资');
+
+    // 1、基本工资
+    // 计算五险一金的时候基准工资不能超过7662
+    // - 如果总工资大于7662，基准工资就是7662。比如总工资是10000，基准工资就是7662了
+    // - 如果总工资不大于7662，总工资是多少，基准工资就是多少。比如总工资只有5000，基准工资就是5000了
+    var jizhun;
+    if (gongzi > 7662) {
+      jizhun = 7662;
+    } else {
+      jizhun = gongzi;
+    }
+    console.log('基准：', jizhun);
+
+
+    // 2、需要缴纳的三险一金 = 基准工资 *五险一金比例 
+    var sanxian = jizhun * 20.5 / 100;
+    console.log('三险一金：', sanxian);
+
+    // 3、扣除三险一金后月收入 = 总工资 - 需要缴纳的五险一金
+    var kouchu = gongzi - sanxian;
+
+    // 4、应纳税所得额 = 扣除三险一金后月收入 - 扣除标准（扣除标准5000元/月，2018年10月1日执行）
+    var suodee = kouchu - 5000;
+    // suodee -= 1000;// 子女教育
+    // suodee -= 360;// 证书
+    // suodee -= 1000;// 买房
+    console.log('所得额：', suodee);
+
+    if (suodee <= 0) {
+      alert('您的工资还没有达到缴税的标准，回家涨涨工资再来');
+    } else {
+      // 5、税率和速算扣除数
+      var shulv, sukou;
+      if (suodee <= 3000) {
+        shulv = 0.03;
+        sukou = 0;
+      } else if (suodee <= 12000) {
+        shulv = 0.1;
+        sukou = 210;
+      } else if (suodee <= 25000) {
+        shulv = 0.2;
+        sukou = 1410;
+      } else if (suodee <= 35000) {
+        shulv = 0.25;
+        sukou = 2660;
+      } else if (suodee <= 55000) {
+        shulv = 0.3;
+        sukou = 4410;
+      } else if (suodee <= 80000) {
+        shulv = 0.35;
+        sukou = 7160;
+      } else {
+        shulv = 0.45;
+        sukou = 15160;
+      }
+
+      // 6、应纳个人所得税 = 应纳税所得额 x 适用税率 - 速算扣除数
+      var geshui = suodee * shulv - sukou;
+      alert("这个月还要缴税：" + geshui.toFixed(2));
+    }
+
+  </script>
+</body>
+
+</html>

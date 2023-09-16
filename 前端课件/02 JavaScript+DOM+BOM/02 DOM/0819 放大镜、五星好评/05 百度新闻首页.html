@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+        list-style: none;
+			}
+			a {
+				font-size: inherit;
+				color: inherit;
+        text-decoration: none;
+			}
+			.w {
+				width: 900px;
+				margin: auto;
+			}
+			header {
+				height: 160px;
+			}
+			.nav {
+				height: 40px;
+				width: 100%;
+				background-color: #01204f;
+
+        position: static;
+        top: 0;
+        left: 0;
+
+				color: #fff;
+				font-size: 14px;
+				font-weight: 700;
+
+        transition: all 0.5s linear;
+			}
+      .nav-list{
+        display: flex;
+        position: relative;
+      }
+      .nav-list .item{
+        position: relative;
+      }
+      .nav-list .item a{
+        display: block;
+        padding: 0 10px;
+        line-height: 40px;
+      }
+      .nav-list .active{
+        background-color: #cc0000;
+      }
+      .nav-list .move{
+        width: 48px;
+        height: 40px;
+        background-color: #cc0000;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.2s linear;
+      }
+      .content{
+        height: 2000px;
+        background-color: lightblue;
+      }
+      .sidebar{
+        width: 48px;
+        /* background-color: orange; */
+        position: fixed;
+        bottom: 30px;
+        left: calc(50% + 450px + 10px);
+        overflow: hidden;
+      }
+      .sidebar .list{
+        position: relative;
+        left: 0;
+        top: 50px;
+        transition: all 0.2s linear
+      }
+      /* .sidebar:hover .list{
+        top: 0px;
+      } */
+      .sidebar .list li{
+        height: 48px;
+        margin-top: 5px;
+        /* background-color: red; */
+        background-image: url(http://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/sidebar/icon-merged_b8bc211.png);
+        
+      }
+      .sidebar .list .report{
+        width: 48px;
+        height: 92px;
+        background-image: url(http://gss0.bdstatic.com/5foIcy0a2gI2n2jgoY3K/static/fisp_static/common/img/sidebar/roumer_033b02b.png);
+        background-size: 48px 92px;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .sidebar .list .report a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-color: #18448e;
+        border-radius: 5px;
+        transform: rotate(90deg);
+        transform-origin: -100% 50%;
+        transition: all 0.2s linear
+      }
+      .sidebar .list .report:hover a{
+        transform: rotate(0);
+      }
+      .sidebar .list .gotop{
+        background-position: 0 -306px;
+      }
+      .sidebar .list .gotop:hover{
+        background-position-y: -357px;
+      }
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="w">头部</div>
+		</header>
+		<nav class="nav">
+			<div class="w">
+				<ul class="nav-list">
+          <div class="move"></div>
+					<li class="item active"><a href="javascript:;">首页</a></li>
+					<li class="item"><a href="javascript:;">国内</a></li>
+					<li class="item"><a href="javascript:;">国际</a></li>
+					<li class="item"><a href="javascript:;">互联网</a></li>
+					<li class="item"><a href="javascript:;">科技</a></li>
+					<li class="item"><a href="javascript:;">百度新闻</a></li>
+					<li class="item"><a href="javascript:;">娱乐</a></li>
+				</ul>
+			</div>
+		</nav>
+    <main>
+      <div class="w content">内容</div>
+    </main>
+
+    <div class="sidebar">
+      <ul class="list">
+        <li class="report"><a href="">举报</a></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li class="gotop"></li>
+      </ul>
+    </div>
+		<script>
+
+      var navItems = document.querySelectorAll('.nav-list .item');
+      var moveBox = document.querySelector('.nav-list .move');    
+      var nav = document.querySelector('.nav');    
+      var list = document.querySelector('.list');    
+
+
+      var lastIndex = 0;// 记录鼠标最后从哪个索引的item出来，默认是0
+      for(var i = 0; i < navItems.length; i++){
+        navItems[i].index = i;
+
+        // 当鼠标移入item，获取item的offsetLeft赋值给movBox的left   
+        navItems[i].onmouseover = function(){
+          // var left = 0;
+          // for(var i = 0; i < this.index; i++){
+          //  left += navItems[i].offsetWidth
+          // }
+          // console.log(left);
+
+
+          console.log(this.offsetLeft, this.offsetWidth);
+          // 鼠标移入谁，把谁的偏移量设置为left 
+          moveBox.style.left = this.offsetLeft + 'px';
+          moveBox.style.width = this.offsetWidth + 'px';
+          
+        }
+
+        navItems[i].onclick = function(){
+          for(var i = 0; i < navItems.length; i++){
+            navItems[i].classList.remove('active');
+          }
+          this.classList.add('active');
+
+          // 在哪个选项上点击，记录这个选项的索引值
+          lastIndex = this.index;
+          // console.log('lastIndex=',lastIndex);
+        }
+
+        // 当鼠标移出的时候根据记录的索引值设置left和width  
+        navItems[i].onmouseout = function(){
+          // console.log(this.offsetLeft, this.offsetWidth);
+          // 点击了谁，设置为谁的偏移量
+          moveBox.style.left = navItems[lastIndex].offsetLeft + 'px';
+          // 回到谁的位置，设置为谁的宽度
+          moveBox.style.width = navItems[lastIndex].offsetWidth + 'px';
+        }
+
+
+        
+      }
+
+
+      var navTop = nav.offsetTop;
+      window.onscroll = function(){
+        var scrollTop = document.documentElement.scrollTop;
+        if (scrollTop >= navTop+40) {
+          // 固定位置：把nav定位方式设置为 fixed
+          nav.style.position = 'fixed';
+          nav.style.top = 0;
+
+          list.style.top = 0;
+        } else {
+          // 不固定位置：把nav定位方式设置为 static
+          nav.style.position = 'static';
+          nav.style.top = '-40px';
+
+          list.style.top = '50px';
+        }
+        // if (scrollTop >= navTop) {
+        //   // 固定位置：把nav定位方式设置为 fixed
+        //   nav.style.position = 'fixed';
+        // } else {
+        //   // 不固定位置：把nav定位方式设置为 static
+        //   nav.style.position = 'static';
+
+        // }
+      }
+
+    </script>
+	</body>
+</html>

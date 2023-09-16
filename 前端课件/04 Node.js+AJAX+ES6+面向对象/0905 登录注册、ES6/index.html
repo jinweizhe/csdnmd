@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <script src="./tools.js"></script>
+  <title></title>
+
+</head>
+
+<body>
+
+
+  <script>
+
+
+    getMethod('http://127.0.0.1:3000/japi/weblist/apinc/shortName', null, function (res) {
+      console.log(res);
+    });
+
+    postMethod('http://127.0.0.1:3000/japi/weblist/apinc/getC2List',{shortName: 'PCgame'}, function(res){
+      console.log(res);
+    })
+
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <!-- https://animate.style/ -->
+    <!-- 第一步导入animata.css文件 -->
+    <link rel="stylesheet" href="./animate.min.css">
+    <style>
+      p{
+
+        display: inline-block;
+      }
+      .rotate{
+        animation: rt 3s linear;
+      }
+      @keyframes rt {
+        to {transform: rotate(0)}
+        from {transform: rotate(360deg)}
+      }
+    </style>
+  </head>
+  <body>
+    <button>按钮</button>
+    <!-- 第二步：添加样式类
+      animate__animated 是一个基础样式类名，每个动画都必须添加的类名
+      animate__动画名  是想要实现的动画效果名
+    -->
+    <p class="">hello world</p>
+    <!-- <p class="animate__animated animate__faster ">hello world</p> -->
+    <!-- <p class="animate__animated animate__flash">hello world</p> -->
+    <!-- <p class="animate__animated animate__fadeInBottomRight">hello world</p> -->
+    <script>
+    var btn = document.querySelector('button');
+    var p = document.querySelector('p');
+
+    // 给标签添加类名实现某种关键帧动画，如果想让动画重复执行，当动画结束之后，移除动画的类名，下次再次添加类名
+    btn.onclick = function() {
+      // p.classList.add('animate__shakeX');
+      p.classList.add('rotate');
+    }
+
+    
+    // animationstart 动画开始时时触发的事件
+    // animationend 动画结束时触发的事件
+    
+    p.addEventListener('animationend', function() {
+      console.log('动画结束',);
+      // p.classList.remove('animate__shakeX');
+      p.classList.remove('rotate');
+    });
+
+    </script>
+  </body>
+</html>

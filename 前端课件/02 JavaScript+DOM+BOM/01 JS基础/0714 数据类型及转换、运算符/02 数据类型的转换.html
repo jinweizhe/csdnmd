@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <!-- <input type="text" id="input">
+  <button onclick="login()">登录</button> -->
+
+  <script>
+    // function login() {
+    //   console.log('-'+input.value.length+'+');
+    //   if (input.value.length) {
+    //     console.log('登录');
+    //   }
+    // }
+
+
+    // 一、转为数字类型
+    // 1、使用Number()可以把任意类型的数据转为数字，如果最终结果得不到准确的数字，最终会返回NaN。不管返回的结果是什么，返回的数据类型一定是数字
+    // 布尔值转数字
+    console.log(Number(true)); // 1
+    console.log(Number(false));// 0
+    // 字符串转数字：一般使用的是纯数字类型的字符串转为数字
+    console.log(Number('')); // 0 空字符串和空格都是转为0
+    console.log(Number(' ')); // 0
+    console.log(Number('1')); // 1 
+    console.log(Number('6.23'));// 6.23
+    console.log(Number('hello')); // 不是纯数字类型的字符串：带字母、汉字、各种符号的字符串得到的结果是NaN
+    // 特殊的null转为0，undefined转为NaN
+    console.log(Number(null)); // 0
+    console.log(Number(undefined));// NaN
+
+    console.log(Number(NaN));
+    // 任何数字与NaN的运算结果还是NaN
+    console.log(NaN + 1);
+
+    // 2、parseInt从字符串中解析出整数；parseFloat从字符串中解析出小数
+    console.log(parseInt('123.2'));   // 123
+    console.log(parseInt('123.2.6')); // 123
+    console.log(parseInt('123asdf')); // 123
+    console.log(parseInt('a123')); // NaN
+    console.log('-----------------------');
+    console.log(parseFloat('123.2'));  // 123.2
+    console.log(parseFloat('123.2.6'));// 123.2
+    console.log(parseFloat('123asdf'));// 123
+    console.log(parseFloat('a123')); // NaN
+
+    // 3、隐式转换，在使用算术运算（+ - * /）的时候，会把数据转为数字类型
+    // 3.1 如果纯数字类型的字符串，做 - * /字符串直接转为数字
+    // 3.2 布尔值做 + - * / 运算的时候，true转为1，false转为0
+    // 字符串转数字可以使用乘以1来转换
+    console.log('12.5' - 1);
+    console.log('12.5' * 1);
+    console.log('12.5' / 1);
+    console.log('-----------------------');
+    console.log(true + 1);  // 2
+    console.log(true - 1);  // 0
+    console.log(true - false); // 1
+    console.log(true + true);  // 2
+
+
+    // 二、转为字符串类型
+    // 1、使用String()   
+    // 数字、布尔、null、undefined转字符串，相当于直接在响应的值的两边加引号
+    console.log(String(123));
+    console.log(String(12.6));
+    console.log(String(true));
+    console.log(String(false));
+    console.log(String(null));
+    console.log(String(undefined));
+
+    // 2、使用 toString(); 得到的结果和String()是一样的，
+    var val = true
+    console.log(val.toString());
+
+    // toString和String的区别
+    // - 大多值都有toString()方法，null和undefined是没有的
+    // - 任何值都可以使用String()方法，如果是 null 返回值是 "null",如果是undefined 返回值是"undefined"；
+    var val1 = null;
+    // console.log(val1.toString());// TypeError: Cannot read properties of null (reading 'toString')
+    var val2 = undefined;
+    // console.log(val2.toString());// TypeError: Cannot read properties of undefined (reading 'toString')
+
+
+    // 三、转为布尔类型
+    // 空的字符串、数字0、NaN、null(空)、undefined都是false，其他都为true
+    console.log(Boolean(0)); // false
+    console.log(Boolean(1));  // true
+    console.log(Boolean(6.2));// true
+    console.log(Boolean(NaN));// false
+
+    console.log(Boolean(''));  // false
+    console.log(Boolean(' ')); // true
+    console.log(Boolean('a')); // true
+
+    console.log(Boolean(null)); // false
+    console.log(Boolean(undefined)); // false
+
+
+
+    // 字符串拼接：在多个数据之间使用 + 运算，其中的数据包含有字符串，这时就会产生字符串拼接的效果
+    // 字符串的拼接是在字符串之间的加法运算，+ 就像胶水一样把字符串粘起来
+    var v1 = '2';
+    var v2 = 3;
+    var res = v1 + v2; // '2' + 3 运算的时候会先把数字3转为字符串'3'，在进行拼接得到 '23'
+    console.log(res, typeof res);
+
+    // 1、字符串拼接的表达式开始位置(左边)是字符串：把表达式中所有的值转为字符串在进行拼接
+    console.log('1' + 2 + 1 / 2); // '1' + 2 + 0.5 = '1' + '2' + '0.5' = 120.5
+    console.log('1' + true + 3); // 1true3
+
+
+    // 2、字符串拼接的表达式开始位置不是字符串
+    var a1 = 10, a2 = 20, a3 = true, str = 'hello';
+
+    var res = a1 + a2 + str; // 10 + 20 + 'hello' = '30hello'
+    var res = a1 + str + a2; // '10' + 'hello' + '20' = '10hello20'
+    var res = str + a1 + a2; // 'hello' + '10' + '20' = 'hello1020'
+
+    var res = a1 + a2 + a3 + str; // 10 + 20 + 1 + 'hello' = '31hello'
+    var res = a1 + a2 + str + a3; // 10 + 20 + 'hello' + 'true'  = '30hellotrue'
+    var res = a1 + str + a2 + a3; // 10 + 'hello' + '20' + 'true' = '10hello20true'
+    var res = str + a1 + a2 + a3; // 'hello' + '10' + '20' + 'true' = 'hello1020true' 
+
+
+    var a1 = 10;
+    var a2 = "20";
+    var a3 = a1 + a2; // '1020'
+
+    console.log(a1 + a3 - a1); // 10 + '1020' - 10 = 101010
+    console.log(a1 - true + a2 + false); // 10 - 1 + '20' + 'false' = '920false'
+    console.log(a1 - a2 + "a3"); // 10 - 20 + 'a3' = -10 + 'a3' = '-10a3'
+    console.log(true - a1 + true * "10"); // 1 - 10 + 10 = 1
+
+    // - JS会尽最大努力计算出一个结果，在计算的过程会【自动】根据运算符进行类型转换（隐式转换）
+    // - 字符串支持`+` 运算符，但是字符串不支持`-` `*` `/` 运算符
+  </script>
+</body>
+
+</html>

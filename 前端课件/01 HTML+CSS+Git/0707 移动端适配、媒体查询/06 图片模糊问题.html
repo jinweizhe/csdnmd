@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .img {
+      width: 23px;
+      height: 26px;
+    }
+
+    .pic {
+      width: 23px;
+      height: 26px;
+      /*不支持image-set的情况下显示*/
+      /* background-image: url(./images/qun@2x.png); */
+
+      background: -webkit-image-set(url(./images/qun@1x.png) 1x, url(./images/qun@2x.png) 2x, url(./images/qun@3x.png) 3x);
+      /* url(1x.png) 1x,    支持image-set的浏览器的[普通屏幕]下 
+        url(2x.png) 2x,    支持image-set的浏览器的[2倍Retina屏幕] 
+        url(3x.png) 3x     支持image-set的浏览器的[3倍Retina屏幕]  */
+      background: image-set(url(./images/qun@1x.png) 1x, url(./images/qun@2x.png) 2x, url(./images/qun@3x.png) 3x);
+    }
+    .pic2{
+      width: 23px;
+      height: 26px;
+      background: url(./images/qun@1x.png) 0 0/100% 100%;
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:2) {
+      .pic2{
+        background: url(./images/qun@2x.png) 0 0/100% 100%;
+      }
+    }
+    @media screen and (-webkit-min-device-pixel-ratio:3) {
+      .pic2{
+        background: url(./images/qun@3x.png) 0 0/100% 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 图片的适配
+      1、给img设置 srcset属性
+      2、js异步加载
+      3、image-set
+      4、媒体查询
+      5、picture标签
+    -->
+  <!-- 设置srcset：srcrest以最合适的src去匹配不同屏幕（高分屏低分屏如Retina；大屏小屏） -->
+  <img class="img" src="./images/qun@1x.png">
+  <hr>
+  <img 
+    class="img" 
+    src="./images/qun@1x.png"
+    srcset="images/qun@1x.png 1x, ./images/qun@2x.png 2x, ./images/qun@3x.png 3x">
+  <hr>
+  <img 
+    srcset="images/qun@1x.png 23w, images/qun@2x.png 46w, images/qun@3x.png 68w"
+    sizes="(max-width: 320px) 23px, (max-width: 400px) 46px, 68px" src="images/qun@2x.png.jpg"><hr>
+  <img id="img" class="img"><hr>
+  <div class="pic"></div> <hr>
+  <div class="pic2"></div><hr>
+  <picture>
+    <source media="(max-width: 320px)" srcset="images/qun@1x.png">
+    <source media="(max-width: 400px)" srcset="images/qun@2x.png">
+    <img src="images/qun@3x.png" alt="cat">
+  </picture><hr>
+  <p id="p"></p>
+  <script>
+    var dpr = window.devicePixelRatio;
+    if (dpr > 3) dpr = 3;
+    p.innerHTML = dpr;
+    img.src = `images/qun@${dpr}x.png`;
+  </script>
+</body>
+
+</html>

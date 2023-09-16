@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			.box {
+				width: 400px;
+				border: 1px solid #000;
+			}
+			.header {
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				display: flex;
+				background-color: #000;
+			}
+			/* css选择器优先级：按照选择器的权值，权值越大优先级越高，多个选择器把权值相加 */
+			.header > a {
+				/* 继承 */
+				/* font-size: inherit; */
+				color: inherit;
+				text-decoration: none;
+				background-color: #000;
+				color: #fff;
+				width: 100px;
+			}
+			.header > a.active {
+				background-color: #ccc;
+				color: #000;
+			}
+			.content .list {
+				display: none;
+			}
+			.show {
+				display: block !important;
+			}
+			.hide {
+				display: none !important;
+			}
+
+      .content .color {
+				color: #f00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div class="header">
+				<a href="javascript:;" class="active">省份</a>
+				<a href="javascript:;">城市</a>
+			</div>
+			<div class="content">
+				<ul class="list show province">
+					<li class="color">北京</li>
+					<li>天津</li>
+					<li>河北</li>
+
+				</ul>
+				<div class="list">
+					<div class="city-box show"></div>
+					<div class="city-box"></div>
+					<ul class="city-box">
+						<li>石家庄市</li>
+						<li>唐山市</li>
+						<li>秦皇岛</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			var itemBtns = document.querySelectorAll('.header a');
+			var list = document.querySelectorAll('.list');
+			var provinces = document.querySelectorAll('.province li');
+			var cityBox = document.querySelectorAll('.city-box');
+			var citys = document.querySelectorAll('.city-box.show li');
+
+			for (var i = 0; i < itemBtns.length; i++) {
+				itemBtns[i].index = i;
+				itemBtns[i].onclick = function () {
+					for (var i = 0; i < itemBtns.length; i++) {
+						itemBtns[i].classList.remove('active');
+            list[i].classList.remove('show');
+					}
+					this.classList.add('active');
+          list[this.index].classList.add('show');
+				};
+			}
+
+      // 点击省份
+      for(var i = 0; i < provinces.length; i++) {
+        provinces[i].index = i;
+        provinces[i].onclick = function () {
+          for(var i = 0; i < provinces.length; i++){
+            provinces[i].classList.remove('color');
+            cityBox[i].classList.remove('show');
+
+          }
+          this.classList.add('color');
+
+          cityBox[this.index].classList.add('show');
+
+          citys = document.querySelectorAll('.city-box.show li');
+          console.log(citys);
+          if (citys.length > 0) {
+            // 调到城市
+            console.log('---');
+            itemBtns[1].classList.remove('hide');
+            itemBtns[1].classList.add('show');
+            itemBtns[1].classList.add('active');
+            itemBtns[0].classList.remove('active');
+          }else{
+            itemBtns[1].classList.remove('show');
+            itemBtns[1].classList.add('hide');
+            itemBtns[0].classList.add('active');
+          }
+        }
+      }
+
+
+		</script>
+	</body>
+</html>

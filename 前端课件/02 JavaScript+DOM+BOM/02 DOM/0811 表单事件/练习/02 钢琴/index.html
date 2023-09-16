@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>钢琴</title>
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      background-image: radial-gradient(#666, #000);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    main {
+      width: 800px;
+      min-width: 800px;
+      height: 400px;
+      box-sizing: border-box;
+      border: 18px solid #333;
+      border-top-width: 40px;
+      border-bottom-width: 13px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #999;
+      background-image: url(images/keys.png);
+      background-size: 100% 100%;
+      display: flex;
+    }
+
+    div {
+      height: 100%;
+      flex-grow: 1;
+    }
+
+    div:active {
+      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(150, 150, 150, 0.5));
+    }
+
+    .down {
+      background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(150, 150, 150, 0.5));
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div onmousedown="playMp3(0)"></div>
+    <div onmousedown="playMp3(1)"></div>
+    <div onmousedown="playMp3(2)"></div>
+    <div onmousedown="playMp3(3)"></div>
+    <div onmousedown="playMp3(4)"></div>
+    <div onmousedown="playMp3(5)"></div>
+    <div onmousedown="playMp3(6)"></div>
+    <div onmousedown="playMp3(7)"></div>
+    <div onmousedown="playMp3(8)"></div>
+  </main>
+  <audio src="./notes/1.mp3"></audio>
+  <script type="text/javascript">
+
+    var audio = document.querySelector('audio');
+    var btns = document.querySelectorAll('div');
+    var keyCode = 0;//记录数字按键的ASCII编码
+    var index = 0;//记录按钮的索引值
+    var arr = ['notes/1.mp3', 'notes/2.mp3', 'notes/3.mp3', 'notes/4.mp3', 'notes/5.mp3', 'notes/6.mp3', 'notes/7.mp3', 'notes/8.mp3', 'notes/9.mp3']
+
+    
+
+    function playMp3(index) {
+      // 获取到当前发生事件的那个钢琴按键并播放对应的音频
+      audio.src = arr[index];
+      // 播放音频
+      audio.play();
+    }
+
+    window.onkeydown = function (ev) {
+      // 判断当keyCode不等于按下的键盘对应的ASCII编码值时，让keyCode的值等于按下键盘对应的ASCII值，以防止出现按着一个音节不松开出现断续效果
+      if (keyCode != ev.keyCode) {
+        keyCode = ev.keyCode;
+        // 在ASCII编码值中，主键盘之上的数字1~9对应的ASCII编码值为49~57
+        // PS：学生键盘上的小键盘对应的ASCII编码值需要重新设定，按下小键盘数字不管用
+        if (keyCode >= 49 && keyCode <= 57) {
+          index = keyCode - 49;
+          // 按下数字，添加down类名 播放对应的音乐
+          btns[index].classList.add('down');
+          playMp3(index);
+        }
+      }
+    }
+    // 当键盘被松下时，移除对应添加的down类
+    window.onkeyup = function (ev) {
+      keyCode = 0;
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].classList.remove('down');
+      }
+    }
+
+  </script>
+</body>
+
+</html>

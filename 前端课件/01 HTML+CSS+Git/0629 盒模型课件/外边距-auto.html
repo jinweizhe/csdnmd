@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+    .w {
+      width: 900px;
+      margin: 0 auto;
+      background-color: lightblue;
+      /* text-align 控制内联元素的水平方向的对齐方式（相对于块级父元素的） */
+      text-align: center;
+    }
+
+    /* 
+      使用margin:auto; 计算可以实现块级元素左中右对齐，与text-align控制内联元素左中右对齐正好遥相呼应 
+      margin取值为auto的填充规则：
+      - 如果一侧为固定值，一侧为auto，则auto为剩下的空间
+      - 如果两侧均是auto，则平分剩余空间
+      */
+    .box {
+      width: 300px;
+      height: 200px;
+      background-color: lightcoral;
+      position: relative;
+    }
+    /* 如何让元素在水平和垂直方向居中对齐
+      1、行内元素：
+        1.1 水平方向 text-align，垂直方向 line-height
+        1.2 使用弹性布局
+
+      2、块级元素：
+        2.1 使用margin配合定位
+        2.2 使用定位
+        2.3 使用定位+transform
+        2.4 使用弹性布局
+    */
+    .box .inner{
+      width: 200px;
+      height: 120px;
+      background-color: rgba(133, 44, 215, 0.4);
+      /* 1、水平方向 */
+      /* 居左显示 */
+      /* margin-left: 0;
+      margin-right: auto; */
+
+      /* 居中显示 */
+      /* margin-left: auto;
+      margin-right: auto; */
+
+      /* 居右显示 */
+      /* margin-left: auto;
+      margin-right: 0; */
+
+      /* 垂直方向: 使用margin让块级元素在垂直方向对齐需要使用绝对定位 */
+      /* position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0; */
+      /* 顶部对齐 */
+      /* margin-top: 0;
+      margin-bottom: auto; */
+
+      /* 居中对齐 */
+      /* margin-top: auto;
+      margin-bottom: auto; */
+
+      /* 底部对齐 */
+      /* margin-top: auto;
+      margin-bottom: 0; */
+
+      /* margin: auto; */
+
+      position: absolute;
+      /* top: calc(50% - 60px);
+      left: calc(50% - 100px); */
+      /* top: 50%;
+      left: 50%;
+      transform: translate(-100px, -60px); */
+      
+      /* float: right; */
+
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="w">
+    <div>定宽居中</div>
+    <div class="img-box">
+      <img src="./img/13.png" alt="">
+    </div>
+    <span>span</span>
+  </div>
+
+  <div class="box">
+    <div class="inner">inner</div>
+    <!-- <div style="background-color: red;">居中一个块元素且不居中它的行内内容的标准兼容的方法是将它的左、右margin 设为auto</div> -->
+  </div>
+</body>
+
+</html>

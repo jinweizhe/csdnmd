@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+
+    // 面向对象三大特征：继承、封装、多态
+
+    // Object    
+    // People
+
+    // 所有的构造函数最终都是继承于Object 
+    function People (n, a) {
+      this.name = n;
+      this.age = a;
+    }
+
+    People.prototype.skin = '黄皮肤';
+    People.prototype.say = function () {
+      console.log('我是' + this.name);
+    }
+
+    // console.dir(People);
+
+
+
+    // 原型本身也是一个对象，在JS中，只要是对象都有原型
+
+    // 构造函数的原型使用 prototype 获取，对象的原型使用 __proto__ 获取
+
+    // 1、构造函数的原型
+    // People.prototype 获取构造函数的原型
+    // console.log(People.prototype);
+    // 2、对象的原型
+    var o1 = new People('张三', 18);
+    console.log(o1);
+    // o1.__proto__ 获取对象的原型
+    // console.log(o1.__proto__);
+
+    // 如果一个对象是通过一个构造函数创建的对象，该对象的原型指向构造函数的原型：该对象的原型和构造函数的原型是同一个对象
+    // 如果多个对象是通过同一个构造函数创建的对象，这些对象的原型都是同一个对象
+    // console.log(o1.__proto__ === People.prototype);// true
+
+    var o2 = new People('李四', 18);
+    // console.log(o2.__proto__);
+
+    // console.log(o2.__proto__ === o1.__proto__);// true
+
+    // ------------------------------
+
+    // People构造函数的原型的原型指向Object的原型
+    var p1 = People.prototype;
+
+    // console.log(p1.__proto__ === Object.prototype);// true
+    // console.log(o1.__proto__.__proto__ === Object.prototype);// true
+
+    // console.log(Object.prototype);
+
+    var o = Object.prototype;
+    // console.log(o.__proto__);// null
+
+    // o1对象的原型就是People.prototype，People的原型的原型就是Object.prototype，Object.prototype是所有原型的终点
+    // 使用o1对象的属性或者方法时：
+    // 1、现在自身上找，如果没有
+    // 2、向o1对象的原型上找，如果没有
+    // 3、再向原型的原型上找，直至找到Object.prototype为至
+    // 在那一层找到直接使用，最终都没找到属性返回undefiend，函数会报错
+
+    console.log(o1.age);
+    console.log(o1.skin);
+    console.log(o1.num);
+    o1.say();
+    // o1.run();
+    // console.log(o1.toString());
+
+    // 原型：构造函数的原型使用 prototype 获取，对象的原型使用 __proto__ 获取
+    // 原型链：从一个对象上获取属性的时候先找自己的原型，再找原型的原型，直至找到Object原型，这种查找方式形成一种链式结构：
+    // 自己的原型---> 原型的原型 ---> ... --->Object原型
+    // 这个链式结构就是原型链 
+
+    // 自己写构造函数实现继承：1、继承构造函数中的属性；2、继承原型中属性
+
+    // 继承：通过继承可以直接使用被继承构造函数的属性和方法
+    // Object构造函数看做父类
+    // People构造函数看成子类
+
+
+    var arr = [1, 2, 3];
+    var nums = [2, 4, 6, 8];
+    // console.log(arr.__proto__ === Array.prototype);
+    // console.log(nums.__proto__ === Array.prototype);
+    console.log(Array.prototype);
+
+
+
+
+
+    // fn1继承于Object
+    // fn2继承于Object
+    function fn1 () { }
+    function fn2 () { }
+
+    var f1 = new fn1();
+    var f2 = new fn2();
+
+    // fn1.prototype 和 fn2.prototype 之间的关系
+    // f1.__proto__ 和 f2.__proto__ 之间的关系
+
+  </script>
+</body>
+
+</html>

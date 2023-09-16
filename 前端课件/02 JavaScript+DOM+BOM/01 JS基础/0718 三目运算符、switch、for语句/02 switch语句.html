@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <style>
+
+  </style>
+</head>
+
+<body>
+
+  <script>
+    /*
+    switch 语句也是多分支语句，它用于基于不同的条件来执行不同的代码。当要针对变量设置一系列的特定值的选项时，就可以使用 switch。
+
+      - 关键字 switch 后面括号内可以是表达式或值， 通常是一个变量
+      - 关键字 case 后面跟具体的值（数字、字符串），值后面跟一个冒号，case的语句中要加 break
+      - 当表达式的取值与某个case后面的值相等时（值相等使用全等运算符===），会执行这个case中的代码；如果都不一致，会执行default中的代码
+      - break：作用是这个case执行完成，用来结束整个switch语句，只要有一个case执行，其他case就不会执行
+
+      注意： 执行case 里面的语句时，如果没有break，则继续执行下一个case里面的语句，所以。case的语句中要加 break。
+    
+    */
+
+    // switch (表达式) {
+    //   case 值1:
+    //     语句1
+    //     break;
+    //   case 值2:
+    //     语句2
+    //     break;
+
+    //   default:
+    //     语句n+1
+    //     break;
+    // }
+
+    // var season = prompt('请输入季节');
+    // switch (season) {
+    //   case '春天':
+    //     alert('春暖花开');
+    //     break;  // break用来结束switch语句
+    //   case '夏天':
+    //     alert('绿树成荫');
+    //     break;
+    //   case '秋天':
+    //     alert('五谷丰登');
+    //     break;
+    //   case '冬天':
+    //     alert('满天飞雪');
+    //     break;
+
+    //   default: // default 默认的，上面所有的条件都不成立执行的语句
+    //     alert('请输入正确的季节');
+    //     break;
+    // }
+
+    var season = prompt('请输入季节')*1;
+    switch (season) {
+      case 0:
+        alert('春暖花开');
+        break;  // break用来结束switch语句
+      case 1:
+        alert('绿树成荫');
+        break;
+      case 2:
+        alert('五谷丰登');
+        break;
+      case 3:
+        alert('满天飞雪');
+        break;
+
+      default: // default 默认的，上面所有的条件都不成立执行的语句
+        alert('请输入正确的季节');
+        break;
+    }
+
+
+
+    // if (season == '春天') {
+    //   alert('春暖花开');
+    // } else if (season == '夏天') {
+    //   alert('绿树成荫');
+    // } else if (season == '秋天') {
+    //   alert('五谷丰登');
+    // } else if (season == '秋天') {
+    //   alert('五谷丰登');
+    // } else if (season == '冬天') {
+    //   alert('满天飞雪');
+    // } else {
+    //   alert('请输入正确的季节');
+    // }
+
+    /*
+    ## if和switch区别
+
+    - switch结构能实现的，if都能实现，但是if能实现的，switch不一定能实现。
+
+    - 如果遇到对常量的判断，为了使代码更简洁，优先使用switch选择。
+
+    - If结构，可以用来做布尔值的判断、常量的判断和区间范围的判断，switch只能用来对常量进行判断。
+
+    相同点：都可以用于分支判断
+
+    不同点：
+
+    - switch结构只能处理**等值**条件判断的情况
+    - if结构适合某个变量处于某个连续区间时的情况
+    
+    */
+
+  </script>
+</body>
+
+</html>

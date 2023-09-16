@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="author" content="金西振">
+  <script src="https://unpkg.com/art-template/lib/template-web.js"></script>
+  <title></title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .w {
+      width: 900px;
+      margin: auto;
+    }
+
+    .nav {
+      line-height: 50px;
+    }
+
+    .nav-list {
+      display: flex;
+    }
+
+    .nav-list .item {
+      padding: 0 10px;
+      cursor: pointer;
+      margin: 0 5px;
+    }
+
+    .nav-list .item.active,
+    .nav-list .item:hover {
+      color: #fff;
+      background-color: #ff5d23;
+    }
+
+    #list {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #list .item {
+      width: 180px;
+      height: 200px;
+      text-align: center;
+    }
+
+    #list .item img {
+      width: 80%;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <ul class="nav-list w">
+      <li class="item active">网游竞技</li>
+      <li class="item">单机热游</li>
+      <li class="item">手游休闲</li>
+      <li class="item">娱乐天地</li>
+      <li class="item">颜值</li>
+      <li class="item">科技文化</li>
+      <li class="item">语音互动</li>
+      <li class="item">语音直播</li>
+      <li class="item">正能量</li>
+      <li class="item">京斗云</li>
+    </ul>
+  </nav>
+  <div class="w">
+    <div id="list"></div>
+  </div>
+
+  <script id="list-template" type="text/html">
+    {{each list}}
+    <div class="item">
+      <img src="{{$value.squareIconUrlW}}" alt="">
+      <p>{{$value.cname2}}</p>
+      <p>{{$value.hn}}</p>
+    </div>
+    {{/each}}
+  </script>
+
+  <script>
+    var data = [
+      {
+        "name": "网游竞技",
+        "shortName": "PCgame"
+      },
+      {
+        "name": "单机热游",
+        "shortName": "djry"
+      },
+      {
+        "name": "手游休闲",
+        "shortName": "syxx"
+      },
+      {
+        "name": "娱乐天地",
+        "shortName": "yl"
+      },
+      {
+        "name": "颜值",
+        "shortName": "yz"
+      },
+      {
+        "name": "科技文化",
+        "shortName": "kjwh"
+      },
+      {
+        "name": "语音互动",
+        "shortName": "yp"
+      },
+      {
+        "name": "语音直播",
+        "shortName": "voice"
+      },
+      {
+        "name": "正能量",
+        "shortName": "znl"
+      },
+      {
+        "name": "京斗云",
+        "shortName": "jdy"
+      }
+    ]
+    var items = document.querySelectorAll('.item');
+    for (var i = 0; i < items.length; i++) {
+      items[i].index = i;
+      items[i].onclick = function () {
+        for (var i = 0; i < items.length; i++) {
+          items[i].classList.remove('active');
+        }
+        this.classList.add('active');
+
+        getList(data[this.index].shortName);
+
+        // console.log(data[this.index]);
+        // var xhr = new XMLHttpRequest();
+        // xhr.onreadystatechange = function () {
+        //   if (xhr.readyState === 4 && xhr.status === 200) {
+        //     var res = JSON.parse(xhr.responseText);
+        //     console.log(res.data.total);
+        //     list.innerHTML = template('list-template', res.data)
+        //   }
+        // }
+        // xhr.open('POST', 'http://127.0.0.1:3000/japi/weblist/apinc/getC2List');
+
+        // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        // xhr.send('shortName=' + data[this.index].shortName);
+
+      }
+    }
+
+    getList('PCgame');
+    // getList函数的功能是传入一个 shortName，得到数据列表并渲染到页面上
+    // 初次运行程序需要执行一次，直接传入 PCgame
+    // 当点击不同的选项，每点击一次执行一次，根据点击不同的选项传入不同的名字，获取不同的数据
+    function getList (shortName) {
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var res = JSON.parse(xhr.responseText);
+          console.log(res);
+          list.innerHTML = template('list-template', res.data)
+        }
+      }
+      xhr.open('POST', 'http://127.0.0.1:3000/japi/weblist/apinc/getC2List');
+
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send('shortName=' + shortName);
+    }
+
+  </script>
+</body>
+
+</html>

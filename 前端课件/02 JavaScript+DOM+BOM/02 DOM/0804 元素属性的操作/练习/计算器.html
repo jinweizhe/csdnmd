@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			/* div {
+				width: 400px;
+				height: 500px;
+				border: 2px solid orange;
+			} */
+			header {
+				width: 400px;
+				height: 50px;
+				background-color: orange;
+				text-align: center;
+				line-height: 50px;
+				color: white;
+			}
+			/* input {
+        height: 44px;
+				width: 350px;
+				margin-left: 20px;
+				margin-top: 10px;
+			} */
+			p {
+				width: 350px;
+				height: 35px;
+				display: inline-block;
+				margin-left: 22px;
+				margin-top: 10px;
+				background-color: orange;
+				color: white;
+				text-align: center;
+				line-height: 35px;
+			}
+			.outer {
+				width: 180px;
+				height: 200px;
+				background-color: blue;
+			}
+			.box {
+				width: 200px;
+				height: 100px;
+				background-color: red;
+				padding: 10px;
+				/* box-sizing: border-box; */
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outer">
+			<div class="box"></div>
+		</div>
+		<script>
+			var dv = document.createElement('div');
+			document.body.appendChild(dv);
+
+			dv.style.width = '400px';
+			dv.style.height = '500px';
+			dv.style.border = '2px solid orange';
+
+			var he = document.createElement('header');
+			dv.appendChild(he);
+			he.innerHTML = '存款收益计算器';
+
+			var from = document.createElement('from');
+			dv.appendChild(from);
+
+			var arr = ['存款本金', '存款利息', '存款期数'];
+
+			for (var i = 0; i < arr.length; i++) {
+				var inp = document.createElement('input');
+				from.appendChild(inp);
+				inp.placeholder = arr[i];
+				inp.style.width = '380px';
+				inp.style.height = '44px';
+				inp.style.boxSizing = 'border-box';
+				inp.style.margin = '5px 10px';
+			}
+
+			// console.log(inp, i);
+
+			// var inp = document.createElement('input');
+			// from.appendChild(inp);
+			// inp.placeholder = arr[0];
+      // inp.style.width = '380px';
+			// inp.style.height = '44px';
+			// inp.style.boxSizing = 'border-box';
+			// inp.style.margin = '5px 10px';
+
+			// var inp = document.createElement('input');
+			// from.appendChild(inp);
+			// inp.placeholder = arr[1];
+      // inp.style.width = '380px';
+			// inp.style.height = '44px';
+			// inp.style.boxSizing = 'border-box';
+			// inp.style.margin = '5px 10px';
+
+			// var inp = document.createElement('input');
+			// from.appendChild(inp);
+			// inp.placeholder = arr[2];
+			// inp.style.width = '380px';
+			// inp.style.height = '44px';
+			// inp.style.boxSizing = 'border-box';
+			// inp.style.margin = '5px 10px';
+
+			var pp = document.createElement('p');
+			dv.appendChild(pp);
+			pp.innerHTML = '计算';
+		</script>
+	</body>
+</html>

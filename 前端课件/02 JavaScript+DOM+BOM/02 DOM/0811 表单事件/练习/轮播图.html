@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			* {
+				padding: 0;
+				margin: 0;
+				/* box-sizing: border-box; */
+			}
+			ul {
+				list-style: none;
+			}
+			body {
+				background-color: #f4f4f4;
+			}
+			.w {
+				width: 1190px;
+				margin: auto;
+			}
+			.clearfix::after {
+				content: '';
+				display: block;
+				clear: both;
+				visibility: hidden;
+				height: 0;
+			}
+			.menu-box {
+				background-color: #f4f4f4;
+				height: 480px;
+				margin-bottom: 30px;
+			}
+
+			.menu-box .item {
+				width: 190px;
+				height: 470px;
+				background-color: lightblue;
+				float: left;
+				margin-top: 10px;
+				margin-right: 10px;
+			}
+			.menu-box .item.banner {
+				width: 590px;
+				position: relative;
+			}
+			.menu-box .item:last-child {
+				margin-right: 0;
+			}
+			.menu-box .list > li {
+				height: 150px;
+				background-color: red;
+				margin-bottom: 10px;
+			}
+      .menu-box .banner .img-list{
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+			.menu-box .banner .img-list > img {
+				width: 100%;
+				height: 100%;
+				/* display: none; */
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        transition: all 0.3s linear;
+			}
+			.menu-box .banner .img-list > img.current {
+				/* display: block; */
+        opacity: 1;
+        z-index: 9;
+			}
+			.menu-box .banner .btn-list > div {
+				width: 25px;
+				height: 35px;
+				color: #fff;
+				text-align: center;
+				line-height: 35px;
+				background-color: rgba(0, 0, 0, 0.15);
+				position: absolute;
+				top: calc(50% - 35px / 2);
+				cursor: pointer;
+        z-index: 20;
+			}
+			.menu-box .banner .btn-list > div:hover {
+				background-color: rgba(0, 0, 0, 0.4);
+			}
+			.menu-box .banner .btn-list .prev-btn {
+				left: 0;
+				border-radius: 0 18px 18px 0;
+			}
+			.menu-box .banner .btn-list .next-btn {
+				right: 0;
+				border-radius: 18px 0 0 18px;
+			}
+			.menu-box .banner .indicator-list {
+				position: absolute;
+				left: 30px;
+				bottom: 30px;
+        z-index: 20;
+			}
+			.menu-box .banner .indicator-list > li {
+				width: 8px;
+				height: 8px;
+				background-color: rgba(255, 255, 255, 0.4);
+				float: left;
+				margin-right: 3px;
+				border-radius: 50%;
+				cursor: pointer;
+				border: 5px solid transparent;
+				background-clip: padding-box;
+			}
+			/* 先给标签设置一个边框，颜色设置为透明，这样写标签的总尺寸就固定了，后面只需要改变颜色就可以实现效果，不要改变边框的尺寸，方式元素跳动 */
+			.menu-box .banner .indicator-list > li:hover,
+			.menu-box .banner .indicator-list > li.active {
+				background-color: rgba(255, 255, 255, 1);
+				border-color: rgba(0, 0, 0, 0.2);
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="menu-box">
+			<div class="w">
+				<div class="item">1</div>
+				<div class="item banner">
+					<div class="img-list">
+						<img class="current" src="https://img14.360buyimg.com/da/s590x470_jfs/t1/89877/35/8107/68939/5e01c031E62386e6b/aed10675ed2ce803.jpg.webp" alt="" />
+						<img src="https://img30.360buyimg.com/pop/s590x470_jfs/t1/201288/25/23710/64955/62f070fdE95cb4f47/22b916d938a43bb5.jpg.webp" alt="" />
+						<img src="https://imgcps.jd.com/img-cubic/creative_server_cid/v2/2000367/100000002065/FocusFullshop/CkNqZnMvdDEvMTk5NDUyLzI0LzI1MjcxLzM5NTY0LzYyZjQwNTRhRTk5Y2VjYjZhLzJlZDYwNDQ2NjQyNTNiMDcucG5nEgk1LXR5XzBfNTYwAjjvi3pCFgoS5Z-O6YeO5Yy755Sf5rSB6Z2iEAFCEAoM6LSt54mp54uC5qyiEAJCEAoM56uL5Y2z5oqi6LStEAZCCgoG5LyY6LSoEAdYkeDbw_QC/cr/s/q.jpg" alt="" />
+						<img src="https://img12.360buyimg.com/babel/s590x470_jfs/t1/81556/25/21978/27307/62ecb985E3065b38a/f39eb46bb03b7319.jpg.webp" alt="" />
+						<img src="https://imgcps.jd.com/img-cubic/creative_server_cia_jdcloud/v2/2000366/39927877584/FocusFullshop/CkNqZnMvdDEvODU0OTEvMjQvMjk0NDQvMzEyMzU2LzYyYmEwNmMwRTRjMTI0NDUyLzAwMTUzOGE2MTBmZDE3M2MucG5nEgkzLXR5XzBfNTQwAjjui3pCEAoMRFVSR09E6ZSu55uYEABCFgoS5byA5ZCv5bSt5paw55Sf5rS7EAFCEAoM56uL5Y2z5oqi6LStEAJCCgoG5Yqb6I2QEAdY0J-M35QB/cr/s/q.jpg" alt="" />
+					</div>
+					<div class="btn-list">
+						<div class="prev-btn">&lt;</div>
+						<div class="next-btn">&gt;</div>
+					</div>
+					<ul class="indicator-list">
+						<li class="active"></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+				</div>
+				<div class="item">
+					<ul class="list">
+						<li>1</li>
+						<li>2</li>
+						<li>3</li>
+					</ul>
+				</div>
+				<div class="item">4</div>
+			</div>
+		</div>
+		<script>
+			var imgs = document.querySelectorAll('.img-list img');
+			var indicators = document.querySelectorAll('.indicator-list li');
+      var nextBtn = document.querySelector('.next-btn');
+      var prevBtn = document.querySelector('.prev-btn');
+      var bannerBox = document.querySelector('.banner');
+
+			var index = 0; // 显示的图片的索引值，默认是0
+
+			function showImg() {
+				console.log('index=', index);
+        // 隐藏所有图片和熄灭所有的指示灯
+				for (var i = 0; i < imgs.length; i++) {
+					imgs[i].classList.remove('current');
+					indicators[i].classList.remove('active');
+				}
+        // 根据索引值显示图片和点亮指示灯
+				imgs[index].classList.add('current');
+				indicators[index].classList.add('active');
+			}
+			// 控制下一张图片：让index自增，index有个最大值：length-1
+			function next() {
+				index++;
+        // 当index的值超过最大索引值，让index从0开始
+				if (index >= imgs.length) {// index == 5
+					index = 0;
+				}
+				showImg();
+			}
+			// 控制上一张图片：让index自减，index有个最小值：0
+			function prev() {
+				index--;
+        // 当index的值小于0的时候，让index从最大索引值开始
+				if (index == -1) {
+          // index = 4;
+					index = imgs.length-1;
+				}
+				showImg();
+			}
+
+			// 1、自动播放: 自动播放只会让index增加，相当于点击了下一张的按钮，直接调用next
+      var timer = setInterval(next, 1000);
+      // 鼠标移入bannerBox暂停自动播放，移出bannerBox恢复自动播放
+      bannerBox.onmouseover = function() {
+        clearInterval(timer);// 移除定时器，暂停播放
+        timer = null;// 移除定时器之后，把timer置空或者归零
+      }
+      bannerBox.onmouseout = function(){
+        // 在添加定时器之前，先判断timer是否有值，如果有值，说明定时器已经添加，为了避免重复添加定时器，添加一个判断
+        if (timer) {
+          return;
+        }
+        timer = setInterval(next, 1000);// 重新添加定时器，恢复自动播放
+      }
+
+			// 2、点击按钮上一张和下一张
+      nextBtn.onclick = next;
+      prevBtn.onclick = prev;
+
+			// 3、控制指示灯: 鼠标点击指示灯，可以直接获取一个指示灯的索引值，这个索引值就是index的值
+      for(var i = 0; i < indicators.length; i++){
+        indicators[i].indicatorIndex = i;
+        indicators[i].onmouseover = function() {
+          // console.log(this.indicatorIndex);
+          index = this.indicatorIndex;
+          showImg();
+        }
+      }
+		</script>
+	</body>
+</html>

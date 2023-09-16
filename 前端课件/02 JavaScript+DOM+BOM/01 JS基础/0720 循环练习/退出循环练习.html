@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+  <meta name="author" content="金西振" />
+  <title></title>
+  <style></style>
+</head>
+
+<body>
+  <script>
+    // - 输出1到100的数字，8个数字一行，如果遇到个位是3或是3的倍数的不输出。例如:
+    // 1 2 4 5 7 8 10 11
+    // 14 16 17 19 20 22 25 26
+
+    var index = 0;
+    for (var i = 1; i < 101; i++) {
+      if (i % 3 == 0 || i % 10 == 3) {
+        // console.log('本次不输出', i);
+        continue;
+      }
+      document.write(i + ' ');
+      index++;
+      if (index % 8 == 0) {
+        document.write('<br>');
+      }
+    }
+
+    // var index = 0;
+    // for (var i = 1; i < 101; i++) {
+    //   if (!(i % 3 == 0 || i % 10 == 3)) {
+    //     document.write(i + ' ');
+    //     index++;
+    //     if (index % 8 == 0) {
+    //       document.write('<br>');
+    //     }
+    //   }
+
+    // }
+
+    // 从键盘输入一个数，判断这个数是否为质数
+    // 质数：只能被1和自身整除
+    // 比如输入了53：用53对从2开始的数字，一直到52其余，如果有一个结果为0，该数字不是质数
+    // 输入数字为n，用n对2到n-1依次做求余运算，一旦运算的结果有一个为0，n就不是质数
+
+    var n = prompt('数字');
+
+    var isPrime = true;// 如果输入的值是质数，让isPrime的值为true，先假设输入的值是一个质数
+
+    // 使用for语句得到2到n-1的数字，让i从2开始，i<n，i的最大值就是n-1，
+    for (var i = 2; i < n; i++) {
+      if (n % i == 0) {
+        // 一旦进入if语句，说明n一定不是质数
+        isPrime = false;
+        break;
+      }
+    }
+    if (isPrime == true) {
+      alert(n + '是一个质数');
+    }
+    // else{
+    //   alert(n + '不是一个质数');
+    // }
+
+    // 打印101 - 200之间的素数: 质数；素数，也叫质数，除了1和其本身外，没有其他的除数整除，如2, 7, 17, 23…
+    for (var n = 101; n < 201; n++) {
+      var isPrime = true;
+      for (var i = 2; i < n; i++) {
+        if (n % i == 0) {
+          isPrime = false;
+          break;
+        }
+      }
+      if (isPrime == true) {
+        console.log(n + '是一个质数');
+      }
+    }
+
+    // ----------------------------------
+    // var n = 101;
+    // var isPrime = true;
+    // for (var i = 2; i < n; i++) {
+    //   if (n % i == 0) {
+    //     isPrime = false;
+    //     break;
+    //   }
+    // }
+    // if (isPrime == true) {
+    //   alert(n + '是一个质数');
+    // }
+
+    
+    // ----------------------------------
+    // var n = 102;
+    // var isPrime = true;
+    // for (var i = 2; i < n; i++) {
+    //   if (n % i == 0) {
+    //     isPrime = false;
+    //     break;
+    //   }
+    // }
+    // if (isPrime == true) {
+    //   alert(n + '是一个质数');
+    // }
+
+    // ----------------------------------
+    // var n = 103;
+    // var isPrime = true;
+    // for (var i = 2; i < n; i++) {
+    //   if (n % i == 0) {
+    //     isPrime = false;
+    //     break;
+    //   }
+    // }
+    // if (isPrime == true) {
+    //   alert(n + '是一个质数');
+    // }
+
+
+  </script>
+</body>
+
+</html>

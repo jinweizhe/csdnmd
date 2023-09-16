@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<input type="text" />
+    <!-- 通常在页面上需要把type=file的文件选择框隐藏掉，因为原有的样式丑陋，使用别的元素代替：设置一张图片或者其他标签设置样式 -->
+    <input type="file" id="inputFile" hidden>
+    <!-- 点击按钮触发文件选择的功能，需要执行type=file的input的点击事件：input.click()，相当于点击了文件选择框 -->
+    <button id="btn">选择文件</button>
+		<script>
+			// 当元素获取/失去焦点的时候触发，常用于表单元素
+      // - focus：元素节点获得焦点后触发，该事件不会冒泡。
+      // - blur：元素节点失去焦点后触发，该事件不会冒泡。
+      // - focusin：元素节点将要获得焦点时触发，发生在focus事件之前。该事件会冒泡。
+      // - focusout：元素节点将要失去焦点时触发，发生在blur事件之前。该事件会冒泡。
+
+			var input = document.querySelector('input');
+
+			input.onfocus = function () {
+				console.log('获取焦点 focus');
+			};
+			input.onblur = function () {
+				console.log('失去焦点 blur');
+			};
+
+			input.addEventListener('focusin', function () {
+				console.log('获取焦点 focusin');
+			});
+			input.addEventListener('focusout', function () {
+				console.log('获取焦点 focusout');
+			});
+
+
+			// input.onclick = function () {
+			// 	console.log('input click');
+			// };
+      // input.click();
+
+      // 让输入框调用focus()方法，加载页面的时候，会让输入框自动获取焦点，比如：百度搜索首页
+      input.focus();
+
+      // element.focus(); 元素获取焦点的方法
+      // element.blur(); 元素失去焦点的方法
+      // element.click(); 元素上的click方法，相当于点击一次元素
+
+      // 点击按钮触文件选择框
+			btn.onclick = function () {
+				console.log('btn click');
+        inputFile.click();
+			};
+
+      // btn.click();
+		</script>
+	</body>
+</html>

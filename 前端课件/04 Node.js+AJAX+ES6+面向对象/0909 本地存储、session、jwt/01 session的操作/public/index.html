@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta name="author" content="金西振">
+  <title></title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/art-template/4.13.2/lib/template-web.min.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.27.2/axios.js"></script>
+
+  <style>
+    .user-table {
+      border: 1px solid;
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
+
+    .user-table td {
+      border: 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="loginBox"></div>
+  <div id="listBox"></div>
+
+  <script id="user-temp" type="text/html">
+    {{if isLogin}}
+    <div class="">
+      <span>{{user.username}}</span>
+      <a href="javascript:void()" id="logoutBtn" class="logout-btn">退出登录</a>
+      <hr>
+    </div>
+    {{else}}
+    <div class="login">
+      <a href="./login.html">登录</a>
+      <a href="./regist.html">注册</a>
+      <hr>
+    </div>
+    {{/if}}
+  </script>
+
+  <script>
+
+    getUser();
+    function getUser () {
+      const isLogin = localStorage.getItem('isLogin');
+      console.log('isLogin=', isLogin);
+      if (isLogin) {
+        // 判断出已经登录，获取用户数据
+        axios.get('http://127.0.0.1:3000/user').then(res => {
+          console.log(res.data.data);
+          loginBox.innerHTML = template('user-temp', { isLogin, user: res.data.data });
+        });
+      } else {
+        // 判断出未登录，显示登录和注册按钮
+        loginBox.innerHTML = template('user-temp', { isLogin, data: '' });
+      }
+    }
+
+
+    loginBox.onclick = function (ev) {
+      if (ev.target.classList.contains('logout-btn')) {
+        axios.get('http://127.0.0.1:3000/logout').then(res => {
+          console.log(res.data);
+          // 退出登录成功，把记录登录状态删除isLogin
+          localStorage.removeItem('isLogin');
+          getUser();
+        });
+      }
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>

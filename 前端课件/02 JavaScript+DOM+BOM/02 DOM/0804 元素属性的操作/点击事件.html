@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <meta name="author" content="金西振">
+    <title></title>
+    <style>
+      .box{
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+      }
+      .outer{
+        width: 100px;
+        height: 100px;
+        background-color: #000;
+      }
+    </style>
+  </head>
+  <body>
+      <div class="box"></div>
+      <div class="outer"></div>
+    <script>
+
+      var box = document.querySelector('.box');
+      var outer = document.querySelector('.outer');
+
+      // onclick  属性用来添加鼠标 单击事件
+      box.onclick = function(ev) {
+        console.log('--------');
+        // document.body.style.backgroundColor = 'red'
+        outer.style.width = '200px';
+        console.log(ev.target);// 获取被点击的元素
+        ev.target.style.backgroundColor = 'blue';
+      }
+    
+    </script>
+  </body>
+</html>

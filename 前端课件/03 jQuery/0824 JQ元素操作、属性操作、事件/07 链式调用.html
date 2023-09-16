@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+		<title></title>
+		<style></style>
+	</head>
+	<body>
+		<ul class="nav-list">
+			<li class="item1">选项1</li>
+			<li class="item2">选项2</li>
+			<li class="item3">选项3</li>
+			<li class="item4">选项4</li>
+			<li class="item5">选项5</li>
+			<li class="item6">选项6</li>
+		</ul>
+		<script>
+			var zs = {
+				name: '张三',
+				say: function () {
+					console.log('我叫张三');
+					// 在对的函数中，this指向该对象
+					// console.log(this);
+					// this.run();
+					return this;
+				},
+				run: function () {
+					console.log('张三在跑步');
+					return this;
+				},
+			};
+			// var o = zs.say();
+			// o.run();
+
+			// zs.say().run();// 链式调用
+
+			// $(selector).action();
+			// action 用来执行某种操作：.css() .html()  .click()
+
+			// JQ中操作性的方法都支持链式调用，执行方法后返回一个JQ对象
+
+			// 通过找标签$(selector)调用某种操作，依然返回找到的元素对象，使用该对象进行链式调用
+
+			$('.item3').css('color', 'red').html('3333').css('font-size', '30px').siblings().css('color', 'blue');
+
+			// 在链式调用过程中，如果使用了找标签的方法，就改变了最初的标签对象，使用end()可以结束最近的查找标签的结果，回到上一次查找标签的结果
+			// $('.item3')
+      // .css('color', 'red')
+      // .siblings().css('color', 'blue')
+      // // .eq(0).css('color', 'orange')
+      // .end().css('color', 'green');
+
+			// var a = $('.item3').css('color', 'red');
+			// $('.item3').siblings().css('color', 'blue');
+			// console.log(a);
+			// a.siblings().css('color', 'blue');
+		</script>
+	</body>
+</html>

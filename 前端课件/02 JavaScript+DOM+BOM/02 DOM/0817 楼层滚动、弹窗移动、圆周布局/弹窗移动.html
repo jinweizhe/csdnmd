@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no" />
+		<meta name="author" content="金西振" />
+		<title></title>
+		<style>
+			body {
+				margin: 0;
+			}
+			html,
+			body {
+				height: 100%;
+			}
+			button {
+				position: fixed;
+				right: 100px;
+				top: 100px;
+			}
+			.mask {
+				width: 100%;
+				height: 100%;
+				background-color: lightblue ;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: 100;
+				/* display: none; */
+			}
+			.box {
+				width: 200px;
+				height: 150px;
+				background-color: red;
+				position: absolute;
+				top: calc(50% - 75px);
+				left: calc(50% - 100px);
+			}
+			.box .header {
+				height: 30px;
+				background-color: orange;
+				cursor: move;
+				/* 禁止用户选中文本内容 */
+				user-select: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="mask">
+			<div class="box">
+				<div class="header"><a href="javascript:;" class="close">&times;</a></div>
+			</div>
+		</div>
+		<button>弹窗</button>
+
+		<script>
+			var btn = document.querySelector('button');
+			var close = document.querySelector('.close');
+			var box = document.querySelector('.box');
+			var mask = document.querySelector('.mask');
+			var header = document.querySelector('.header');
+
+			// 点击按钮显示遮罩层
+			btn.onclick = function () {
+				mask.style.display = 'block';
+			};
+			close.onclick = function () {
+				mask.style.display = 'none';
+			};
+
+
+			header.onmousedown = function (e) {
+        // 获取鼠标相对于被点击元素的偏移量
+				var offsetX = e.offsetX;
+				var offsetY = e.offsetY;
+
+        // 元素可视页面的尺寸
+				var clientHeight = document.documentElement.clientHeight;
+				var clientWidth = document.documentElement.clientWidth;
+        // 元素的尺寸
+				var offsetHeight = box.offsetHeight;
+				var offsetWidth = box.offsetWidth;
+
+				document.onmousemove = function (ev) {
+					var x = ev.clientX - offsetX;
+					var y = ev.clientY - offsetY;
+
+					var minX = 0;
+					var maxX = clientWidth - offsetWidth;
+					x = x < minX ? minX : x;
+					x = x > maxX ? maxX : x;
+
+					var minY = 0;
+					var maxY = clientHeight - offsetHeight;
+					y = y < minY ? minY : y;
+					y = y > maxY ? maxY : y;
+					console.log('x: ' + x + ' y: ' + y);
+
+					box.style.left = x + 'px';
+					box.style.top = y + 'px';
+				};
+			};
+
+			document.onmouseup = function (ev) {
+				document.onmousemove = null;
+			};
+
+			// 鼠标的位置
+			// 1、相对于被点击元素的左上角：ev.offsetX, ev.offsetY;
+			// 2、相对于可视页面的左上角：ev.clientX, ev.clientY;
+			// 3、相对于整个页面的左上角：ev.pageX, ev.pageY;
+
+			// var html = document.documentElement;
+			// console.log(html.clientWidth, html.clientHeight);
+			// console.log(html.scrollWidth, html.scrollHeight);
+			// console.log(html.scrollLeft, html.scrollTop);
+
+			// 页面的尺寸和位置：全部都是使用html标签获取
+			// 1、可视页面的尺寸：html.clientWidth, html.clientHeight
+			// 2、整个页面的尺寸：html.scrollWidth, html.scrollHeight
+			// 3、滚动距离：html.scrollLeft, html.scrollTop
+
+			// console.log(box.offsetWidth, box.offsetHeight);
+			// console.log(box.offsetLeft, box.offsetTop);
+
+			// 元素的尺寸和位置
+			// 1、元素的尺寸：box.offsetWidth, box.offsetHeight
+			// 2、元素的位置（相当于有定位方式父级元素的偏移量）：box.offsetLeft, box.offsetTop
+		</script>
+	</body>
+</html>
